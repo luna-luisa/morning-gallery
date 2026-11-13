@@ -1,0 +1,168 @@
+{
+ "week": "w/c 9 Nov 2026",
+ "updated": "2026-11-13",
+ "featuredTopics": [
+  "van-eyck",
+  "bloomsbury",
+  "guggenheim",
+  "auctions"
+ ],
+ "items": [
+  {
+   "id": "2026-11-monet-iris",
+   "topic": "auctions",
+   "headline": "Monet's Iris makes €50m in Paris",
+   "summary": "A late Monet, never shown in public, became the priciest artwork ever sold at auction in France (Sotheby's, 22 October).",
+   "question": "Which Monet became the most expensive artwork ever sold at auction in France in October 2026?",
+   "options": [
+    "Iris",
+    "Impression, Sunrise",
+    "Weeping Willow",
+    "Poplars on the Epte"
+   ],
+   "answer": 0,
+   "explain": "Iris (1924–25) sold for €50m with fees at Sotheby's Paris, against a €22–30m estimate.",
+   "source": "https://www.theartnewspaper.com/2026/10/23/monets-monumental-iris-makes-56m-in-paris",
+   "level": 2
+  },
+  {
+   "id": "2026-11-basel-paris",
+   "topic": "art-fairs",
+   "headline": "Art Basel Paris closed two days early",
+   "summary": "Planned protests cut the fair short in October. French galleries are now asking for compensation.",
+   "question": "Why did Art Basel Paris close two days early in October 2026?",
+   "options": [
+    "Planned protests in Paris",
+    "A fire at the Grand Palais",
+    "A storm",
+    "A strike by art handlers"
+   ],
+   "answer": 0,
+   "explain": "Organisers cited weekend protests and the safety of visitors and artworks. Galleries have written asking for compensation.",
+   "source": "https://artincontext.org/art-basel-paris-gallery-compensation-demand/",
+   "level": 3
+  },
+  {
+   "id": "2026-11-van-eyck",
+   "topic": "van-eyck",
+   "headline": "Van Eyck's portraits reunited in London",
+   "summary": "The National Gallery's 'Van Eyck: The Portraits' opens 21 November and runs to 11 April 2027.",
+   "question": "Which painter's portraits are brought together at the National Gallery from 21 November?",
+   "options": [
+    "Jan van Eyck",
+    "Hans Holbein",
+    "Rembrandt",
+    "Johannes Vermeer"
+   ],
+   "answer": 0,
+   "explain": "The first exhibition devoted to Jan van Eyck's portraits, built around the gallery's own Arnolfini Portrait.",
+   "source": "https://londonist.com/london/art-and-photography/the-top-exhibitions-to-see-in-london-november-and-december-2026",
+   "art": "red-turban",
+   "level": 2
+  },
+  {
+   "id": "2026-11-bloomsbury",
+   "topic": "bloomsbury",
+   "headline": "Inside Bloomsbury opens at Tate Britain",
+   "summary": "A major show on Vanessa Bell and Duncan Grant, 12 November 2026 to 11 April 2027.",
+   "question": "Tate Britain's new exhibition focuses on which pair of artists?",
+   "options": [
+    "Vanessa Bell and Duncan Grant",
+    "Ben Nicholson and Barbara Hepworth",
+    "Gilbert and George",
+    "Dora Carrington and Mark Gertler"
+   ],
+   "answer": 0,
+   "explain": "'Vanessa Bell & Duncan Grant: Inside Bloomsbury' opened on 12 November.",
+   "source": "https://londonist.com/london/art-and-photography/the-top-exhibitions-to-see-in-london-november-and-december-2026",
+   "art": "studland",
+   "level": 3
+  },
+  {
+   "id": "2026-11-guggenheim-ra",
+   "topic": "guggenheim",
+   "headline": "Peggy Guggenheim's London years at the RA",
+   "summary": "From 21 November the Royal Academy looks at her Cork Street gallery, Guggenheim Jeune (1938–39).",
+   "question": "Peggy Guggenheim's London gallery gave the first UK solo show to which artist?",
+   "options": [
+    "Wassily Kandinsky",
+    "Pablo Picasso",
+    "Salvador Dalí",
+    "Jackson Pollock"
+   ],
+   "answer": 0,
+   "explain": "Guggenheim Jeune, at 30 Cork Street, hosted Kandinsky's first UK solo exhibition.",
+   "source": "https://aboutlondon.substack.com/p/aboutlondon-laura-november-2026",
+   "level": 3
+  },
+  {
+   "id": "2026-11-ny-cezanne",
+   "topic": "auctions",
+   "headline": "New York's November sales test the top end",
+   "summary": "Sotheby's offers a Cézanne estimated around $120m on 18 November; Christie's leads with a $60–80m Kandinsky on 17 November.",
+   "question": "Sotheby's hopes a painting by which artist will beat his roughly $138m auction record on 18 November?",
+   "options": [
+    "Paul Cézanne",
+    "Vincent van Gogh",
+    "Claude Monet",
+    "Gustav Klimt"
+   ],
+   "answer": 0,
+   "explain": "The Cézanne record is La Montagne Sainte-Victoire, sold at Christie's in 2022 for about $138m.",
+   "source": "https://www.beyondeveryart.com/new-york-november-2026-auctions-estimates-explained/",
+   "art": "sainte-victoire",
+   "level": 2
+  },
+  {
+   "id": "2026-11-sweden-benin",
+   "topic": "auctions",
+   "headline": "Sweden returns Benin Bronzes to Nigeria",
+   "summary": "Swedish museums have restituted objects to Nigeria and Bolivia.",
+   "question": "Which country's museums returned Benin Bronzes to Nigeria this month?",
+   "options": [
+    "Sweden",
+    "Germany",
+    "The Netherlands",
+    "Belgium"
+   ],
+   "answer": 0,
+   "explain": "Swedish museums restituted objects to both Nigeria and Bolivia in early November 2026.",
+   "source": "https://www.theartnewspaper.com/",
+   "level": 3
+  },
+  {
+   "id": "2026-11-rijks-hk",
+   "topic": "auctions",
+   "headline": "Rijksmuseum to send a Vermeer to Hong Kong",
+   "summary": "A new partnership with the Hong Kong Palace Museum includes a 2027 show of 100 Dutch Golden Age works.",
+   "question": "Which Vermeer will travel to Hong Kong in 2027 as part of a Rijksmuseum partnership?",
+   "options": [
+    "The Love Letter",
+    "Girl with a Pearl Earring",
+    "View of Delft",
+    "The Milkmaid"
+   ],
+   "answer": 0,
+   "explain": "The Love Letter heads the loan. Girl with a Pearl Earring belongs to the Mauritshuis, not the Rijksmuseum.",
+   "source": "https://www.arthistorynews.com/",
+   "level": 3
+  },
+  {
+   "id": "2026-11-venice-awards",
+   "topic": "art-fairs",
+   "headline": "Venice Biennale awards on its final day",
+   "summary": "The 61st Biennale closes on 22 November, when its postponed awards are finally given after the jury resigned in April.",
+   "question": "When will the 2026 Venice Biennale's postponed awards be presented?",
+   "options": [
+    "22 November, its closing day",
+    "On opening day in May",
+    "Never, they were cancelled",
+    "At the 2027 edition"
+   ],
+   "answer": 0,
+   "explain": "The jury resigned on 30 April, so the May ceremony was moved to 22 November.",
+   "source": "https://en.wikipedia.org/wiki/61st_Venice_Biennale",
+   "level": 3
+  }
+ ]
+}

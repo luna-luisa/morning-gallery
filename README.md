@@ -1,1 +1,10 @@
-# morning-gallery
+# Morning Gallery content
+
+Questions, artworks and weekly news for the Morning Gallery art quiz. The app on Hostinger reads these files directly, so changes here go live within a few minutes.
+
+- `content/topics.json`: topics, introductions and questions (each question has a level 1 to 5: Visitor, Regular, Enthusiast, Connoisseur, Curator)
+- `content/works.json`: artworks and where their images load from
+- `content/news.json`: this week's art news questions (refreshed every Sunday)
+- `proposals/`: weekly suggestions waiting for Luna's approval
+
+Nothing personal is stored here. Profiles, progress and feedback live in Supabase.

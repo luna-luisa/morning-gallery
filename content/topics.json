@@ -1,0 +1,3398 @@
+{
+ "version": "2026-11-13",
+ "topics": {
+  "renaissance": {
+   "name": "The Renaissance",
+   "kind": "movement",
+   "group": "start",
+   "year": 1450,
+   "span": "c.1400–1600",
+   "timeline": true,
+   "related": [
+    "van-eyck",
+    "baroque",
+    "national-gallery"
+   ],
+   "intro": [
+    {
+     "title": "A rebirth",
+     "text": "Italy, around 1400 to 1600. Artists revived the ideas of ancient Greece and Rome and put people, not just God, at the centre.",
+     "art": "school-athens"
+    },
+    {
+     "title": "Look for",
+     "text": "Deep, mathematically correct perspective. Calm, balanced groups. Real-looking bodies, studied from life.",
+     "art": "last-supper"
+    },
+    {
+     "title": "The big names",
+     "text": "Leonardo, Michelangelo and Raphael in Italy. Titian in Venice. In the north: van Eyck, Holbein, Bosch, Bruegel.",
+     "art": "mona-lisa"
+    }
+   ],
+   "questions": [
+    {
+     "id": "renaissance-1",
+     "level": 1,
+     "q": "'Renaissance' means…",
+     "options": [
+      "Rebirth",
+      "Rediscovery",
+      "Revolution",
+      "Reform"
+     ],
+     "explain": "French for rebirth: the revival of classical learning and art."
+    },
+    {
+     "id": "renaissance-2",
+     "level": 1,
+     "q": "In which country did the Renaissance begin?",
+     "options": [
+      "Italy",
+      "France",
+      "The Netherlands",
+      "Spain"
+     ],
+     "explain": "Florence in particular, funded by families like the Medici."
+    },
+    {
+     "id": "renaissance-3",
+     "level": 1,
+     "q": "Who painted the Mona Lisa?",
+     "options": [
+      "Leonardo da Vinci",
+      "Raphael",
+      "Michelangelo",
+      "Titian"
+     ],
+     "explain": "Leonardo, from about 1503. It's in the Louvre.",
+     "art": "mona-lisa"
+    },
+    {
+     "id": "renaissance-4",
+     "level": 1,
+     "q": "Who painted the Sistine Chapel ceiling?",
+     "options": [
+      "Michelangelo",
+      "Raphael",
+      "Leonardo da Vinci",
+      "Botticelli"
+     ],
+     "explain": "Michelangelo, 1508–12. He saw himself as a sculptor first.",
+     "art": "creation-adam"
+    },
+    {
+     "id": "renaissance-5",
+     "level": 2,
+     "q": "What did Renaissance painters use to make space look deep and real?",
+     "options": [
+      "Linear perspective",
+      "Gold backgrounds",
+      "Flat colour",
+      "Thick outlines"
+     ],
+     "explain": "Lines converging on a vanishing point. Brunelleschi worked it out in Florence in the early 1400s.",
+     "art": "school-athens"
+    },
+    {
+     "id": "renaissance-6",
+     "level": 2,
+     "q": "Leonardo's soft, smoky blending of edges is called…",
+     "options": [
+      "Sfumato",
+      "Chiaroscuro",
+      "Impasto",
+      "Pointillism"
+     ],
+     "explain": "From the Italian for smoke. Look at the corners of the Mona Lisa's mouth.",
+     "art": "mona-lisa"
+    },
+    {
+     "id": "renaissance-7",
+     "level": 2,
+     "q": "Venice and Florence had different priorities. Venice prized…",
+     "options": [
+      "Colour",
+      "Drawing",
+      "Gold leaf",
+      "Sculpture"
+     ],
+     "explain": "Florence praised disegno (drawing); Venice, led by Titian, praised colore.",
+     "art": "venus-urbino"
+    },
+    {
+     "id": "renaissance-8",
+     "level": 3,
+     "q": "What's hidden across the floor of Holbein's The Ambassadors?",
+     "options": [
+      "A stretched skull",
+      "A hidden signature",
+      "A cat",
+      "A map of London"
+     ],
+     "explain": "An anamorphic skull: view it from the side and it snaps into shape. A reminder of death.",
+     "art": "ambassadors"
+    },
+    {
+     "id": "renaissance-9",
+     "level": 3,
+     "q": "Where can you see The Birth of Venus?",
+     "options": [
+      "Uffizi, Florence",
+      "Louvre, Paris",
+      "Prado, Madrid",
+      "National Gallery, London"
+     ],
+     "explain": "In the Uffizi, along with Botticelli's Primavera.",
+     "art": "birth-venus"
+    },
+    {
+     "id": "renaissance-10",
+     "level": 3,
+     "q": "In The School of Athens, who is said to have Leonardo's face?",
+     "options": [
+      "Plato",
+      "Aristotle",
+      "Socrates",
+      "Euclid"
+     ],
+     "explain": "Plato, pointing upwards, at the centre.",
+     "art": "school-athens"
+    },
+    {
+     "id": "renaissance-11",
+     "level": 4,
+     "q": "Bruegel's Hunters in the Snow belongs to a series showing…",
+     "options": [
+      "The months or seasons",
+      "The seven sins",
+      "Bible stories",
+      "Dutch cities"
+     ],
+     "explain": "A set of seasonal scenes. Five survive; three are in Vienna.",
+     "art": "hunters-snow"
+    }
+   ]
+  },
+  "van-eyck": {
+   "name": "Jan van Eyck",
+   "kind": "artist",
+   "group": "next",
+   "year": 1434,
+   "span": "active 1422–1441",
+   "timeline": false,
+   "related": [
+    "renaissance",
+    "national-gallery"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "'Van Eyck: The Portraits' at the National Gallery, 21 November 2026 to 11 April 2027, gathers his surviving portraits together for the first time.",
+     "art": "red-turban"
+    },
+    {
+     "title": "Who was he?",
+     "text": "A Flemish painter working in Bruges, court painter to the Duke of Burgundy. One of the founders of 'Northern Renaissance' art.",
+     "art": "leal-souvenir"
+    },
+    {
+     "title": "Oil magic",
+     "text": "He perfected oil glazes: thin transparent layers that make fur, metal, skin and light glow. Look at every reflection.",
+     "art": "arnolfini"
+    }
+   ],
+   "questions": [
+    {
+     "id": "van-eyck-1",
+     "level": 1,
+     "q": "Where did Jan van Eyck work?",
+     "options": [
+      "Bruges, Flanders",
+      "Florence, Italy",
+      "Paris, France",
+      "Seville, Spain"
+     ],
+     "explain": "Bruges, in today's Belgium, the great trading city of the 1400s."
+    },
+    {
+     "id": "van-eyck-2",
+     "level": 1,
+     "q": "Which of his paintings hangs in the National Gallery, London?",
+     "options": [
+      "The Arnolfini Portrait",
+      "The Ghent Altarpiece",
+      "Las Meninas",
+      "The Night Watch"
+     ],
+     "explain": "Bought in 1842. It's the centrepiece of the new show.",
+     "art": "arnolfini"
+    },
+    {
+     "id": "van-eyck-3",
+     "level": 1,
+     "q": "Van Eyck is famous for mastering which material?",
+     "options": [
+      "Oil paint",
+      "Fresco",
+      "Tempera on gold",
+      "Watercolour"
+     ],
+     "explain": "He didn't invent oil paint, but he took it further than anyone before him."
+    },
+    {
+     "id": "van-eyck-4",
+     "level": 2,
+     "q": "What's the hallmark of a van Eyck painting?",
+     "options": [
+      "Microscopic, jewel-like detail",
+      "Loose, fast brushstrokes",
+      "Flat areas of colour",
+      "Dramatic darkness"
+     ],
+     "explain": "You can count the hairs in the fur and see windows reflected in the mirror.",
+     "art": "arnolfini"
+    },
+    {
+     "id": "van-eyck-5",
+     "level": 2,
+     "q": "Van Eyck's motto, painted on frames, was…",
+     "options": [
+      "'Als ich can' (As I can)",
+      "'Nulla dies sine linea'",
+      "'Ars longa'",
+      "'Plus ultra'"
+     ],
+     "explain": "A pun on his name: 'As I/Eyck can'.",
+     "art": "red-turban"
+    },
+    {
+     "id": "van-eyck-6",
+     "level": 3,
+     "q": "What's on the back wall of the Arnolfini Portrait?",
+     "options": [
+      "A convex mirror reflecting two more people",
+      "A window onto Bruges",
+      "A map of the world",
+      "A portrait of the Duke"
+     ],
+     "explain": "Above it he wrote, in Latin: 'Jan van Eyck was here 1434'.",
+     "art": "arnolfini"
+    },
+    {
+     "id": "van-eyck-7",
+     "level": 4,
+     "q": "Which great altarpiece did he complete in 1432?",
+     "options": [
+      "The Ghent Altarpiece",
+      "The Isenheim Altarpiece",
+      "The Portinari Altarpiece",
+      "The Wilton Diptych"
+     ],
+     "explain": "Begun with his brother Hubert, in St Bavo's Cathedral, Ghent.",
+     "art": "ghent"
+    },
+    {
+     "id": "van-eyck-8",
+     "level": 4,
+     "q": "The man in the red turban (National Gallery) may be…",
+     "options": [
+      "Van Eyck himself",
+      "The Duke of Burgundy",
+      "Giovanni Arnolfini",
+      "His brother Hubert"
+     ],
+     "explain": "Many think it's a self-portrait; the frame carries his motto.",
+     "art": "red-turban"
+    }
+   ]
+  },
+  "baroque": {
+   "name": "Baroque",
+   "kind": "movement",
+   "group": "start",
+   "year": 1620,
+   "span": "c.1600–1750",
+   "timeline": true,
+   "related": [
+    "renaissance",
+    "rococo"
+   ],
+   "intro": [
+    {
+     "title": "Drama",
+     "text": "The 1600s wanted art you feel in your stomach: diagonal movement, big emotion, a frozen moment of action.",
+     "art": "raising-cross"
+    },
+    {
+     "title": "Light out of darkness",
+     "text": "Caravaggio lit figures like a spotlight in a dark room. The style spread across Europe.",
+     "art": "calling-matthew"
+    },
+    {
+     "title": "The Dutch Golden Age",
+     "text": "Protestant Holland went quieter: portraits, interiors, still lifes. Rembrandt in Amsterdam, Vermeer in Delft.",
+     "art": "milkmaid"
+    }
+   ],
+   "questions": [
+    {
+     "id": "baroque-1",
+     "level": 1,
+     "q": "Roughly when was the Baroque period?",
+     "options": [
+      "1600s to mid-1700s",
+      "1400s",
+      "1800s",
+      "1900s"
+     ],
+     "explain": "From about 1600 to 1750."
+    },
+    {
+     "id": "baroque-2",
+     "level": 1,
+     "q": "Who painted The Night Watch?",
+     "options": [
+      "Rembrandt",
+      "Vermeer",
+      "Rubens",
+      "Caravaggio"
+     ],
+     "explain": "Rembrandt, 1642. It's in the Rijksmuseum, Amsterdam.",
+     "art": "night-watch"
+    },
+    {
+     "id": "baroque-3",
+     "level": 1,
+     "q": "Who painted Girl with a Pearl Earring?",
+     "options": [
+      "Johannes Vermeer",
+      "Rembrandt",
+      "Frans Hals",
+      "Velázquez"
+     ],
+     "explain": "Vermeer, about 1665. It's in the Mauritshuis, The Hague.",
+     "art": "pearl-earring"
+    },
+    {
+     "id": "baroque-4",
+     "level": 2,
+     "q": "What's the strongest visual sign of Baroque painting?",
+     "options": [
+      "Dramatic light and deep shadow",
+      "Pale pastel colours",
+      "Flat gold backgrounds",
+      "Dots of pure colour"
+     ],
+     "explain": "Chiaroscuro: strong contrast of light and dark."
+    },
+    {
+     "id": "baroque-5",
+     "level": 2,
+     "q": "Caravaggio's extreme light-and-dark is called…",
+     "options": [
+      "Tenebrism",
+      "Sfumato",
+      "Grisaille",
+      "Trompe l'oeil"
+     ],
+     "explain": "From the Italian tenebroso, murky.",
+     "art": "calling-matthew"
+    },
+    {
+     "id": "baroque-6",
+     "level": 2,
+     "q": "Vermeer's interiors are usually lit from…",
+     "options": [
+      "A window on the left",
+      "Candles",
+      "A fire",
+      "Above"
+     ],
+     "explain": "Soft daylight from the left falls across a quiet room.",
+     "art": "milkmaid"
+    },
+    {
+     "id": "baroque-7",
+     "level": 3,
+     "q": "Who appears in the mirror at the back of Las Meninas?",
+     "options": [
+      "The king and queen of Spain",
+      "Velázquez",
+      "A dwarf",
+      "The Pope"
+     ],
+     "explain": "Philip IV and Queen Mariana. Velázquez himself stands at the easel.",
+     "art": "las-meninas"
+    },
+    {
+     "id": "baroque-8",
+     "level": 3,
+     "q": "Where can you see Rembrandt's Self-Portrait with Two Circles for free?",
+     "options": [
+      "Kenwood House, London",
+      "National Gallery, London",
+      "Tate Britain",
+      "Wallace Collection"
+     ],
+     "explain": "At Kenwood on Hampstead Heath.",
+     "art": "rembrandt-kenwood"
+    },
+    {
+     "id": "baroque-9",
+     "level": 4,
+     "q": "Artemisia Gentileschi was the first woman admitted to…",
+     "options": [
+      "Florence's Academy of Design",
+      "The Royal Academy",
+      "The French Academy",
+      "The Accademia di San Luca"
+     ],
+     "explain": "In 1616. Her Judith paintings are among the most powerful of the age.",
+     "art": "judith"
+    },
+    {
+     "id": "baroque-10",
+     "level": 4,
+     "q": "Which London painting did a suffragette slash in 1914?",
+     "options": [
+      "The Rokeby Venus",
+      "The Arnolfini Portrait",
+      "The Hay Wain",
+      "Supper at Emmaus"
+     ],
+     "explain": "Mary Richardson attacked Velázquez's Venus in the National Gallery. It was repaired.",
+     "art": "rokeby"
+    }
+   ]
+  },
+  "rococo": {
+   "name": "Rococo",
+   "kind": "movement",
+   "group": "next",
+   "year": 1730,
+   "span": "c.1720–1780",
+   "timeline": true,
+   "related": [
+    "baroque",
+    "british18c"
+   ],
+   "intro": [
+    {
+     "title": "Light and playful",
+     "text": "After Baroque grandeur, 18th-century France went pastel: flirting aristocrats, swings, dreamy gardens.",
+     "art": "swing"
+    },
+    {
+     "title": "Look for",
+     "text": "Soft pinks and blues, curling decoration, feathery brushwork, pleasure and leisure.",
+     "art": "boucher-venus"
+    },
+    {
+     "title": "Key names",
+     "text": "Watteau, Boucher and Fragonard. And in London, the Wallace Collection has one of the world's best Rococo collections, free.",
+     "art": "cythera"
+    }
+   ],
+   "questions": [
+    {
+     "id": "rococo-1",
+     "level": 1,
+     "q": "Rococo flourished mainly in which country?",
+     "options": [
+      "France",
+      "Italy",
+      "Spain",
+      "England"
+     ],
+     "explain": "Paris and the court of Louis XV."
+    },
+    {
+     "id": "rococo-2",
+     "level": 1,
+     "q": "Which London museum holds Fragonard's The Swing?",
+     "options": [
+      "Wallace Collection",
+      "National Gallery",
+      "V&A",
+      "Tate Britain"
+     ],
+     "explain": "The Wallace Collection, Manchester Square. Free to visit.",
+     "art": "swing"
+    },
+    {
+     "id": "rococo-3",
+     "level": 2,
+     "q": "Which colours feel most Rococo?",
+     "options": [
+      "Pastel pinks and powder blues",
+      "Black and gold",
+      "Primary red, yellow, blue",
+      "Earthy browns"
+     ],
+     "explain": "Light, sweet and decorative.",
+     "art": "boucher-venus"
+    },
+    {
+     "id": "rococo-4",
+     "level": 2,
+     "q": "Rococo paintings are usually about…",
+     "options": [
+      "Love, leisure and flirtation",
+      "War and history",
+      "Religious suffering",
+      "Industrial life"
+     ],
+     "explain": "Pleasure for an aristocratic audience.",
+     "art": "swing"
+    },
+    {
+     "id": "rococo-5",
+     "level": 3,
+     "q": "The 'fête galante' (elegant outdoor party) was invented for…",
+     "options": [
+      "Antoine Watteau",
+      "François Boucher",
+      "Fragonard",
+      "Jacques-Louis David"
+     ],
+     "explain": "The French Academy created the category in 1717 for his Pilgrimage to Cythera.",
+     "art": "cythera"
+    },
+    {
+     "id": "rococo-6",
+     "level": 4,
+     "q": "Boucher's most famous patron was…",
+     "options": [
+      "Madame de Pompadour",
+      "Marie Antoinette",
+      "Napoleon",
+      "Catherine the Great"
+     ],
+     "explain": "Louis XV's favourite. The Toilet of Venus was painted for her.",
+     "art": "boucher-venus"
+    }
+   ]
+  },
+  "british18c": {
+   "name": "Georgian Britain",
+   "kind": "movement",
+   "group": "next",
+   "year": 1760,
+   "span": "c.1720–1800",
+   "timeline": false,
+   "related": [
+    "royal-academy",
+    "romanticism",
+    "rococo"
+   ],
+   "intro": [
+    {
+     "title": "Britain finds its voice",
+     "text": "In the 1700s British art stepped out from foreign painters: satire, society portraits, horses and science.",
+     "art": "marriage-mode"
+    },
+    {
+     "title": "Hogarth and Gainsborough",
+     "text": "Hogarth told moral stories in picture series. Gainsborough painted elegant portraits set in landscape.",
+     "art": "andrews"
+    },
+    {
+     "title": "Stubbs and Wright",
+     "text": "Stubbs painted horses with an anatomist's eye. Joseph Wright of Derby painted science by candlelight.",
+     "art": "air-pump"
+    }
+   ],
+   "questions": [
+    {
+     "id": "british18c-1",
+     "level": 1,
+     "q": "Which institution was founded in London in 1768?",
+     "options": [
+      "The Royal Academy",
+      "The National Gallery",
+      "Tate",
+      "The British Museum"
+     ],
+     "explain": "With Joshua Reynolds as its first President."
+    },
+    {
+     "id": "british18c-2",
+     "level": 1,
+     "q": "George Stubbs is best known for painting…",
+     "options": [
+      "Horses",
+      "Ships",
+      "Ruins",
+      "Children"
+     ],
+     "explain": "He dissected horses to publish The Anatomy of the Horse (1766).",
+     "art": "whistlejacket"
+    },
+    {
+     "id": "british18c-3",
+     "level": 2,
+     "q": "Hogarth's 'modern moral subjects' tell a story across…",
+     "options": [
+      "A series of pictures",
+      "One huge canvas",
+      "Tapestries",
+      "Stained glass"
+     ],
+     "explain": "Like A Rake's Progress or Marriage A-la-Mode, sold as cheap prints too.",
+     "art": "marriage-mode"
+    },
+    {
+     "id": "british18c-4",
+     "level": 2,
+     "q": "Gainsborough's portraits often place sitters…",
+     "options": [
+      "Outdoors in landscape",
+      "In front of a black background",
+      "In a church",
+      "At a desk"
+     ],
+     "explain": "He loved landscape and painted it with feathery brushwork.",
+     "art": "andrews"
+    },
+    {
+     "id": "british18c-5",
+     "level": 3,
+     "q": "What's unfinished in Mr and Mrs Andrews?",
+     "options": [
+      "Mrs Andrews' lap",
+      "The sky",
+      "Mr Andrews' face",
+      "The dog"
+     ],
+     "explain": "An empty patch where something, maybe a bird or a child, was planned.",
+     "art": "andrews"
+    },
+    {
+     "id": "british18c-6",
+     "level": 4,
+     "q": "Hogarth's pug was called…",
+     "options": [
+      "Trump",
+      "Rex",
+      "Bounce",
+      "Pompey"
+     ],
+     "explain": "It appears in his self-portrait, The Painter and his Pug.",
+     "art": "painter-pug"
+    },
+    {
+     "id": "british18c-7",
+     "level": 4,
+     "q": "What light source does Wright of Derby use in the Air Pump painting?",
+     "options": [
+      "A single candle",
+      "Moonlight",
+      "A window",
+      "A fire"
+     ],
+     "explain": "Candlelight makes science look like a sacred drama.",
+     "art": "air-pump"
+    }
+   ]
+  },
+  "romanticism": {
+   "name": "Romanticism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1810,
+   "span": "c.1790–1850",
+   "timeline": true,
+   "related": [
+    "british18c",
+    "preraphaelites",
+    "realism",
+    "tate"
+   ],
+   "intro": [
+    {
+     "title": "Feeling first",
+     "text": "A reaction to the Age of Reason: emotion, imagination and the wild power of nature.",
+     "art": "wanderer"
+    },
+    {
+     "title": "The sublime",
+     "text": "Beauty mixed with terror. Storms, mountains and shipwrecks, with tiny humans to show the scale.",
+     "art": "shipwreck"
+    },
+    {
+     "title": "Key names",
+     "text": "Turner and Constable in Britain, Friedrich in Germany, Delacroix and Géricault in France, Goya in Spain.",
+     "art": "hay-wain"
+    }
+   ],
+   "questions": [
+    {
+     "id": "romanticism-1",
+     "level": 1,
+     "q": "Roughly when was Romanticism?",
+     "options": [
+      "c.1790–1850",
+      "c.1500–1550",
+      "c.1870–1890",
+      "c.1920–1940"
+     ],
+     "explain": "Around the turn of the 19th century."
+    },
+    {
+     "id": "romanticism-2",
+     "level": 1,
+     "q": "Romantic artists valued above all…",
+     "options": [
+      "Emotion and imagination",
+      "Mathematical order",
+      "Everyday modern life",
+      "Pure geometry"
+     ],
+     "explain": "Feeling over reason."
+    },
+    {
+     "id": "romanticism-3",
+     "level": 1,
+     "q": "Which two British painters are the giants of Romantic landscape?",
+     "options": [
+      "Turner and Constable",
+      "Hogarth and Stubbs",
+      "Millais and Rossetti",
+      "Hockney and Bacon"
+     ],
+     "explain": "Turner for drama and light, Constable for the English countryside."
+    },
+    {
+     "id": "romanticism-4",
+     "level": 2,
+     "q": "The 'sublime' means…",
+     "options": [
+      "Awe mixed with fear",
+      "Perfect calm",
+      "Sweet prettiness",
+      "Precise realism"
+     ],
+     "explain": "Nature as overwhelming and dangerous.",
+     "art": "shipwreck"
+    },
+    {
+     "id": "romanticism-5",
+     "level": 2,
+     "q": "Turner's late style is known for…",
+     "options": [
+      "Swirling light and colour that dissolve shapes",
+      "Sharp outlines",
+      "Tiny dots",
+      "Flat black outlines"
+     ],
+     "explain": "Critics called some of his late pictures 'soapsuds and whitewash'.",
+     "art": "rain-steam"
+    },
+    {
+     "id": "romanticism-6",
+     "level": 3,
+     "q": "The Hay Wain was painted by…",
+     "options": [
+      "John Constable",
+      "J.M.W. Turner",
+      "Thomas Gainsborough",
+      "John Martin"
+     ],
+     "explain": "In 1821, near Flatford in Suffolk. It's in the National Gallery.",
+     "art": "hay-wain"
+    },
+    {
+     "id": "romanticism-7",
+     "level": 3,
+     "q": "What does The Fighting Temeraire show?",
+     "options": [
+      "A warship towed to be broken up",
+      "A naval battle",
+      "A shipwreck",
+      "A royal yacht"
+     ],
+     "explain": "A Trafalgar veteran pulled by a steam tug: the old age giving way to the new.",
+     "art": "temeraire"
+    },
+    {
+     "id": "romanticism-8",
+     "level": 3,
+     "q": "What tiny animal runs ahead of the train in Rain, Steam and Speed?",
+     "options": [
+      "A hare",
+      "A dog",
+      "A fox",
+      "A horse"
+     ],
+     "explain": "Can nature outrun the machine?",
+     "art": "rain-steam"
+    },
+    {
+     "id": "romanticism-9",
+     "level": 3,
+     "q": "Liberty Leading the People celebrates the revolution of…",
+     "options": [
+      "1830",
+      "1789",
+      "1848",
+      "1871"
+     ],
+     "explain": "The July Revolution. Delacroix painted it the same year.",
+     "art": "liberty"
+    },
+    {
+     "id": "romanticism-10",
+     "level": 4,
+     "q": "The Raft of the Medusa was based on…",
+     "options": [
+      "A real 1816 shipwreck scandal",
+      "A Greek myth",
+      "A Bible story",
+      "A novel"
+     ],
+     "explain": "Géricault interviewed survivors and studied corpses.",
+     "art": "medusa"
+    }
+   ]
+  },
+  "preraphaelites": {
+   "name": "Pre-Raphaelites",
+   "kind": "movement",
+   "group": "next",
+   "year": 1850,
+   "span": "from 1848",
+   "timeline": true,
+   "related": [
+    "romanticism",
+    "tate",
+    "realism"
+   ],
+   "intro": [
+    {
+     "title": "A secret brotherhood",
+     "text": "Founded in London in 1848 by three young students: Dante Gabriel Rossetti, John Everett Millais and William Holman Hunt.",
+     "art": "ophelia"
+    },
+    {
+     "title": "Why the name?",
+     "text": "They rejected the art schools' worship of Raphael and looked to the bright, detailed art before him.",
+     "art": "proserpine"
+    },
+    {
+     "title": "Look for",
+     "text": "Jewel-bright colour, every leaf painted, stories from Shakespeare, Tennyson and legend. Tate Britain holds the key works.",
+     "art": "lady-shalott"
+    }
+   ],
+   "questions": [
+    {
+     "id": "preraphaelites-1",
+     "level": 1,
+     "q": "The Pre-Raphaelite Brotherhood was founded in…",
+     "options": [
+      "1848",
+      "1798",
+      "1874",
+      "1905"
+     ],
+     "explain": "1848, a year of revolutions across Europe."
+    },
+    {
+     "id": "preraphaelites-2",
+     "level": 1,
+     "q": "Where in London are the great Pre-Raphaelite paintings?",
+     "options": [
+      "Tate Britain",
+      "National Gallery",
+      "Courtauld",
+      "Royal Academy"
+     ],
+     "explain": "Ophelia, The Lady of Shalott, Proserpine and more."
+    },
+    {
+     "id": "preraphaelites-3",
+     "level": 1,
+     "q": "Which was NOT a founding member?",
+     "options": [
+      "John William Waterhouse",
+      "Dante Gabriel Rossetti",
+      "John Everett Millais",
+      "William Holman Hunt"
+     ],
+     "explain": "Waterhouse came a generation later, borrowing their style.",
+     "art": "lady-shalott"
+    },
+    {
+     "id": "preraphaelites-4",
+     "level": 2,
+     "q": "Pre-Raphaelite paintings are known for…",
+     "options": [
+      "Bright colour and sharp detail",
+      "Loose sketchy brushwork",
+      "Muted browns",
+      "Abstract shapes"
+     ],
+     "explain": "They painted on a wet white ground to make colours glow.",
+     "art": "ophelia"
+    },
+    {
+     "id": "preraphaelites-5",
+     "level": 2,
+     "q": "Their stories mostly came from…",
+     "options": [
+      "Literature and legend",
+      "Daily news",
+      "Greek philosophy",
+      "Science"
+     ],
+     "explain": "Shakespeare, Tennyson, Dante, Arthurian legend."
+    },
+    {
+     "id": "preraphaelites-6",
+     "level": 3,
+     "q": "Who modelled for Millais' Ophelia?",
+     "options": [
+      "Elizabeth Siddal",
+      "Jane Morris",
+      "Effie Gray",
+      "Fanny Cornforth"
+     ],
+     "explain": "She lay in a bath of water for hours and caught a bad cold.",
+     "art": "ophelia"
+    },
+    {
+     "id": "preraphaelites-7",
+     "level": 4,
+     "q": "In Proserpine, what does the pomegranate mean?",
+     "options": [
+      "She must stay in the underworld",
+      "She's in love",
+      "She's a queen",
+      "Autumn has come"
+     ],
+     "explain": "Eating its seeds bound her to Hades. The model is Jane Morris.",
+     "art": "proserpine"
+    },
+    {
+     "id": "preraphaelites-8",
+     "level": 4,
+     "q": "The Lady of Shalott comes from a poem by…",
+     "options": [
+      "Alfred, Lord Tennyson",
+      "Lord Byron",
+      "John Keats",
+      "William Wordsworth"
+     ],
+     "explain": "Waterhouse painted it in 1888.",
+     "art": "lady-shalott"
+    }
+   ]
+  },
+  "realism": {
+   "name": "Realism",
+   "kind": "movement",
+   "group": "next",
+   "year": 1850,
+   "span": "c.1840–1870",
+   "timeline": true,
+   "related": [
+    "romanticism",
+    "impressionism",
+    "preraphaelites"
+   ],
+   "intro": [
+    {
+     "title": "Paint what you see",
+     "text": "In 1840s France, artists turned from heroes and myths to ordinary people: workers, peasants, funerals.",
+     "art": "gleaners"
+    },
+    {
+     "title": "Courbet",
+     "text": "Gustave Courbet led the charge: 'Show me an angel and I'll paint one.'",
+     "art": "stone-breakers"
+    },
+    {
+     "title": "Manet's scandals",
+     "text": "Manet took old-master poses and filled them with modern Parisians. Critics were outraged.",
+     "art": "olympia"
+    }
+   ],
+   "questions": [
+    {
+     "id": "realism-1",
+     "level": 1,
+     "q": "Realism began in which country?",
+     "options": [
+      "France",
+      "England",
+      "Germany",
+      "Italy"
+     ],
+     "explain": "Around 1848, with Courbet and Millet."
+    },
+    {
+     "id": "realism-2",
+     "level": 1,
+     "q": "Realists chose to paint…",
+     "options": [
+      "Ordinary working people",
+      "Gods and heroes",
+      "Saints",
+      "Dreams"
+     ],
+     "explain": "Everyday life at the size usually kept for history paintings."
+    },
+    {
+     "id": "realism-3",
+     "level": 2,
+     "q": "Why did The Gleaners upset critics?",
+     "options": [
+      "It showed poverty at heroic scale",
+      "It was too colourful",
+      "It was abstract",
+      "It showed nudity"
+     ],
+     "explain": "Poor women gathering leftover grain looked like a political statement.",
+     "art": "gleaners"
+    },
+    {
+     "id": "realism-4",
+     "level": 3,
+     "q": "Which painting shows a modern courtesan in a classic Venus pose?",
+     "options": [
+      "Olympia",
+      "The Gleaners",
+      "The Stone Breakers",
+      "Luncheon of the Boating Party"
+     ],
+     "explain": "Manet, 1863, after Titian's Venus of Urbino.",
+     "art": "olympia"
+    },
+    {
+     "id": "realism-5",
+     "level": 4,
+     "q": "Le Déjeuner sur l'herbe was shown at the…",
+     "options": [
+      "Salon des Refusés",
+      "Royal Academy",
+      "First Impressionist show",
+      "Paris World Fair"
+     ],
+     "explain": "The 1863 show of works the official Salon rejected.",
+     "art": "dejeuner"
+    },
+    {
+     "id": "realism-6",
+     "level": 4,
+     "q": "What happened to Courbet's The Stone Breakers?",
+     "options": [
+      "It was destroyed in 1945",
+      "It's in the Louvre",
+      "It was stolen in 1990",
+      "He painted over it"
+     ],
+     "explain": "Destroyed in the Second World War near Dresden.",
+     "art": "stone-breakers"
+    }
+   ]
+  },
+  "impressionism": {
+   "name": "Impressionism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1874,
+   "span": "1870s–1880s",
+   "timeline": true,
+   "related": [
+    "realism",
+    "postimpressionism",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Light, right now",
+     "text": "Catching a fleeting moment: sunlight on water, a breezy afternoon, a busy boulevard. Often painted outdoors.",
+     "art": "parasol"
+    },
+    {
+     "title": "Look for",
+     "text": "Quick visible brushstrokes, bright unmixed colour, coloured shadows, everyday modern life.",
+     "art": "moulin-galette"
+    },
+    {
+     "title": "A rude name",
+     "text": "A critic mocked Monet's Impression, Sunrise at the group's first show in Paris in 1874. The insult stuck.",
+     "art": "impression-sunrise"
+    }
+   ],
+   "questions": [
+    {
+     "id": "impressionism-1",
+     "level": 1,
+     "q": "The first Impressionist exhibition was held in Paris in…",
+     "options": [
+      "1874",
+      "1848",
+      "1863",
+      "1889"
+     ],
+     "explain": "In the former studio of the photographer Nadar."
+    },
+    {
+     "id": "impressionism-2",
+     "level": 1,
+     "q": "The movement is named after a painting by…",
+     "options": [
+      "Claude Monet",
+      "Édouard Manet",
+      "Pierre-Auguste Renoir",
+      "Edgar Degas"
+     ],
+     "explain": "Impression, Sunrise (1872).",
+     "art": "impression-sunrise"
+    },
+    {
+     "id": "impressionism-3",
+     "level": 1,
+     "q": "Painting 'en plein air' means painting…",
+     "options": [
+      "Outdoors",
+      "From memory",
+      "On wet plaster",
+      "In one sitting"
+     ],
+     "explain": "New paint tubes made it practical."
+    },
+    {
+     "id": "impressionism-4",
+     "level": 1,
+     "q": "Which Impressionist was American?",
+     "options": [
+      "Mary Cassatt",
+      "Berthe Morisot",
+      "Alfred Sisley",
+      "Camille Pissarro"
+     ],
+     "explain": "Cassatt, from Pittsburgh, exhibited with the group.",
+     "art": "childs-bath"
+    },
+    {
+     "id": "impressionism-5",
+     "level": 2,
+     "q": "Which is most typical of Impressionism?",
+     "options": [
+      "Visible, quick brushstrokes",
+      "Smooth invisible finish",
+      "Hard outlines",
+      "Dark brown shadows"
+     ],
+     "explain": "The brushwork shows: it captures movement and light.",
+     "art": "moulin-galette"
+    },
+    {
+     "id": "impressionism-6",
+     "level": 2,
+     "q": "How did Impressionists paint shadows?",
+     "options": [
+      "With colour, often blue or violet",
+      "With black",
+      "With brown",
+      "They left them out"
+     ],
+     "explain": "Shadows contain colour from the sky and surroundings.",
+     "art": "parasol"
+    },
+    {
+     "id": "impressionism-7",
+     "level": 3,
+     "q": "Bal du moulin de la Galette shows…",
+     "options": [
+      "A Sunday dance in Montmartre",
+      "A ballet class",
+      "A boating party",
+      "A café at night"
+     ],
+     "explain": "Renoir, 1876, dappled light through trees.",
+     "art": "moulin-galette"
+    },
+    {
+     "id": "impressionism-8",
+     "level": 3,
+     "q": "Which Manet painting hangs in the Courtauld Gallery, London?",
+     "options": [
+      "A Bar at the Folies-Bergère",
+      "Olympia",
+      "Le Déjeuner sur l'herbe",
+      "The Railway"
+     ],
+     "explain": "His last major painting, 1882.",
+     "art": "folies"
+    },
+    {
+     "id": "impressionism-9",
+     "level": 4,
+     "q": "Gustave Caillebotte also helped the group by…",
+     "options": [
+      "Paying for their exhibitions",
+      "Writing reviews",
+      "Running the Salon",
+      "Selling paint"
+     ],
+     "explain": "A wealthy painter, he bought and funded his friends' work.",
+     "art": "rainy-day"
+    },
+    {
+     "id": "impressionism-10",
+     "level": 4,
+     "q": "Berthe Morisot exhibited in how many of the eight Impressionist shows?",
+     "options": [
+      "Seven",
+      "One",
+      "All eight",
+      "Three"
+     ],
+     "explain": "All but 1879, when she'd just had a daughter.",
+     "art": "cradle"
+    }
+   ]
+  },
+  "postimpressionism": {
+   "name": "Post-Impressionism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1888,
+   "span": "c.1886–1905",
+   "timeline": true,
+   "related": [
+    "impressionism",
+    "fauvism",
+    "expressionism",
+    "edo-japan"
+   ],
+   "intro": [
+    {
+     "title": "Beyond the moment",
+     "text": "Artists who started from Impressionism but wanted more: structure, emotion, symbolism.",
+     "art": "starry-night"
+    },
+    {
+     "title": "Four routes",
+     "text": "Cézanne built form from blocks of colour. Van Gogh poured out feeling. Gauguin chased the symbolic. Seurat painted in dots.",
+     "art": "grande-jatte"
+    },
+    {
+     "title": "Named in London",
+     "text": "The critic Roger Fry coined the term for his 1910 London show. Visitors were outraged.",
+     "art": "sunflowers"
+    }
+   ],
+   "questions": [
+    {
+     "id": "postimpressionism-1",
+     "level": 1,
+     "q": "Who coined the term 'Post-Impressionism'?",
+     "options": [
+      "Roger Fry",
+      "John Ruskin",
+      "Émile Zola",
+      "Clive Bell"
+     ],
+     "explain": "For 'Manet and the Post-Impressionists' at the Grafton Galleries, London, 1910."
+    },
+    {
+     "id": "postimpressionism-2",
+     "level": 1,
+     "q": "Which painter is NOT a Post-Impressionist?",
+     "options": [
+      "Claude Monet",
+      "Paul Cézanne",
+      "Vincent van Gogh",
+      "Paul Gauguin"
+     ],
+     "explain": "Monet stayed an Impressionist to the end."
+    },
+    {
+     "id": "postimpressionism-3",
+     "level": 1,
+     "q": "The Starry Night was painted by…",
+     "options": [
+      "Vincent van Gogh",
+      "Paul Gauguin",
+      "Georges Seurat",
+      "Edvard Munch"
+     ],
+     "explain": "In 1889, at the asylum in Saint-Rémy. It's at MoMA.",
+     "art": "starry-night"
+    },
+    {
+     "id": "postimpressionism-4",
+     "level": 2,
+     "q": "Painting with tiny dots of pure colour is called…",
+     "options": [
+      "Pointillism",
+      "Cloisonnism",
+      "Impasto",
+      "Fauvism"
+     ],
+     "explain": "Seurat's method, mixed by your eye at a distance.",
+     "art": "grande-jatte"
+    },
+    {
+     "id": "postimpressionism-5",
+     "level": 2,
+     "q": "Van Gogh's brushwork is best described as…",
+     "options": [
+      "Thick, swirling and energetic",
+      "Smooth and invisible",
+      "Tiny dots",
+      "Flat and outlined"
+     ],
+     "explain": "He laid paint on thickly, often straight from the tube.",
+     "art": "starry-night"
+    },
+    {
+     "id": "postimpressionism-6",
+     "level": 2,
+     "q": "Cézanne built his pictures from…",
+     "options": [
+      "Blocks of colour and simple shapes",
+      "Thin glazes",
+      "Pencil outlines",
+      "Collage"
+     ],
+     "explain": "He said he wanted to treat nature through the cylinder, sphere and cone.",
+     "art": "sainte-victoire"
+    },
+    {
+     "id": "postimpressionism-7",
+     "level": 3,
+     "q": "Which version of Sunflowers can you see in London?",
+     "options": [
+      "The National Gallery one",
+      "None",
+      "Tate Modern's",
+      "The Courtauld's"
+     ],
+     "explain": "Painted in Arles in 1888 to decorate Gauguin's room.",
+     "art": "sunflowers"
+    },
+    {
+     "id": "postimpressionism-8",
+     "level": 3,
+     "q": "Gauguin painted Where Do We Come From? in…",
+     "options": [
+      "Tahiti",
+      "Arles",
+      "Brittany",
+      "Paris"
+     ],
+     "explain": "In 1897. It reads right to left, from birth to old age.",
+     "art": "gauguin-where"
+    },
+    {
+     "id": "postimpressionism-9",
+     "level": 3,
+     "q": "Which Seurat painting is in the National Gallery, London?",
+     "options": [
+      "Bathers at Asnières",
+      "A Sunday on La Grande Jatte",
+      "The Circus",
+      "Models"
+     ],
+     "explain": "Workers relaxing by the Seine, 1884.",
+     "art": "asnieres"
+    },
+    {
+     "id": "postimpressionism-10",
+     "level": 4,
+     "q": "Who appears in the background of At the Moulin Rouge?",
+     "options": [
+      "Toulouse-Lautrec himself",
+      "Van Gogh",
+      "Oscar Wilde",
+      "Degas"
+     ],
+     "explain": "The short man in the bowler hat.",
+     "art": "moulin-rouge"
+    }
+   ]
+  },
+  "edo-japan": {
+   "name": "Japanese prints (Edo)",
+   "kind": "movement",
+   "group": "next",
+   "year": 1780,
+   "span": "1603–1868",
+   "timeline": false,
+   "related": [
+    "impressionism",
+    "postimpressionism"
+   ],
+   "intro": [
+    {
+     "title": "The floating world",
+     "text": "Ukiyo-e: 'pictures of the floating world'. Actors, beauties, landscapes, sold as cheap woodblock prints.",
+     "art": "great-wave"
+    },
+    {
+     "title": "How prints worked",
+     "text": "A designer drew, a carver cut one block per colour, a printer pressed them in turn. Many copies, so many museums own one.",
+     "art": "red-fuji"
+    },
+    {
+     "title": "They changed Western art",
+     "text": "When the prints reached Europe, Monet, Van Gogh and Degas collected them. Flat colour and bold cropping followed.",
+     "art": "plum-park"
+    }
+   ],
+   "questions": [
+    {
+     "id": "edo-japan-1",
+     "level": 1,
+     "q": "Ukiyo-e means…",
+     "options": [
+      "Pictures of the floating world",
+      "Images of the rising sun",
+      "Prints of the mountain",
+      "Scenes of the capital"
+     ],
+     "explain": "A Buddhist idea of fleeting life, recast as city pleasures."
+    },
+    {
+     "id": "edo-japan-2",
+     "level": 1,
+     "q": "Who made The Great Wave?",
+     "options": [
+      "Katsushika Hokusai",
+      "Utagawa Hiroshige",
+      "Kitagawa Utamaro",
+      "Sakai Hōitsu"
+     ],
+     "explain": "About 1831.",
+     "art": "great-wave"
+    },
+    {
+     "id": "edo-japan-3",
+     "level": 2,
+     "q": "How were ukiyo-e made?",
+     "options": [
+      "Woodblock printing",
+      "Oil painting",
+      "Etching on copper",
+      "Silk embroidery"
+     ],
+     "explain": "One carved block for each colour."
+    },
+    {
+     "id": "edo-japan-4",
+     "level": 2,
+     "q": "What did European artists borrow from Japanese prints?",
+     "options": [
+      "Flat colour and bold cropping",
+      "Dark shadows",
+      "Linear perspective",
+      "Gold leaf"
+     ],
+     "explain": "Called Japonisme. Look at Cassatt and Van Gogh.",
+     "art": "childs-bath"
+    },
+    {
+     "id": "edo-japan-5",
+     "level": 3,
+     "q": "The Great Wave comes from which series?",
+     "options": [
+      "Thirty-six Views of Mount Fuji",
+      "Fifty-three Stations of the Tōkaidō",
+      "One Hundred Famous Views of Edo",
+      "Tale of Genji"
+     ],
+     "explain": "Hokusai, c.1830–32. Red Fuji is from it too.",
+     "art": "great-wave"
+    },
+    {
+     "id": "edo-japan-6",
+     "level": 4,
+     "q": "Which Hiroshige print did Van Gogh copy in oil?",
+     "options": [
+      "Plum Park in Kameido",
+      "The Great Wave",
+      "Red Fuji",
+      "Evening Snow"
+     ],
+     "explain": "In 1887, along with the Sudden Shower.",
+     "art": "plum-park"
+    }
+   ]
+  },
+  "vienna-1900": {
+   "name": "Vienna 1900: Klimt",
+   "kind": "movement",
+   "group": "next",
+   "year": 1900,
+   "span": "c.1897–1918",
+   "timeline": true,
+   "related": [
+    "expressionism",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "The Secession",
+     "text": "In 1897 Klimt and friends broke away from Vienna's official art body to found the Vienna Secession.",
+     "art": "kiss"
+    },
+    {
+     "title": "Gold",
+     "text": "Klimt's 'golden period' used real gold leaf and patterns from mosaics and decorative art.",
+     "art": "kiss"
+    },
+    {
+     "title": "Record breaker",
+     "text": "In November 2025 his Portrait of Elisabeth Lederer sold for $236.4m, a record for modern art at auction.",
+     "art": "lederer"
+    }
+   ],
+   "questions": [
+    {
+     "id": "vienna-1900-1",
+     "level": 1,
+     "q": "The Vienna Secession was founded in…",
+     "options": [
+      "1897",
+      "1848",
+      "1919",
+      "1874"
+     ],
+     "explain": "Klimt was its first president."
+    },
+    {
+     "id": "vienna-1900-2",
+     "level": 1,
+     "q": "Where is Klimt's The Kiss?",
+     "options": [
+      "Belvedere, Vienna",
+      "Neue Galerie, New York",
+      "Louvre, Paris",
+      "Tate Modern"
+     ],
+     "explain": "In the Upper Belvedere since 1908.",
+     "art": "kiss"
+    },
+    {
+     "id": "vienna-1900-3",
+     "level": 2,
+     "q": "What makes The Kiss shimmer?",
+     "options": [
+      "Real gold leaf",
+      "Metallic acrylic",
+      "Glass mosaic",
+      "Varnish"
+     ],
+     "explain": "From Klimt's 'golden period'.",
+     "art": "kiss"
+    },
+    {
+     "id": "vienna-1900-4",
+     "level": 3,
+     "q": "Which Klimt set a record for modern art at auction in 2025?",
+     "options": [
+      "Portrait of Elisabeth Lederer",
+      "The Kiss",
+      "Adele Bloch-Bauer I",
+      "The Tree of Life"
+     ],
+     "explain": "$236.4m at Sotheby's New York.",
+     "art": "lederer"
+    },
+    {
+     "id": "vienna-1900-5",
+     "level": 4,
+     "q": "Which younger Viennese artist did Klimt mentor?",
+     "options": [
+      "Egon Schiele",
+      "Oskar Kokoschka",
+      "Kandinsky",
+      "Paul Klee"
+     ],
+     "explain": "Schiele's twisted, raw figures took Klimt's line in a darker direction."
+    }
+   ]
+  },
+  "fauvism": {
+   "name": "Fauvism",
+   "kind": "movement",
+   "group": "next",
+   "year": 1905,
+   "span": "1905–1908",
+   "timeline": true,
+   "related": [
+    "postimpressionism",
+    "expressionism",
+    "cubism"
+   ],
+   "intro": [
+    {
+     "title": "Wild beasts",
+     "text": "At the 1905 Salon d'Automne in Paris, a critic called the painters 'fauves': wild beasts.",
+     "art": "woman-hat"
+    },
+    {
+     "title": "Colour set free",
+     "text": "Green faces, red trees, orange skies. Colour expresses feeling, not reality.",
+     "art": "woman-hat"
+    },
+    {
+     "title": "Who",
+     "text": "Henri Matisse led, with André Derain and Maurice de Vlaminck. Derain painted the Thames in blazing colour.",
+     "art": "dance"
+    }
+   ],
+   "questions": [
+    {
+     "id": "fauvism-1",
+     "level": 1,
+     "q": "'Fauves' means…",
+     "options": [
+      "Wild beasts",
+      "Bright lights",
+      "Free spirits",
+      "Mad painters"
+     ],
+     "explain": "The critic Louis Vauxcelles' jibe, 1905."
+    },
+    {
+     "id": "fauvism-2",
+     "level": 1,
+     "q": "Who led Fauvism?",
+     "options": [
+      "Henri Matisse",
+      "Pablo Picasso",
+      "Georges Seurat",
+      "Paul Gauguin"
+     ],
+     "explain": "Matisse; Braque also painted Fauvist works before Cubism.",
+     "art": "woman-hat"
+    },
+    {
+     "id": "fauvism-3",
+     "level": 2,
+     "q": "What's the defining feature of a Fauvist painting?",
+     "options": [
+      "Wild, unnatural colour",
+      "Many viewpoints at once",
+      "Tiny dots",
+      "Dark tones"
+     ],
+     "explain": "Colour as emotion.",
+     "art": "woman-hat"
+    },
+    {
+     "id": "fauvism-4",
+     "level": 3,
+     "q": "Woman with a Hat was shown at…",
+     "options": [
+      "The 1905 Salon d'Automne",
+      "The 1874 Impressionist show",
+      "The Royal Academy",
+      "The 1913 Armory Show"
+     ],
+     "explain": "The show that named the movement.",
+     "art": "woman-hat"
+    },
+    {
+     "id": "fauvism-5",
+     "level": 4,
+     "q": "Matisse's Dance (1910) uses just three colours. Which?",
+     "options": [
+      "Red, green and blue",
+      "Black, white and gold",
+      "Yellow, pink and grey",
+      "Orange, purple and brown"
+     ],
+     "explain": "Commissioned by the Moscow collector Sergei Shchukin.",
+     "art": "dance"
+    }
+   ]
+  },
+  "expressionism": {
+   "name": "Expressionism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1910,
+   "span": "c.1905–1925",
+   "timeline": true,
+   "related": [
+    "fauvism",
+    "vienna-1900",
+    "abstraction"
+   ],
+   "intro": [
+    {
+     "title": "Inside out",
+     "text": "Painting how the world feels, not how it looks: anxiety, longing, energy.",
+     "art": "scream"
+    },
+    {
+     "title": "The forerunner",
+     "text": "Munch's The Scream (1893) came first. Van Gogh's emotional colour mattered too.",
+     "art": "scream"
+    },
+    {
+     "title": "Two German groups",
+     "text": "Die Brücke (Dresden, 1905, with Kirchner) and Der Blaue Reiter (Munich, 1911, with Kandinsky and Franz Marc).",
+     "art": "cossacks"
+    }
+   ],
+   "questions": [
+    {
+     "id": "expressionism-1",
+     "level": 1,
+     "q": "Expressionism is mainly linked with which country?",
+     "options": [
+      "Germany",
+      "France",
+      "Italy",
+      "Spain"
+     ],
+     "explain": "Dresden, Berlin and Munich."
+    },
+    {
+     "id": "expressionism-2",
+     "level": 1,
+     "q": "Who painted The Scream?",
+     "options": [
+      "Edvard Munch",
+      "Vincent van Gogh",
+      "Egon Schiele",
+      "Ernst Ludwig Kirchner"
+     ],
+     "explain": "Norwegian, 1893. Several versions exist.",
+     "art": "scream"
+    },
+    {
+     "id": "expressionism-3",
+     "level": 2,
+     "q": "Expressionist paintings aim to show…",
+     "options": [
+      "Inner emotion",
+      "Exact appearance",
+      "Pure geometry",
+      "Light at one moment"
+     ],
+     "explain": "Distortion and clashing colour express feeling."
+    },
+    {
+     "id": "expressionism-4",
+     "level": 2,
+     "q": "Which is typical of Expressionism?",
+     "options": [
+      "Distorted bodies and jagged lines",
+      "Smooth classical figures",
+      "Dots of pure colour",
+      "Gold leaf"
+     ],
+     "explain": "Tension made visible."
+    },
+    {
+     "id": "expressionism-5",
+     "level": 3,
+     "q": "Die Brücke was founded in 1905 in…",
+     "options": [
+      "Dresden",
+      "Munich",
+      "Berlin",
+      "Vienna"
+     ],
+     "explain": "By architecture students including Kirchner."
+    },
+    {
+     "id": "expressionism-6",
+     "level": 3,
+     "q": "Der Blaue Reiter was co-founded by Kandinsky and…",
+     "options": [
+      "Franz Marc",
+      "Egon Schiele",
+      "Edvard Munch",
+      "Otto Dix"
+     ],
+     "explain": "Munich, 1911. Marc loved blue horses."
+    },
+    {
+     "id": "expressionism-7",
+     "level": 4,
+     "q": "Where is the 1893 painted version of The Scream?",
+     "options": [
+      "National Museum, Oslo",
+      "Munch Museum, Bergen",
+      "Tate Modern",
+      "MoMA, New York"
+     ],
+     "explain": "The National Museum in Oslo.",
+     "art": "scream"
+    }
+   ]
+  },
+  "cubism": {
+   "name": "Cubism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1909,
+   "span": "c.1907–1920",
+   "timeline": true,
+   "related": [
+    "fauvism",
+    "abstraction",
+    "dada"
+   ],
+   "intro": [
+    {
+     "title": "Many views at once",
+     "text": "Picasso and Braque broke objects into facets, showing several sides at the same time.",
+     "art": "clarinet"
+    },
+    {
+     "title": "The shock",
+     "text": "Picasso's Les Demoiselles d'Avignon (1907) stunned even his friends. Cubism followed.",
+     "art": "demoiselles"
+    },
+    {
+     "title": "Spreading out",
+     "text": "Léger's tubes, Picabia's colour, Duchamp's motion: Cubism became a language others bent.",
+     "art": "nude-staircase"
+    }
+   ],
+   "questions": [
+    {
+     "id": "cubism-1",
+     "level": 1,
+     "q": "Who invented Cubism?",
+     "options": [
+      "Picasso and Braque",
+      "Matisse and Derain",
+      "Monet and Renoir",
+      "Dalí and Magritte"
+     ],
+     "explain": "Working side by side in Paris from about 1908."
+    },
+    {
+     "id": "cubism-2",
+     "level": 1,
+     "q": "Les Demoiselles d'Avignon is in…",
+     "options": [
+      "MoMA, New York",
+      "Musée Picasso, Paris",
+      "Reina Sofía, Madrid",
+      "Tate Modern"
+     ],
+     "explain": "Since 1939.",
+     "art": "demoiselles"
+    },
+    {
+     "id": "cubism-3",
+     "level": 2,
+     "q": "The key idea of Cubism is…",
+     "options": [
+      "Showing several viewpoints at once",
+      "Painting outdoors",
+      "Dreams and the unconscious",
+      "Pure colour"
+     ],
+     "explain": "Objects are broken into planes and reassembled.",
+     "art": "clarinet"
+    },
+    {
+     "id": "cubism-4",
+     "level": 2,
+     "q": "Early (Analytic) Cubist paintings mostly use…",
+     "options": [
+      "Browns and greys",
+      "Bright primary colours",
+      "Pastels",
+      "Gold"
+     ],
+     "explain": "A narrow palette so you focus on form.",
+     "art": "clarinet"
+    },
+    {
+     "id": "cubism-5",
+     "level": 2,
+     "q": "Gluing paper into a picture, used in Synthetic Cubism, is called…",
+     "options": [
+      "Papier collé",
+      "Frottage",
+      "Sgraffito",
+      "Decalcomania"
+     ],
+     "explain": "Braque made the first one in 1912."
+    },
+    {
+     "id": "cubism-6",
+     "level": 3,
+     "q": "Why was Léger's Cubism nicknamed 'Tubism'?",
+     "options": [
+      "His chunky cylinder shapes",
+      "He painted the Tube",
+      "He used paint tubes",
+      "He worked in tunnels"
+     ],
+     "explain": "Look at Contrast of Forms.",
+     "art": "contrast-forms"
+    },
+    {
+     "id": "cubism-7",
+     "level": 4,
+     "q": "Nude Descending a Staircase caused a stir at which 1913 show?",
+     "options": [
+      "The Armory Show, New York",
+      "The Salon d'Automne",
+      "Sensation",
+      "The Venice Biennale"
+     ],
+     "explain": "One critic called it 'an explosion in a shingle factory'.",
+     "art": "nude-staircase"
+    }
+   ]
+  },
+  "abstraction": {
+   "name": "Abstract art",
+   "kind": "movement",
+   "group": "start",
+   "year": 1914,
+   "span": "from c.1910",
+   "timeline": true,
+   "related": [
+    "cubism",
+    "expressionism",
+    "abexp"
+   ],
+   "intro": [
+    {
+     "title": "No subject at all",
+     "text": "Around 1910 artists asked: can colour and shape alone carry meaning, like music?",
+     "art": "composition-vii"
+    },
+    {
+     "title": "Three pioneers",
+     "text": "Kandinsky (musical and expressive), Malevich (pure geometry) and Mondrian (grids).",
+     "art": "black-square"
+    },
+    {
+     "title": "De Stijl",
+     "text": "Mondrian's Dutch group, from 1917: only straight lines, black, white and the three primary colours.",
+     "art": "mondrian-rby"
+    }
+   ],
+   "questions": [
+    {
+     "id": "abstraction-1",
+     "level": 1,
+     "q": "Abstract art shows…",
+     "options": [
+      "No recognisable objects",
+      "Dreams",
+      "Everyday life",
+      "Ancient myths"
+     ],
+     "explain": "Colour, line and shape for their own sake."
+    },
+    {
+     "id": "abstraction-2",
+     "level": 1,
+     "q": "Black Square (1915) was painted by…",
+     "options": [
+      "Kazimir Malevich",
+      "Wassily Kandinsky",
+      "Piet Mondrian",
+      "Mark Rothko"
+     ],
+     "explain": "In Petrograd, launching Suprematism.",
+     "art": "black-square"
+    },
+    {
+     "id": "abstraction-3",
+     "level": 2,
+     "q": "Mondrian's signature style uses…",
+     "options": [
+      "Black grid lines and primary colours",
+      "Swirling colours",
+      "Drips and splashes",
+      "Dots"
+     ],
+     "explain": "Red, yellow, blue, with black and white.",
+     "art": "mondrian-rby"
+    },
+    {
+     "id": "abstraction-4",
+     "level": 2,
+     "q": "Kandinsky compared painting to…",
+     "options": [
+      "Music",
+      "Architecture",
+      "Poetry",
+      "Photography"
+     ],
+     "explain": "He called big works 'Compositions' and 'Improvisations'.",
+     "art": "composition-vii"
+    },
+    {
+     "id": "abstraction-5",
+     "level": 2,
+     "q": "Malevich's movement of pure geometric shapes is called…",
+     "options": [
+      "Suprematism",
+      "Constructivism",
+      "Orphism",
+      "Vorticism"
+     ],
+     "explain": "Launched in 1915.",
+     "art": "black-square"
+    },
+    {
+     "id": "abstraction-6",
+     "level": 3,
+     "q": "Broadway Boogie Woogie was inspired by…",
+     "options": [
+      "New York streets and jazz",
+      "Paris cafés",
+      "Dutch tulip fields",
+      "Russian icons"
+     ],
+     "explain": "Mondrian moved to New York in 1940.",
+     "art": "broadway"
+    },
+    {
+     "id": "abstraction-7",
+     "level": 4,
+     "q": "Mondrian's De Stijl group came from…",
+     "options": [
+      "The Netherlands",
+      "Germany",
+      "Russia",
+      "Belgium"
+     ],
+     "explain": "Founded 1917 with Theo van Doesburg."
+    }
+   ]
+  },
+  "dada": {
+   "name": "Dada",
+   "kind": "movement",
+   "group": "next",
+   "year": 1916,
+   "span": "c.1916–1924",
+   "timeline": true,
+   "related": [
+    "surrealism",
+    "cubism",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Anti-art",
+     "text": "Born in Zurich in 1916, at the Cabaret Voltaire, in disgust at the First World War. Nonsense as protest.",
+     "art": "lhooq"
+    },
+    {
+     "title": "Readymades",
+     "text": "Marcel Duchamp chose ordinary objects and declared them art. The idea mattered more than the making.",
+     "art": "fountain"
+    },
+    {
+     "title": "Look for",
+     "text": "Collage, photomontage, chance, jokes, cut-up words.",
+     "art": "lhooq"
+    }
+   ],
+   "questions": [
+    {
+     "id": "dada-1",
+     "level": 1,
+     "q": "Dada began in 1916 in…",
+     "options": [
+      "Zurich",
+      "Paris",
+      "Berlin",
+      "New York"
+     ],
+     "explain": "At the Cabaret Voltaire, founded by Hugo Ball and Emmy Hennings."
+    },
+    {
+     "id": "dada-2",
+     "level": 1,
+     "q": "Dada was a reaction to…",
+     "options": [
+      "The First World War",
+      "The French Revolution",
+      "Photography",
+      "Impressionism"
+     ],
+     "explain": "If reason led to war, Dada chose nonsense."
+    },
+    {
+     "id": "dada-3",
+     "level": 2,
+     "q": "A 'readymade' is…",
+     "options": [
+      "An everyday object presented as art",
+      "A paint-by-numbers kit",
+      "A quick sketch",
+      "A print"
+     ],
+     "explain": "Duchamp's invention.",
+     "art": "fountain"
+    },
+    {
+     "id": "dada-4",
+     "level": 3,
+     "q": "Duchamp's Fountain is a…",
+     "options": [
+      "Urinal",
+      "Bicycle wheel",
+      "Bottle rack",
+      "Snow shovel"
+     ],
+     "explain": "Signed 'R. Mutt', 1917. Tate's version is a 1964 replica.",
+     "art": "fountain"
+    },
+    {
+     "id": "dada-5",
+     "level": 4,
+     "q": "What did Duchamp add to the Mona Lisa in L.H.O.O.Q.?",
+     "options": [
+      "A moustache and goatee",
+      "Sunglasses",
+      "A crown",
+      "A cigarette"
+     ],
+     "explain": "On a cheap postcard, 1919.",
+     "art": "lhooq"
+    }
+   ]
+  },
+  "surrealism": {
+   "name": "Surrealism",
+   "kind": "movement",
+   "group": "start",
+   "year": 1924,
+   "span": "from 1924",
+   "timeline": true,
+   "related": [
+    "dada",
+    "abstraction",
+    "guggenheim"
+   ],
+   "intro": [
+    {
+     "title": "Dreams on canvas",
+     "text": "André Breton's 1924 manifesto: free the unconscious mind. Freud's ideas were everywhere.",
+     "art": "narcissus"
+    },
+    {
+     "title": "Two routes",
+     "text": "Precise dream scenes (Dalí, Magritte) or letting the hand wander freely (Miró, Ernst).",
+     "art": "celebes"
+    },
+    {
+     "title": "Look for",
+     "text": "Melting, floating or misplaced objects, eerie empty spaces, visual puns.",
+     "art": "reckless-sleeper"
+    }
+   ],
+   "questions": [
+    {
+     "id": "surrealism-1",
+     "level": 1,
+     "q": "Who wrote the Surrealist Manifesto in 1924?",
+     "options": [
+      "André Breton",
+      "Salvador Dalí",
+      "Tristan Tzara",
+      "Guillaume Apollinaire"
+     ],
+     "explain": "A poet who had trained in medicine."
+    },
+    {
+     "id": "surrealism-2",
+     "level": 1,
+     "q": "Surrealism explores…",
+     "options": [
+      "Dreams and the unconscious",
+      "Light at one moment",
+      "Pure geometry",
+      "Industrial machines"
+     ],
+     "explain": "Inspired by Freud."
+    },
+    {
+     "id": "surrealism-3",
+     "level": 1,
+     "q": "The melting clocks painting is by…",
+     "options": [
+      "Salvador Dalí",
+      "René Magritte",
+      "Max Ernst",
+      "Joan Miró"
+     ],
+     "explain": "The Persistence of Memory, 1931, at MoMA."
+    },
+    {
+     "id": "surrealism-4",
+     "level": 2,
+     "q": "Which is most Surrealist?",
+     "options": [
+      "Everyday objects in impossible places",
+      "A sunny riverbank",
+      "A grid of primary colours",
+      "A portrait of a king"
+     ],
+     "explain": "Dream logic, painted realistically.",
+     "art": "reckless-sleeper"
+    },
+    {
+     "id": "surrealism-5",
+     "level": 3,
+     "q": "'Ceci n'est pas une pipe' is written under a painting by…",
+     "options": [
+      "René Magritte",
+      "Salvador Dalí",
+      "Max Ernst",
+      "Joan Miró"
+     ],
+     "explain": "The Treachery of Images, 1929."
+    },
+    {
+     "id": "surrealism-6",
+     "level": 3,
+     "q": "What's on top of Dalí's telephone at Tate?",
+     "options": [
+      "A lobster",
+      "A melting clock",
+      "An egg",
+      "A shoe"
+     ],
+     "explain": "Lobster Telephone, 1936, made for the collector Edward James.",
+     "art": "lobster-phone"
+    },
+    {
+     "id": "surrealism-7",
+     "level": 4,
+     "q": "Dalí showed Metamorphosis of Narcissus to which visitor in London in 1938?",
+     "options": [
+      "Sigmund Freud",
+      "Pablo Picasso",
+      "Winston Churchill",
+      "Peggy Guggenheim"
+     ],
+     "explain": "Freud had just fled Vienna.",
+     "art": "narcissus"
+    }
+   ]
+  },
+  "abexp": {
+   "name": "Abstract Expressionism",
+   "kind": "movement",
+   "group": "next",
+   "year": 1948,
+   "span": "1940s–1950s",
+   "timeline": true,
+   "related": [
+    "abstraction",
+    "surrealism",
+    "popart"
+   ],
+   "intro": [
+    {
+     "title": "New York takes over",
+     "text": "After the Second World War, the centre of the art world moved from Paris to New York.",
+     "art": "interchange"
+    },
+    {
+     "title": "Action painting",
+     "text": "Pollock laid canvas on the floor and dripped paint: the gesture is the subject.",
+     "art": "summertime"
+    },
+    {
+     "title": "Colour field",
+     "text": "Rothko made huge glowing blocks of colour to swallow the viewer. Tate has a whole Rothko Room.",
+     "art": "black-maroon"
+    }
+   ],
+   "questions": [
+    {
+     "id": "abexp-1",
+     "level": 1,
+     "q": "Abstract Expressionism was centred in…",
+     "options": [
+      "New York",
+      "Paris",
+      "London",
+      "Berlin"
+     ],
+     "explain": "Pollock, Rothko, de Kooning, Krasner."
+    },
+    {
+     "id": "abexp-2",
+     "level": 2,
+     "q": "Pollock's dripping technique is called…",
+     "options": [
+      "Action painting",
+      "Colour field",
+      "Hard-edge",
+      "Pointillism"
+     ],
+     "explain": "The critic Harold Rosenberg's term, 1952.",
+     "art": "summertime"
+    },
+    {
+     "id": "abexp-3",
+     "level": 2,
+     "q": "Rothko's paintings are…",
+     "options": [
+      "Large soft-edged blocks of colour",
+      "Drips and splatters",
+      "Comic strip panels",
+      "Geometric grids"
+     ],
+     "explain": "Meant to be seen up close, in dim light.",
+     "art": "black-maroon"
+    },
+    {
+     "id": "abexp-4",
+     "level": 3,
+     "q": "Rothko's Seagram murals were first meant for…",
+     "options": [
+      "A restaurant",
+      "A chapel",
+      "A bank",
+      "A university"
+     ],
+     "explain": "The Four Seasons in New York. He pulled out and later gave nine to Tate.",
+     "art": "black-maroon"
+    },
+    {
+     "id": "abexp-5",
+     "level": 4,
+     "q": "When did Rothko's murals arrive at Tate?",
+     "options": [
+      "The day he died, 1970",
+      "1958",
+      "1990",
+      "2000"
+     ],
+     "explain": "They arrived on 25 February 1970, the day he was found dead.",
+     "art": "black-maroon"
+    }
+   ]
+  },
+  "popart": {
+   "name": "Pop Art",
+   "kind": "movement",
+   "group": "start",
+   "year": 1960,
+   "span": "mid-1950s–1970s",
+   "timeline": true,
+   "related": [
+    "abexp",
+    "yba",
+    "modern-british"
+   ],
+   "intro": [
+    {
+     "title": "Born in Britain",
+     "text": "London's Independent Group got there first. Richard Hamilton's 1956 collage is often called the first Pop artwork.",
+     "art": "bigger-splash"
+    },
+    {
+     "title": "Then America",
+     "text": "Warhol's soup cans and Marilyns, Lichtenstein's comic-strip panels with Ben-Day dots.",
+     "art": "whaam"
+    },
+    {
+     "title": "Look for",
+     "text": "Adverts, celebrities, comics, packaging. Flat bright colour, repetition, screenprinting.",
+     "art": "marilyn"
+    }
+   ],
+   "questions": [
+    {
+     "id": "popart-1",
+     "level": 1,
+     "q": "Pop Art took its imagery from…",
+     "options": [
+      "Ads, comics and celebrities",
+      "Greek myths",
+      "Dreams",
+      "Nature"
+     ],
+     "explain": "Popular culture."
+    },
+    {
+     "id": "popart-2",
+     "level": 1,
+     "q": "Who made Campbell's Soup Cans?",
+     "options": [
+      "Andy Warhol",
+      "Roy Lichtenstein",
+      "David Hockney",
+      "Jasper Johns"
+     ],
+     "explain": "32 canvases, 1962. At MoMA.",
+     "art": "soup-cans"
+    },
+    {
+     "id": "popart-3",
+     "level": 2,
+     "q": "Lichtenstein copied printing dots from comics. They're called…",
+     "options": [
+      "Ben-Day dots",
+      "Seurat dots",
+      "Halftone pixels",
+      "Pop points"
+     ],
+     "explain": "After the illustrator Benjamin Day.",
+     "art": "whaam"
+    },
+    {
+     "id": "popart-4",
+     "level": 2,
+     "q": "Warhol's favourite technique for repeating images was…",
+     "options": [
+      "Screenprinting",
+      "Oil glazes",
+      "Etching",
+      "Fresco"
+     ],
+     "explain": "Fast, mechanical, endlessly repeatable.",
+     "art": "marilyn"
+    },
+    {
+     "id": "popart-5",
+     "level": 3,
+     "q": "Whaam! (Tate) is based on…",
+     "options": [
+      "A war comic",
+      "A cereal ad",
+      "A film poster",
+      "A newspaper photo"
+     ],
+     "explain": "A 1962 panel from All-American Men of War.",
+     "art": "whaam"
+    },
+    {
+     "id": "popart-6",
+     "level": 3,
+     "q": "Where was David Hockney born?",
+     "options": [
+      "Bradford",
+      "London",
+      "Los Angeles",
+      "Leeds"
+     ],
+     "explain": "In 1937. He moved to LA in the 1960s.",
+     "art": "bigger-splash"
+    },
+    {
+     "id": "popart-7",
+     "level": 4,
+     "q": "Marilyn Diptych was made…",
+     "options": [
+      "Weeks after Monroe's death",
+      "For her birthday",
+      "For a film premiere",
+      "In 1985"
+     ],
+     "explain": "In 1962. Colour on the left, fading black and white on the right.",
+     "art": "marilyn"
+    }
+   ]
+  },
+  "modern-british": {
+   "name": "Modern British art",
+   "kind": "movement",
+   "group": "next",
+   "year": 1950,
+   "span": "20th century",
+   "timeline": false,
+   "related": [
+    "bloomsbury",
+    "popart",
+    "yba",
+    "tate"
+   ],
+   "intro": [
+    {
+     "title": "A British century",
+     "text": "Not one movement but a strong line: Spencer, Nash, Lowry, Moore, Hepworth, Bacon, Freud, Riley, Rego.",
+     "art": "totes-meer"
+    },
+    {
+     "title": "Carving",
+     "text": "Henry Moore and Barbara Hepworth made British sculpture world-famous.",
+     "art": "pelagos"
+    },
+    {
+     "title": "School of London",
+     "text": "Bacon and Freud, friends and rivals, painted the body with raw intensity.",
+     "art": "three-studies"
+    }
+   ],
+   "questions": [
+    {
+     "id": "modern-british-1",
+     "level": 1,
+     "q": "Which sculptor lived and worked in St Ives, Cornwall?",
+     "options": [
+      "Barbara Hepworth",
+      "Henry Moore",
+      "Antony Gormley",
+      "Anish Kapoor"
+     ],
+     "explain": "Her studio and garden there are run by Tate.",
+     "art": "pelagos"
+    },
+    {
+     "id": "modern-british-2",
+     "level": 1,
+     "q": "L.S. Lowry painted the industrial streets of…",
+     "options": [
+      "Salford and Manchester",
+      "Glasgow",
+      "Sheffield",
+      "Newcastle"
+     ],
+     "explain": "Famous for crowds of 'matchstick' figures.",
+     "art": "lowry-school"
+    },
+    {
+     "id": "modern-british-3",
+     "level": 2,
+     "q": "Bridget Riley's black-and-white paintings belong to…",
+     "options": [
+      "Op Art",
+      "Pop Art",
+      "Cubism",
+      "Surrealism"
+     ],
+     "explain": "Optical art: patterns that seem to move.",
+     "art": "riley-fall"
+    },
+    {
+     "id": "modern-british-4",
+     "level": 2,
+     "q": "Francis Bacon's figures are usually…",
+     "options": [
+      "Twisted, smeared and screaming",
+      "Calm and classical",
+      "Made of dots",
+      "Cartoon-like"
+     ],
+     "explain": "Raw and unsettling.",
+     "art": "three-studies"
+    },
+    {
+     "id": "modern-british-5",
+     "level": 3,
+     "q": "Stanley Spencer set The Resurrection in…",
+     "options": [
+      "His village, Cookham",
+      "London",
+      "Rome",
+      "Jerusalem"
+     ],
+     "explain": "The dead rise from Cookham churchyard, Berkshire.",
+     "art": "resurrection"
+    },
+    {
+     "id": "modern-british-6",
+     "level": 4,
+     "q": "Totes Meer (Dead Sea) by Paul Nash shows…",
+     "options": [
+      "Wrecked German aircraft",
+      "The Red Sea",
+      "A flooded town",
+      "Ships at Dunkirk"
+     ],
+     "explain": "A sea of broken planes, painted in 1940–41.",
+     "art": "totes-meer"
+    },
+    {
+     "id": "modern-british-7",
+     "level": 4,
+     "q": "Paula Rego grew up in…",
+     "options": [
+      "Portugal",
+      "Spain",
+      "Brazil",
+      "Italy"
+     ],
+     "explain": "Born in Lisbon, she settled in London.",
+     "art": "rego-dance"
+    }
+   ]
+  },
+  "yba": {
+   "name": "Young British Artists",
+   "kind": "movement",
+   "group": "next",
+   "year": 1990,
+   "span": "from 1988",
+   "timeline": true,
+   "related": [
+    "popart",
+    "modern-british",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Freeze, 1988",
+     "text": "Student Damien Hirst organised a show in an empty Docklands building. It launched a generation.",
+     "art": "pharmacy"
+    },
+    {
+     "title": "The patron",
+     "text": "Adman Charles Saatchi bought heavily. His 'Sensation' show at the Royal Academy (1997) caused uproar.",
+     "art": "pharmacy"
+    },
+    {
+     "title": "Look for",
+     "text": "Shock, everyday materials, death, confession: sharks in formaldehyde, unmade beds, casts of empty spaces.",
+     "art": "pharmacy"
+    }
+   ],
+   "questions": [
+    {
+     "id": "yba-1",
+     "level": 1,
+     "q": "Which show launched the YBAs in 1988?",
+     "options": [
+      "Freeze",
+      "Sensation",
+      "Frieze",
+      "Brilliant!"
+     ],
+     "explain": "Organised by Hirst. Frieze, the fair, came later (2003)."
+    },
+    {
+     "id": "yba-2",
+     "level": 1,
+     "q": "Who was the YBAs' big collector?",
+     "options": [
+      "Charles Saatchi",
+      "Peggy Guggenheim",
+      "Nicholas Serota",
+      "Larry Gagosian"
+     ],
+     "explain": "His 'Sensation' show went to the RA in 1997."
+    },
+    {
+     "id": "yba-3",
+     "level": 2,
+     "q": "YBA art often used…",
+     "options": [
+      "Shocking everyday materials",
+      "Gold leaf",
+      "Oil glazes",
+      "Watercolour landscapes"
+     ],
+     "explain": "Animals, beds, medicine cabinets."
+    },
+    {
+     "id": "yba-4",
+     "level": 3,
+     "q": "My Bed is a work by…",
+     "options": [
+      "Tracey Emin",
+      "Sarah Lucas",
+      "Rachel Whiteread",
+      "Gillian Wearing"
+     ],
+     "explain": "Shown at the Turner Prize in 1999."
+    },
+    {
+     "id": "yba-5",
+     "level": 4,
+     "q": "Pharmacy (Tate) was also the name of Hirst's…",
+     "options": [
+      "Restaurant in Notting Hill",
+      "Gallery",
+      "Band",
+      "Book"
+     ],
+     "explain": "A real restaurant, opened 1997.",
+     "art": "pharmacy"
+    }
+   ]
+  },
+  "bloomsbury": {
+   "name": "Bloomsbury: Bell & Grant",
+   "kind": "artist",
+   "group": "specialist",
+   "year": 1912,
+   "span": "c.1905–1940",
+   "timeline": false,
+   "related": [
+    "postimpressionism",
+    "modern-british",
+    "tate"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "Tate Britain's 'Vanessa Bell & Duncan Grant: Inside Bloomsbury' runs 12 November 2026 to 11 April 2027.",
+     "art": "studland"
+    },
+    {
+     "title": "The Bloomsbury Group",
+     "text": "Writers, painters and thinkers around Bloomsbury, London: Virginia Woolf (Vanessa's sister), Roger Fry, Maynard Keynes.",
+     "art": "bathing"
+    },
+    {
+     "title": "Charleston",
+     "text": "From 1916 Bell and Grant lived at Charleston farmhouse in Sussex and painted every surface, walls and furniture included.",
+     "art": "charleston"
+    }
+   ],
+   "questions": [
+    {
+     "id": "bloomsbury-1",
+     "level": 1,
+     "q": "Vanessa Bell's sister was…",
+     "options": [
+      "Virginia Woolf",
+      "Vita Sackville-West",
+      "Dora Carrington",
+      "Ottoline Morrell"
+     ],
+     "explain": "The novelist."
+    },
+    {
+     "id": "bloomsbury-2",
+     "level": 1,
+     "q": "The Bloomsbury Group is named after…",
+     "options": [
+      "An area of London",
+      "A publishing house",
+      "A painting",
+      "A country house"
+     ],
+     "explain": "Where many of them lived, around Gordon Square."
+    },
+    {
+     "id": "bloomsbury-3",
+     "level": 2,
+     "q": "Bell and Grant's bold colour came from seeing…",
+     "options": [
+      "Post-Impressionism",
+      "Pre-Raphaelites",
+      "Old Masters",
+      "Cubist sculpture"
+     ],
+     "explain": "Roger Fry's 1910 and 1912 London shows changed their painting.",
+     "art": "studland"
+    },
+    {
+     "id": "bloomsbury-4",
+     "level": 2,
+     "q": "Bloomsbury artists also designed…",
+     "options": [
+      "Furniture, fabrics and pottery",
+      "Cars",
+      "Buildings",
+      "Fashion shows"
+     ],
+     "explain": "Through Roger Fry's Omega Workshops."
+    },
+    {
+     "id": "bloomsbury-5",
+     "level": 4,
+     "q": "Bell and Grant's painted home in Sussex is…",
+     "options": [
+      "Charleston",
+      "Kelmscott",
+      "Monk's House",
+      "Sissinghurst"
+     ],
+     "explain": "Now open to visitors.",
+     "art": "charleston"
+    },
+    {
+     "id": "bloomsbury-6",
+     "level": 4,
+     "q": "Roger Fry's design company (1913) was the…",
+     "options": [
+      "Omega Workshops",
+      "Arts and Crafts Guild",
+      "Morris & Co.",
+      "Hogarth Press"
+     ],
+     "explain": "In Fitzroy Square. (The Hogarth Press was the Woolfs' publishing house.)"
+    },
+    {
+     "id": "bloomsbury-7",
+     "level": 4,
+     "q": "Studland Beach (Tate) was painted by…",
+     "options": [
+      "Vanessa Bell",
+      "Duncan Grant",
+      "Roger Fry",
+      "Dora Carrington"
+     ],
+     "explain": "In 1912, simplifying figures into blocks of colour.",
+     "art": "studland"
+    }
+   ]
+  },
+  "guggenheim": {
+   "name": "Peggy Guggenheim",
+   "kind": "artist",
+   "group": "specialist",
+   "year": 1938,
+   "span": "1898–1979",
+   "timeline": false,
+   "related": [
+    "surrealism",
+    "abexp",
+    "royal-academy"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "'Peggy Guggenheim in London: The Making of a Collector' at the Royal Academy, 21 November 2026 to 14 March 2027.",
+     "art": "burlington"
+    },
+    {
+     "title": "Cork Street",
+     "text": "Her first gallery, Guggenheim Jeune, ran at 30 Cork Street, London, 1938–39. It gave Kandinsky his first UK solo show.",
+     "art": "cossacks"
+    },
+    {
+     "title": "New York to Venice",
+     "text": "Her New York gallery championed a young Jackson Pollock. She ended up in a Venetian palazzo, now her museum.",
+     "art": "guggenheim-venice"
+    }
+   ],
+   "questions": [
+    {
+     "id": "guggenheim-1",
+     "level": 1,
+     "q": "Peggy Guggenheim was famous as a…",
+     "options": [
+      "Collector of modern art",
+      "Painter",
+      "Architect",
+      "Art critic"
+     ],
+     "explain": "One of the 20th century's great collectors."
+    },
+    {
+     "id": "guggenheim-2",
+     "level": 1,
+     "q": "Her London gallery was called…",
+     "options": [
+      "Guggenheim Jeune",
+      "Art of This Century",
+      "The Cork Street Gallery",
+      "Gallery One"
+     ],
+     "explain": "A pun on the Paris gallery Bernheim-Jeune."
+    },
+    {
+     "id": "guggenheim-3",
+     "level": 2,
+     "q": "Her collection is strongest in…",
+     "options": [
+      "Surrealism and abstract art",
+      "Old Masters",
+      "Impressionism",
+      "Japanese prints"
+     ],
+     "explain": "She was briefly married to the Surrealist Max Ernst.",
+     "art": "celebes"
+    },
+    {
+     "id": "guggenheim-4",
+     "level": 4,
+     "q": "Which young American did she champion in New York?",
+     "options": [
+      "Jackson Pollock",
+      "Andy Warhol",
+      "Edward Hopper",
+      "Mark Rothko"
+     ],
+     "explain": "She gave him a contract and his first solo show (1943).",
+     "art": "summertime"
+    },
+    {
+     "id": "guggenheim-5",
+     "level": 4,
+     "q": "Where is her collection now?",
+     "options": [
+      "Venice",
+      "New York",
+      "London",
+      "Paris"
+     ],
+     "explain": "Palazzo Venier dei Leoni, on the Grand Canal.",
+     "art": "guggenheim-venice"
+    }
+   ]
+  },
+  "tate": {
+   "name": "Tate",
+   "kind": "place",
+   "group": "next",
+   "year": 1897,
+   "span": "",
+   "timeline": false,
+   "related": [
+    "romanticism",
+    "preraphaelites",
+    "modern-british"
+   ],
+   "intro": [
+    {
+     "title": "Sugar money",
+     "text": "Sugar refiner Henry Tate funded the first gallery at Millbank, opened 1897. Now Tate Britain.",
+     "art": "tate-britain-building"
+    },
+    {
+     "title": "Four Tates",
+     "text": "Tate Britain and Tate Modern in London, plus Tate Liverpool and Tate St Ives.",
+     "art": "tate-modern-building"
+    },
+    {
+     "title": "Turner Prize",
+     "text": "Set up in 1984, named after J.M.W. Turner, who left his work to the nation.",
+     "art": "norham"
+    }
+   ],
+   "questions": [
+    {
+     "id": "tate-1",
+     "level": 1,
+     "q": "Tate Modern is in a former…",
+     "options": [
+      "Power station",
+      "Warehouse",
+      "Train station",
+      "Brewery"
+     ],
+     "explain": "Bankside Power Station, converted by Herzog & de Meuron, opened 2000.",
+     "art": "tate-modern-building"
+    },
+    {
+     "id": "tate-2",
+     "level": 1,
+     "q": "Henry Tate made his fortune from…",
+     "options": [
+      "Sugar",
+      "Cotton",
+      "Tea",
+      "Railways"
+     ],
+     "explain": "Tate & Lyle descends from his company."
+    },
+    {
+     "id": "tate-3",
+     "level": 2,
+     "q": "Which Tate shows British art from 1500 to now?",
+     "options": [
+      "Tate Britain",
+      "Tate Modern",
+      "Tate Liverpool",
+      "Tate St Ives"
+     ],
+     "explain": "At Millbank, by the Thames.",
+     "art": "tate-britain-building"
+    },
+    {
+     "id": "tate-4",
+     "level": 3,
+     "q": "The Turner Prize began in…",
+     "options": [
+      "1984",
+      "1971",
+      "1995",
+      "2000"
+     ],
+     "explain": "Malcolm Morley was the first winner."
+    },
+    {
+     "id": "tate-5",
+     "level": 4,
+     "q": "Tate Britain's Clore Gallery holds…",
+     "options": [
+      "The Turner Bequest",
+      "The Rothko Room",
+      "The Pre-Raphaelites",
+      "Hepworth's studio"
+     ],
+     "explain": "Turner left around 300 oils and thousands of drawings to the nation.",
+     "art": "snow-storm"
+    }
+   ]
+  },
+  "national-gallery": {
+   "name": "National Gallery",
+   "kind": "place",
+   "group": "next",
+   "year": 1824,
+   "span": "",
+   "timeline": false,
+   "related": [
+    "van-eyck",
+    "renaissance",
+    "romanticism"
+   ],
+   "intro": [
+    {
+     "title": "Founded 1824",
+     "text": "It began with 38 paintings bought from the banker John Julius Angerstein, and moved to Trafalgar Square in 1838.",
+     "art": "ng-building"
+    },
+    {
+     "title": "Free for all",
+     "text": "Western European painting from about 1250 to 1900, free to enter.",
+     "art": "ambassadors"
+    },
+    {
+     "title": "Star pictures",
+     "text": "The Arnolfini Portrait, The Ambassadors, The Hay Wain, The Fighting Temeraire, Sunflowers.",
+     "art": "temeraire"
+    }
+   ],
+   "questions": [
+    {
+     "id": "national-gallery-1",
+     "level": 1,
+     "q": "The National Gallery is on…",
+     "options": [
+      "Trafalgar Square",
+      "Piccadilly",
+      "Millbank",
+      "Bankside"
+     ],
+     "explain": "Since 1838.",
+     "art": "ng-building"
+    },
+    {
+     "id": "national-gallery-2",
+     "level": 1,
+     "q": "The National Gallery was founded in…",
+     "options": [
+      "1824",
+      "1753",
+      "1897",
+      "1769"
+     ],
+     "explain": "The British Museum is older (1753)."
+    },
+    {
+     "id": "national-gallery-3",
+     "level": 2,
+     "q": "The National Gallery's collection stops at about…",
+     "options": [
+      "1900",
+      "1700",
+      "1950",
+      "Today"
+     ],
+     "explain": "Later art is mostly at Tate."
+    },
+    {
+     "id": "national-gallery-4",
+     "level": 3,
+     "q": "Which of these is NOT at the National Gallery?",
+     "options": [
+      "Ophelia",
+      "The Hay Wain",
+      "The Ambassadors",
+      "Sunflowers"
+     ],
+     "explain": "Millais' Ophelia is at Tate Britain.",
+     "art": "ophelia"
+    },
+    {
+     "id": "national-gallery-5",
+     "level": 4,
+     "q": "The founding collection came from which banker?",
+     "options": [
+      "John Julius Angerstein",
+      "Henry Tate",
+      "Richard Wallace",
+      "Samuel Courtauld"
+     ],
+     "explain": "38 paintings bought by Parliament."
+    }
+   ]
+  },
+  "royal-academy": {
+   "name": "Royal Academy",
+   "kind": "place",
+   "group": "specialist",
+   "year": 1768,
+   "span": "",
+   "timeline": false,
+   "related": [
+    "british18c",
+    "guggenheim",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Run by artists",
+     "text": "Founded by George III in 1768. Elected artists put 'RA' after their names.",
+     "art": "burlington"
+    },
+    {
+     "title": "Summer Exhibition",
+     "text": "Every year since 1769: the world's oldest open-submission show. Anyone can enter.",
+     "art": "burlington"
+    },
+    {
+     "title": "On now",
+     "text": "Painting the French Riviera, and from 21 November, Peggy Guggenheim in London.",
+     "art": "burlington"
+    }
+   ],
+   "questions": [
+    {
+     "id": "royal-academy-1",
+     "level": 1,
+     "q": "The Royal Academy is on…",
+     "options": [
+      "Piccadilly",
+      "The Strand",
+      "Pall Mall",
+      "Trafalgar Square"
+     ],
+     "explain": "Burlington House.",
+     "art": "burlington"
+    },
+    {
+     "id": "royal-academy-2",
+     "level": 1,
+     "q": "Who founded the Royal Academy in 1768?",
+     "options": [
+      "George III",
+      "Queen Victoria",
+      "Joshua Reynolds alone",
+      "Parliament"
+     ],
+     "explain": "Reynolds was its first President."
+    },
+    {
+     "id": "royal-academy-3",
+     "level": 2,
+     "q": "What's special about the Summer Exhibition?",
+     "options": [
+      "Anyone can submit work",
+      "Only dead artists",
+      "Only sculpture",
+      "It's in a park"
+     ],
+     "explain": "Held every year since 1769."
+    },
+    {
+     "id": "royal-academy-4",
+     "level": 4,
+     "q": "Which controversial YBA show did the RA host in 1997?",
+     "options": [
+      "Sensation",
+      "Freeze",
+      "Frieze",
+      "Brilliant!"
+     ],
+     "explain": "Charles Saatchi's collection."
+    }
+   ]
+  },
+  "auctions": {
+   "name": "Auctions & the art market",
+   "kind": "market",
+   "group": "next",
+   "year": 2000,
+   "span": "",
+   "timeline": false,
+   "related": [
+    "art-fairs",
+    "impressionism",
+    "vienna-1900"
+   ],
+   "intro": [
+    {
+     "title": "The big two",
+     "text": "Sotheby's (founded 1744) and Christie's (1766), both in London. Phillips is third.",
+     "art": "salvator"
+    },
+    {
+     "title": "How a sale works",
+     "text": "Each lot has an estimate. The hammer price is the winning bid; the buyer then pays a premium on top.",
+     "art": "lederer"
+    },
+    {
+     "title": "Records",
+     "text": "Salvator Mundi made $450.3m in 2017. Klimt's Lederer portrait made $236.4m in 2025.",
+     "art": "salvator"
+    }
+   ],
+   "questions": [
+    {
+     "id": "auctions-1",
+     "level": 1,
+     "q": "Which auction house is older?",
+     "options": [
+      "Sotheby's",
+      "Christie's",
+      "Phillips",
+      "Bonhams"
+     ],
+     "explain": "Sotheby's, 1744. Christie's followed in 1766."
+    },
+    {
+     "id": "auctions-2",
+     "level": 1,
+     "q": "The most expensive painting ever sold at auction is…",
+     "options": [
+      "Salvator Mundi",
+      "Interchange",
+      "Shot Sage Blue Marilyn",
+      "The Card Players"
+     ],
+     "explain": "$450.3m, Christie's New York, 2017.",
+     "art": "salvator"
+    },
+    {
+     "id": "auctions-3",
+     "level": 2,
+     "q": "The extra fee a buyer pays on top of the hammer price is the…",
+     "options": [
+      "Buyer's premium",
+      "Reserve",
+      "Guarantee",
+      "Estimate"
+     ],
+     "explain": "A percentage of the hammer price."
+    },
+    {
+     "id": "auctions-4",
+     "level": 2,
+     "q": "The secret minimum price a seller will accept is the…",
+     "options": [
+      "Reserve",
+      "Estimate",
+      "Hammer price",
+      "Premium"
+     ],
+     "explain": "If bidding falls short, the lot is 'bought in'."
+    },
+    {
+     "id": "auctions-5",
+     "level": 4,
+     "q": "A 'guarantee' at auction means…",
+     "options": [
+      "The seller is promised a minimum price",
+      "The work is certified real",
+      "Free shipping",
+      "The buyer can return it"
+     ],
+     "explain": "Houses offer it to win big consignments."
+    },
+    {
+     "id": "auctions-6",
+     "level": 4,
+     "q": "Interchange by de Kooning reportedly sold privately in 2015 for about…",
+     "options": [
+      "$300m",
+      "$30m",
+      "$3m",
+      "$1bn"
+     ],
+     "explain": "One of the highest prices ever paid for a painting.",
+     "art": "interchange"
+    }
+   ]
+  },
+  "art-fairs": {
+   "name": "Art fairs",
+   "kind": "market",
+   "group": "specialist",
+   "year": 2005,
+   "span": "",
+   "timeline": false,
+   "related": [
+    "auctions",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Shopping malls for art",
+     "text": "Hundreds of galleries rent booths for a few days. Much of the year's selling happens here.",
+     "art": "grand-palais"
+    },
+    {
+     "title": "Art Basel",
+     "text": "Founded in Basel in 1970. Now also Miami Beach, Hong Kong and Paris (in the Grand Palais).",
+     "art": "grand-palais"
+    },
+    {
+     "title": "Frieze",
+     "text": "Frieze London launched in Regent's Park in 2003, with Frieze Masters for older art.",
+     "art": "grand-palais"
+    }
+   ],
+   "questions": [
+    {
+     "id": "art-fairs-1",
+     "level": 1,
+     "q": "Art Basel was founded in…",
+     "options": [
+      "1970",
+      "1990",
+      "2003",
+      "1955"
+     ],
+     "explain": "By Basel gallerists including Ernst Beyeler."
+    },
+    {
+     "id": "art-fairs-2",
+     "level": 1,
+     "q": "Frieze London takes place in…",
+     "options": [
+      "Regent's Park",
+      "Hyde Park",
+      "Battersea Park",
+      "Olympia"
+     ],
+     "explain": "Every October."
+    },
+    {
+     "id": "art-fairs-3",
+     "level": 2,
+     "q": "At an art fair, who sells the art?",
+     "options": [
+      "Galleries in booths",
+      "Auction houses",
+      "Artists directly",
+      "Museums"
+     ],
+     "explain": "Each gallery rents a booth."
+    },
+    {
+     "id": "art-fairs-4",
+     "level": 4,
+     "q": "Where is Art Basel Paris held?",
+     "options": [
+      "Grand Palais",
+      "Louvre",
+      "Palais de Tokyo",
+      "Fondation Louis Vuitton"
+     ],
+     "explain": "The restored Grand Palais.",
+     "art": "grand-palais"
+    }
+   ]
+  }
+ }
+}
