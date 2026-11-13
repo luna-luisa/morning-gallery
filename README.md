@@ -11,3 +11,5 @@ Questions, artworks and weekly news for the Morning Gallery art quiz. The app on
 - `proposals/`: weekly suggestions waiting for Luna's approval
 
 Nothing personal is stored here. Profiles, progress and feedback live in Supabase.
+
+- Questions may have "correct": N (N > 1): the first N options are all right, and players pick all that apply.

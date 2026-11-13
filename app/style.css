@@ -134,3 +134,10 @@ nav.tabs button.on{color:var(--ink)}
 .opt.venue.wrong span{text-decoration:line-through}
 .opt.venue:disabled:not(.right):not(.wrong){opacity:.6}
 .label a{color:inherit}
+
+.hint{margin:-14px 0 0}
+.opt.sel{outline:3px solid var(--ink);outline-offset:2px}
+.opt.missed{outline:3px dashed var(--good);outline-offset:2px}
+.opt.venue.missed span::after{content:" (missed)";color:var(--good);font-weight:600}
+.opt:not(.venue).missed::after{content:" (missed)";color:var(--good);font-weight:600}
+#check{margin-top:16px}

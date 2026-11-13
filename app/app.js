@@ -150,7 +150,9 @@ const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo",
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
-  Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null; return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art:x.art}); },
+  Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null;
+    if (x.correct > 1){ const opts = shuffle(x.options); return {key, topic:tid, level:x.level, type:"mc", multi:true, prompt:x.q, options:opts, answers:x.options.slice(0, x.correct).map(o => opts.indexOf(o)), answer:opts.indexOf(x.options[0]), explain:x.explain, art:x.art}; }
+    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art:x.art}); },
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
@@ -396,7 +398,7 @@ function render(){
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w) : ""}
-    <div class="prompt">${esc(x.prompt)}</div>
+    <div class="prompt">${esc(x.prompt)}</div>${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit, then tap Check.</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans"></div><div id="fb"></div>
     ${S.mode === "endless" ? `<p class="small muted center">${S.score} right so far</p>` : ""}`;
@@ -408,11 +410,30 @@ function renderMC(x){
   $("#ans").innerHTML = x.venues
     ? `<div class="grid">${x.options.map((o, i) => `<button class="opt venue" data-i="${i}"><img src="${esc(venue(o).img)}" alt="" referrerpolicy="no-referrer"><span>${esc(o)}</span></button>`).join("")}</div>`
     : `<div class="opts ${one ? "one" : ""}">${x.options.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>`;
+  if (x.multi) return wireMulti(x);
   $$(".opt").forEach(b => b.onclick = () => {
     const ok = +b.dataset.i === x.answer;
     $$(".opt").forEach(o => { o.disabled = true; if (+o.dataset.i === x.answer) o.classList.add("right"); });
     if (!ok) b.classList.add("wrong"); answered(x, ok);
   });
+}
+function wireMulti(x){
+  const picked = new Set();
+  $("#ans").insertAdjacentHTML("beforeend", `<button class="btn" id="check" disabled>Check</button>`);
+  $$(".opt").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i; picked.has(i) ? picked.delete(i) : picked.add(i);
+    b.classList.toggle("sel", picked.has(i)); b.setAttribute("aria-pressed", String(picked.has(i)));
+    $("#check").disabled = !picked.size;
+  });
+  $("#check").onclick = () => {
+    const right = new Set(x.answers), found = [...picked].filter(i => right.has(i)).length;
+    const ok = found === right.size && picked.size === right.size;
+    $$(".opt").forEach(o => { const i = +o.dataset.i; o.disabled = true; o.classList.remove("sel");
+      if (right.has(i)) o.classList.add(picked.has(i) ? "right" : "missed"); else if (picked.has(i)) o.classList.add("wrong"); });
+    $("#check").remove();
+    x.tally = `You found ${found} of ${right.size}${picked.size > found ? `, plus ${picked.size - found} that ${picked.size - found === 1 ? "isn't" : "aren't"} right` : ""}.`;
+    answered(x, ok);
+  };
 }
 function renderPick(x){
   $("#ans").innerHTML = `<div class="grid">${x.images.map((id, i) => `<button class="pickimg" data-i="${i}" aria-label="Picture ${i + 1}"><img src="${esc(W[id].img)}" alt="" referrerpolicy="no-referrer"></button>`).join("")}</div>`;
@@ -455,8 +476,9 @@ function answered(x, ok){
   const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   $("#fb").innerHTML = `<div class="feedback ${ok ? "good" : "bad"}">
-      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
+      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
       <div class="flagbox hidden" id="flagbox"></div>
+      ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
       ${w ? label(w) : ""}
       ${fact ? `<p>${esc(fact)}</p>` : ""}
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
@@ -482,7 +504,7 @@ function wireFlag(x){
     box.classList.remove("hidden"); box.innerHTML = `<span class="small muted">Thanks. We've hidden this question while we check it. <button class="btn link" id="unflag">Undo</button></span>`;
     $("#unflag").onclick = () => { delete p.flags[x.key]; computeHidden(); store.put("profile:" + pid, p).catch(() => {}); local.set("profiles", profiles); flag.disabled = false; flag.classList.remove("on"); box.classList.add("hidden"); };
     local.set("profiles", profiles);
-    const right = x.options ? x.options[x.answer] : x.images ? W[x.images[x.answer]].title : "";
+    const right = x.multi ? x.answers.map(i => x.options[i]).join(", ") : x.options ? x.options[x.answer] : x.images ? W[x.images[x.answer]].title : "";
     try { await store.put("profile:" + pid, p); await requestMore(x.topic, "problem", `Flagged. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key); } catch(e){}
   };
 }

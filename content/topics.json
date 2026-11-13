@@ -464,6 +464,36 @@
      ],
      "explain": "Mary Richardson attacked Velázquez's Venus in the National Gallery. It was repaired.",
      "art": "rokeby"
+    },
+    {
+     "id": "baroque-11",
+     "level": 3,
+     "q": "Where can you see a self-portrait by Rembrandt?",
+     "options": [
+      "National Gallery, London",
+      "Kenwood House, London",
+      "Rijksmuseum, Amsterdam",
+      "Musée d'Orsay, Paris",
+      "Tate Modern",
+      "Van Gogh Museum, Amsterdam"
+     ],
+     "correct": 3,
+     "explain": "Rembrandt painted around 40 self-portraits, plus many more in etchings and drawings, and they are spread across Europe and the US. Orsay, Tate Modern and the Van Gogh Museum collect much later art."
+    },
+    {
+     "id": "baroque-12",
+     "level": 4,
+     "q": "Which of these Vermeers belong to the Rijksmuseum in Amsterdam?",
+     "options": [
+      "The Milkmaid",
+      "The Love Letter",
+      "The Little Street",
+      "Girl with a Pearl Earring",
+      "View of Delft",
+      "The Art of Painting"
+     ],
+     "correct": 3,
+     "explain": "The Rijksmuseum owns four Vermeers, the fourth being Woman Reading a Letter. Girl with a Pearl Earring and View of Delft are at the Mauritshuis in The Hague, and The Art of Painting is in Vienna."
     }
    ],
    "as": "Baroque"
@@ -1262,6 +1292,21 @@
      ],
      "explain": "All but 1879, when she'd just had a daughter.",
      "art": "cradle"
+    },
+    {
+     "id": "impressionism-11",
+     "level": 3,
+     "q": "Which of these artists showed work at the first Impressionist exhibition in 1874?",
+     "options": [
+      "Claude Monet",
+      "Berthe Morisot",
+      "Paul Cézanne",
+      "Édouard Manet",
+      "Mary Cassatt",
+      "Vincent van Gogh"
+     ],
+     "correct": 3,
+     "explain": "Monet and Morisot were core members, and Cézanne was there too. Manet never showed with the group, Cassatt joined in 1879, and Van Gogh was a 21-year-old art dealer's assistant in London who hadn't started painting yet."
     }
    ],
    "as": "Impressionist"
