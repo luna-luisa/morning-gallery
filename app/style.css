@@ -2,6 +2,7 @@
   /* Gallery light: warm gallery-white wall, spotlit art, bold modern type with an italic serif accent, brass details */
   --wall:#f3f1ec; --paper:#fbfaf7; --ink:#1a1a1a; --muted:#625e57; --line:#d9d4ca; --brass:#9a7b35; --brass-ink:#6f5520;
   --good:#1d6b3f; --good-soft:#e3efe6; --bad:#a3271d; --bad-soft:#f6e5e2;
+  --klein:#1f3fd1; --pink:#f19cb8; --pink-ink:#b4285f; --acc:var(--klein); --acc-ink:var(--klein);
   --sans:Archivo, "Helvetica Neue", Arial, sans-serif; --serif:"Instrument Serif", Georgia, serif;
   color-scheme:light;
 }
@@ -249,3 +250,39 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area
 .tile.missed{outline:3px dashed var(--good)}
 .answerline{font-size:16px}
 .reveal .rimg img{max-height:20vh}
+
+/* ---- rooms: Klein blue (today's topic) + pink (Quick fire) ---- */
+body[data-room="2"]{--acc:var(--pink);--acc-ink:var(--pink-ink)}
+.line i{background:var(--acc)}
+.inround .qhead .eyebrow:not(.gold){color:var(--acc-ink)}
+.inround .qhead .eyebrow.gold{color:var(--pink-ink)}
+.btn.link.more{color:var(--acc-ink)}
+.tile.sel{outline-color:var(--acc-ink)}
+.prompt,.inround .prompt{font-size:30px;font-weight:800;line-height:1.05;letter-spacing:-.025em}
+.prompt .serif{font-weight:400;letter-spacing:-.01em}
+.ansarea.tall{flex:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:0}
+.ansarea.tall .tiles{flex:1;max-height:500px;grid-auto-rows:minmax(92px,1fr)}
+.ansarea.tall .tile{height:auto}
+.rooms{flex:1;display:flex;flex-direction:column;gap:16px;min-height:0;padding-top:6px}
+.room{display:grid;grid-template-columns:54px 1fr;background:var(--paper);border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(40,30,15,.12),0 1px 3px rgba(40,30,15,.08);min-height:0}
+.room.r1{flex:2.2} .room.r2{flex:1}
+.sign{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:14px 0 16px;background:var(--klein);color:#fff}
+.r2 .sign{background:var(--pink);color:var(--ink)}
+.sign .n{font-family:var(--serif);font-style:italic;font-size:46px;line-height:.9}
+.sign .v{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.rbody{display:flex;flex-direction:column;min-height:0}
+.roomimg{flex:1;min-height:120px;background:#e9e5dc center/cover no-repeat}
+.rtext{display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px;justify-content:center}
+.rtext b{font-size:30px;font-weight:800;line-height:1.02;letter-spacing:-.025em}
+.r2 .rtext b{font-size:24px}
+.rtext b .serif{font-weight:400}
+.rtext .muted{font-size:15px;line-height:1.35}
+.thumbs{display:flex;gap:8px;margin-top:6px}
+.thumbs span{width:48px;height:48px;border-radius:6px;background:#e9e5dc center/cover no-repeat;flex:none}
+.thumbs .news{display:grid;place-items:center;background:var(--pink);color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.rooms.one{justify-content:center}
+.room.tallroom{flex:0 0 auto;min-height:46svh}
+.tallroom .rtext{padding:26px 22px;gap:10px}
+.tallroom .eyebrow{color:var(--pink-ink)}
+.rtext b.big{font-size:44px}
+@media (max-height:720px){.inround .spot{padding:12px 20px 10px}.inround .spot img{max-height:20vh}.inround .prompt{font-size:27px}.inround main{gap:12px}}

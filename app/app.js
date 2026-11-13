@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "13 Nov, 17:57"; // temporary: shown on Today while we test edits
+const BUILD_AT = "13 Nov, 18:20"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -166,13 +166,13 @@ const BUILD = {
     const r = rng(key);
     const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
     const chosen = shuffle(others, r).slice(0, 3), set = shuffle([right, ...chosen]);
-    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : qName(t)}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
+    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
   },
   I(key){ // which one isn't
     const [, tid, odd] = key.split(":"), t = TOPICS[tid], oddW = W[odd]; if (!t || !oddW) return null;
     const r = rng(key), pool = shuffle(ART.filter(w => w.topic === tid), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
     const set = shuffle([oddW, ...mine]);
-    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : qName(t)}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
+    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
   },
   M(key){
     const wid = key.split(":")[1], w = W[wid]; if (!w || !TOPICS[w.topic]) return null; const t = TOPICS[w.topic]; if (t.kind !== "movement") return null;
@@ -330,16 +330,16 @@ function startRound(){
   const round = buildRound(), nq = round.filter(x => x.section === "topic").length;
   const begin = () => { S = {mode:"round", q: round, i:0, score:0, results:[]}; next(0); };
   setTab("today"); scrollTo(0, 0); inRound(true);
-  const w = W[(t.intro[0] || {}).art], d = new Date();
-  const mark = `${d.getDate()}<small>${d.toLocaleDateString("en-GB", {month:"short"})}</small>`;
-  view.innerHTML = `<div class="opener">
-      <div class="pcard"><span class="corner tl">${mark}</span><span class="corner br">${mark}</span>
-        ${w ? `<div class="pimg"><img src="${esc(w.img)}" alt="" referrerpolicy="no-referrer"></div>` : ""}
-        <span class="eyebrow">Today's coffee round</span>
-        <div class="step"><span class="num">1</span><div><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div>
-        <div class="step"><span class="num">2</span><div><b>Quick fire</b><span class="muted">A few quick ones on this week's art news and other topics.</span></div></div>
-      </div>
-      </div><div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
+  const w = W[(t.intro[0] || {}).art], dv = round.find(x => x.type === "divider"), quick = round.slice(round.indexOf(dv) + 1);
+  const thumbs = quick.filter(x => !x.news).map(x => x.type === "pick" ? W[x.images[0]] && W[x.images[0]].img : x.art && W[x.art] ? W[x.art].img : null).filter(Boolean).slice(0, 3);
+  view.innerHTML = `<div class="rooms">
+      <div class="room r1"><div class="sign"><span class="n">1</span><span class="v">Today's topic</span></div>
+        <div class="rbody">${w ? `<div class="roomimg" style="background-image:url('${esc(w.img)}')"></div>` : ""}
+          <div class="rtext"><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div></div>
+      ${dv ? `<div class="room r2"><div class="sign"><span class="n">2</span></div>
+        <div class="rtext"><b>Quick <span class="serif">fire</span></b><span class="muted">${dv.count} on art news and other topics</span>
+          <div class="thumbs">${thumbs.map(u => `<span style="background-image:url('${esc(u)}')"></span>`).join("")}<span class="news">News</span></div></div></div>` : ""}
+    </div><div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
   $("#back").onclick = () => go("today");
   $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
 }
@@ -410,18 +410,18 @@ function showIntro(tid, done, finishLabel){
 }
 
 function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); }
-function inRound(on){ document.body.classList.toggle("inround", on); if (!on) closeSheet(); }
+function inRound(on){ document.body.classList.toggle("inround", on); if (!on){ closeSheet(); delete document.body.dataset.room; } }
 function render(){
   view.ontouchstart = view.ontouchend = null; closeSheet(); inRound(true);
   const x = S.q[S.i];
   setTab(S.mode === "topic" ? "topics" : "today");
+  document.body.dataset.room = x.type === "divider" || (x.section && x.section !== "topic") ? "2" : "1";
   const real = S.q.filter(y => y.type !== "divider"), pos = real.indexOf(x);
   const progress = (pos / Math.max(1, real.length)) * 100;
   if (x.type === "divider"){
     view.innerHTML = `<div class="line"><i style="width:${progress}%"></i></div>
-      <div class="divider"><div class="pcard"><span class="corner tl">II</span><span class="corner br">II</span>
-        <span class="eyebrow gold">Part 2</span><h1>Quick <span class="serif">fire</span></h1>
-        <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p></div></div>
+      <div class="rooms one"><div class="room r2 tallroom"><div class="sign"><span class="n">2</span></div>
+        <div class="rtext"><span class="eyebrow">Part 2</span><b class="big">Quick <span class="serif">fire</span></b><span class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</span></div></div></div>
       <div class="dock"><button class="btn" id="go">Go</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
@@ -435,7 +435,7 @@ function render(){
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w) : ""}
-    <div class="prompt">${esc(x.prompt)}</div>
+    <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
     ${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit.</p>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans" class="ansarea ${w ? "" : "tall"}"></div>
