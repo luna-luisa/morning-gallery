@@ -26,7 +26,7 @@
     },
     {
      "title": "The big names",
-     "text": "Leonardo, Michelangelo and Raphael in Italy. Titian in Venice. In the north: van Eyck, Holbein, Bosch, Bruegel.",
+     "text": "Leonardo, Michelangelo and Raphael in Florence and Rome. Titian in Venice. North of the Alps: van Eyck, Holbein, Bosch, Bruegel.",
      "art": "mona-lisa"
     }
    ],
@@ -37,7 +37,7 @@
      "q": "'Renaissance' means…",
      "options": [
       "Rebirth",
-      "Rediscovery",
+      "Reason",
       "Revolution",
       "Reform"
      ],
@@ -164,15 +164,16 @@
      "level": 4,
      "q": "Bruegel's Hunters in the Snow belongs to a series showing…",
      "options": [
-      "The months or seasons",
+      "The seasons of the year",
       "The seven sins",
       "Bible stories",
       "Dutch cities"
      ],
-     "explain": "A set of seasonal scenes. Five survive; three are in Vienna.",
+     "explain": "Six scenes of the farming year, painted in 1565. Five survive; three are in Vienna.",
      "art": "hunters-snow"
     }
-   ]
+   ],
+   "as": "Renaissance art"
   },
   "van-eyck": {
    "name": "Jan van Eyck",
@@ -464,7 +465,8 @@
      "explain": "Mary Richardson attacked Velázquez's Venus in the National Gallery. It was repaired.",
      "art": "rokeby"
     }
-   ]
+   ],
+   "as": "Baroque"
   },
   "rococo": {
    "name": "Rococo",
@@ -572,7 +574,8 @@
      "explain": "Louis XV's favourite. The Toilet of Venus was painted for her.",
      "art": "boucher-venus"
     }
-   ]
+   ],
+   "as": "Rococo"
   },
   "british18c": {
    "name": "Georgian Britain",
@@ -589,7 +592,7 @@
    "intro": [
     {
      "title": "Britain finds its voice",
-     "text": "In the 1700s British art stepped out from foreign painters: satire, society portraits, horses and science.",
+     "text": "In the 1700s British artists stepped out of the shadow of painters from abroad: satire, society portraits, horses and science.",
      "art": "marriage-mode"
     },
     {
@@ -684,17 +687,18 @@
     {
      "id": "british18c-7",
      "level": 4,
-     "q": "What light source does Wright of Derby use in the Air Pump painting?",
+     "q": "What lights the scene in Wright of Derby's Air Pump painting?",
      "options": [
-      "A single candle",
-      "Moonlight",
-      "A window",
-      "A fire"
+      "A single hidden candle",
+      "Sunlight through a window",
+      "A blazing fire",
+      "A chandelier"
      ],
-     "explain": "Candlelight makes science look like a sacred drama.",
+     "explain": "The candle is hidden behind a glass bowl, so faces glow out of the dark like a sacred drama.",
      "art": "air-pump"
     }
-   ]
+   ],
+   "as": "Georgian British art"
   },
   "romanticism": {
    "name": "Romanticism",
@@ -799,7 +803,7 @@
       "Thomas Gainsborough",
       "John Martin"
      ],
-     "explain": "In 1821, near Flatford in Suffolk. It's in the National Gallery.",
+     "explain": "In 1821. It shows a scene by Flatford Mill in Suffolk, near Constable's family home, and hangs in the National Gallery.",
      "art": "hay-wain"
     },
     {
@@ -854,7 +858,8 @@
      "explain": "Géricault interviewed survivors and studied corpses.",
      "art": "medusa"
     }
-   ]
+   ],
+   "as": "Romantic"
   },
   "preraphaelites": {
    "name": "Pre-Raphaelites",
@@ -871,7 +876,7 @@
    "intro": [
     {
      "title": "A secret brotherhood",
-     "text": "Founded in London in 1848 by three young students: Dante Gabriel Rossetti, John Everett Millais and William Holman Hunt.",
+     "text": "Founded in London in 1848 by young Royal Academy students, led by Dante Gabriel Rossetti, John Everett Millais and William Holman Hunt.",
      "art": "ophelia"
     },
     {
@@ -987,7 +992,8 @@
      "explain": "Waterhouse painted it in 1888.",
      "art": "lady-shalott"
     }
-   ]
+   ],
+   "as": "Pre-Raphaelite"
   },
   "realism": {
    "name": "Realism",
@@ -1041,19 +1047,19 @@
       "Saints",
       "Dreams"
      ],
-     "explain": "Everyday life at the size usually kept for history paintings."
+     "explain": "Courbet painted everyday life at the huge size usually kept for history paintings."
     },
     {
      "id": "realism-3",
      "level": 2,
-     "q": "Why did The Gleaners upset critics?",
+     "q": "Why did The Gleaners unsettle some critics?",
      "options": [
-      "It showed poverty at heroic scale",
+      "It gave poor labourers heroic dignity",
       "It was too colourful",
       "It was abstract",
       "It showed nudity"
      ],
-     "explain": "Poor women gathering leftover grain looked like a political statement.",
+     "explain": "Three poor women gathering leftover grain, painted with the grandeur usually given to heroes. Some read it as political.",
      "art": "gleaners"
     },
     {
@@ -1092,10 +1098,11 @@
       "It was stolen in 1990",
       "He painted over it"
      ],
-     "explain": "Destroyed in the Second World War near Dresden.",
+     "explain": "It was destroyed in February 1945, in the Second World War, near Dresden.",
      "art": "stone-breakers"
     }
-   ]
+   ],
+   "as": "Realist"
   },
   "impressionism": {
    "name": "Impressionism",
@@ -1255,7 +1262,8 @@
      "explain": "All but 1879, when she'd just had a daughter.",
      "art": "cradle"
     }
-   ]
+   ],
+   "as": "Impressionist"
   },
   "postimpressionism": {
    "name": "Post-Impressionism",
@@ -1416,10 +1424,11 @@
      "explain": "The short man in the bowler hat.",
      "art": "moulin-rouge"
     }
-   ]
+   ],
+   "as": "Post-Impressionist"
   },
   "edo-japan": {
-   "name": "Japanese prints (Edo)",
+   "name": "Edo Japan",
    "kind": "movement",
    "group": "next",
    "year": 1780,
@@ -1437,7 +1446,7 @@
     },
     {
      "title": "How prints worked",
-     "text": "A designer drew, a carver cut one block per colour, a printer pressed them in turn. Many copies, so many museums own one.",
+     "text": "A designer drew, a carver cut a block for the outlines and one for each colour, and a printer pressed them in turn. Many copies, so many museums own one.",
      "art": "red-fuji"
     },
     {
@@ -1482,7 +1491,7 @@
       "Etching on copper",
       "Silk embroidery"
      ],
-     "explain": "One carved block for each colour."
+     "explain": "A key block for the outlines, plus one carved block for each colour."
     },
     {
      "id": "edo-japan-4",
@@ -1523,7 +1532,8 @@
      "explain": "In 1887, along with the Sudden Shower.",
      "art": "plum-park"
     }
-   ]
+   ],
+   "as": "Edo-period Japanese art"
   },
   "vienna-1900": {
    "name": "Vienna 1900: Klimt",
@@ -1576,7 +1586,7 @@
       "Louvre, Paris",
       "Tate Modern"
      ],
-     "explain": "In the Upper Belvedere since 1908.",
+     "explain": "Bought by the Austrian state in 1908, the year it was first shown. It hangs in the Upper Belvedere.",
      "art": "kiss"
     },
     {
@@ -1617,7 +1627,8 @@
      ],
      "explain": "Schiele's twisted, raw figures took Klimt's line in a darker direction."
     }
-   ]
+   ],
+   "as": "from Vienna 1900"
   },
   "fauvism": {
    "name": "Fauvism",
@@ -1713,7 +1724,8 @@
      "explain": "Commissioned by the Moscow collector Sergei Shchukin.",
      "art": "dance"
     }
-   ]
+   ],
+   "as": "Fauvist"
   },
   "expressionism": {
    "name": "Expressionism",
@@ -1824,14 +1836,15 @@
      "q": "Where is the 1893 painted version of The Scream?",
      "options": [
       "National Museum, Oslo",
-      "Munch Museum, Bergen",
+      "KODE, Bergen",
       "Tate Modern",
       "MoMA, New York"
      ],
      "explain": "The National Museum in Oslo.",
      "art": "scream"
     }
-   ]
+   ],
+   "as": "Expressionist"
   },
   "cubism": {
    "name": "Cubism",
@@ -1952,7 +1965,8 @@
      "explain": "One critic called it 'an explosion in a shingle factory'.",
      "art": "nude-staircase"
     }
-   ]
+   ],
+   "as": "Cubist"
   },
   "abstraction": {
    "name": "Abstract art",
@@ -2006,7 +2020,7 @@
       "Piet Mondrian",
       "Mark Rothko"
      ],
-     "explain": "In Petrograd, launching Suprematism.",
+     "explain": "First shown in Petrograd (St Petersburg) in 1915, it launched Suprematism.",
      "art": "black-square"
     },
     {
@@ -2073,7 +2087,8 @@
      ],
      "explain": "Founded 1917 with Theo van Doesburg."
     }
-   ]
+   ],
+   "as": "abstract art"
   },
   "dada": {
    "name": "Dada",
@@ -2168,7 +2183,8 @@
      "explain": "On a cheap postcard, 1919.",
      "art": "lhooq"
     }
-   ]
+   ],
+   "as": "Dada"
   },
   "surrealism": {
    "name": "Surrealism",
@@ -2287,7 +2303,8 @@
      "explain": "Freud had just fled Vienna.",
      "art": "narcissus"
     }
-   ]
+   ],
+   "as": "Surrealist"
   },
   "abexp": {
    "name": "Abstract Expressionism",
@@ -2383,7 +2400,8 @@
      "explain": "They arrived on 25 February 1970, the day he was found dead.",
      "art": "black-maroon"
     }
-   ]
+   ],
+   "as": "Abstract Expressionist"
   },
   "popart": {
    "name": "Pop Art",
@@ -2505,7 +2523,8 @@
      "explain": "In 1962. Colour on the left, fading black and white on the right.",
      "art": "marilyn"
     }
-   ]
+   ],
+   "as": "Pop Art"
   },
   "modern-british": {
    "name": "Modern British art",
@@ -2629,7 +2648,8 @@
      "explain": "Born in Lisbon, she settled in London.",
      "art": "rego-dance"
     }
-   ]
+   ],
+   "as": "modern British art"
   },
   "yba": {
    "name": "Young British Artists",
@@ -2719,10 +2739,11 @@
       "Band",
       "Book"
      ],
-     "explain": "A real restaurant, opened 1997.",
+     "explain": "A real restaurant in Notting Hill, opened in the late 1990s.",
      "art": "pharmacy"
     }
-   ]
+   ],
+   "as": "by a Young British Artist"
   },
   "bloomsbury": {
    "name": "Bloomsbury: Bell & Grant",
@@ -3152,7 +3173,7 @@
     },
     {
      "title": "On now",
-     "text": "Painting the French Riviera, and from 21 November, Peggy Guggenheim in London.",
+     "text": "Painting the French Riviera runs until 31 January 2027. Peggy Guggenheim in London opens on 21 November 2026.",
      "art": "burlington"
     }
    ],
@@ -3223,7 +3244,7 @@
    "intro": [
     {
      "title": "The big two",
-     "text": "Sotheby's (founded 1744) and Christie's (1766), both in London. Phillips is third.",
+     "text": "Sotheby's (1744) and Christie's (1766), both founded in London. Phillips is the third big name.",
      "art": "salvator"
     },
     {
@@ -3333,12 +3354,12 @@
     },
     {
      "title": "Art Basel",
-     "text": "Founded in Basel in 1970. Now also Miami Beach, Hong Kong and Paris (in the Grand Palais).",
+     "text": "Founded in Basel in 1970. Now also in Miami Beach, Hong Kong, Paris (in the Grand Palais) and, since 2026, Doha in Qatar.",
      "art": "grand-palais"
     },
     {
      "title": "Frieze",
-     "text": "Frieze London launched in Regent's Park in 2003, with Frieze Masters for older art.",
+     "text": "Frieze London launched in Regent's Park in 2003. Frieze Masters, for older art, followed in 2012.",
      "art": "grand-palais"
     }
    ],

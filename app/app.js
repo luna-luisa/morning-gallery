@@ -137,32 +137,35 @@ function nearArtists(w, n, r){
   return shuffle(pool, r).slice(0, n);
 }
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
+const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
+const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
+const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
   Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null; return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art:x.art}); },
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
-    const others = ART.filter(w => w.topic !== tid && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
+    const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
     const chosen = shuffle(others, r).slice(0, 3), set = shuffle([right, ...chosen]);
-    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : t.name}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
+    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : qName(t)}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
   },
   I(key){ // which one isn't
     const [, tid, odd] = key.split(":"), t = TOPICS[tid], oddW = W[odd]; if (!t || !oddW) return null;
     const r = rng(key), pool = shuffle(ART.filter(w => w.topic === tid), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
     const set = shuffle([oddW, ...mine]);
-    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : t.name}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
+    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by " + t.name.replace(/^.*: /, "") : qName(t)}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
   },
   M(key){
     const wid = key.split(":")[1], w = W[wid]; if (!w || !TOPICS[w.topic]) return null; const t = TOPICS[w.topic]; if (t.kind !== "movement") return null;
-    const r = rng(key), movs = Object.keys(TOPICS).filter(k => TOPICS[k].kind === "movement" && k !== w.topic).sort((a, b) => Math.abs(TOPICS[a].year - t.year) - Math.abs(TOPICS[b].year - t.year)).slice(0, 6);
-    return mc({key, topic:w.topic, level:2, prompt:"Which movement or style is this?", options:[t.name, ...shuffle(movs, r).slice(0, 3).map(m => TOPICS[m].name)], art:w.id, explain:w.hook, needsArt:true});
+    const r = rng(key), movs = Object.keys(TOPICS).filter(k => TOPICS[k].kind === "movement" && !clash(k, w.topic)).sort((a, b) => Math.abs(TOPICS[a].year - t.year) - Math.abs(TOPICS[b].year - t.year)).slice(0, 6);
+    return mc({key, topic:w.topic, level:2, prompt:"Which movement or period is this?", options:[t.name, ...shuffle(movs, r).slice(0, 3).map(m => TOPICS[m].name)], art:w.id, explain:w.hook, needsArt:true});
   },
   W(key){
     const wid = key.split(":")[1], w = W[wid]; if (!w || !TOPICS[w.topic]) return null;
     return mc({key, topic:w.topic, level:3, prompt:"Who made this?", options:[w.artist, ...nearArtists(w, 3, rng(key))], art:w.id, explain:w.hook, needsArt:true});
   },
   H(key){
-    const wid = key.split(":")[1], w = W[wid]; if (!w || !w.place || !TOPICS[w.topic]) return null;
+    const wid = key.split(":")[1], w = W[wid]; if (!w || !w.place || /Private|Destroyed/.test(w.place) || !TOPICS[w.topic]) return null;
     const places = [...new Set(WORKS.map(x => x.place).filter(p => p && p !== w.place && !/Private|Destroyed/.test(p)))];
     return mc({key, topic:w.topic, level:3, prompt:"Where can you see this?", options:[w.place, ...shuffle(places, rng(key)).slice(0, 3)], art:w.id, explain:w.hook, needsArt:true, long:true});
   },
@@ -185,14 +188,14 @@ function allQuestions(tid){
   t.questions.forEach((_, i) => keys.push(`Q:${tid}:${i}`));
   const mine = ART.filter(w => w.topic === tid);
   mine.forEach(w => {
-    keys.push(`P:${tid}:${w.id}`);
+    if (t.kind === "movement" || t.kind === "artist") keys.push(`P:${tid}:${w.id}`);
     if (t.kind === "movement") keys.push(`M:${w.id}`, `W:${w.id}`);
     if (t.kind === "artist") keys.push(`T:${w.id}`);
     if (w.place && !/Tate|Private|Destroyed/.test(w.place)) keys.push(`H:${w.id}`);
   });
-  if (mine.length >= 3){
+  if (mine.length >= 3 && (t.kind === "movement" || t.kind === "artist")){
     const r = rng("odd" + tid);
-    shuffle(ART.filter(w => w.topic !== tid), r).slice(0, Math.min(6, mine.length)).forEach(o => keys.push(`I:${tid}:${o.id}`));
+    shuffle(ART.filter(w => !clash(w.topic, tid)), r).slice(0, Math.min(6, mine.length)).forEach(o => keys.push(`I:${tid}:${o.id}`));
   }
   if (t.kind === "movement" && t.timeline){
     const tl = Object.keys(TOPICS).filter(k => TOPICS[k].kind === "movement" && TOPICS[k].timeline && k !== tid), r = rng("tl" + tid);
@@ -368,7 +371,7 @@ function render(){
   if (x.type === "divider"){
     view.innerHTML = `<div class="line"><i style="width:${progress}%"></i></div>
       <div class="divider"><span class="eyebrow gold">A separate section</span><h1>This week <span class="serif">in art</span></h1>
-      <p class="muted">Two quick questions on what's happening in the art world right now${NEWS && NEWS.week ? " (" + esc(NEWS.week) + ")" : ""}. They don't count towards your topic levels.</p>
+      <p class="muted">Two quick questions on what's happening in the art world right now. They don't count towards your topic levels.</p>
       <button class="btn" id="go">Continue</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
@@ -484,11 +487,11 @@ function renderToday(){
   view.innerHTML = `
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? "Another" : "Your"} <span class="serif">coffee round</span></h1>
-      <p class="muted">${T(td.topic).intro ? "" : "A short introduction, then "}6 questions on today's topic, 2 reviews, then this week's news.</p></div>
+      <p class="muted">${T(td.topic).intro ? "" : "A short introduction, then "}6 questions on today's topic, 2 from other topics, then this week's news.</p></div>
     <button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">${played ? "Play another round" : "Start"}</button>
     <button class="btn ghost" id="endless">Free play</button>
-    ${items.length ? `<div class="stack"><span class="eyebrow gold">This week in art${NEWS.week ? " · " + esc(NEWS.week) : ""}</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>` : ""}
+    ${items.length ? `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>` : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;
   $("#go").onclick = startRound; $("#endless").onclick = startEndless; $("#tod").onclick = () => go("topic", td.topic);
 }
@@ -521,7 +524,7 @@ function renderMe(focus){
   const levels = Object.keys(TOPICS).map(lvlOf), best = Math.max(...levels);
   view.innerHTML = `
     <div class="row"><span class="dot big" style="background:${esc(p.color)}">${esc(p.name[0])}</span><div><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div></div>
-    <div class="stats"><div class="stat"><b>${levels.filter(l => l >= 2).length}</b><span>topics beyond Visitor</span></div><div class="stat"><b class="word">${LEVELS[best-1]}</b><span>highest level</span></div><div class="stat"><b>${s.learned}</b><span>fixed in memory</span></div></div>
+    <div class="stats"><div class="stat"><b>${levels.filter(l => l >= 2).length}</b><span>topics beyond Visitor</span></div><div class="stat"><b class="word">${LEVELS[best-1]}</b><span>highest level</span></div><div class="stat"><b>${s.learned}</b><span>learned for good</span></div></div>
     <div class="stack" id="fbbox"><span class="eyebrow">Feedback</span>
       <p class="small muted">Ideas, problems or topics you'd like to learn about. We read everything.</p>
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${i ? "false" : "true"}">${l}</button>`).join("")}</div>

@@ -42,7 +42,7 @@
    "approx": true,
    "place": "Uffizi, Florence",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
-   "hook": "One of the first large paintings since antiquity of a pagan goddess, not a religious scene."
+   "hook": "One of the first large paintings of a pagan myth since antiquity, rather than a religious scene."
   },
   {
    "id": "primavera",
@@ -72,7 +72,7 @@
    "artist": "Raphael",
    "title": "The School of Athens",
    "year": 1511,
-   "place": "Vatican Museums, Rome",
+   "place": "Vatican Museums, Vatican City",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/1280px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
    "hook": "Plato and Aristotle stand at the centre. Plato is often said to have Leonardo's face."
   },
@@ -104,7 +104,7 @@
    "year": 1565,
    "place": "Kunsthistorisches Museum, Vienna",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Pieter_Bruegel_the_Elder_-_Hunters_in_the_Snow_%28Winter%29_-_Google_Art_Project.jpg/1280px-Pieter_Bruegel_the_Elder_-_Hunters_in_the_Snow_%28Winter%29_-_Google_Art_Project.jpg",
-   "hook": "One of a series of the months. Peasant life, painted with real affection."
+   "hook": "One of a series on the seasons of the year. Peasant life, painted with real affection."
   },
   {
    "id": "tower-babel",
@@ -383,7 +383,7 @@
    "year": 1821,
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/John_Constable_-_The_Hay_Wain_%281821%29.jpg/1280px-John_Constable_-_The_Hay_Wain_%281821%29.jpg",
-   "hook": "Ignored in London, it won a gold medal at the Paris Salon of 1824."
+   "hook": "It failed to sell in London, then won a gold medal at the Paris Salon of 1824."
   },
   {
    "id": "temeraire",
@@ -433,7 +433,7 @@
    "year": 1830,
    "place": "Louvre, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/La_Libert%C3%A9_guidant_le_peuple_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_129_-_apr%C3%A8s_restauration_2024.jpg/1280px-La_Libert%C3%A9_guidant_le_peuple_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_129_-_apr%C3%A8s_restauration_2024.jpg",
-   "hook": "Painted for the July Revolution of 1830. Restored in 2024."
+   "hook": "Painted to mark the July Revolution of 1830. Restored in 2024."
   },
   {
    "id": "medusa",
@@ -473,7 +473,7 @@
    "year": 1857,
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg/1280px-Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg",
-   "hook": "Poor women picking up leftover grain, painted at the scale of history paintings. Critics found it political."
+   "hook": "Poor women picking up leftover grain, painted with the dignity usually given to heroes. Some critics found it political."
   },
   {
    "id": "stone-breakers",
@@ -870,7 +870,7 @@
    "year": 1915,
    "place": "Tretyakov Gallery, Moscow",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg/1280px-Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg",
-   "hook": "Hung high across a corner, where a Russian home places an icon."
+   "hook": "At its first showing it hung high across a corner, where a Russian home places an icon."
   },
   {
    "id": "white-on-white",
@@ -1214,7 +1214,7 @@
    "topic": "impressionism",
    "tate": "N06076",
    "page": "https://www.tate.org.uk/art/artworks/degas-little-dancer-aged-fourteen-n06076",
-   "hook": "Degas' only sculpture shown in his lifetime, with a real fabric tutu.",
+   "hook": "The only sculpture Degas ever exhibited, first shown in wax in 1881. This bronze was cast after his death, with a real fabric tutu.",
    "img": "https://media.tate.org.uk/art/images/work/N/N06/N06076_10.jpg"
   },
   {
