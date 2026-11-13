@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "13 Nov, 18:20"; // temporary: shown on Today while we test edits
+const BUILD_AT = "13 Nov, 18:37"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -10,7 +10,10 @@ const view = $("#view");
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
 const DAY = 86400000;
-const COLORS = ["#1f3fd1","#b3261e","#1e7a46","#8a5a00","#6b2fa3","#0f6e7a","#c2185b","#1a1a1a"];
+const COLORS = ["#1f3fd1","#f19cb8","#e8452c","#f2b53a","#1e7a5a","#7a4fd6","#0f8a8a","#1a1a1a"];
+function onColor(c){ const n = parseInt(String(c || "#1a1a1a").slice(1), 16); return (0.299 * (n >> 16) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) > 150 ? "#1a1a1a" : "#fff"; }
+function dotStyle(p){ return `background:${esc(p.color)};color:${onColor(p.color)}`; }
+async function hashPin(id, pin){ const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("mg:" + id + ":" + pin)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join(""); }
 const an = w => /^[AEIOU]/.test(w) ? "an" : "a";
 
 /* random helpers: Math.random for variety, seeded when a question is rebuilt from its key */
@@ -64,7 +67,7 @@ const store = {
   online: remote,
   async listProfiles(){
     if (this.online){
-      try { const rows = await sb("kv?select=id,data&id=like.profile:*"); const out = {}; rows.forEach(r => out[r.id.slice(8)] = r.data); local.set("profiles", out); return out; }
+      try { const rows = await sb("kv?select=id,data&id=like.profile:*"); const out = {}; rows.forEach(r => { if (r.data && r.data.name && !r.data.removed) out[r.id.slice(8)] = r.data; }); local.set("profiles", out); return out; }
       catch(e){ this.online = false; }
     }
     return local.get("profiles") || {};
@@ -634,14 +637,16 @@ function renderMe(focus){
   const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
   const levels = Object.keys(TOPICS).map(lvlOf), best = Math.max(...levels);
   view.innerHTML = `
-    <div class="row"><span class="dot big" style="background:${esc(p.color)}">${esc(p.name[0])}</span><div><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div></div>
+    <div class="row mehead"><span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span><div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
+    <div id="editbox"></div>
     <div class="stats"><div class="stat"><b>${levels.filter(l => l >= 2).length}</b><span>topics beyond Visitor</span></div><div class="stat"><b class="word">${LEVELS[best-1]}</b><span>highest level</span></div><div class="stat"><b>${s.learned}</b><span>learned for good</span></div></div>
     <div class="stack" id="fbbox"><span class="eyebrow">Feedback</span>
       <p class="small muted">Ideas, problems or topics you'd like to learn about. We read everything.</p>
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${i ? "false" : "true"}">${l}</button>`).join("")}</div>
       <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
       <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span></div>
-    <button class="btn ghost" id="sw">Switch profile</button>
+    <div class="row two"><button class="btn ghost" id="sw">Switch profile</button><button class="btn ghost" id="pin">${p.pin ? "Change PIN" : "Set a PIN"}</button></div>
+    ${p.admin ? `<div class="stack" id="admin"><span class="eyebrow">Profiles <span class="tag">Admin</span></span><div class="profiles small">${Object.keys(profiles).filter(id => id !== pid).map(id => `<div class="prow static"><span class="pstrip" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="pname">${esc(profiles[id].name)}</span><span class="pacts">${profiles[id].pin ? `<button class="btn link" data-reset="${id}">Reset PIN</button>` : ""}<button class="btn link danger" data-rm="${id}">Remove</button></span></div>`).join("") || `<p class="small muted">No one else yet.</p>`}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Home Screen</span><p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p></div>
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}`;
   let kind = "idea";
@@ -650,24 +655,89 @@ function renderMe(focus){
   ta.oninput = () => send.disabled = !ta.value.trim() || !store.online;
   send.onclick = async () => { send.disabled = true; try { await requestMore("", kind, ta.value.trim(), ""); ta.value = ""; $("#sent").textContent = "Thank you, we've got it."; } catch(e){ send.disabled = false; $("#sent").textContent = "Couldn't send. Please try again."; } };
   $("#sw").onclick = renderProfiles;
+  $("#pin").onclick = () => askPin(pid, "set");
+  $("#edit").onclick = () => editProfile(focus);
+  $$("[data-rm]").forEach(b => b.onclick = async () => {
+    if (!b.classList.contains("sure")){ b.classList.add("sure"); b.textContent = "Tap again to remove"; setTimeout(() => { if (b.isConnected){ b.classList.remove("sure"); b.textContent = "Remove"; } }, 4000); return; }
+    const id = b.dataset.rm, name = profiles[id].name; b.disabled = true;
+    await store.put("profile:" + id, {removed: true, name, removed_at: new Date().toISOString()}); await store.put("progress:" + id, {removed: true});
+    delete profiles[id]; local.set("profiles", profiles); computeHidden(); renderMe();
+  });
+  $$("[data-reset]").forEach(b => b.onclick = async () => { const q = profiles[b.dataset.reset]; delete q.pin; await store.put("profile:" + b.dataset.reset, q); local.set("profiles", profiles); b.replaceWith(Object.assign(document.createElement("span"), {className:"small muted", textContent:"PIN cleared"})); });
   if (focus === "feedback") $("#fbbox").scrollIntoView();
 }
+function swatches(cur){ return `<div class="swatches">${COLORS.map((c, i) => `<button class="swatch ${c === cur ? "on" : ""}" data-c="${c}" style="background:${c}" aria-label="Colour ${i + 1}"></button>`).join("")}</div>`; }
+function wireSwatches(onPick){ $$(".swatch").forEach(b => b.onclick = () => { onPick(b.dataset.c); $$(".swatch").forEach(x => x.classList.toggle("on", x === b)); }); }
+function adminName(){ const a = Object.values(profiles).find(p => p.admin); return a ? a.name : ""; }
 function renderProfiles(){
-  $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden");
+  $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden"); inRound(false);
   const ids = Object.keys(profiles).sort((a, b) => (profiles[a].created || 0) - (profiles[b].created || 0));
   view.innerHTML = `
-    <div class="stack"><h1>Who's <span class="serif">visiting?</span></h1><p class="muted">Pick your name. Everyone's progress is kept separately.</p></div>
-    <div class="profiles">${ids.map(id => `<button class="prow" data-id="${id}"><span class="dot" style="background:${esc(profiles[id].color)}">${esc(profiles[id].name[0])}</span><span>${esc(profiles[id].name)}</span></button>`).join("") || `<p class="small muted">No profiles yet.</p>`}</div>
-    <div class="stack"><span class="eyebrow">New profile</span><label class="sr" for="pn">Name</label><input type="text" id="pn" maxlength="24" placeholder="Name" autocomplete="off">
-      <div class="swatches">${COLORS.map((c, i) => `<button class="swatch ${i ? "" : "on"}" data-c="${c}" style="background:${c}" aria-label="Colour ${i + 1}"></button>`).join("")}</div>
-      <button class="btn" id="cr" disabled>Create profile</button></div>`;
-  let color = COLORS[0];
-  $$(".swatch").forEach(b => b.onclick = () => { color = b.dataset.c; $$(".swatch").forEach(x => x.classList.toggle("on", x === b)); });
-  const inp = $("#pn"), cr = $("#cr");
-  inp.oninput = () => cr.disabled = !inp.value.trim();
-  cr.onclick = async () => { cr.disabled = true; const id = "p" + Date.now().toString(36) + Math.floor(Math.random() * 999); profiles[id] = {name: inp.value.trim(), color, created: Date.now()}; await store.put("profile:" + id, profiles[id]); local.set("profiles", profiles); use(id); };
-  $$(".prow").forEach(b => b.onclick = () => use(b.dataset.id));
+    <div class="stack"><h1 class="big">Who's <span class="serif">visiting?</span></h1><p class="muted">Tap your name. Everyone's progress is kept separately.</p></div>
+    <div class="profiles">${ids.map(id => `<button class="prow" data-id="${id}"><span class="pstrip" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="pname">${esc(profiles[id].name)}</span></button>`).join("") || `<p class="small muted">No profiles yet. Make the first one.</p>`}</div>
+    <button class="btn ${ids.length ? "ghost" : ""}" id="new">New profile</button>`;
+  $$(".prow").forEach(b => b.onclick = () => askPin(b.dataset.id));
+  $("#new").onclick = newProfile;
 }
+function newProfile(){
+  let color = COLORS[Object.keys(profiles).length % COLORS.length];
+  view.innerHTML = `
+    <div class="stack"><h1 class="big">New <span class="serif">profile</span></h1></div>
+    <div class="stack"><label class="eyebrow" for="pn">Your name</label><input type="text" id="pn" maxlength="24" placeholder="Name" autocomplete="off"></div>
+    <div class="stack"><span class="eyebrow">Your colour</span>${swatches(color)}</div>
+    <div class="stack"><label class="eyebrow" for="pp">Choose a 4-digit PIN</label><input type="password" id="pp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="new-password" placeholder="····">
+      <p class="small muted">So nobody plays as you by accident. You'll only need it when switching profiles.</p></div>
+    <div class="row two"><button class="btn ghost" id="back">Back</button><button class="btn" id="cr" disabled>Create profile</button></div>`;
+  wireSwatches(c => color = c);
+  const inp = $("#pn"), pin = $("#pp"), cr = $("#cr");
+  const ok = () => cr.disabled = !inp.value.trim() || !/^\d{4}$/.test(pin.value);
+  inp.oninput = ok; pin.oninput = () => { pin.value = pin.value.replace(/\D/g, "").slice(0, 4); ok(); };
+  $("#back").onclick = renderProfiles;
+  cr.onclick = async () => {
+    cr.disabled = true; const id = "p" + Date.now().toString(36) + Math.floor(Math.random() * 999);
+    const p = {name: inp.value.trim(), color, created: Date.now(), pin: await hashPin(id, pin.value)};
+    if (!adminName()) p.admin = true;
+    profiles[id] = p; await store.put("profile:" + id, p); local.set("profiles", profiles); use(id);
+  };
+  inp.focus();
+}
+function askPin(id, mode){
+  const p = profiles[id], setting = mode === "set" || !p.pin;
+  if (!setting && id === pid && state) return go("today");
+  $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden");
+  const adm = adminName();
+  view.innerHTML = `
+    <div class="pinhead"><span class="pstrip big" style="${dotStyle(p)}">${esc(p.name[0])}</span><h1 class="big">${esc(p.name)}</h1></div>
+    <div class="stack"><label class="eyebrow" for="pp">${setting ? (p.pin ? "Choose a new 4-digit PIN" : "Choose a 4-digit PIN") : "Your PIN"}</label>
+      <input type="password" id="pp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="${setting ? "new-password" : "current-password"}" placeholder="····">
+      <p class="small muted" id="pmsg" aria-live="polite">${setting ? "So nobody plays as you by accident." : adm && adm !== p.name ? `Forgotten it? Ask ${esc(adm)} to reset it.` : ""}</p></div>
+    <div class="row two"><button class="btn ghost" id="back">Back</button><button class="btn" id="ok" disabled>${setting ? "Save PIN" : "Open"}</button></div>`;
+  const pin = $("#pp"), ok = $("#ok"), msg = $("#pmsg");
+  const submit = async () => {
+    ok.disabled = true; const h = await hashPin(id, pin.value);
+    if (setting){ p.pin = h; await store.put("profile:" + id, p); local.set("profiles", profiles); if (id === pid && state) backToMe(); else use(id); return; }
+    if (h === p.pin) return use(id);
+    pin.value = ""; pin.classList.add("shake"); setTimeout(() => pin.classList.remove("shake"), 400); msg.textContent = "That's not it. Try again."; pin.focus();
+  };
+  pin.oninput = () => { pin.value = pin.value.replace(/\D/g, "").slice(0, 4); ok.disabled = pin.value.length !== 4; if (!setting && pin.value.length === 4) submit(); };
+  ok.onclick = submit;
+  $("#back").onclick = () => id === pid && state && mode === "set" ? backToMe() : renderProfiles();
+  pin.focus();
+}
+function editProfile(){
+  const p = profiles[pid]; let color = p.color;
+  $("#editbox").innerHTML = `<div class="stack editcard"><label class="eyebrow" for="en">Name</label><input type="text" id="en" maxlength="24" value="${esc(p.name)}" autocomplete="off">
+    <span class="eyebrow">Colour</span>${swatches(color)}
+    <div class="row two"><button class="btn ghost" id="ecancel">Cancel</button><button class="btn" id="esave">Save</button></div></div>`;
+  $("#edit").classList.add("hidden");
+  wireSwatches(c => color = c);
+  const en = $("#en"), sv = $("#esave");
+  en.oninput = () => sv.disabled = !en.value.trim();
+  $("#ecancel").onclick = () => renderMe();
+  sv.onclick = async () => { sv.disabled = true; p.name = en.value.trim(); p.color = color; await store.put("profile:" + pid, p); local.set("profiles", profiles); setWho(); renderMe(); };
+}
+function backToMe(){ $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden"); go("me"); }
+function setWho(){ const p = profiles[pid]; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
 async function use(id){
   if (pid && state){ clearTimeout(saveTimer); await flush(); }
   pid = id; local.set("last", id);
@@ -675,7 +745,7 @@ async function use(id){
   const old = await store.get("progress:" + id);
   state = old && old.v === 3 ? Object.assign(fresh(), old) : fresh(old);
   const p = profiles[id];
-  $("#whoDot").style.background = p.color; $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name;
+  setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
   go("today");
 }
