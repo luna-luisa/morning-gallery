@@ -158,7 +158,6 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area
 .inround .spot{padding:18px 24px 16px}
 .inround .spot img{max-height:30vh;max-width:92%}
 .inround .prompt{font-size:26px}
-.sheetopen main{padding-bottom:calc(46vh + env(safe-area-inset-bottom,0px))}
 
 /* ---- answer sheet (slides up from the bottom) ---- */
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
@@ -210,3 +209,43 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area
 .reveal{flex-direction:column;gap:10px}
 .reveal img{width:auto;max-width:100%;max-height:24vh;object-fit:contain}
 .divider .pcard{min-height:46vh;justify-content:center}
+
+/* ===== v4 layout: fixed answer area, Check/Next always in the same place ===== */
+.inround #app{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+.inround main{flex:1;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.dock{margin-top:auto;padding-top:6px} .dock.gone{visibility:hidden}
+.ansarea{margin-top:auto} .ansarea + .dock{margin-top:0}
+.tally{margin-top:-6px}
+.tiles{--th:clamp(92px,16svh,150px);display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;height:var(--th);border:0;border-radius:4px;background:var(--paper);box-shadow:0 1px 2px rgba(40,30,15,.08);padding:12px 14px;display:flex;align-items:flex-end;text-align:left;cursor:pointer;overflow:hidden;color:var(--ink);transition:box-shadow .12s ease,opacity .2s ease}
+.tile .tt{position:relative;font-size:17px;font-weight:600;line-height:1.2}
+.tile .tt.long{font-size:15px}
+.tile.pic{padding:0;box-shadow:0 6px 14px rgba(40,30,15,.18)}
+.tile .ph{position:absolute;inset:0;background-position:center;background-size:cover;background-color:#e2ddd2}
+.tile.venue{padding:0;flex-direction:column;align-items:stretch}
+.tile.venue .ph{position:relative;inset:auto;flex:1}
+.tile.venue .tt{padding:7px 10px 9px;font-size:13.5px;background:var(--paper)}
+.tile.sel{box-shadow:0 0 0 3px var(--ink)}
+.tile.right{box-shadow:0 0 0 3px var(--good);background:var(--good-soft)} .tile.right .tt{color:var(--good)}
+.tile.wrong{box-shadow:0 0 0 3px var(--bad);background:var(--bad-soft)} .tile.wrong .tt{color:var(--bad);text-decoration:line-through}
+.tile.missed{box-shadow:0 0 0 3px var(--good);outline:2px dashed var(--paper);outline-offset:-5px}
+.tile.missed .tt::after{content:" (missed)";color:var(--good)}
+.tile.dim{opacity:.5}
+.tile:disabled{cursor:default}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;font-size:11.5px;line-height:1.25;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65));text-align:left}
+[data-src]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+[data-src] img,.spot img{pointer-events:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.zoom{position:fixed;inset:0;z-index:60;background:rgba(243,241,236,.97);display:grid;place-items:center;animation:zin .15s ease}
+.zoom .zimg{width:94vw;height:84vh;background:center/contain no-repeat}
+.rimg{display:inline-block;align-self:flex-start}
+.rimg img{display:block;width:auto;max-width:100%;max-height:24vh;object-fit:contain;box-shadow:0 6px 14px rgba(40,30,15,.2)}
+.introbody{display:flex;flex-direction:column;gap:14px}
+.inround .spot.big img{max-height:44vh}
+.hint{margin:-8px 0 0}
+.ansarea.tall .tiles{--th:clamp(110px,22svh,200px)}
+.tile.sel,.tile.right,.tile.wrong,.tile.missed{box-shadow:none;outline-offset:3px}
+.tile.sel{outline:3px solid var(--ink)}
+.tile.right{outline:3px solid var(--good)} .tile.wrong{outline:3px solid var(--bad)}
+.tile.missed{outline:3px dashed var(--good)}
+.answerline{font-size:16px}
+.reveal .rimg img{max-height:20vh}

@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "13 Nov, 17:25"; // temporary: shown on Today while we test edits
+const BUILD_AT = "13 Nov, 17:57"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -139,7 +139,10 @@ function srs(q, ok){
 }
 const seenToday = k => (state.lastSeen || {})[k] === today();
 const daysSince = d => d ? Math.round((Date.parse(today()) - Date.parse(d)) / 864e5) : 999;
-const restingRight = k => state.seen[k] === "right" && daysSince((state.lastSeen || {})[k]) < 14; // got it right recently: give it a rest
+/* questions you got right rest for 2 to 6 weeks (spread per question, so they don't all return at once) */
+const restDays = k => { let h = 0; for (const ch of k) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return 14 + h % 29; };
+const restingRight = k => state.seen[k] === "right" && daysSince((state.lastSeen || {})[k]) < restDays(k);
+const oldOne = k => state.seen[k] === "right" && !restingRight(k);
 const due = () => Object.entries(state.srs).filter(([k, v]) => v.due <= Date.now() && !seenToday(k)).map(([k]) => k);
 
 /* ---------------- questions ---------------- */
@@ -228,7 +231,10 @@ const featured = () => ((NEWS && NEWS.featuredTopics) || []).filter(t => TOPICS[
 /* questions for a topic: mostly at your level, one look back, one stretch */
 function topicSet(tid, n = 6, exclude = new Set()){
   const t = T(tid), L = t.lv, avail = allQuestions(tid).filter(q => !exclude.has(q.key));
-  const fresh = avail.filter(q => !seenToday(q.key) && !restingRight(q.key)), notToday = avail.filter(q => !seenToday(q.key));
+  // new or missed questions first, plus at most one older one you got right a while ago
+  const olds = shuffle(avail.filter(q => !seenToday(q.key) && oldOne(q.key)));
+  const fresh = avail.filter(q => !seenToday(q.key) && !restingRight(q.key) && !oldOne(q.key)).concat(olds.slice(0, 1));
+  const notToday = fresh.concat(olds.slice(1), avail.filter(q => !seenToday(q.key) && restingRight(q.key)));
   const all = fresh.length >= n ? fresh : notToday.length >= n ? notToday : avail; // fresh first; never today's again unless nothing else
   const score = q => (t.hits[q.key] ? 2 : state.seen[q.key] === "wrong" ? 0 : 1) + Math.random() * 0.9;
   const out = [];
@@ -333,7 +339,7 @@ function startRound(){
         <div class="step"><span class="num">1</span><div><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div>
         <div class="step"><span class="num">2</span><div><b>Quick fire</b><span class="muted">A few quick ones on this week's art news and other topics.</span></div></div>
       </div>
-      <div class="row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div></div>`;
+      </div><div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
   $("#back").onclick = () => go("today");
   $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
 }
@@ -374,7 +380,7 @@ async function next(delta){
 function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); }
 $$("nav.tabs button").forEach(b => b.onclick = () => { S = null; go(b.dataset.tab); });
 function go(t, a){ inRound(false); setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
-function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}"><img class="zoomable" src="${esc(w.img)}" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('gone')"></figure>` : ""; }
+function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}" data-src="${esc(w.img)}"><img src="${esc(w.img)}" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('gone')"></figure>` : ""; }
 function label(w){
   if (!w) return "";
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
@@ -389,9 +395,10 @@ function showIntro(tid, done, finishLabel){
     view.innerHTML = `
       <div class="line"><i style="width:${(i + 1) / cards.length * 100}%"></i></div>
       <div class="qhead"><span class="eyebrow">${esc(t.name)} · introduction</span><button class="btn link" id="x">Close</button></div>
-      ${figure(w)}${label(w)}
-      <h2>${esc(c.title)}</h2><p class="lead">${esc(c.text)}</p>
-      <div class="row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === cards.length - 1 ? finishLabel : "Next"}</button></div>`;
+      <div class="introbody">${figure(w, "big")}${label(w)}
+      <h2>${esc(c.title)}</h2><p class="lead">${esc(c.text)}</p></div>
+      <div class="dock row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === cards.length - 1 ? finishLabel : "Next"}</button></div>`;
+    wireHold(view);
     $("#x").onclick = () => go("today");
     $("#prev").onclick = () => { i--; draw(); };
     $("#nxt").onclick = () => { if (i < cards.length - 1){ i++; draw(); scrollTo(0, 0); } else done(); };
@@ -414,63 +421,62 @@ function render(){
     view.innerHTML = `<div class="line"><i style="width:${progress}%"></i></div>
       <div class="divider"><div class="pcard"><span class="corner tl">II</span><span class="corner br">II</span>
         <span class="eyebrow gold">Part 2</span><h1>Quick <span class="serif">fire</span></h1>
-        <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p></div>
-      <button class="btn" id="go">Go</button></div>`;
+        <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p></div></div>
+      <div class="dock"><button class="btn" id="go">Go</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
   const w = x.art && x.type !== "pick" ? W[x.art] : null;
   const L = x.topic && TOPICS[x.topic] && !x.news ? lvlOf(x.topic) : 0;
+  const pics = x.type === "pick" || x.venues, hint = pics && (state.hints || 0) < 3;
+  if (hint){ state.hints = (state.hints || 0) + 1; }
   view.innerHTML = `
     ${S.mode === "endless" ? `<div class="line"></div>` : `<div class="line"><i style="width:${progress}%"></i></div>`}
     <div class="qhead">
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w) : ""}
-    <div class="prompt">${esc(x.prompt)}</div>${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit, then tap Check.</p>` : ""}
+    <div class="prompt">${esc(x.prompt)}</div>
+    ${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit.</p>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
-    <div id="ans"></div><div id="fb"></div>
-    ${S.mode === "endless" ? `<p class="small muted center">${S.score} right so far</p>` : ""}`;
+    <div id="ans" class="ansarea ${w ? "" : "tall"}"></div>
+    ${x.type === "order" ? "" : `<div class="dock"><button class="btn" id="check" disabled>Check</button></div>`}
+    ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
   $("#quit").onclick = () => { S = null; go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
-  wireZoom(view);
+  wireHold(view);
 }
+const tileText = o => `<span class="tt${o.length > 22 ? " long" : ""}">${esc(o)}</span>`;
 function renderMC(x){
-  const one = x.long || x.options.some(o => o.length > 20);
-  $("#ans").innerHTML = x.venues
-    ? `<div class="grid">${x.options.map((o, i) => `<button class="opt venue" data-i="${i}"><img class="zoomable" src="${esc(venue(o).img)}" alt="" referrerpolicy="no-referrer"><span class="expand" role="button" aria-label="See bigger" data-src="${esc(venue(o).img)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span><span>${esc(o)}</span></button>`).join("")}</div>`
-    : `<div class="opts ${one ? "one" : ""}">${x.options.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>`;
-  if (x.multi) return wireMulti(x);
-  $$(".opt").forEach(b => b.onclick = () => {
-    const ok = +b.dataset.i === x.answer;
-    $$(".opt").forEach(o => { o.disabled = true; if (+o.dataset.i === x.answer) o.classList.add("right"); });
-    if (!ok) b.classList.add("wrong"); answered(x, ok);
-  });
-}
-function wireMulti(x){
-  const picked = new Set();
-  $("#ans").insertAdjacentHTML("beforeend", `<button class="btn" id="check" disabled>Check</button>`);
-  $$(".opt").forEach(b => b.onclick = () => {
-    const i = +b.dataset.i; picked.has(i) ? picked.delete(i) : picked.add(i);
-    b.classList.toggle("sel", picked.has(i)); b.setAttribute("aria-pressed", String(picked.has(i)));
-    $("#check").disabled = !picked.size;
-  });
-  $("#check").onclick = () => {
-    const right = new Set(x.answers), found = [...picked].filter(i => right.has(i)).length;
-    const ok = found === right.size && picked.size === right.size;
-    $$(".opt").forEach(o => { const i = +o.dataset.i; o.disabled = true; o.classList.remove("sel");
-      if (right.has(i)) o.classList.add(picked.has(i) ? "right" : "missed"); else if (picked.has(i)) o.classList.add("wrong"); });
-    $("#check").remove();
-    x.tally = `You found ${found} of ${right.size}${picked.size > found ? `, plus ${picked.size - found} that ${picked.size - found === 1 ? "isn't" : "aren't"} right` : ""}.`;
-    answered(x, ok);
-  };
+  $("#ans").innerHTML = `<div class="tiles">${x.options.map((o, i) => x.venues
+    ? `<button class="tile venue" data-i="${i}" data-src="${esc(venue(o).img)}"><span class="ph" style="background-image:url('${esc(venue(o).img)}')"></span>${tileText(o)}</button>`
+    : `<button class="tile" data-i="${i}">${tileText(o)}</button>`).join("")}</div>`;
+  choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer);
 }
 function renderPick(x){
-  $("#ans").innerHTML = `<div class="grid">${x.images.map((id, i) => `<button class="pickimg" data-i="${i}" aria-label="Picture ${i + 1}"><img class="zoomable" src="${esc(W[id].img)}" alt="" referrerpolicy="no-referrer"><span class="expand" role="button" aria-label="See bigger" data-src="${esc(W[id].img)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span></button>`).join("")}</div>`;
-  $$(".pickimg").forEach(b => b.onclick = () => {
-    const ok = +b.dataset.i === x.answer;
-    $$(".pickimg").forEach((o, i) => { o.disabled = true; o.classList.add(i === x.answer ? "right" : "dim"); const w = W[x.images[i]]; o.insertAdjacentHTML("beforeend", `<span class="cap">${esc(w.artist)}, ${yearText(w)}</span>`); });
-    if (!ok) b.classList.add("wrong"); answered(x, ok);
-  });
+  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(W[id].img)}')"></span></button>`).join("")}</div>`;
+  choose(x, i => i === x.answer, true);
+}
+/* tap to select (tap again or another to change), then Check */
+function choose(x, isRight, caps){
+  const picked = new Set(), tiles = $$(".tile"), check = $("#check");
+  tiles.forEach(b => b.addEventListener("click", () => {
+    if (b.disabled) return;
+    const i = +b.dataset.i;
+    if (x.multi) picked.has(i) ? picked.delete(i) : picked.add(i);
+    else { const had = picked.has(i); picked.clear(); if (!had) picked.add(i); }
+    tiles.forEach(t => { const on = picked.has(+t.dataset.i); t.classList.toggle("sel", on); t.setAttribute("aria-pressed", String(on)); });
+    check.disabled = !picked.size;
+  }));
+  check.onclick = () => {
+    const right = tiles.map(t => +t.dataset.i).filter(isRight), found = [...picked].filter(i => right.includes(i)).length;
+    const ok = found === right.length && picked.size === right.length;
+    tiles.forEach(t => { const i = +t.dataset.i; t.disabled = true; t.classList.remove("sel");
+      if (right.includes(i)) t.classList.add(picked.has(i) || !x.multi ? "right" : "missed"); else if (picked.has(i)) t.classList.add("wrong"); else t.classList.add("dim");
+      if (caps){ const w = W[x.images[i]]; t.insertAdjacentHTML("beforeend", `<span class="cap">${esc(w.artist)}, ${yearText(w)}</span>`); } });
+    $(".dock").classList.add("gone");
+    if (x.multi) x.tally = `You found ${found} of ${right.length}${picked.size > found ? `, plus ${picked.size - found} that ${picked.size - found === 1 ? "isn't" : "aren't"} right` : ""}.`;
+    answered(x, ok);
+  };
 }
 function renderOrder(x){
   const picked = [];
@@ -502,8 +508,8 @@ function answered(x, ok){
   state.stats.answered++; if (ok) state.stats.correct++;
   S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up});
   save();
-  const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : null;
-  const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
+  const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
+  const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   closeSheet();
   const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
@@ -512,7 +518,8 @@ function answered(x, ok){
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
-      ${rw && rw.img ? `<div class="reveal"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer" class="zoomable">${label(rw)}</div>` : w ? label(w) : ""}
+      ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
+      ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact ? `<p>${esc(fact)}</p>` : ""}
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
@@ -523,7 +530,7 @@ function answered(x, ok){
   document.body.appendChild(sh); document.body.classList.add("sheetopen");
   requestAnimationFrame(() => sh.classList.add("up"));
   $("#grab").onclick = () => sh.classList.toggle("min");
-  wireZoom(sh);
+  wireHold(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
@@ -532,24 +539,20 @@ function answered(x, ok){
   };
   $("#next").onclick = () => { closeSheet(); scrollTo(0, 0); next(1); };
 }
-/* ---------------- hold (or tap the corner icon) to see a picture bigger ---------------- */
-function zoom(src){
-  const z = document.createElement("div"); z.className = "zoom"; z.innerHTML = `<img src="${esc(src)}" alt="" referrerpolicy="no-referrer">`;
-  const close = () => { z.remove(); removeEventListener("scroll", close); };
-  z.onclick = close; z.ontouchmove = close; addEventListener("scroll", close, {once:true});
-  document.body.appendChild(z);
-}
-function wireZoom(root){
-  root.querySelectorAll(".zoomable").forEach(img => {
-    let t = null, held = false;
-    const host = img.closest("button") || img;
-    img.addEventListener("pointerdown", () => { held = false; t = setTimeout(() => { held = true; zoom(img.src); }, 380); });
-    ["pointerup", "pointerleave", "pointercancel"].forEach(e => img.addEventListener(e, () => clearTimeout(t)));
-    img.addEventListener("contextmenu", e => e.preventDefault());
-    host.addEventListener("click", e => { if (held){ e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
-    if (!img.closest("button")) img.addEventListener("click", () => zoom(img.src));
+/* ---------------- hold a picture to see it bigger; let go to close ---------------- */
+let peekEl = null;
+function peek(src){ unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom"; peekEl.innerHTML = `<span class="zimg" style="background-image:url('${esc(src)}')"></span>`; peekEl.onclick = unpeek; document.body.appendChild(peekEl); }
+function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
+addEventListener("pointerup", () => setTimeout(unpeek, 30)); addEventListener("pointercancel", unpeek); addEventListener("scroll", unpeek, {passive:true});
+function wireHold(root){
+  root.querySelectorAll("[data-src]").forEach(el => {
+    let t = null, held = false, x0 = 0, y0 = 0;
+    el.addEventListener("pointerdown", e => { held = false; x0 = e.clientX; y0 = e.clientY; clearTimeout(t); t = setTimeout(() => { held = true; peek(el.dataset.src); }, 380); });
+    el.addEventListener("pointermove", e => { if (Math.abs(e.clientX - x0) + Math.abs(e.clientY - y0) > 12) clearTimeout(t); });
+    ["pointerup", "pointerleave", "pointercancel"].forEach(ev => el.addEventListener(ev, () => clearTimeout(t)));
+    el.addEventListener("contextmenu", e => e.preventDefault());
+    el.addEventListener("click", e => { if (held){ e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
   });
-  root.querySelectorAll(".expand").forEach(b => b.addEventListener("click", e => { e.preventDefault(); e.stopImmediatePropagation(); zoom(b.dataset.src); }, true));
 }
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
 function wireFlag(x){
