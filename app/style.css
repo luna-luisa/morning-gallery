@@ -148,3 +148,65 @@ nav.tabs button.on{color:var(--ink)}
 .step .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--brass-ink)}
 .step b{display:block;font-size:19px;margin-bottom:4px}
 .step .muted{display:block;font-size:15px;line-height:1.4}
+
+/* ---- status bar: keep scrolled content from showing under the clock ---- */
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--wall);z-index:40}
+
+/* ---- in a round: no header or tabs, everything fits on one screen ---- */
+.inround .top, .inround nav.tabs{display:none!important}
+.inround main{padding-top:14px;gap:18px}
+.inround .spot{padding:18px 24px 16px}
+.inround .spot img{max-height:30vh;max-width:92%}
+.inround .prompt{font-size:26px}
+.sheetopen main{padding-bottom:calc(46vh + env(safe-area-inset-bottom,0px))}
+
+/* ---- answer sheet (slides up from the bottom) ---- */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.sheet.up{transform:none}
+.sheetin{width:100%;max-width:560px;background:var(--paper);border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(40,30,15,.16);padding:6px 24px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;max-height:62vh}
+.sheet.good .sheetin{background:#f3f8f4} .sheet.bad .sheetin{background:#fbf3f1}
+.sheetbody{display:flex;flex-direction:column;gap:12px;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0}
+.sheet.min .sheetbody{display:none}
+.grab{align-self:center;background:none;border:0;padding:8px 30px;cursor:pointer}
+.grab i{display:block;width:38px;height:4px;border-radius:2px;background:rgba(26,26,26,.18)}
+.reveal{display:flex;gap:14px;align-items:flex-start}
+.reveal img{width:96px;max-height:120px;object-fit:cover;flex:none;box-shadow:0 6px 14px rgba(40,30,15,.2);cursor:zoom-in}
+
+/* ---- see pictures bigger ---- */
+.zoomable{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.pickimg,.opt.venue{position:relative;-webkit-user-select:none;user-select:none}
+.expand{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;background:rgba(251,250,247,.82);display:grid;place-items:center;cursor:zoom-in}
+.expand svg{width:15px;height:15px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.zoom{position:fixed;inset:0;z-index:60;background:rgba(243,241,236,.97);display:grid;place-items:center;padding:24px;cursor:zoom-out;animation:zin .18s ease}
+.zoom img{max-width:100%;max-height:86vh;object-fit:contain;box-shadow:0 18px 40px rgba(40,30,15,.3)}
+@keyframes zin{from{opacity:0}to{opacity:1}}
+
+/* ---- playing-card style for the round opener and Quick fire ---- */
+.opener{display:flex;flex-direction:column;gap:22px;padding-top:6px}
+.pcard{position:relative;background:var(--paper);border-radius:16px;padding:26px 26px 22px;box-shadow:0 18px 40px rgba(40,30,15,.16),0 2px 6px rgba(40,30,15,.1);display:flex;flex-direction:column;gap:6px}
+.pcard::before{content:"";position:absolute;inset:9px;border:1px solid rgba(154,123,53,.38);border-radius:10px;pointer-events:none}
+.corner{position:absolute;font-family:var(--serif);font-style:italic;color:var(--brass-ink);font-size:22px;line-height:.9;text-align:center}
+.corner small{display:block;font-family:var(--sans);font-style:normal;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.corner.tl{top:18px;left:20px} .corner.br{bottom:18px;right:20px;transform:rotate(180deg)}
+.pimg{margin:18px 18px 14px;aspect-ratio:4/3;overflow:hidden;border-radius:4px;box-shadow:0 6px 16px rgba(40,30,15,.18)}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard .eyebrow{align-self:center;margin:4px 0 2px}
+.pcard .step{padding:12px 8px}
+.pcard .step .num{background:var(--wall)}
+.divider .pcard{align-items:center;text-align:center;padding:64px 30px;gap:14px}
+.divider{gap:22px;padding:30px 0 20px}
+
+/* tuning after phone-size check */
+.inround .spot{padding:12px 24px 10px}
+.inround .spot img{max-height:26vh}
+.inround main{gap:14px}
+.inround .grid{gap:12px}
+.opt.venue img{aspect-ratio:16/10}
+.opt.venue span{padding:7px 10px 9px;font-size:13.5px}
+.expand{width:24px;height:24px;top:5px;right:5px;background:rgba(251,250,247,.7)}
+.expand svg{width:13px;height:13px}
+.pcard{padding-bottom:40px}
+.inround .stretch{margin-top:-6px}
+.reveal{flex-direction:column;gap:10px}
+.reveal img{width:auto;max-width:100%;max-height:24vh;object-fit:contain}
+.divider .pcard{min-height:46vh;justify-content:center}

@@ -23,7 +23,17 @@
    "answer": 0,
    "explain": "Iris (1924–25) sold for €50m with fees at Sotheby's Paris, against a €22–30m estimate.",
    "source": "https://www.theartnewspaper.com/2026/10/23/monets-monumental-iris-makes-56m-in-paris",
-   "level": 2
+   "level": 2,
+   "reveal": {
+    "img": "https://th-thumbnailer.cdn-si-edu.com/Hu7jurCcGGL0HMYyXLy9_NlFUH4=/1026x684/filters:focal(1205x804:1206x805)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/9f/ea/9fea2ea2-3fec-4602-adf8-3615ff47209b/screenshot_2026-09-22_at_104025am.jpeg",
+    "artist": "Claude Monet",
+    "title": "Iris",
+    "year": 1924,
+    "approx": true,
+    "place": "Sold at Sotheby's Paris, 2026",
+    "credit": "Sotheby's, via Smithsonian Magazine",
+    "page": "https://www.smithsonianmag.com/smart-news/claude-monets-long-hidden-iris-is-about-to-become-the-most-expensive-painting-ever-auctioned-in-france-180989546/"
+   }
   },
   {
    "id": "2026-11-basel-paris",
@@ -40,7 +50,12 @@
    "answer": 0,
    "explain": "Organisers cited weekend protests and the safety of visitors and artworks. Galleries have written asking for compensation.",
    "source": "https://artincontext.org/art-basel-paris-gallery-compensation-demand/",
-   "level": 3
+   "level": 3,
+   "reveal": {
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/960px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
+    "photo": true,
+    "title": "The Grand Palais, Paris, home of Art Basel Paris"
+   }
   },
   {
    "id": "2026-11-van-eyck",
@@ -57,8 +72,8 @@
    "answer": 0,
    "explain": "The first exhibition devoted to Jan van Eyck's portraits, built around the gallery's own Arnolfini Portrait.",
    "source": "https://londonist.com/london/art-and-photography/the-top-exhibitions-to-see-in-london-november-and-december-2026",
-   "art": "red-turban",
-   "level": 2
+   "level": 2,
+   "reveal": "red-turban"
   },
   {
    "id": "2026-11-bloomsbury",
@@ -75,8 +90,8 @@
    "answer": 0,
    "explain": "'Vanessa Bell & Duncan Grant: Inside Bloomsbury' opened on 12 November.",
    "source": "https://londonist.com/london/art-and-photography/the-top-exhibitions-to-see-in-london-november-and-december-2026",
-   "art": "studland",
-   "level": 3
+   "level": 3,
+   "reveal": "studland"
   },
   {
    "id": "2026-11-guggenheim-ra",
@@ -93,7 +108,8 @@
    "answer": 0,
    "explain": "Guggenheim Jeune, at 30 Cork Street, hosted Kandinsky's first UK solo exhibition.",
    "source": "https://aboutlondon.substack.com/p/aboutlondon-laura-november-2026",
-   "level": 3
+   "level": 3,
+   "reveal": "composition-vii"
   },
   {
    "id": "2026-11-ny-cezanne",
@@ -110,8 +126,8 @@
    "answer": 0,
    "explain": "The Cézanne record is La Montagne Sainte-Victoire, sold at Christie's in 2022 for about $138m.",
    "source": "https://www.beyondeveryart.com/new-york-november-2026-auctions-estimates-explained/",
-   "art": "sainte-victoire",
-   "level": 2
+   "level": 2,
+   "reveal": "sainte-victoire"
   },
   {
    "id": "2026-11-sweden-benin",
@@ -128,7 +144,12 @@
    "answer": 0,
    "explain": "Swedish museums restituted objects to both Nigeria and Bolivia in early November 2026.",
    "source": "https://www.theartnewspaper.com/",
-   "level": 3
+   "level": 3,
+   "reveal": {
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Benin_brass_plaque_03_%28cropped%29.jpg/1280px-Benin_brass_plaque_03_%28cropped%29.jpg",
+    "artist": "Kingdom of Benin",
+    "title": "A Benin Bronze plaque"
+   }
   },
   {
    "id": "2026-11-rijks-hk",
@@ -145,7 +166,15 @@
    "answer": 0,
    "explain": "The Love Letter heads the loan. Girl with a Pearl Earring belongs to the Mauritshuis, not the Rijksmuseum.",
    "source": "https://www.arthistorynews.com/",
-   "level": 3
+   "level": 3,
+   "reveal": {
+    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/The_Love_Letter_-_Johannes_Vermeer.png/1280px-The_Love_Letter_-_Johannes_Vermeer.png",
+    "artist": "Johannes Vermeer",
+    "title": "The Love Letter",
+    "year": 1669,
+    "approx": true,
+    "place": "Rijksmuseum, Amsterdam"
+   }
   },
   {
    "id": "2026-11-venice-awards",

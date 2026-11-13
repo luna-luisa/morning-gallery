@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "13 Nov, 16:54"; // temporary: shown on Today while we test edits
+const BUILD_AT = "13 Nov, 17:25"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -133,11 +133,13 @@ function nextText(tid){
 const BOX = [1, 3, 7, 21];
 function srs(q, ok){
   const k = q.key, it = state.srs[k];
-  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "You'll see this one again tomorrow."; }
+  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "This one will come back in a later round."; }
   if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return `You'll see it again in ${BOX[it.box]} days.`; }
   return "";
 }
 const seenToday = k => (state.lastSeen || {})[k] === today();
+const daysSince = d => d ? Math.round((Date.parse(today()) - Date.parse(d)) / 864e5) : 999;
+const restingRight = k => state.seen[k] === "right" && daysSince((state.lastSeen || {})[k]) < 14; // got it right recently: give it a rest
 const due = () => Object.entries(state.srs).filter(([k, v]) => v.due <= Date.now() && !seenToday(k)).map(([k]) => k);
 
 /* ---------------- questions ---------------- */
@@ -154,7 +156,8 @@ const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /,
 const BUILD = {
   Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null;
     if (x.correct > 1){ const opts = shuffle(x.options); return {key, topic:tid, level:x.level, type:"mc", multi:true, prompt:x.q, options:opts, answers:x.options.slice(0, x.correct).map(o => opts.indexOf(o)), answer:opts.indexOf(x.options[0]), explain:x.explain, art:x.art}; }
-    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art:x.art}); },
+    const aw = W[x.art], gives = aw && x.level >= 2 && x.options.some(o => o.toLowerCase().includes(aw.title.toLowerCase()));
+    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art: gives ? null : x.art, reveal: gives ? x.art : x.reveal}); },
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
@@ -191,7 +194,7 @@ const BUILD = {
     const set = key.slice(2).split(","); if (!set.every(x => TOPICS[x])) return null;
     return {key, topic:set[0], level:2, type:"order", prompt:"Put these in order, oldest first.", topics:set, items: shuffle(set.map(x => ({label:TOPICS[x].name, sub:TOPICS[x].span, year:TOPICS[x].year, art:(ART.find(w => w.topic === x) || {}).id})))};
   },
-  N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, source:it.source, art: W[it.art] ? it.art : null, news:true, long:true}); }
+  N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, source:it.source, reveal: it.reveal || (W[it.art] ? it.art : null), news:true, long:true}); }
 };
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 const qcache = {};
@@ -224,15 +227,20 @@ const featured = () => ((NEWS && NEWS.featuredTopics) || []).filter(t => TOPICS[
 
 /* questions for a topic: mostly at your level, one look back, one stretch */
 function topicSet(tid, n = 6, exclude = new Set()){
-  const t = T(tid), L = t.lv, avail = allQuestions(tid).filter(q => !exclude.has(q.key)), fresh = avail.filter(q => !seenToday(q.key));
-  const all = fresh.length >= n ? fresh : avail; // nothing you've already answered today, if there's enough else
+  const t = T(tid), L = t.lv, avail = allQuestions(tid).filter(q => !exclude.has(q.key));
+  const fresh = avail.filter(q => !seenToday(q.key) && !restingRight(q.key)), notToday = avail.filter(q => !seenToday(q.key));
+  const all = fresh.length >= n ? fresh : notToday.length >= n ? notToday : avail; // fresh first; never today's again unless nothing else
   const score = q => (t.hits[q.key] ? 2 : state.seen[q.key] === "wrong" ? 0 : 1) + Math.random() * 0.9;
   const out = [];
-  const take = (lv, k) => all.filter(q => q.level === lv && !out.some(o => o.key === q.key)).sort((a, b) => score(a) - score(b)).slice(0, Math.max(0, k));
+  let cap = 2; // at most 2 of the same kind of question, so a round feels varied
+  const take = (lv, k) => all.filter(q => q.level === lv && !out.some(o => o.key === q.key) && out.filter(o => o.key[0] === q.key[0]).length < cap).sort((a, b) => score(a) - score(b))
+    .reduce((acc, q) => (acc.length < k && acc.filter(o => o.key[0] === q.key[0]).length + out.filter(o => o.key[0] === q.key[0]).length < cap ? acc.concat(q) : acc), []);
   if (L > 1 && n > 2) out.push(...take(L - 1, 1));
   out.push(...take(L, n - out.length - (n > 2 ? 1 : 0)));
   if (n > 2) out.push(...take(L + 1, 1).map(q => Object.assign({}, q, {stretch:true})));
   for (let lv = L; out.length < n && lv >= 1; lv--) out.push(...take(lv, n - out.length));
+  for (let lv = L + 1; out.length < n && lv <= 5; lv++) out.push(...take(lv, n - out.length).map(q => Object.assign({}, q, {stretch:true})));
+  cap = 99; // not enough variety: allow repeats of a kind
   for (let lv = L + 1; out.length < n && lv <= 5; lv++) out.push(...take(lv, n - out.length).map(q => Object.assign({}, q, {stretch:true})));
   return out.slice(0, n).sort((a, b) => a.level - b.level);
 }
@@ -315,11 +323,18 @@ function startRound(){
   const t = TOPICS[td.topic], fresh = !T(td.topic).intro;
   const round = buildRound(), nq = round.filter(x => x.section === "topic").length;
   const begin = () => { S = {mode:"round", q: round, i:0, score:0, results:[]}; next(0); };
-  setTab("today"); scrollTo(0, 0);
-  view.innerHTML = `<div class="opener stack"><span class="eyebrow">Today's coffee round</span>
-      <div class="step"><span class="num">1</span><div><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div>
-      <div class="step"><span class="num">2</span><div><b>Quick fire</b><span class="muted">A few quick ones on this week's art news and other topics.</span></div></div>
-      <button class="btn" id="go">Let's go</button></div>`;
+  setTab("today"); scrollTo(0, 0); inRound(true);
+  const w = W[(t.intro[0] || {}).art], d = new Date();
+  const mark = `${d.getDate()}<small>${d.toLocaleDateString("en-GB", {month:"short"})}</small>`;
+  view.innerHTML = `<div class="opener">
+      <div class="pcard"><span class="corner tl">${mark}</span><span class="corner br">${mark}</span>
+        ${w ? `<div class="pimg"><img src="${esc(w.img)}" alt="" referrerpolicy="no-referrer"></div>` : ""}
+        <span class="eyebrow">Today's coffee round</span>
+        <div class="step"><span class="num">1</span><div><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div>
+        <div class="step"><span class="num">2</span><div><b>Quick fire</b><span class="muted">A few quick ones on this week's art news and other topics.</span></div></div>
+      </div>
+      <div class="row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div></div>`;
+  $("#back").onclick = () => go("today");
   $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
 }
 function startTopic(tid){ T(tid).intro = true; S = {mode:"topic", topic:tid, q: topicSet(tid, 6).map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]}; next(0); }
@@ -331,7 +346,7 @@ function pushEndless(){
   if (!x && S.q.length % 8 === 7){ const n = newsItems().filter(n => !S.used.has("N:" + n.id) && !state.seenNews[n.id] && !HIDDEN.has("N:" + n.id)); if (n.length){ x = fromKey("N:" + pick(n).id); if (x) x.section = "news"; } }
   for (let tries = 0; !x && tries < 10; tries++){ // never repeat what you've already answered today
     const t = tries === 0 && Math.random() < .55 ? tid : pick(Object.keys(TOPICS).filter(k => TOPICS[k].group !== "specialist" || T(k).n > 0));
-    const c = topicSet(t, 3, S.used).find(q => !seenToday(q.key)); if (c) x = Object.assign({}, c, {section: t === tid ? "topic" : "mixed", stretch: c.stretch && t === tid});
+    const c = topicSet(t, 3, S.used).find(q => !seenToday(q.key) && !restingRight(q.key)); if (c) x = Object.assign({}, c, {section: t === tid ? "topic" : "mixed", stretch: c.stretch && t === tid});
   }
   if (!x) x = Object.assign({}, topicSet(tid, 6)[0], {section:"topic"});
   S.used.add(x.key); S.q.push(x);
@@ -358,17 +373,17 @@ async function next(delta){
 /* ---------------- rendering ---------------- */
 function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); }
 $$("nav.tabs button").forEach(b => b.onclick = () => { S = null; go(b.dataset.tab); });
-function go(t, a){ setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
-function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}"><img src="${esc(w.img)}" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('gone')"></figure>` : ""; }
+function go(t, a){ inRound(false); setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
+function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}"><img class="zoomable" src="${esc(w.img)}" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('gone')"></figure>` : ""; }
 function label(w){
   if (!w) return "";
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
-  return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>, ${yearText(w)}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}${w.credit ? `<span class="small muted">Image: ${w.page ? `<a href="${esc(w.page)}" target="_blank" rel="noopener">${esc(w.credit)}</a>` : esc(w.credit)}</span>` : ""}</div>`;
+  return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>${w.year ? ", " + yearText(w) : ""}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}${w.credit ? `<span class="small muted">Image: ${w.page ? `<a href="${esc(w.page)}" target="_blank" rel="noopener">${esc(w.credit)}</a>` : esc(w.credit)}</span>` : ""}</div>`;
 }
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
 function showIntro(tid, done, finishLabel){
-  const t = TOPICS[tid], cards = t.intro; let i = 0;
+  const t = TOPICS[tid], cards = t.intro; let i = 0; inRound(true);
   const draw = () => {
     const c = cards[i], w = W[c.art];
     view.innerHTML = `
@@ -387,16 +402,19 @@ function showIntro(tid, done, finishLabel){
   setTab("today"); draw();
 }
 
+function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); }
+function inRound(on){ document.body.classList.toggle("inround", on); if (!on) closeSheet(); }
 function render(){
-  view.ontouchstart = view.ontouchend = null;
+  view.ontouchstart = view.ontouchend = null; closeSheet(); inRound(true);
   const x = S.q[S.i];
   setTab(S.mode === "topic" ? "topics" : "today");
   const real = S.q.filter(y => y.type !== "divider"), pos = real.indexOf(x);
   const progress = (pos / Math.max(1, real.length)) * 100;
   if (x.type === "divider"){
     view.innerHTML = `<div class="line"><i style="width:${progress}%"></i></div>
-      <div class="divider"><span class="eyebrow gold">Part 2</span><h1>Quick <span class="serif">fire</span></h1>
-      <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p>
+      <div class="divider"><div class="pcard"><span class="corner tl">II</span><span class="corner br">II</span>
+        <span class="eyebrow gold">Part 2</span><h1>Quick <span class="serif">fire</span></h1>
+        <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p></div>
       <button class="btn" id="go">Go</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
@@ -414,11 +432,12 @@ function render(){
     ${S.mode === "endless" ? `<p class="small muted center">${S.score} right so far</p>` : ""}`;
   $("#quit").onclick = () => { S = null; go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
+  wireZoom(view);
 }
 function renderMC(x){
   const one = x.long || x.options.some(o => o.length > 20);
   $("#ans").innerHTML = x.venues
-    ? `<div class="grid">${x.options.map((o, i) => `<button class="opt venue" data-i="${i}"><img src="${esc(venue(o).img)}" alt="" referrerpolicy="no-referrer"><span>${esc(o)}</span></button>`).join("")}</div>`
+    ? `<div class="grid">${x.options.map((o, i) => `<button class="opt venue" data-i="${i}"><img class="zoomable" src="${esc(venue(o).img)}" alt="" referrerpolicy="no-referrer"><span class="expand" role="button" aria-label="See bigger" data-src="${esc(venue(o).img)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span><span>${esc(o)}</span></button>`).join("")}</div>`
     : `<div class="opts ${one ? "one" : ""}">${x.options.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>`;
   if (x.multi) return wireMulti(x);
   $$(".opt").forEach(b => b.onclick = () => {
@@ -446,7 +465,7 @@ function wireMulti(x){
   };
 }
 function renderPick(x){
-  $("#ans").innerHTML = `<div class="grid">${x.images.map((id, i) => `<button class="pickimg" data-i="${i}" aria-label="Picture ${i + 1}"><img src="${esc(W[id].img)}" alt="" referrerpolicy="no-referrer"></button>`).join("")}</div>`;
+  $("#ans").innerHTML = `<div class="grid">${x.images.map((id, i) => `<button class="pickimg" data-i="${i}" aria-label="Picture ${i + 1}"><img class="zoomable" src="${esc(W[id].img)}" alt="" referrerpolicy="no-referrer"><span class="expand" role="button" aria-label="See bigger" data-src="${esc(W[id].img)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></span></button>`).join("")}</div>`;
   $$(".pickimg").forEach(b => b.onclick = () => {
     const ok = +b.dataset.i === x.answer;
     $$(".pickimg").forEach((o, i) => { o.disabled = true; o.classList.add(i === x.answer ? "right" : "dim"); const w = W[x.images[i]]; o.insertAdjacentHTML("beforeend", `<span class="cap">${esc(w.artist)}, ${yearText(w)}</span>`); });
@@ -483,27 +502,54 @@ function answered(x, ok){
   state.stats.answered++; if (ok) state.stats.correct++;
   S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up});
   save();
-  const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || "";
+  const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : null;
+  const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
-  $("#fb").innerHTML = `<div class="feedback ${ok ? "good" : "bad"}">
+  closeSheet();
+  const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
+  sh.innerHTML = `<div class="sheetin"><button class="grab" id="grab" aria-label="Show or hide the explanation"><i></i></button>
       <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
+      <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
-      ${w ? label(w) : ""}
+      ${rw && rw.img ? `<div class="reveal"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer" class="zoomable">${label(rw)}</div>` : w ? label(w) : ""}
       ${fact ? `<p>${esc(fact)}</p>` : ""}
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
-      ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : L0(x) ? `<span class="small muted">${esc(tName(x.topic))}: ${esc(nextText(x.topic))}</span>` : ""}
+      ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}
       ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Thanks, more on this soon" : "I'd like to know more about this"}</button>` : ""}
-    </div><button class="btn" id="next">${last ? "See results" : "Next"}</button>`;
+      </div>
+      <button class="btn" id="next">${last ? "See results" : "Next"}</button></div>`;
+  document.body.appendChild(sh); document.body.classList.add("sheetopen");
+  requestAnimationFrame(() => sh.classList.add("up"));
+  $("#grab").onclick = () => sh.classList.toggle("min");
+  wireZoom(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
     try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Thanks, more on this soon"; }
     catch(e){ b.disabled = false; b.textContent = "Couldn't send. Tap to try again."; }
   };
-  $("#next").onclick = () => { scrollTo(0, 0); next(1); };
-  $("#next").scrollIntoView({behavior:"smooth", block:"nearest"});
+  $("#next").onclick = () => { closeSheet(); scrollTo(0, 0); next(1); };
+}
+/* ---------------- hold (or tap the corner icon) to see a picture bigger ---------------- */
+function zoom(src){
+  const z = document.createElement("div"); z.className = "zoom"; z.innerHTML = `<img src="${esc(src)}" alt="" referrerpolicy="no-referrer">`;
+  const close = () => { z.remove(); removeEventListener("scroll", close); };
+  z.onclick = close; z.ontouchmove = close; addEventListener("scroll", close, {once:true});
+  document.body.appendChild(z);
+}
+function wireZoom(root){
+  root.querySelectorAll(".zoomable").forEach(img => {
+    let t = null, held = false;
+    const host = img.closest("button") || img;
+    img.addEventListener("pointerdown", () => { held = false; t = setTimeout(() => { held = true; zoom(img.src); }, 380); });
+    ["pointerup", "pointerleave", "pointercancel"].forEach(e => img.addEventListener(e, () => clearTimeout(t)));
+    img.addEventListener("contextmenu", e => e.preventDefault());
+    host.addEventListener("click", e => { if (held){ e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
+    if (!img.closest("button")) img.addEventListener("click", () => zoom(img.src));
+  });
+  root.querySelectorAll(".expand").forEach(b => b.addEventListener("click", e => { e.preventDefault(); e.stopImmediatePropagation(); zoom(b.dataset.src); }, true));
 }
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
 function wireFlag(x){
@@ -523,6 +569,7 @@ async function requestMore(topic, kind, message, item){
   return store.feedback({kind, profile_name: p.name || "", topic: topic || "", item: item || "", message: String(message || "").slice(0, 1500)});
 }
 function finish(){
+  inRound(false);
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); }
   save();
   const tid = S.mode === "topic" ? S.topic : topicOfDay().topic, L = lvlOf(tid), ups = S.results.filter(r => r.up);
@@ -530,7 +577,7 @@ function finish(){
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
     <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
-      <p class="muted">${missed ? `You'll see the ${missed === 1 ? "one" : missed} you missed again tomorrow, so ${missed === 1 ? "it sticks" : "they stick"}.` : "Clean sweep."}</p></div>
+      <p class="muted">${missed ? `The ${missed === 1 ? "one" : missed} you missed will come back in a later round, so ${missed === 1 ? "it sticks" : "they stick"}.` : "Clean sweep."}</p></div>
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></button>
     <div class="stack"><button class="btn" id="keep">Keep going</button><button class="btn ghost" id="home">Back to today</button></div>
