@@ -125,3 +125,12 @@ nav.tabs button.on{color:var(--ink)}
 .flag.on{opacity:1;color:var(--brass)} .flag.on svg{fill:currentColor}
 .flagbox{display:flex;flex-direction:column;gap:10px}
 .flagbox .btn.link{min-height:0;font-size:inherit;margin-left:4px}
+
+.opt.venue{padding:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;font-size:14px;line-height:1.2}
+.opt.venue img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.opt.venue span{padding:9px 10px 11px}
+.opt.venue.right{outline:3px solid var(--good);outline-offset:2px}
+.opt.venue.wrong{outline:3px solid var(--bad);outline-offset:2px;text-decoration:none}
+.opt.venue.wrong span{text-decoration:line-through}
+.opt.venue:disabled:not(.right):not(.wrong){opacity:.6}
+.label a{color:inherit}

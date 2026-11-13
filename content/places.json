@@ -1,0 +1,313 @@
+{
+ "about": "Photos of museums and galleries, shown when every answer option is a place. Keys and aliases must match option text exactly (case-insensitive). Images: Wikimedia Commons / Wikipedia.",
+ "places": {
+  "Centre Pompidou, Paris": {
+   "img": "https://upload.wikimedia.org/wikipedia/en/9/95/Pompidou_center.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Belvedere, Vienna": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/960px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Musée d'Orsay, Paris": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Pary%C5%BC_orsay.JPG/960px-Pary%C5%BC_orsay.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "St Bavo's Cathedral, Ghent": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/27052005_-_St_Baafskathedraal.JPG/960px-27052005_-_St_Baafskathedraal.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Huntington Library, California": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Lightmatter_huntington_library.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "KODE, Bergen": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Kode_4%2C_Bergen_-_Flickr_-_abbilder.jpg/960px-Kode_4%2C_Bergen_-_Flickr_-_abbilder.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Art Institute of Chicago": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Art_Institute_of_Chicago_Front.jpg/960px-Art_Institute_of_Chicago_Front.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Kunsthistorisches Museum, Vienna": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Kunsthistorisches_Museum_Wien_mit_Maria-Theresien-Denkmal.jpg/960px-Kunsthistorisches_Museum_Wien_mit_Maria-Theresien-Denkmal.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Mauritshuis, The Hague": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Mauritshuis_Museum_%2814346890947%29.jpg/960px-Mauritshuis_Museum_%2814346890947%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Vatican Museums, Vatican City": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Museums_in_the_Vatican_City.jpg/960px-Museums_in_the_Vatican_City.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Musée Marmottan Monet, Paris": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Mus%C3%A9e_Marmottan_Monet%2C_Paris%2C_March_2013.JPG/960px-Mus%C3%A9e_Marmottan_Monet%2C_Paris%2C_March_2013.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Van Gogh Museum, Amsterdam": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Van_Gogh_Museum.jpg/960px-Van_Gogh_Museum.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "V&A": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Victoria_%26_Albert_Museum_Entrance%2C_London%2C_UK_-_Diliff.jpg/960px-Victoria_%26_Albert_Museum_Entrance%2C_London%2C_UK_-_Diliff.jpg",
+   "aliases": [
+    "V&A, London",
+    "Victoria and Albert Museum"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Neue Galerie, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Neue_Gallery_%2848059179353%29.jpg/960px-Neue_Gallery_%2848059179353%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "National Gallery, London": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Galer%C3%ADa_Nacional%2C_Londres%2C_Inglaterra%2C_2014-08-07%2C_DD_036.JPG/960px-Galer%C3%ADa_Nacional%2C_Londres%2C_Inglaterra%2C_2014-08-07%2C_DD_036.JPG",
+   "aliases": [
+    "National Gallery"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Louvre, Paris": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/960px-Louvre_Museum_Wikimedia_Commons.jpg",
+   "aliases": [
+    "Louvre"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Museum of Modern Art, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/MoMa_NY_USA_1.jpg/960px-MoMa_NY_USA_1.jpg",
+   "aliases": [
+    "MoMA, New York",
+    "MoMA"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Prado, Madrid": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Museo_del_Prado_2016_%2825185969599%29.jpg/960px-Museo_del_Prado_2016_%2825185969599%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Uffizi, Florence": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Florence%2C_Italy_-_panoramio_%28125%29.jpg/960px-Florence%2C_Italy_-_panoramio_%28125%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Rijksmuseum, Amsterdam": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/960px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Metropolitan Museum of Art, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg/960px-Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg",
+   "aliases": [
+    "The Met, New York",
+    "Metropolitan Museum"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Museum of Fine Arts, Boston": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Museum_of_Fine_Arts%2C_Boston_%2854954248311%29.jpg/960px-Museum_of_Fine_Arts%2C_Boston_%2854954248311%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Tretyakov Gallery, Moscow": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Moscow_05-2012_TretyakovGallery.jpg/960px-Moscow_05-2012_TretyakovGallery.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Santa Maria delle Grazie, Milan": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Santa_Maria_delle_Grazie_Milan_2013.jpg/960px-Santa_Maria_delle_Grazie_Milan_2013.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Czartoryski Museum, Kraków": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Czartoryski_Palace%2C_17-19_%C5%9Bwi%C4%99tego_Jana_street%2C_Old_Town%2C_Krak%C3%B3w%2C_Poland.jpg/960px-Czartoryski_Palace%2C_17-19_%C5%9Bwi%C4%99tego_Jana_street%2C_Old_Town%2C_Krak%C3%B3w%2C_Poland.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Sistine Chapel, Vatican": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Sistina-interno.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Kenwood House, London": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Kenwood_House_2.jpg/960px-Kenwood_House_2.jpg",
+   "aliases": [
+    "Kenwood House"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "San Luigi dei Francesi, Rome": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/%C3%89glise_San_Luigi_Francesi_-_Rome_%28IT62%29_-_2021-08-28_-_2.jpg/960px-%C3%89glise_San_Luigi_Francesi_-_Rome_%28IT62%29_-_2021-08-28_-_2.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Museo di Capodimonte, Naples": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/ReggiaCapodimonte.JPG/960px-ReggiaCapodimonte.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Antwerp Cathedral": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Exterior_of_Onze-Lieve-Vrouwekathedraal_%28Antwerp%29-.jpg/960px-Exterior_of_Onze-Lieve-Vrouwekathedraal_%28Antwerp%29-.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Wallace Collection, London": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/70/Front_entrance_to_the_Wallace_Collection%2C_Manchester_Square_-_geograph.org.uk_-_1600012.jpg",
+   "aliases": [
+    "Wallace Collection"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Hamburger Kunsthalle": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Hamburger_Kunsthalle.jpg/960px-Hamburger_Kunsthalle.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Detroit Institute of Arts": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Detroit_institute_of_arts%2C_esterno_01_%28cropped%29.jpg/960px-Detroit_institute_of_arts%2C_esterno_01_%28cropped%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "National Gallery of Art, Washington": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/National_Gallery_of_Art_-_2026_%2855255088792%29.jpg/960px-National_Gallery_of_Art_-_2026_%2855255088792%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Phillips Collection, Washington": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/The_Phillips_Collection.JPG/960px-The_Phillips_Collection.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Courtauld Gallery, London": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Coultauld_Galleries.jpg/960px-Coultauld_Galleries.jpg",
+   "aliases": [
+    "Courtauld",
+    "Courtauld Gallery",
+    "The Courtauld"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Kröller-Müller Museum, Otterlo": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Entrance_Kr%C3%B6ller-M%C3%BCller_Museum.JPG/960px-Entrance_Kr%C3%B6ller-M%C3%BCller_Museum.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "San Francisco Museum of Modern Art": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/2017_SFMOMA_from_Yerba_Buena_Gardens.jpg/960px-2017_SFMOMA_from_Yerba_Buena_Gardens.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Hermitage Museum, St Petersburg": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/5174-3._St._Petersburg._Greater_Hermitage.jpg/960px-5174-3._St._Petersburg._Greater_Hermitage.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "National Museum, Oslo": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Nye_Nasjonalmuseet_%282022%29_%282%29.jpg/960px-Nye_Nasjonalmuseet_%282022%29_%282%29.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Fondation Louis Vuitton": {
+   "img": "https://thumb.wikimedia.org/wikipedia/en/thumb/0/03/Fondation_Louis_Vuitton_-_Paris_%2850569906682%29.jpg/960px-Fondation_Louis_Vuitton_-_Paris_%2850569906682%29.jpg",
+   "aliases": [
+    "Fondation Louis Vuitton, Paris"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Philadelphia Museum of Art": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/PhiladelphiaMuseumOfArt2017.jpg/960px-PhiladelphiaMuseumOfArt2017.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Kunsthaus Zürich": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Kunsthaus_Z%C3%BCrich_2011-08-06_17-33-46.jpg/960px-Kunsthaus_Z%C3%BCrich_2011-08-06_17-33-46.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Tate Britain": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Tate_Britain_%285822081512%29_%282%29.jpg/960px-Tate_Britain_%285822081512%29_%282%29.jpg",
+   "aliases": [
+    "Tate Britain, London"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Tate Modern": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Tate_Modern_-_Bankside_Power_Station.jpg/960px-Tate_Modern_-_Bankside_Power_Station.jpg",
+   "aliases": [
+    "Tate Modern, London"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Royal Academy": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Royal_Academy.jpg/960px-Royal_Academy.jpg",
+   "aliases": [
+    "Royal Academy of Arts",
+    "Royal Academy, London"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Grand Palais": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/960px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
+   "aliases": [
+    "Grand Palais, Paris"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Palais de Tokyo": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Palais_de_Tokyo_%40_Paris_%2831028565970%29.jpg/960px-Palais_de_Tokyo_%40_Paris_%2831028565970%29.jpg",
+   "aliases": [
+    "Palais de Tokyo, Paris"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Hayward Gallery, London": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/8/82/Hayward-gallery-london_I.jpg",
+   "aliases": [
+    "Hayward Gallery"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Guggenheim Museum, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Solomon_R._Guggenheim_Museum_%2848059131351%29.jpg/960px-Solomon_R._Guggenheim_Museum_%2848059131351%29.jpg",
+   "aliases": [
+    "Guggenheim, New York"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Peggy Guggenheim Collection, Venice": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/PI5DAE~2_-_CopyPeggy_Guggenheim_Museum.JPG/960px-PI5DAE~2_-_CopyPeggy_Guggenheim_Museum.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "British Museum, London": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/British_Museum_from_NE_2.JPG/960px-British_Museum_from_NE_2.JPG",
+   "aliases": [
+    "British Museum"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Whitney Museum of American Art, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Whitney_Museum_of_American_Art_%2849051573133%29.jpg/960px-Whitney_Museum_of_American_Art_%2849051573133%29.jpg",
+   "aliases": [
+    "Whitney Museum",
+    "Whitney Museum, New York"
+   ],
+   "credit": "Wikimedia Commons"
+  }
+ }
+}

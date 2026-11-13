@@ -1114,7 +1114,8 @@
    "related": [
     "realism",
     "postimpressionism",
-    "auctions"
+    "auctions",
+    "salman-toor"
    ],
    "intro": [
     {
@@ -3412,6 +3413,197 @@
      ],
      "explain": "The restored Grand Palais.",
      "art": "grand-palais"
+    }
+   ]
+  },
+  "salman-toor": {
+   "name": "Salman Toor",
+   "kind": "artist",
+   "group": "now",
+   "year": 2019,
+   "span": "born 1983",
+   "timeline": false,
+   "related": [
+    "impressionism",
+    "baroque",
+    "rococo"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "'Salman Toor: Someone Like You' at the Courtauld Gallery, London, runs until 10 January 2027. It's his first solo museum show in Europe: 19 paintings.",
+     "art": "toor-bar-13th"
+    },
+    {
+     "title": "Who is he?",
+     "text": "Born in Lahore, Pakistan, in 1983, he trained in the US and lives in New York. A 2020 solo show at the Whitney Museum made his name.",
+     "art": "toor-bar-boy"
+    },
+    {
+     "title": "Look for",
+     "text": "Friends in bars, cabs and bedrooms, painted from memory with loose, sketchy brushwork. A glowing green comes back again and again.",
+     "art": "toor-cab"
+    }
+   ],
+   "questions": [
+    {
+     "id": "salman-toor-1",
+     "level": 1,
+     "q": "Where was Salman Toor born?",
+     "options": [
+      "Lahore, Pakistan",
+      "Mumbai, India",
+      "London, England",
+      "Dhaka, Bangladesh"
+     ],
+     "explain": "In 1983. He now lives and works in New York."
+    },
+    {
+     "id": "salman-toor-2",
+     "level": 1,
+     "q": "Which colour fills many of Toor's paintings?",
+     "options": [
+      "Green",
+      "Red",
+      "Gold",
+      "Black"
+     ],
+     "explain": "A glowing green, almost like absinthe, sets the mood in many of his scenes.",
+     "art": "toor-bar-13th"
+    },
+    {
+     "id": "salman-toor-3",
+     "level": 1,
+     "q": "Where is 'Salman Toor: Someone Like You' on until 10 January 2027?",
+     "options": [
+      "Courtauld Gallery, London",
+      "Tate Modern",
+      "National Gallery, London",
+      "Hayward Gallery, London"
+     ],
+     "explain": "It's his first solo museum show in Europe."
+    },
+    {
+     "id": "salman-toor-4",
+     "level": 2,
+     "q": "Which famous painting does The Bar on East 13th rework?",
+     "options": [
+      "Manet's A Bar at the Folies-Bergère",
+      "Renoir's Luncheon of the Boating Party",
+      "Hopper's Nighthawks",
+      "Van Gogh's Café Terrace at Night"
+     ],
+     "explain": "Manet's 1882 bar scene belongs to the Courtauld, so the two hang under the same roof during the show.",
+     "art": "toor-bar-13th"
+    },
+    {
+     "id": "salman-toor-5",
+     "level": 2,
+     "q": "Where does Toor live and work?",
+     "options": [
+      "New York",
+      "London",
+      "Lahore",
+      "Paris"
+     ],
+     "explain": "He trained in the US, at Ohio Wesleyan University and then Pratt Institute in Brooklyn."
+    },
+    {
+     "id": "salman-toor-6",
+     "level": 2,
+     "q": "Who are the people in his paintings?",
+     "options": [
+      "Imagined figures, drawn from his own life and friends",
+      "Famous celebrities",
+      "Kings and queens",
+      "Characters from Greek myths"
+     ],
+     "explain": "The scenes draw on his own life and memories, but the figures are largely imagined rather than portraits."
+    },
+    {
+     "id": "salman-toor-7",
+     "level": 3,
+     "q": "Which New York museum gave Toor his breakthrough solo show in 2020?",
+     "options": [
+      "Whitney Museum of American Art, New York",
+      "Museum of Modern Art, New York",
+      "Guggenheim Museum, New York",
+      "Metropolitan Museum of Art, New York"
+     ],
+     "explain": "'How Will I Know' ran at the Whitney in 2020 to 2021."
+    },
+    {
+     "id": "salman-toor-8",
+     "level": 3,
+     "q": "In 2021 the Frick Collection in New York hung his painting Museum Boys next to works by…",
+     "options": [
+      "Johannes Vermeer",
+      "Pablo Picasso",
+      "Andy Warhol",
+      "Frida Kahlo"
+     ],
+     "explain": "Two Vermeers: a sign of how closely his work talks to the Old Masters."
+    },
+    {
+     "id": "salman-toor-9",
+     "level": 3,
+     "q": "Which kind of older painting does Toor admire most?",
+     "options": [
+      "Baroque and 18th-century painting",
+      "Cubism",
+      "Ancient Egyptian art",
+      "Abstract Expressionism"
+     ],
+     "explain": "He has named Van Dyck, Rubens, Caravaggio and Watteau among his influences."
+    },
+    {
+     "id": "salman-toor-10",
+     "level": 4,
+     "q": "Toor calls his 2019 paintings, like Bar Boy, his…",
+     "options": [
+      "Coming out pictures",
+      "Green period",
+      "Lahore paintings",
+      "Night series"
+     ],
+     "explain": "From 2019 he began to paint his own life, including being gay, much more openly.",
+     "art": "toor-bar-boy"
+    },
+    {
+     "id": "salman-toor-11",
+     "level": 4,
+     "q": "Which big international exhibition included Toor in 2024?",
+     "options": [
+      "The Venice Biennale",
+      "Documenta in Kassel",
+      "The Turner Prize",
+      "The Archibald Prize"
+     ],
+     "explain": "He was in the main exhibition of the 60th Venice Biennale."
+    },
+    {
+     "id": "salman-toor-12",
+     "level": 5,
+     "q": "For the Courtauld show he made a new painting modelled on a Renaissance work in its collection. Which?",
+     "options": [
+      "Lorenzo Lotto's The Entombment",
+      "Botticelli's The Trinity with Saints",
+      "Bruegel's Flight into Egypt",
+      "Rubens's Landscape by Moonlight"
+     ],
+     "explain": "Lotto painted it in the 1550s. Toor's new picture borrows its composition."
+    },
+    {
+     "id": "salman-toor-13",
+     "level": 5,
+     "q": "Toor illustrated Jungle Nama (2021), a story in verse by which writer?",
+     "options": [
+      "Amitav Ghosh",
+      "Salman Rushdie",
+      "Zadie Smith",
+      "Mohsin Hamid"
+     ],
+     "explain": "A retelling of a legend from the Sundarbans, the mangrove forests of India and Bangladesh."
     }
    ]
   }

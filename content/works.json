@@ -1614,6 +1614,52 @@
    "page": "https://www.tate.org.uk/art/artworks/grant-bathing-n04567",
    "hook": "Made for a Borough Polytechnic decoration scheme in 1911.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04567_10.jpg"
+  },
+  {
+   "id": "toor-bar-13th",
+   "topic": "salman-toor",
+   "artist": "Salman Toor",
+   "title": "The Bar on East 13th",
+   "year": 2019,
+   "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/Smaller_New_ImageThe-Bar-on-East-13_2019_C33946_adj-High-1200x0-c-default.png",
+   "hook": "Toor's take on Manet's A Bar at the Folies-Bergère, which hangs in the same building, the Courtauld.",
+   "credit": "The Courtauld",
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
+  },
+  {
+   "id": "toor-bar-boy",
+   "topic": "salman-toor",
+   "artist": "Salman Toor",
+   "title": "Bar Boy",
+   "year": 2019,
+   "place": "Whitney Museum of American Art, New York",
+   "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/EXH.2026.ST_.003_Bar-Boy_2019_C33895-e1784115434729-1200x0-c-default.jpg",
+   "hook": "One of the 2019 paintings Toor calls his 'coming out pictures'.",
+   "credit": "The Courtauld",
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
+  },
+  {
+   "id": "toor-cab",
+   "topic": "salman-toor",
+   "artist": "Salman Toor",
+   "title": "Three Friends in a Cab",
+   "year": 2021,
+   "place": "Private collection",
+   "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/EXH.2026.ST_.008_Three-Friends-in-a-Cab-2021-3-scaled-1200x0-c-default.jpg",
+   "hook": "You sit in the back seat with three friends on a night out.",
+   "credit": "The Courtauld",
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
+  },
+  {
+   "id": "toor-ghost-ball",
+   "topic": "salman-toor",
+   "artist": "Salman Toor",
+   "title": "Ghost Ball",
+   "year": 2023,
+   "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/EXH.2026.ST_.006_Ghost-Ball_2023_C37217_crop-3-scaled-1200x0-c-default.jpg",
+   "hook": "A huge canvas, over three metres wide, now in the Pinault Collection. In his later work the figures turn looser and more ghostly.",
+   "credit": "The Courtauld",
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
   }
  ]
 }

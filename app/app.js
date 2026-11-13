@@ -19,7 +19,8 @@ const shuffle = (a, r = Math.random) => { a = a.slice(); for (let i = a.length -
 const pick = (a, r = Math.random) => a[Math.floor(r() * a.length)];
 
 /* ---------------- content ---------------- */
-let WORKS = [], W = {}, TOPICS = {}, NEWS = null, ART = [], CLEARED = {};
+let WORKS = [], W = {}, TOPICS = {}, NEWS = null, ART = [], CLEARED = {}, VENUES = {};
+const venue = t => VENUES[String(t || "").trim().toLowerCase()] || null;
 /* questions anyone has flagged stay hidden for everyone until they're checked and listed in cleared.json */
 let HIDDEN = new Set();
 function computeHidden(){
@@ -35,8 +36,9 @@ async function getJSON(name){
   const r = await fetch("content/" + name + "?d=" + today()); return r.json();
 }
 async function loadContent(){
-  const [w, t, n, c] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null)]);
+  const [w, t, n, c, pl] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null)]);
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
+  VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
   W = Object.fromEntries(WORKS.map(x => [x.id, x]));
   ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic]);
 }
@@ -173,7 +175,7 @@ const BUILD = {
   },
   H(key){
     const wid = key.split(":")[1], w = W[wid]; if (!w || !w.place || /Private|Destroyed/.test(w.place) || !TOPICS[w.topic]) return null;
-    const places = [...new Set(WORKS.map(x => x.place).filter(p => p && p !== w.place && !/Private|Destroyed/.test(p)))];
+    const places = [...new Set(WORKS.map(x => x.place).filter(p => p && p !== w.place && !/Private|Destroyed|^Tate, London$/.test(p) && (!venue(w.place) || venue(p)) && !(/Vatican/.test(p) && /Vatican/.test(w.place))))];
     return mc({key, topic:w.topic, level:3, prompt:"Where can you see this?", options:[w.place, ...shuffle(places, rng(key)).slice(0, 3)], art:w.id, explain:w.hook, needsArt:true, long:true});
   },
   T(key){
@@ -276,6 +278,10 @@ async function prepare(q){
   }
   if (q.type === "order"){ await Promise.all(q.items.map(it => it.art && W[it.art] ? loadImg(W[it.art].img) : true)); return q; }
   if (q.art && W[q.art] && !(await loadImg(W[q.art].img))) return q.needsArt ? null : Object.assign({}, q, {art:null});
+  if (q.type === "mc" && q.options.every(venue)){
+    const ok = await Promise.all(q.options.map(o => loadImg(venue(o).img)));
+    if (ok.every(Boolean)) return Object.assign({}, q, {venues:true});
+  }
   return q;
 }
 function prefetch(q){ if (!q) return; if (q.type === "pick") q.images.forEach(id => loadImg(W[id].img)); else if (q.art && W[q.art]) loadImg(W[q.art].img); }
@@ -345,7 +351,7 @@ function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}"><img src="
 function label(w){
   if (!w) return "";
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
-  return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>, ${yearText(w)}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}</div>`;
+  return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>, ${yearText(w)}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}${w.credit ? `<span class="small muted">Image: ${w.page ? `<a href="${esc(w.page)}" target="_blank" rel="noopener">${esc(w.credit)}</a>` : esc(w.credit)}</span>` : ""}</div>`;
 }
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), news: () => "This week in art"};
 
@@ -399,7 +405,9 @@ function render(){
 }
 function renderMC(x){
   const one = x.long || x.options.some(o => o.length > 20);
-  $("#ans").innerHTML = `<div class="opts ${one ? "one" : ""}">${x.options.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>`;
+  $("#ans").innerHTML = x.venues
+    ? `<div class="grid">${x.options.map((o, i) => `<button class="opt venue" data-i="${i}"><img src="${esc(venue(o).img)}" alt="" referrerpolicy="no-referrer"><span>${esc(o)}</span></button>`).join("")}</div>`
+    : `<div class="opts ${one ? "one" : ""}">${x.options.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join("")}</div>`;
   $$(".opt").forEach(b => b.onclick = () => {
     const ok = +b.dataset.i === x.answer;
     $$(".opt").forEach(o => { o.disabled = true; if (+o.dataset.i === x.answer) o.classList.add("right"); });
