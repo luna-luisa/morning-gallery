@@ -440,7 +440,8 @@ function answered(x, ok){
   const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   $("#fb").innerHTML = `<div class="feedback ${ok ? "good" : "bad"}">
-      <span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : "Not this time."}</span>
+      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : "Not this time."}</span>${store.online ? `<button class="flag ${state.asked["flag:" + x.key] ? "on" : ""}" id="flag" aria-label="Something not right with this question?" aria-expanded="false" ${state.asked["flag:" + x.key] ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
+      <div class="flagbox hidden" id="flagbox"><span class="small">What's not right?</span><div class="chips">${FLAGS.map(f => `<button class="chipbtn fl" data-r="${f}">${f}</button>`).join("")}</div></div>
       ${w ? label(w) : ""}
       ${fact ? `<p>${esc(fact)}</p>` : ""}
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
@@ -448,6 +449,7 @@ function answered(x, ok){
       ${note ? `<span class="small muted">${note}</span>` : ""}
       ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Thanks, more on this soon" : "I'd like to know more about this"}</button>` : ""}
     </div><button class="btn" id="next">${last ? "See results" : "Next"}</button>`;
+  if ($("#flag") && !state.asked["flag:" + x.key]) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
     try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Thanks, more on this soon"; }
@@ -457,6 +459,25 @@ function answered(x, ok){
   $("#next").scrollIntoView({behavior:"smooth", block:"nearest"});
 }
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
+const FLAGS = ["The answer seems wrong", "It's confusing", "Wrong or missing picture", "Something else"];
+function wireFlag(x){
+  const flag = $("#flag"), box = $("#flagbox");
+  flag.onclick = () => { const open = box.classList.toggle("hidden") === false; flag.setAttribute("aria-expanded", String(open)); };
+  const send = async (reason, note) => {
+    box.innerHTML = `<span class="small muted">Sending…</span>`;
+    const right = x.options ? x.options[x.answer] : x.images ? W[x.images[x.answer]].title : "";
+    try {
+      await requestMore(x.topic, "problem", `Flagged: ${reason}${note ? " (" + note + ")" : ""}. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key);
+      state.asked["flag:" + x.key] = today(); save();
+      box.innerHTML = `<span class="small muted">Thanks, we'll take a look.</span>`; flag.classList.add("on"); flag.disabled = true;
+    } catch(e){ box.innerHTML = `<span class="small muted">Couldn't send. Please try again later.</span>`; }
+  };
+  $$(".fl").forEach(b => b.onclick = () => {
+    if (b.dataset.r !== "Something else") return send(b.dataset.r);
+    box.innerHTML = `<label class="sr" for="fltext">What's not right?</label><textarea id="fltext" rows="2" placeholder="What's not right?"></textarea><button class="btn ghost" id="flsend">Send</button>`;
+    $("#fltext").focus(); $("#flsend").onclick = () => { const v = $("#fltext").value.trim(); if (v) send("Something else", v); };
+  });
+}
 async function requestMore(topic, kind, message, item){
   const p = profiles[pid] || {};
   return store.feedback({kind, profile_name: p.name || "", topic: topic || "", item: item || "", message: String(message || "").slice(0, 1500)});
