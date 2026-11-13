@@ -141,3 +141,10 @@ nav.tabs button.on{color:var(--ink)}
 .opt.venue.missed span::after{content:" (missed)";color:var(--good);font-weight:600}
 .opt:not(.venue).missed::after{content:" (missed)";color:var(--good);font-weight:600}
 #check{margin-top:16px}
+
+.buildstamp{color:var(--brass);text-transform:none;letter-spacing:0}
+.opener{padding-top:8px}
+.step{display:flex;gap:16px;align-items:flex-start;padding:18px 0}
+.step .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--brass-ink)}
+.step b{display:block;font-size:19px;margin-bottom:4px}
+.step .muted{display:block;font-size:15px;line-height:1.4}

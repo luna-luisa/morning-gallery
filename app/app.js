@@ -1,5 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
+const BUILD_AT = "13 Nov, 16:54"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -136,7 +137,8 @@ function srs(q, ok){
   if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return `You'll see it again in ${BOX[it.box]} days.`; }
   return "";
 }
-const due = () => Object.entries(state.srs).filter(([k, v]) => v.due <= Date.now()).map(([k]) => k);
+const seenToday = k => (state.lastSeen || {})[k] === today();
+const due = () => Object.entries(state.srs).filter(([k, v]) => v.due <= Date.now() && !seenToday(k)).map(([k]) => k);
 
 /* ---------------- questions ---------------- */
 function nearArtists(w, n, r){
@@ -222,7 +224,8 @@ const featured = () => ((NEWS && NEWS.featuredTopics) || []).filter(t => TOPICS[
 
 /* questions for a topic: mostly at your level, one look back, one stretch */
 function topicSet(tid, n = 6, exclude = new Set()){
-  const t = T(tid), L = t.lv, all = allQuestions(tid).filter(q => !exclude.has(q.key));
+  const t = T(tid), L = t.lv, avail = allQuestions(tid).filter(q => !exclude.has(q.key)), fresh = avail.filter(q => !seenToday(q.key));
+  const all = fresh.length >= n ? fresh : avail; // nothing you've already answered today, if there's enough else
   const score = q => (t.hits[q.key] ? 2 : state.seen[q.key] === "wrong" ? 0 : 1) + Math.random() * 0.9;
   const out = [];
   const take = (lv, k) => all.filter(q => q.level === lv && !out.some(o => o.key === q.key)).sort((a, b) => score(a) - score(b)).slice(0, Math.max(0, k));
@@ -293,24 +296,31 @@ let S = null;
 function buildRound(){
   const tid = topicOfDay().topic, q = [], used = new Set();
   topicSet(tid, 6).forEach(x => { q.push(Object.assign({}, x, {section:"topic"})); used.add(x.key); });
-  const earlier = shuffle(due()).map(fromKey).filter(x => x && !used.has(x.key) && x.level).slice(0, 2).map(x => Object.assign(x, {section:"review"}));
-  earlier.forEach(e => used.add(e.key));
-  if (earlier.length < 2){
-    const studied = Object.keys(state.topics).filter(t => t !== tid && TOPICS[t] && T(t).n > 0);
-    const pool = studied.length ? studied : Object.keys(TOPICS).filter(t => TOPICS[t].group === "start" && t !== tid);
-    for (let i = 0; i < 8 && earlier.length < 2; i++){ const t = pick(pool); const c = topicSet(t, 1, used)[0]; if (c){ earlier.push(Object.assign({}, c, {section: studied.length ? "review" : "mixed", stretch:false})); used.add(c.key); } }
-  }
-  q.push(...earlier);
-  const ni = shuffle(newsItems().filter(n => !state.seenNews[n.id] && !HIDDEN.has("N:" + n.id))).slice(0, 2);
-  const ns = (ni.length ? ni : shuffle(newsItems()).slice(0, 2)).map(n => fromKey("N:" + n.id)).filter(Boolean);
-  if (ns.length){ q.push({type:"divider", key:"divider"}); ns.forEach(x => q.push(Object.assign(x, {section:"news"}))); }
+  // quick fire: 2 news (not about today's topic, if possible) + 2 from other topics (due reviews first)
+  const news = newsItems().filter(n => !HIDDEN.has("N:" + n.id));
+  const fresh = news.filter(n => !state.seenNews[n.id]), off = l => l.filter(n => n.topic !== tid);
+  const pool = off(fresh).length >= 2 ? off(fresh) : fresh.length >= 2 ? fresh : off(news).length >= 2 ? off(news) : news;
+  const quick = shuffle(pool).slice(0, 2).map(n => fromKey("N:" + n.id)).filter(Boolean).map(x => Object.assign(x, {section:"news"}));
+  const other = shuffle(due()).map(fromKey).filter(x => x && !used.has(x.key) && x.topic !== tid && x.level).slice(0, 2).map(x => Object.assign(x, {section:"quick"}));
+  other.forEach(e => used.add(e.key));
+  const studied = Object.keys(state.topics).filter(t => t !== tid && TOPICS[t] && T(t).n > 0);
+  const tp = studied.length ? studied : Object.keys(TOPICS).filter(t => TOPICS[t].group === "start" && t !== tid);
+  for (let i = 0; i < 10 && other.length < 2; i++){ const c = topicSet(pick(tp), 1, used)[0]; if (c){ other.push(Object.assign({}, c, {section:"quick", stretch:false})); used.add(c.key); } }
+  const rest = shuffle([...quick, ...other]);
+  if (rest.length){ q.push({type:"divider", key:"divider", count: rest.length}); q.push(...rest); }
   return q;
 }
 function startRound(){
   const td = topicOfDay();
-  const begin = () => { S = {mode:"round", q: buildRound(), i:0, score:0, results:[]}; next(0); };
-  if (!T(td.topic).intro) showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions");
-  else begin();
+  const t = TOPICS[td.topic], fresh = !T(td.topic).intro;
+  const round = buildRound(), nq = round.filter(x => x.section === "topic").length;
+  const begin = () => { S = {mode:"round", q: round, i:0, score:0, results:[]}; next(0); };
+  setTab("today"); scrollTo(0, 0);
+  view.innerHTML = `<div class="opener stack"><span class="eyebrow">Today's coffee round</span>
+      <div class="step"><span class="num">1</span><div><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div>
+      <div class="step"><span class="num">2</span><div><b>Quick fire</b><span class="muted">A few quick ones on this week's art news and other topics.</span></div></div>
+      <button class="btn" id="go">Let's go</button></div>`;
+  $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
 }
 function startTopic(tid){ T(tid).intro = true; S = {mode:"topic", topic:tid, q: topicSet(tid, 6).map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]}; next(0); }
 function startEndless(){ S = {mode:"endless", q:[], i:0, score:0, results:[], used:new Set()}; next(0); }
@@ -318,10 +328,10 @@ function pushEndless(){
   const tid = topicOfDay().topic; let x = null;
   const d = due().filter(k => !S.used.has(k));
   if (d.length && Math.random() < .25){ x = fromKey(d[0]); if (x) x.section = "review"; }
-  if (!x && S.q.length % 8 === 7){ const n = newsItems().filter(n => !S.used.has("N:" + n.id)); if (n.length){ x = fromKey("N:" + pick(n).id); if (x) x.section = "news"; } }
-  if (!x){
-    const t = Math.random() < .55 ? tid : pick(Object.keys(TOPICS).filter(k => TOPICS[k].group !== "specialist" || T(k).n > 0));
-    const c = topicSet(t, 3, S.used)[0]; if (c) x = Object.assign({}, c, {section: t === tid ? "topic" : "mixed", stretch: c.stretch && t === tid});
+  if (!x && S.q.length % 8 === 7){ const n = newsItems().filter(n => !S.used.has("N:" + n.id) && !state.seenNews[n.id] && !HIDDEN.has("N:" + n.id)); if (n.length){ x = fromKey("N:" + pick(n).id); if (x) x.section = "news"; } }
+  for (let tries = 0; !x && tries < 10; tries++){ // never repeat what you've already answered today
+    const t = tries === 0 && Math.random() < .55 ? tid : pick(Object.keys(TOPICS).filter(k => TOPICS[k].group !== "specialist" || T(k).n > 0));
+    const c = topicSet(t, 3, S.used).find(q => !seenToday(q.key)); if (c) x = Object.assign({}, c, {section: t === tid ? "topic" : "mixed", stretch: c.stretch && t === tid});
   }
   if (!x) x = Object.assign({}, topicSet(tid, 6)[0], {section:"topic"});
   S.used.add(x.key); S.q.push(x);
@@ -355,7 +365,7 @@ function label(w){
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
   return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>, ${yearText(w)}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}${w.credit ? `<span class="small muted">Image: ${w.page ? `<a href="${esc(w.page)}" target="_blank" rel="noopener">${esc(w.credit)}</a>` : esc(w.credit)}</span>` : ""}</div>`;
 }
-const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), news: () => "This week in art"};
+const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
 function showIntro(tid, done, finishLabel){
   const t = TOPICS[tid], cards = t.intro; let i = 0;
@@ -385,9 +395,9 @@ function render(){
   const progress = (pos / Math.max(1, real.length)) * 100;
   if (x.type === "divider"){
     view.innerHTML = `<div class="line"><i style="width:${progress}%"></i></div>
-      <div class="divider"><span class="eyebrow gold">A separate section</span><h1>This week <span class="serif">in art</span></h1>
-      <p class="muted">Two quick questions on what's happening in the art world right now. They don't count towards your topic levels.</p>
-      <button class="btn" id="go">Continue</button></div>`;
+      <div class="divider"><span class="eyebrow gold">Part 2</span><h1>Quick <span class="serif">fire</span></h1>
+      <p class="muted">${x.count || 4} quick ones: this week's art news and a mix from other topics.</p>
+      <button class="btn" id="go">Go</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
   const w = x.art && x.type !== "pick" ? W[x.art] : null;
@@ -461,7 +471,7 @@ function renderOrder(x){
   $("#undo").onclick = () => { picked.pop(); paint(); };
 }
 function answered(x, ok){
-  state.seen[x.key] = ok ? "right" : "wrong";
+  state.seen[x.key] = ok ? "right" : "wrong"; (state.lastSeen = state.lastSeen || {})[x.key] = today();
   let up = null;
   if (x.topic && TOPICS[x.topic] && !x.news){
     const t = T(x.topic), d = today(); t.n++;
@@ -536,9 +546,9 @@ function renderToday(){
   const td = topicOfDay(), t = TOPICS[td.topic], L = lvlOf(td.topic);
   const w = W[(t.intro[0] || {}).art], played = state.stats.lastRound === today(), items = newsItems();
   view.innerHTML = `
-    <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
+    <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}<span class="buildstamp"> · app updated ${BUILD_AT}</span></span>
       <h1>${played ? "Another" : "Your"} <span class="serif">coffee round</span></h1>
-      <p class="muted">${T(td.topic).intro ? "" : "A short introduction, then "}6 questions on today's topic, 2 from other topics, then this week's news.</p></div>
+      </div>
     <button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">${played ? "Play another round" : "Start"}</button>
     <button class="btn ghost" id="endless">Free play</button>
