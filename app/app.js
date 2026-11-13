@@ -123,8 +123,8 @@ function nextText(tid){
 const BOX = [1, 3, 7, 21];
 function srs(q, ok){
   const k = q.key, it = state.srs[k];
-  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "This one comes back tomorrow."; }
-  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "Fixed in memory."; } it.due = Date.now() + BOX[it.box] * DAY; return `Next check in ${BOX[it.box]} days.`; }
+  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "You'll see this one again tomorrow."; }
+  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return `You'll see it again in ${BOX[it.box]} days.`; }
   return "";
 }
 const due = () => Object.entries(state.srs).filter(([k, v]) => v.due <= Date.now()).map(([k]) => k);
@@ -443,11 +443,11 @@ function answered(x, ok){
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : L0(x) ? `<span class="small muted">${esc(tName(x.topic))}: ${esc(nextText(x.topic))}</span>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}
-      ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Noted, thank you" : "Tell me more about this"}</button>` : ""}
+      ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Thanks, more on this soon" : "I'd like to know more about this"}</button>` : ""}
     </div><button class="btn" id="next">${last ? "See results" : "Next"}</button>`;
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
-    try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Noted. It goes into next week's update."; }
+    try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Thanks, more on this soon"; }
     catch(e){ b.disabled = false; b.textContent = "Couldn't send. Tap to try again."; }
   };
   $("#next").onclick = () => { scrollTo(0, 0); next(1); };
@@ -466,7 +466,7 @@ function finish(){
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
     <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
-      <p class="muted">${missed ? `${missed} ${missed === 1 ? "question comes" : "questions come"} back tomorrow so they stick.` : "Clean sweep."}</p></div>
+      <p class="muted">${missed ? `You'll see the ${missed === 1 ? "one" : missed} you missed again tomorrow, so ${missed === 1 ? "it sticks" : "they stick"}.` : "Clean sweep."}</p></div>
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></button>
     <div class="stack"><button class="btn" id="keep">Keep going</button><button class="btn ghost" id="home">Back to today</button></div>
@@ -487,7 +487,7 @@ function renderToday(){
       <p class="muted">${T(td.topic).intro ? "" : "A short introduction, then "}6 questions on today's topic, 2 reviews, then this week's news.</p></div>
     <button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">${played ? "Play another round" : "Start"}</button>
-    <button class="btn ghost" id="endless">Endless mode</button>
+    <button class="btn ghost" id="endless">Free play</button>
     ${items.length ? `<div class="stack"><span class="eyebrow gold">This week in art${NEWS.week ? " · " + esc(NEWS.week) : ""}</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>` : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;
   $("#go").onclick = startRound; $("#endless").onclick = startEndless; $("#tod").onclick = () => go("topic", td.topic);
@@ -508,13 +508,13 @@ function renderTopic(tid){
     ${tid !== topicOfDay().topic ? `<button class="btn link" id="make">Make this today's topic</button>` : ""}
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>
-    ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Request sent" : "I'd like more on this topic"}</button>` : ""}`;
+    ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Thanks, more on this soon" : "I'd like more on this topic"}</button>` : ""}`;
   $("#back").onclick = () => go("topics");
   $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Quiz me");
   $("#quiz").onclick = () => startTopic(tid);
   if ($("#make")) $("#make").onclick = () => { state.today = {date: today(), topic: tid, startLv: L}; save(); go("today"); };
   $$(".chipbtn").forEach(b => b.onclick = () => go("topic", b.dataset.t));
-  if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Request sent. It'll be considered for the next update."; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
+  if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Thanks, more on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }
 function renderMe(focus){
   const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
@@ -523,7 +523,7 @@ function renderMe(focus){
     <div class="row"><span class="dot big" style="background:${esc(p.color)}">${esc(p.name[0])}</span><div><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div></div>
     <div class="stats"><div class="stat"><b>${levels.filter(l => l >= 2).length}</b><span>topics beyond Visitor</span></div><div class="stat"><b class="word">${LEVELS[best-1]}</b><span>highest level</span></div><div class="stat"><b>${s.learned}</b><span>fixed in memory</span></div></div>
     <div class="stack" id="fbbox"><span class="eyebrow">Feedback</span>
-      <p class="small muted">Ideas, problems, topics you'd like: it all goes into the weekly update.</p>
+      <p class="small muted">Ideas, problems or topics you'd like to learn about. We read everything.</p>
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${i ? "false" : "true"}">${l}</button>`).join("")}</div>
       <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
       <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span></div>
@@ -534,7 +534,7 @@ function renderMe(focus){
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");
   ta.oninput = () => send.disabled = !ta.value.trim() || !store.online;
-  send.onclick = async () => { send.disabled = true; try { await requestMore("", kind, ta.value.trim(), ""); ta.value = ""; $("#sent").textContent = "Thank you. It'll be in the weekly summary."; } catch(e){ send.disabled = false; $("#sent").textContent = "Couldn't send. Please try again."; } };
+  send.onclick = async () => { send.disabled = true; try { await requestMore("", kind, ta.value.trim(), ""); ta.value = ""; $("#sent").textContent = "Thank you, we've got it."; } catch(e){ send.disabled = false; $("#sent").textContent = "Couldn't send. Please try again."; } };
   $("#sw").onclick = renderProfiles;
   if (focus === "feedback") $("#fbbox").scrollIntoView();
 }
