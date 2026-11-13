@@ -1,0 +1,4 @@
+{
+ "about": "Questions that were flagged, checked and found fine (or fixed). Key: question key, value: date checked (YYYY-MM-DD). A flag older than this date no longer hides the question.",
+ "cleared": {}
+}

@@ -19,7 +19,14 @@ const shuffle = (a, r = Math.random) => { a = a.slice(); for (let i = a.length -
 const pick = (a, r = Math.random) => a[Math.floor(r() * a.length)];
 
 /* ---------------- content ---------------- */
-let WORKS = [], W = {}, TOPICS = {}, NEWS = null, ART = [];
+let WORKS = [], W = {}, TOPICS = {}, NEWS = null, ART = [], CLEARED = {};
+/* questions anyone has flagged stay hidden for everyone until they're checked and listed in cleared.json */
+let HIDDEN = new Set();
+function computeHidden(){
+  HIDDEN = new Set();
+  Object.values(profiles).forEach(p => Object.entries((p && p.flags) || {}).forEach(([k, d]) => { if (!(CLEARED[k] && CLEARED[k] >= d)) HIDDEN.add(k); }));
+  Object.keys(qcache).forEach(k => delete qcache[k]);
+}
 async function getJSON(name){
   if (CFG.CONTENT_URL){
     const base = CFG.CONTENT_URL.replace(/\/?$/, "/");
@@ -28,8 +35,8 @@ async function getJSON(name){
   const r = await fetch("content/" + name + "?d=" + today()); return r.json();
 }
 async function loadContent(){
-  const [w, t, n] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null)]);
-  WORKS = w.works; TOPICS = t.topics; NEWS = n;
+  const [w, t, n, c] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null)]);
+  WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   W = Object.fromEntries(WORKS.map(x => [x.id, x]));
   ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic]);
 }
@@ -180,7 +187,7 @@ const BUILD = {
   },
   N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, source:it.source, art: W[it.art] ? it.art : null, news:true, long:true}); }
 };
-function fromKey(k){ try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
+function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 const qcache = {};
 function allQuestions(tid){
   if (qcache[tid]) return qcache[tid];
@@ -286,7 +293,7 @@ function buildRound(){
     for (let i = 0; i < 8 && earlier.length < 2; i++){ const t = pick(pool); const c = topicSet(t, 1, used)[0]; if (c){ earlier.push(Object.assign({}, c, {section: studied.length ? "review" : "mixed", stretch:false})); used.add(c.key); } }
   }
   q.push(...earlier);
-  const ni = shuffle(newsItems().filter(n => !state.seenNews[n.id])).slice(0, 2);
+  const ni = shuffle(newsItems().filter(n => !state.seenNews[n.id] && !HIDDEN.has("N:" + n.id))).slice(0, 2);
   const ns = (ni.length ? ni : shuffle(newsItems()).slice(0, 2)).map(n => fromKey("N:" + n.id)).filter(Boolean);
   if (ns.length){ q.push({type:"divider", key:"divider"}); ns.forEach(x => q.push(Object.assign(x, {section:"news"}))); }
   return q;
@@ -440,8 +447,8 @@ function answered(x, ok){
   const w = x.art ? W[x.art] : null, fact = x.explain || (w && w.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   $("#fb").innerHTML = `<div class="feedback ${ok ? "good" : "bad"}">
-      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : "Not this time."}</span>${store.online ? `<button class="flag ${state.asked["flag:" + x.key] ? "on" : ""}" id="flag" aria-label="Something not right with this question?" aria-expanded="false" ${state.asked["flag:" + x.key] ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
-      <div class="flagbox hidden" id="flagbox"><span class="small">What's not right?</span><div class="chips">${FLAGS.map(f => `<button class="chipbtn fl" data-r="${f}">${f}</button>`).join("")}</div></div>
+      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
+      <div class="flagbox hidden" id="flagbox"></div>
       ${w ? label(w) : ""}
       ${fact ? `<p>${esc(fact)}</p>` : ""}
       ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
@@ -449,7 +456,7 @@ function answered(x, ok){
       ${note ? `<span class="small muted">${note}</span>` : ""}
       ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Thanks, more on this soon" : "I'd like to know more about this"}</button>` : ""}
     </div><button class="btn" id="next">${last ? "See results" : "Next"}</button>`;
-  if ($("#flag") && !state.asked["flag:" + x.key]) wireFlag(x);
+  if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
     try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Thanks, more on this soon"; }
@@ -459,24 +466,17 @@ function answered(x, ok){
   $("#next").scrollIntoView({behavior:"smooth", block:"nearest"});
 }
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
-const FLAGS = ["The answer seems wrong", "It's confusing", "Wrong or missing picture", "Something else"];
 function wireFlag(x){
-  const flag = $("#flag"), box = $("#flagbox");
-  flag.onclick = () => { const open = box.classList.toggle("hidden") === false; flag.setAttribute("aria-expanded", String(open)); };
-  const send = async (reason, note) => {
-    box.innerHTML = `<span class="small muted">Sending…</span>`;
+  const flag = $("#flag"), box = $("#flagbox"), p = profiles[pid];
+  flag.onclick = async () => {
+    flag.disabled = true; flag.classList.add("on");
+    p.flags = Object.assign({}, p.flags, {[x.key]: today()}); computeHidden();
+    box.classList.remove("hidden"); box.innerHTML = `<span class="small muted">Thanks. We've hidden this question while we check it. <button class="btn link" id="unflag">Undo</button></span>`;
+    $("#unflag").onclick = () => { delete p.flags[x.key]; computeHidden(); store.put("profile:" + pid, p).catch(() => {}); local.set("profiles", profiles); flag.disabled = false; flag.classList.remove("on"); box.classList.add("hidden"); };
+    local.set("profiles", profiles);
     const right = x.options ? x.options[x.answer] : x.images ? W[x.images[x.answer]].title : "";
-    try {
-      await requestMore(x.topic, "problem", `Flagged: ${reason}${note ? " (" + note + ")" : ""}. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key);
-      state.asked["flag:" + x.key] = today(); save();
-      box.innerHTML = `<span class="small muted">Thanks, we'll take a look.</span>`; flag.classList.add("on"); flag.disabled = true;
-    } catch(e){ box.innerHTML = `<span class="small muted">Couldn't send. Please try again later.</span>`; }
+    try { await store.put("profile:" + pid, p); await requestMore(x.topic, "problem", `Flagged. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key); } catch(e){}
   };
-  $$(".fl").forEach(b => b.onclick = () => {
-    if (b.dataset.r !== "Something else") return send(b.dataset.r);
-    box.innerHTML = `<label class="sr" for="fltext">What's not right?</label><textarea id="fltext" rows="2" placeholder="What's not right?"></textarea><button class="btn ghost" id="flsend">Send</button>`;
-    $("#fltext").focus(); $("#flsend").onclick = () => { const v = $("#fltext").value.trim(); if (v) send("Something else", v); };
-  });
 }
 async function requestMore(topic, kind, message, item){
   const p = profiles[pid] || {};
@@ -594,7 +594,7 @@ $("#who").onclick = renderProfiles;
 (async function boot(){
   try { await loadContent(); }
   catch(e){ view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
-  profiles = await store.listProfiles();
+  profiles = await store.listProfiles(); computeHidden();
   const last = local.get("last");
   if (last && profiles[last]) use(last); else renderProfiles();
 })();
