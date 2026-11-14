@@ -405,3 +405,6 @@ html{-webkit-tap-highlight-color:transparent}
 .namenote{display:flex;gap:8px;align-items:center;margin-top:2px}
 .namenote svg{flex:none;width:16px;height:16px;fill:none;stroke:var(--brass-ink);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .nameprev{cursor:default;pointer-events:none}
+/* opening picture: always fills the arch, zoomed slightly past the edges so no frame or border shows */
+.arch{position:relative;overflow:hidden;background:#16299a}
+.arch span{position:absolute;inset:-7%;background:center 35%/cover no-repeat}

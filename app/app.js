@@ -833,9 +833,19 @@ const HOST_ICONS = {
   zoom: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/></svg>',
   flag: '<svg viewBox="0 0 24 24"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg>'
 };
+/* the opening picture must fill the arch: only tightly cropped, large museum images (no gallery photos with white walls) */
+function bigImg(url, minW = 1000, minH = 700){
+  return new Promise(res => {
+    const i = new Image(), tm = setTimeout(() => res(false), 6000);
+    i.onload = () => { clearTimeout(tm); res(i.naturalWidth >= minW && i.naturalHeight >= minH); };
+    i.onerror = () => { clearTimeout(tm); res(false); };
+    i.referrerPolicy = "no-referrer"; i.src = url;
+  });
+}
 async function welcomeArt(){
-  for (const w of shuffle(ART).slice(0, 6)) if (await loadImg(w.img)) return w;
-  return null;
+  const pool = shuffle(ART.filter(w => !w.photo && !w.credit && /wikimedia\.org|tate\.org\.uk/.test(w.img)));
+  const picks = pool.slice(0, 8), ok = await Promise.all(picks.map(w => bigImg(w.img)));
+  return picks[ok.indexOf(true)] || null;
 }
 async function showWelcome(done){
   const art = await welcomeArt(), adm = adminName(), n = Object.keys(profiles).length + (pid ? 0 : 1);
@@ -846,7 +856,7 @@ async function showWelcome(done){
   const pips = () => `<div class="pips">${[0, 1, 2].map(k => `<i class="${k === i ? "on" : ""}"></i>`).join("")}</div>`;
   const pages = [
     () => `<div class="wpage poster">
-        ${art ? `<div class="arch" style="background-image:url('${esc(art.img)}')" data-src="${esc(art.img)}" role="img" aria-label="${esc(art.artist + ", " + art.title)}"></div><span class="archcap">${esc(art.artist)}, <i>${esc(art.title)}</i></span>` : ""}
+        ${art ? `<div class="arch" data-src="${esc(art.img)}" role="img" aria-label="${esc(art.artist + ", " + art.title)}"><span style="background-image:url('${esc(art.img)}')"></span></div><span class="archcap">${esc(art.artist)}, <i>${esc(art.title)}</i></span>` : ""}
         <h1 class="wtitle">Morning <span class="serif">Gallery</span></h1>
         <p class="wlead">A small gallery for friends and family. One short round of art a day, with your morning coffee.</p>
         <div class="wmeta"><span>Open daily</span><span>Friends and family</span><span>With coffee</span></div>
