@@ -15,4 +15,4 @@ Nothing personal is stored here. Profiles, progress and feedback live in Supabas
 
 - Questions may have "correct": N (N > 1): the first N options are all right, and players pick all that apply.
 
-- Updates reach Hostinger as a zip of `index.html`, `manifest.json`, `app/` and `content/` that Luna uploads and extracts in the site's folder. When app code changes, bump the `?v=` dates in index.html so phones fetch the new files.
+- index.html asks GitHub for the newest commit on main and loads `app/app.js` and `app/style.css` for exactly that commit from jsDelivr, so app changes pushed to main go live within minutes with no uploading. Only changes to `index.html`, `manifest.json` or `app/icons/` need a one-off upload to Hostinger.

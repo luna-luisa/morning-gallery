@@ -12,9 +12,9 @@
 <link rel="apple-touch-icon" href="app/icons/apple-touch-icon.png?v=2026-11-14">
 <link rel="icon" type="image/png" sizes="32x32" href="app/icons/favicon-32.png?v=2026-11-14">
 <title>Morning Gallery</title>
-<link rel="stylesheet" href="app/style.css?v=2026-11-14b">
+<style>html,body{background:#f3f1ec;margin:0}body.loading #app{visibility:hidden}</style>
 </head>
-<body>
+<body class="loading">
 <div id="app">
   <div class="top"><div class="brand">Morning<br><i>Gallery</i></div>
     <button class="who hidden" id="who" aria-label="Switch profile"><span class="dot" id="whoDot"></span><span id="whoName"></span></button></div>
@@ -22,6 +22,45 @@
 </div>
 <nav class="tabs hidden" id="tabs"><div class="in"><button data-tab="today">Today</button><button data-tab="topics">Topics</button><button data-tab="me">Me</button></div></nav>
 <script src="config.js"></script>
-<script src="app/app.js?v=2026-11-14b"></script>
+<script>
+/* Loads the newest app straight from GitHub, so changes go live without uploading anything here.
+   It asks GitHub for the latest version, then loads that exact version from the jsDelivr CDN.
+   If GitHub can't be reached it uses the CDN's main copy, and failing that the copy in this folder. */
+(function(){
+  var CDN = "https://cdn.jsdelivr.net/gh/luna-luisa/morning-gallery@";
+  var sources = [];
+  function show(){ document.body.classList.remove("loading"); }
+  function css(i){
+    if (i >= sources.length){ show(); return; }
+    var l = document.createElement("link"); l.rel = "stylesheet"; l.href = sources[i] + "app/style.css";
+    l.onload = show; l.onerror = function(){ l.remove(); css(i + 1); };
+    document.head.appendChild(l);
+  }
+  function js(i){
+    if (i >= sources.length) return;
+    var s = document.createElement("script"); s.src = sources[i] + "app/app.js";
+    s.onerror = function(){ s.remove(); js(i + 1); };
+    document.body.appendChild(s);
+  }
+  function go(sha){
+    if (sha) sources.push(CDN + sha + "/");
+    sources.push(CDN + "main/", "./");
+    css(0); js(0);
+  }
+  var cached = null;
+  try { cached = JSON.parse(sessionStorage.getItem("mg:sha")); } catch(e){}
+  if (cached && Date.now() - cached.t < 10 * 60 * 1000) return go(cached.sha);
+  var done = false, timer = setTimeout(function(){ if (!done){ done = true; go(null); } }, 2500);
+  fetch("https://api.github.com/repos/luna-luisa/morning-gallery/commits/main", {headers: {Accept: "application/vnd.github.sha"}})
+    .then(function(r){ return r.ok ? r.text() : null; })
+    .catch(function(){ return null; })
+    .then(function(sha){
+      if (done) return; done = true; clearTimeout(timer);
+      sha = sha && /^[0-9a-f]{40}$/.test(sha.trim()) ? sha.trim() : null;
+      if (sha) try { sessionStorage.setItem("mg:sha", JSON.stringify({sha: sha, t: Date.now()})); } catch(e){}
+      go(sha);
+    });
+})();
+</script>
 </body>
 </html>
