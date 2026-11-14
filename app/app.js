@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "14 Nov"; // shown as a small footnote on the Me page
+const BUILD_AT = "14 Nov, 2"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -718,7 +718,9 @@ function renderMe(focus){
     ${p.admin ? `<div class="stack" id="admin"><span class="eyebrow">Profiles <span class="tag">Admin</span></span><div class="profiles small">${Object.keys(profiles).filter(id => id !== pid).map(id => `<div class="prow static"><span class="pstrip" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="pname">${esc(profiles[id].name)}</span><span class="pacts">${profiles[id].pin ? `<button class="btn link" data-reset="${id}">Reset PIN</button>` : ""}<button class="btn link danger" data-rm="${id}">Remove</button></span></div>`).join("") || `<p class="small muted">No one else yet.</p>`}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Home Screen</span><p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p></div>
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
+    <button class="btn link center" id="howto">How Morning Gallery works</button>
     <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p>`;
+  $("#howto").onclick = () => showWelcome(() => go("me"));
   let kind = "idea";
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");
@@ -753,15 +755,18 @@ function newProfile(){
   let color = COLORS[Object.keys(profiles).length % COLORS.length];
   view.innerHTML = `
     <div class="stack"><h1 class="big">New <span class="serif">profile</span></h1></div>
-    <div class="stack"><label class="eyebrow" for="pn">Your name</label><input type="text" id="pn" maxlength="24" placeholder="Name" autocomplete="off"></div>
+    <div class="stack"><label class="eyebrow" for="pn">Your name</label><input type="text" id="pn" maxlength="24" placeholder="Name" autocomplete="off">
+      <p class="small muted namenote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Shown to everyone who plays, like this:</p>
+      <div class="prow static nameprev" aria-hidden="true"><span class="pstrip" id="npS"></span><span class="pname" id="npN">Your name</span></div></div>
     <div class="stack"><span class="eyebrow">Your colour</span>${swatches(color)}</div>
     <div class="stack"><label class="eyebrow" for="pp">Choose a 4-digit PIN</label><input type="password" id="pp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="new-password" placeholder="····">
       <p class="small muted">So nobody plays as you by accident. You'll only need it when switching profiles.</p></div>
     <div class="row two"><button class="btn ghost" id="back">Back</button><button class="btn" id="cr" disabled>Create profile</button></div>`;
-  wireSwatches(c => color = c);
   const inp = $("#pn"), pin = $("#pp"), cr = $("#cr");
+  const prev = () => { const nm = inp.value.trim(); $("#npS").style.cssText = dotStyle({color}); $("#npS").textContent = (nm || "?")[0]; $("#npN").textContent = nm || "Your name"; };
+  wireSwatches(c => { color = c; prev(); }); prev();
   const ok = () => cr.disabled = !inp.value.trim() || !/^\d{4}$/.test(pin.value);
-  inp.oninput = ok; pin.oninput = () => { pin.value = pin.value.replace(/\D/g, "").slice(0, 4); ok(); };
+  inp.oninput = () => { ok(); prev(); }; pin.oninput = () => { pin.value = pin.value.replace(/\D/g, "").slice(0, 4); ok(); };
   $("#back").onclick = renderProfiles;
   cr.onclick = async () => {
     cr.disabled = true; const id = "p" + Date.now().toString(36) + Math.floor(Math.random() * 999);
@@ -822,10 +827,67 @@ async function use(id){
 }
 $("#who").onclick = renderProfiles;
 
+/* ---------------- welcome: shown once per phone, and again from the Me page ---------------- */
+const HOST_ICONS = {
+  tap: '<svg viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5m0-1a1.5 1.5 0 0 1 3 0v2m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 15a1.5 1.5 0 0 1 2.5-1.6L9 16"/></svg>',
+  zoom: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/></svg>',
+  flag: '<svg viewBox="0 0 24 24"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg>'
+};
+async function welcomeArt(){
+  for (const w of shuffle(ART).slice(0, 6)) if (await loadImg(w.img)) return w;
+  return null;
+}
+async function showWelcome(done){
+  const art = await welcomeArt(), adm = adminName(), n = Object.keys(profiles).length + (pid ? 0 : 1);
+  const el = document.createElement("div"); el.id = "welcome"; el.className = "welcome"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Welcome to Morning Gallery");
+  document.body.appendChild(el); document.body.classList.add("welcoming");
+  let i = 0;
+  const finish = () => { local.set("welcomed", today()); el.remove(); document.body.classList.remove("welcoming"); done(); };
+  const pips = () => `<div class="pips">${[0, 1, 2].map(k => `<i class="${k === i ? "on" : ""}"></i>`).join("")}</div>`;
+  const pages = [
+    () => `<div class="wpage poster">
+        ${art ? `<div class="arch" style="background-image:url('${esc(art.img)}')" data-src="${esc(art.img)}" role="img" aria-label="${esc(art.artist + ", " + art.title)}"></div><span class="archcap">${esc(art.artist)}, <i>${esc(art.title)}</i></span>` : ""}
+        <h1 class="wtitle">Morning <span class="serif">Gallery</span></h1>
+        <p class="wlead">A small gallery for friends and family. One short round of art a day, with your morning coffee.</p>
+        <div class="wmeta"><span>Open daily</span><span>Friends and family</span><span>With coffee</span></div>
+        <div class="wfoot"><button class="btn" data-go="next">Come in</button>${pips()}</div></div>`,
+    () => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
+        <span class="eyebrow" style="color:var(--klein)">How a visit works</span>
+        <h2 class="wh2">Two rooms, <span class="serif">every morning</span></h2>
+        <div class="wroom"><span class="wsign">1</span><div><b>Today's topic</b><span>A short introduction, then six questions that go a little deeper each time.</span></div></div>
+        <div class="wroom r2"><span class="wsign">2</span><div><b>Quick <span class="serif">fire</span></b><span>This week's art news and a mix from other topics.</span></div></div>
+        <div class="wtips">
+          <div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap an answer, then Check.</div>
+          <div class="wtip"><span class="ico">${HOST_ICONS.zoom}</span>Hold any picture to see it bigger.</div>
+          <div class="wtip"><span class="ico">${HOST_ICONS.flag}</span>Spot a mistake? Tap the flag.</div>
+          <div class="wtip"><span class="ico">${dots(2)}</span>Climb from Visitor to Curator in every topic.</div></div>
+        <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`,
+    () => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
+        <div class="wlabel"><span class="eyebrow">House rules</span><h2 class="wh2">Before you <span class="serif">go in</span></h2>
+          <div class="wrule"><span class="n">i</span><div><b>It's private</b><span>Just for friends and family, so please keep the link to yourself.</span></div></div>
+          <div class="wrule"><span class="n">ii</span><div><b>Your name is on the door</b><span>Everyone who plays sees every profile's name and colour. A first name or nickname is perfect.</span></div></div>
+          <div class="wrule"><span class="n">iii</span><div><b>Your scores are yours</b><span>Your scores aren't shown to anyone else. Feedback you send arrives with your name.</span></div></div>
+          <div class="wrule"><span class="n">iv</span><div><b>The PIN stops mix-ups</b><span>Choose four digits you don't use for anything else.${adm ? ` ${esc(adm)} can reset it if you forget.` : ""}</span></div></div></div>
+        <div class="wstub"><span class="eyebrow">Morning Gallery · No. ${String(Math.max(1, n)).padStart(4, "0")}</span><span class="adm">Admit one</span></div>
+        <div class="wfoot"><button class="btn" data-go="done">${pid ? "Back to the gallery" : "Continue"}</button>${pips()}</div></div>`
+  ];
+  const draw = () => {
+    el.innerHTML = pages[i](); el.scrollTop = 0;
+    el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { const g = b.dataset.go; if (g === "next"){ i++; draw(); } else finish(); });
+    wireHold(el);
+  };
+  let sx = null;
+  el.ontouchstart = e => { sx = e.touches[0].clientX; };
+  el.ontouchend = e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 70){ if (dx < 0 && i < pages.length - 1){ i++; draw(); } else if (dx > 0 && i > 0){ i--; draw(); } } };
+  draw();
+}
+
+
 (async function boot(){
   try { await loadContent(); }
   catch(e){ view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
   profiles = await store.listProfiles(); computeHidden();
   const last = local.get("last");
-  if (last && profiles[last]) use(last); else renderProfiles();
+  const start = () => { if (last && profiles[last]) use(last); else renderProfiles(); };
+  if (!local.get("welcomed")) showWelcome(start); else start();
 })();
