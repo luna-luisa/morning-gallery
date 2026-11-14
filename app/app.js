@@ -858,8 +858,7 @@ async function showWelcome(done){
     () => `<div class="wpage poster">
         ${art ? `<div class="arch" data-src="${esc(art.img)}" role="img" aria-label="${esc(art.artist + ", " + art.title)}"><span style="background-image:url('${esc(art.img)}')"></span></div><span class="archcap">${esc(art.artist)}, <i>${esc(art.title)}</i></span>` : ""}
         <h1 class="wtitle">Morning <span class="serif">Gallery</span></h1>
-        <p class="wlead">A small gallery for friends and family. One short round of art a day, with your morning coffee.</p>
-        <div class="wmeta"><span>Open daily</span><span>Friends and family</span><span>With coffee</span></div>
+        <p class="wlead">A little art with your morning coffee.</p>
         <div class="wfoot"><button class="btn" data-go="next">Come in</button>${pips()}</div></div>`,
     () => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
         <span class="eyebrow" style="color:var(--klein)">How a visit works</span>
