@@ -77,7 +77,14 @@ p{margin:0}
 .oitem .ol{display:flex;flex-direction:column;font-weight:600}
 .oitem .yr{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
 .oitem.right{background:var(--good-soft)} .oitem.wrong{background:var(--bad-soft)}
-#undo{margin-top:12px}
+.oitem{position:relative;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab}
+.oitem.drag{z-index:3;cursor:grabbing;box-shadow:0 12px 26px rgba(40,30,15,.22),0 2px 4px rgba(40,30,15,.12)}
+.oitem.placed .n{background:var(--ink);color:var(--wall)}
+.oitem.locked{cursor:default}
+.oitem .grip{margin-left:auto;display:flex;flex-direction:column;gap:3px;padding:6px 2px;flex:none;opacity:.45}
+.oitem .grip i{display:block;width:16px;height:2px;border-radius:1px;background:var(--ink)}
+.oitem.locked .grip{display:none}
+.oitem .mini{pointer-events:none}
 .feedback{padding:20px;display:flex;flex-direction:column;gap:12px;margin:0 0 16px;background:var(--paper);border-radius:2px}
 
 .verdict{font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:14px}
@@ -309,3 +316,22 @@ h1.big .serif{font-weight:400;letter-spacing:-.01em}
 .editcard{background:var(--paper);border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(40,30,15,.08)}
 .swatch.on{border-color:var(--ink)}
 .tag{font-size:10px;letter-spacing:.06em}
+
+/* ---- 14 Nov: compact text answers, centred reveal, roomier answer panel ---- */
+.tiles.text{--th:auto}
+.tiles.text .tile{height:auto;min-height:68px;align-items:center}
+.ansarea.tall .tiles.text{flex:0 0 auto;grid-auto-rows:auto;max-height:none}
+.sheetin{max-height:72svh}
+.reveal{align-items:stretch}
+.reveal .rimg,.rimg{align-self:center}
+.reveal .rimg img{max-height:18svh}
+.reveal .label{align-self:stretch}
+a.story{white-space:nowrap;font-size:14px;color:var(--muted)}
+.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.minis .mini{position:relative;aspect-ratio:1;border-radius:4px;background:#e2ddd2 center/cover no-repeat;box-shadow:0 3px 8px rgba(40,30,15,.16)}
+.minis .mini.right{outline:3px solid var(--good);outline-offset:2px}
+.minis .mini.wrong{outline:3px solid var(--bad);outline-offset:2px}
+.minis .mini.missed{outline:3px dashed var(--good);outline-offset:2px}
+.minis .mini.dim{opacity:.55}
+.minis .mini i{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:var(--good);color:#fff;font-style:normal;font-size:12px;font-weight:800;display:grid;place-items:center}
+.minis .mini i:empty{display:none}

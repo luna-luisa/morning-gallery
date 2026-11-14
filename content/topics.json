@@ -296,7 +296,7 @@
     {
      "id": "van-eyck-8",
      "level": 4,
-     "q": "The man in the red turban (National Gallery) may be…",
+     "q": "The man in the red turban (National Gallery, London) may be…",
      "options": [
       "Van Eyck himself",
       "The Duke of Burgundy",
@@ -2326,7 +2326,7 @@
     {
      "id": "surrealism-6",
      "level": 3,
-     "q": "What's on top of Dalí's telephone at Tate?",
+     "q": "What's on top of Dalí's telephone at Tate in London?",
      "options": [
       "A lobster",
       "A melting clock",
@@ -2436,7 +2436,7 @@
     {
      "id": "abexp-5",
      "level": 4,
-     "q": "When did Rothko's murals arrive at Tate?",
+     "q": "When did Rothko's murals arrive at Tate in London?",
      "options": [
       "The day he died, 1970",
       "1958",
@@ -2533,7 +2533,7 @@
     {
      "id": "popart-5",
      "level": 3,
-     "q": "Whaam! (Tate) is based on…",
+     "q": "Whaam! (Tate, London) is based on…",
      "options": [
       "A war comic",
       "A cereal ad",
@@ -2778,7 +2778,7 @@
     {
      "id": "yba-5",
      "level": 4,
-     "q": "Pharmacy (Tate) was also the name of Hirst's…",
+     "q": "Pharmacy (Tate, London) was also the name of Hirst's…",
      "options": [
       "Restaurant in Notting Hill",
       "Gallery",
@@ -2898,7 +2898,7 @@
     {
      "id": "bloomsbury-7",
      "level": 4,
-     "q": "Studland Beach (Tate) was painted by…",
+     "q": "Studland Beach (Tate, London) was painted by…",
      "options": [
       "Vanessa Bell",
       "Duncan Grant",
@@ -3133,7 +3133,7 @@
     {
      "id": "national-gallery-1",
      "level": 1,
-     "q": "The National Gallery is on…",
+     "q": "London's National Gallery is on…",
      "options": [
       "Trafalgar Square",
       "Piccadilly",
@@ -3146,7 +3146,7 @@
     {
      "id": "national-gallery-2",
      "level": 1,
-     "q": "The National Gallery was founded in…",
+     "q": "London's National Gallery was founded in…",
      "options": [
       "1824",
       "1753",
@@ -3158,7 +3158,7 @@
     {
      "id": "national-gallery-3",
      "level": 2,
-     "q": "The National Gallery's collection stops at about…",
+     "q": "London's National Gallery collection stops at about…",
      "options": [
       "1900",
       "1700",
@@ -3170,7 +3170,7 @@
     {
      "id": "national-gallery-4",
      "level": 3,
-     "q": "Which of these is NOT at the National Gallery?",
+     "q": "Which of these is NOT at the National Gallery in London?",
      "options": [
       "Ophelia",
       "The Hay Wain",

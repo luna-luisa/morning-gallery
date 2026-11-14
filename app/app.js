@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "13 Nov, 18:37"; // temporary: shown on Today while we test edits
+const BUILD_AT = "14 Nov"; // temporary: shown on Today while we test edits
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -177,10 +177,17 @@ const BUILD = {
     const set = shuffle([oddW, ...mine]);
     return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
   },
-  M(key){
-    const wid = key.split(":")[1], w = W[wid]; if (!w || !TOPICS[w.topic]) return null; const t = TOPICS[w.topic]; if (t.kind !== "movement") return null;
-    const r = rng(key), movs = Object.keys(TOPICS).filter(k => TOPICS[k].kind === "movement" && !clash(k, w.topic)).sort((a, b) => Math.abs(TOPICS[a].year - t.year) - Math.abs(TOPICS[b].year - t.year)).slice(0, 6);
-    return mc({key, topic:w.topic, level:2, prompt:"Which movement or period is this?", options:[t.name, ...shuffle(movs, r).slice(0, 3).map(m => TOPICS[m].name)], art:w.id, explain:w.hook, needsArt:true});
+  M(){ return null; }, // retired: "which movement is this?" gave itself away, because the topic name is always on screen
+  A(key){ // which of these are <topic>: four pictures, two or three right
+    const [, tid, n] = key.split(":"), t = TOPICS[tid]; if (!t) return null;
+    const r = rng(key), mine = shuffle(ART.filter(w => w.topic === tid), r), k = r() < .5 ? 2 : 3; if (mine.length < k + 1) return null;
+    const right = mine.slice(0, k), yr = right.reduce((s, w) => s + w.year, 0) / k;
+    const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && right.some(x => x.artist === w.artist))).sort((a, b) => Math.abs(a.year - yr) - Math.abs(b.year - yr)).slice(0, 16);
+    const wrong = shuffle(others, r).slice(0, 4 - k), set = shuffle([...right, ...wrong], r);
+    const what = t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*";
+    const names = right.map(w => `${w.artist}'s ${w.title}`);
+    return {key, topic:tid, level:2, type:"pick", multi:true, prompt:`Which of these are ${what}?`, images:set.map(w => w.id), answers:right.map(w => set.indexOf(w)), answer:set.indexOf(right[0]), art:right[0].id,
+      explain:`The ${k === 2 ? "two" : "three"} that fit: ${names.slice(0, -1).join(", ")} and ${names[k - 1]}.`, spare:others.filter(o => !wrong.includes(o)).map(w => w.id), spareRight:mine.slice(k).map(w => w.id)};
   },
   W(key){
     const wid = key.split(":")[1], w = W[wid]; if (!w || !TOPICS[w.topic]) return null;
@@ -211,13 +218,14 @@ function allQuestions(tid){
   const mine = ART.filter(w => w.topic === tid);
   mine.forEach(w => {
     if (t.kind === "movement" || t.kind === "artist") keys.push(`P:${tid}:${w.id}`);
-    if (t.kind === "movement") keys.push(`M:${w.id}`, `W:${w.id}`);
+    if (t.kind === "movement") keys.push(`W:${w.id}`);
     if (t.kind === "artist") keys.push(`T:${w.id}`);
     if (w.place && !/Tate|Private|Destroyed/.test(w.place)) keys.push(`H:${w.id}`);
   });
   if (mine.length >= 3 && (t.kind === "movement" || t.kind === "artist")){
     const r = rng("odd" + tid);
     shuffle(ART.filter(w => !clash(w.topic, tid)), r).slice(0, Math.min(6, mine.length)).forEach(o => keys.push(`I:${tid}:${o.id}`));
+    for (let n = 0; n < Math.min(4, mine.length - 1); n++) keys.push(`A:${tid}:${n}`);
   }
   if (t.kind === "movement" && t.timeline){
     const tl = Object.keys(TOPICS).filter(k => TOPICS[k].kind === "movement" && TOPICS[k].timeline && k !== tid), r = rng("tl" + tid);
@@ -288,13 +296,19 @@ function loadImg(url){
 async function prepare(q){
   if (!q || q.type === "divider") return q;
   if (q.type === "pick"){
-    const imgs = q.images.slice(), spare = (q.spare || []).filter(id => !imgs.includes(id));
+    const imgs = q.images.slice(), spare = (q.spare || []).filter(id => !imgs.includes(id)), spareR = (q.spareRight || []).filter(id => !imgs.includes(id));
     const oks = await Promise.all(imgs.map(id => loadImg(W[id].img)));
     for (let i = 0; i < imgs.length; i++){
       if (oks[i]) continue;
-      if (i === q.answer) return null;
-      let rep = null; while (spare.length && !rep){ const c = spare.shift(); if (await loadImg(W[c].img)) rep = c; }
+      const isR = q.multi ? q.answers.includes(i) : i === q.answer;
+      if (isR && !q.multi) return null;
+      const from = isR ? spareR : spare;
+      let rep = null; while (from.length && !rep){ const c = from.shift(); if (await loadImg(W[c].img)) rep = c; }
       if (!rep) return null; imgs[i] = rep;
+    }
+    if (q.multi && imgs.some((id, i) => id !== q.images[i])){ // a picture was swapped: keep the explanation in step
+      const right = q.answers.map(i => W[imgs[i]]), names = right.map(w => `${w.artist}'s ${w.title}`);
+      return Object.assign({}, q, {images: imgs, art: right[0].id, explain: `The ${right.length === 2 ? "two" : "three"} that fit: ${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}.`});
     }
     return Object.assign({}, q, {images: imgs});
   }
@@ -412,7 +426,23 @@ function showIntro(tid, done, finishLabel){
   setTab("today"); draw();
 }
 
-function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); }
+function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; }
+/* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
+function keepPromptVisible(){
+  const sh = $("#sheet .sheetin"), p = $("#view .order") || $(".prompt"); if (!sh || !p) return; // for sorting, keep the right order in view
+  const top = sh.getBoundingClientRect().top, r = p.getBoundingClientRect();
+  if (r.bottom <= top - 12) return;
+  view.style.paddingBottom = (innerHeight - top + 40) + "px";
+  scrollBy({top: Math.min(r.bottom - top + 16, Math.max(0, r.top - 16)), behavior: "smooth"});
+}
+/* make a question fit on one screen so Check never drops out of view: shrink the picture first, then the question text */
+function fitScreen(){
+  if (!document.body.classList.contains("inround")) return;
+  const img = $("#view > .spot img"), pr = $("#view > .prompt"), over = () => document.documentElement.scrollHeight > innerHeight + 1;
+  if (img) img.style.maxHeight = ""; if (pr) pr.style.fontSize = "";
+  for (let h = 26; over() && img && h >= 12; h -= 2) img.style.maxHeight = h + "svh";
+  for (let f = 28; over() && pr && f >= 21; f -= 1) pr.style.fontSize = f + "px";
+}
 function inRound(on){ document.body.classList.toggle("inround", on); if (!on){ closeSheet(); delete document.body.dataset.room; } }
 function render(){
   view.ontouchstart = view.ontouchend = null; closeSheet(); inRound(true);
@@ -442,22 +472,23 @@ function render(){
     ${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit.</p>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans" class="ansarea ${w ? "" : "tall"}"></div>
-    ${x.type === "order" ? "" : `<div class="dock"><button class="btn" id="check" disabled>Check</button></div>`}
+    <div class="dock"><button class="btn" id="check" disabled>Check</button></div>
     ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
   $("#quit").onclick = () => { S = null; go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
   wireHold(view);
+  fitScreen(); const fi = $("#view > .spot img"); if (fi && !fi.complete) fi.addEventListener("load", fitScreen, {once: true});
 }
 const tileText = o => `<span class="tt${o.length > 22 ? " long" : ""}">${esc(o)}</span>`;
 function renderMC(x){
-  $("#ans").innerHTML = `<div class="tiles">${x.options.map((o, i) => x.venues
+  $("#ans").innerHTML = `<div class="tiles${x.venues ? "" : " text"}">${x.options.map((o, i) => x.venues
     ? `<button class="tile venue" data-i="${i}" data-src="${esc(venue(o).img)}"><span class="ph" style="background-image:url('${esc(venue(o).img)}')"></span>${tileText(o)}</button>`
     : `<button class="tile" data-i="${i}">${tileText(o)}</button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer);
 }
 function renderPick(x){
   $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(W[id].img)}')"></span></button>`).join("")}</div>`;
-  choose(x, i => i === x.answer, true);
+  choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer, true);
 }
 /* tap to select (tap again or another to change), then Check */
 function choose(x, isRight, caps){
@@ -481,22 +512,50 @@ function choose(x, isRight, caps){
     answered(x, ok);
   };
 }
+/* drag the rows into order (oldest at the top), then Check; years only appear once checked */
 function renderOrder(x){
-  const picked = [];
-  $("#ans").innerHTML = `<p class="small muted">Tap them in order.</p><div class="order">${x.items.map((it, i) => `<button class="oitem" data-i="${i}"><span class="n"></span>${it.art && W[it.art] && imgOK[W[it.art].img] ? `<img class="mini" src="${esc(W[it.art].img)}" alt="" referrerpolicy="no-referrer">` : ""}<span class="ol"><span>${esc(it.label)}</span><span class="small muted">${esc(it.sub || "")}</span></span><span class="yr hidden">${it.year}</span></button>`).join("")}</div><button class="btn ghost" id="undo" disabled>Undo</button>`;
-  const bs = $$(".oitem");
-  const paint = () => { bs.forEach((b, i) => { const p = picked.indexOf(i); b.classList.toggle("picked", p >= 0); b.querySelector(".n").textContent = p >= 0 ? p + 1 : ""; }); $("#undo").disabled = !picked.length; };
-  bs.forEach((b, i) => b.onclick = () => {
-    if (picked.includes(i)) return; picked.push(i); paint();
-    if (picked.length === x.items.length){
-      const ys = picked.map(j => x.items[j].year), ok = ys.every((y, k) => !k || y >= ys[k - 1]);
-      const sorted = x.items.map((_, j) => j).sort((a, b) => x.items[a].year - x.items[b].year);
-      bs.forEach((bb, j) => { bb.disabled = true; bb.querySelector(".yr").classList.remove("hidden"); bb.classList.add(picked.indexOf(j) === sorted.indexOf(j) ? "right" : "wrong"); });
-      const list = $(".order"); sorted.forEach(j => list.appendChild(bs[j]));
-      $("#undo").remove(); answered(x, ok);
-    }
-  });
-  $("#undo").onclick = () => { picked.pop(); paint(); };
+  $("#ans").innerHTML = `<p class="small muted">Drag them into order, oldest at the top.</p><div class="order">${x.items.map((it, i) => `<div class="oitem" data-i="${i}" role="listitem"><span class="n"></span>${it.art && W[it.art] && imgOK[W[it.art].img] ? `<img class="mini" src="${esc(W[it.art].img)}" alt="" referrerpolicy="no-referrer" draggable="false">` : ""}<span class="ol"><span>${esc(it.label)}</span><span class="small muted sub hidden">${esc(it.sub || "")}</span></span><span class="grip" aria-hidden="true"><i></i><i></i><i></i></span></div>`).join("")}</div>`;
+  const list = $(".order"), check = $("#check"), rows = () => $$(".oitem");
+  let moved = false, done = false;
+  const paint = () => rows().forEach((b, k) => { b.classList.toggle("placed", moved); b.querySelector(".n").textContent = moved ? k + 1 : ""; });
+  const gap = () => parseFloat(getComputedStyle(list).rowGap) || 10;
+  /* slide a row that just swapped places, so the list feels physical */
+  const slide = (el, from) => { const d = from - el.getBoundingClientRect().top; if (!d) return; el.style.transition = "none"; el.style.transform = `translateY(${d}px)`; requestAnimationFrame(() => { el.style.transition = "transform .16s ease"; el.style.transform = ""; }); };
+  rows().forEach(b => b.addEventListener("pointerdown", e => {
+    if (done || (e.pointerType === "mouse" && e.button !== 0)) return;
+    e.preventDefault();
+    try { b.setPointerCapture(e.pointerId); } catch(err){}
+    let y0 = e.clientY, started = false;
+    const move = ev => {
+      let dy = ev.clientY - y0;
+      if (!started){ if (Math.abs(dy) < 4) return; started = true; b.classList.add("drag"); if (!moved){ moved = true; check.disabled = false; } }
+      for (;;){
+        const nx = b.nextElementSibling, pv = b.previousElementSibling;
+        if (nx && dy > (nx.offsetHeight + gap()) / 2){ const t = nx.getBoundingClientRect().top; list.insertBefore(nx, b); y0 += nx.offsetHeight + gap(); dy = ev.clientY - y0; slide(nx, t); }
+        else if (pv && dy < -(pv.offsetHeight + gap()) / 2){ const t = pv.getBoundingClientRect().top; list.insertBefore(b, pv); y0 -= pv.offsetHeight + gap(); dy = ev.clientY - y0; slide(pv, t); }
+        else break;
+      }
+      b.style.transition = "none"; b.style.transform = `translateY(${dy}px)`;
+      paint();
+    };
+    const up = () => {
+      b.removeEventListener("pointermove", move); b.removeEventListener("pointerup", up); b.removeEventListener("pointercancel", up);
+      b.classList.remove("drag"); b.style.transition = "transform .16s ease"; b.style.transform = "";
+      paint();
+    };
+    b.addEventListener("pointermove", move); b.addEventListener("pointerup", up); b.addEventListener("pointercancel", up);
+  }));
+  check.onclick = () => {
+    if (done) return; done = true;
+    const now = rows(), order = now.map(b => +b.dataset.i);
+    const sorted = x.items.map((_, j) => j).sort((a, b) => x.items[a].year - x.items[b].year);
+    const ys = order.map(j => x.items[j].year), ok = ys.every((y, k) => !k || y >= ys[k - 1]);
+    moved = true; paint();
+    now.forEach((b, k) => { const j = +b.dataset.i; b.classList.add("locked", x.items[sorted[k]].year === x.items[j].year ? "right" : "wrong"); b.querySelector(".sub").classList.remove("hidden"); });
+    if (!ok){ const tops = new Map(now.map(b => [b, b.getBoundingClientRect().top])); sorted.forEach(j => list.appendChild(now.find(b => +b.dataset.i === j))); rows().forEach((b, k) => { b.querySelector(".n").textContent = k + 1; slide(b, tops.get(b)); }); }
+    $(".dock").classList.add("gone");
+    answered(x, ok);
+  };
 }
 function answered(x, ok){
   state.seen[x.key] = ok ? "right" : "wrong"; (state.lastSeen = state.lastSeen || {})[x.key] = today();
@@ -511,7 +570,7 @@ function answered(x, ok){
   state.stats.answered++; if (ok) state.stats.correct++;
   S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up});
   save();
-  const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
+  const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   closeSheet();
@@ -522,22 +581,23 @@ function answered(x, ok){
       <div class="flagbox hidden" id="flagbox"></div>
       ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
+      ${x.type === "pick" && x.multi ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${x.answers.includes(i) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
-      ${fact ? `<p>${esc(fact)}</p>` : ""}
-      ${x.source ? `<a class="small" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}
+      ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}
-      ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Thanks, more on this soon" : "I'd like to know more about this"}</button>` : ""}
+      ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Got it, more on this in future rounds" : "Ask me more about this in future rounds"}</button>` : ""}
       </div>
       <button class="btn" id="next">${last ? "See results" : "Next"}</button></div>`;
   document.body.appendChild(sh); document.body.classList.add("sheetopen");
   requestAnimationFrame(() => sh.classList.add("up"));
+  setTimeout(keepPromptVisible, 320);
   $("#grab").onclick = () => sh.classList.toggle("min");
   wireHold(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
     const b = $("#more"); b.disabled = true; b.textContent = "Sending…";
-    try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Thanks, more on this soon"; }
+    try { await requestMore(x.topic, "more", fact, x.key); state.asked[x.key] = today(); save(); b.textContent = "Got it, more on this in future rounds"; }
     catch(e){ b.disabled = false; b.textContent = "Couldn't send. Tap to try again."; }
   };
   $("#next").onclick = () => { closeSheet(); scrollTo(0, 0); next(1); };
@@ -566,7 +626,7 @@ function wireFlag(x){
     box.classList.remove("hidden"); box.innerHTML = `<span class="small muted">Thanks. We've hidden this question while we check it. <button class="btn link" id="unflag">Undo</button></span>`;
     $("#unflag").onclick = () => { delete p.flags[x.key]; computeHidden(); store.put("profile:" + pid, p).catch(() => {}); local.set("profiles", profiles); flag.disabled = false; flag.classList.remove("on"); box.classList.add("hidden"); };
     local.set("profiles", profiles);
-    const right = x.multi ? x.answers.map(i => x.options[i]).join(", ") : x.options ? x.options[x.answer] : x.images ? W[x.images[x.answer]].title : "";
+    const right = x.images ? (x.multi ? x.answers : [x.answer]).map(i => W[x.images[i]].title).join(", ") : x.multi ? x.answers.map(i => x.options[i]).join(", ") : x.options ? x.options[x.answer] : "";
     try { await store.put("profile:" + pid, p); await requestMore(x.topic, "problem", `Flagged. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key); } catch(e){}
   };
 }
@@ -625,13 +685,13 @@ function renderTopic(tid){
     ${tid !== topicOfDay().topic ? `<button class="btn link" id="make">Make this today's topic</button>` : ""}
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>
-    ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Thanks, more on this soon" : "I'd like more on this topic"}</button>` : ""}`;
+    ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Got it, more questions on this soon" : "Ask me more on this topic"}</button>` : ""}`;
   $("#back").onclick = () => go("topics");
   $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Quiz me");
   $("#quiz").onclick = () => startTopic(tid);
   if ($("#make")) $("#make").onclick = () => { state.today = {date: today(), topic: tid, startLv: L}; save(); go("today"); };
   $$(".chipbtn").forEach(b => b.onclick = () => go("topic", b.dataset.t));
-  if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Thanks, more on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
+  if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Got it, more questions on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }
 function renderMe(focus){
   const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
@@ -744,6 +804,7 @@ async function use(id){
   view.innerHTML = `<p class="muted">Opening the doors…</p>`;
   const old = await store.get("progress:" + id);
   state = old && old.v === 3 ? Object.assign(fresh(), old) : fresh(old);
+  Object.keys(state.srs || {}).forEach(k => { if (k.startsWith("M:")) delete state.srs[k]; }); // retired question type
   const p = profiles[id];
   setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
