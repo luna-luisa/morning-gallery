@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "14 Nov"; // temporary: shown on Today while we test edits
+const BUILD_AT = "14 Nov"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -620,12 +620,19 @@ function wireHold(root){
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
 function wireFlag(x){
   const flag = $("#flag"), box = $("#flagbox"), p = profiles[pid];
+  /* tap the flag to report a question; tap it again to take the report back */
+  let sent = false;
   flag.onclick = async () => {
-    flag.disabled = true; flag.classList.add("on");
+    if (flag.classList.contains("on")){
+      delete p.flags[x.key]; computeHidden(); store.put("profile:" + pid, p).catch(() => {}); local.set("profiles", profiles);
+      flag.classList.remove("on"); flag.setAttribute("aria-label", "Report this question"); box.classList.add("hidden");
+      return;
+    }
+    flag.classList.add("on"); flag.setAttribute("aria-label", "Reported. Tap again to take it back");
     p.flags = Object.assign({}, p.flags, {[x.key]: today()}); computeHidden();
-    box.classList.remove("hidden"); box.innerHTML = `<span class="small muted">Thanks. We've hidden this question while we check it. <button class="btn link" id="unflag">Undo</button></span>`;
-    $("#unflag").onclick = () => { delete p.flags[x.key]; computeHidden(); store.put("profile:" + pid, p).catch(() => {}); local.set("profiles", profiles); flag.disabled = false; flag.classList.remove("on"); box.classList.add("hidden"); };
+    box.classList.remove("hidden"); box.innerHTML = `<span class="small muted">Thanks. We've hidden this question while we check it. Tap the flag again to take it back.</span>`;
     local.set("profiles", profiles);
+    if (sent){ store.put("profile:" + pid, p).catch(() => {}); return; } sent = true;
     const right = x.images ? (x.multi ? x.answers : [x.answer]).map(i => W[x.images[i]].title).join(", ") : x.multi ? x.answers.map(i => x.options[i]).join(", ") : x.options ? x.options[x.answer] : "";
     try { await store.put("profile:" + pid, p); await requestMore(x.topic, "problem", `Flagged. Question: ${x.prompt}${right ? " Answer shown as right: " + right : ""}`, x.key); } catch(e){}
   };
@@ -659,7 +666,7 @@ function renderToday(){
   const td = topicOfDay(), t = TOPICS[td.topic], L = lvlOf(td.topic);
   const w = W[(t.intro[0] || {}).art], played = state.stats.lastRound === today(), items = newsItems();
   view.innerHTML = `
-    <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}<span class="buildstamp"> · app updated ${BUILD_AT}</span></span>
+    <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? "Another" : "Your"} <span class="serif">coffee round</span></h1>
       </div>
     <button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
@@ -708,7 +715,8 @@ function renderMe(focus){
     <div class="row two"><button class="btn ghost" id="sw">Switch profile</button><button class="btn ghost" id="pin">${p.pin ? "Change PIN" : "Set a PIN"}</button></div>
     ${p.admin ? `<div class="stack" id="admin"><span class="eyebrow">Profiles <span class="tag">Admin</span></span><div class="profiles small">${Object.keys(profiles).filter(id => id !== pid).map(id => `<div class="prow static"><span class="pstrip" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="pname">${esc(profiles[id].name)}</span><span class="pacts">${profiles[id].pin ? `<button class="btn link" data-reset="${id}">Reset PIN</button>` : ""}<button class="btn link danger" data-rm="${id}">Remove</button></span></div>`).join("") || `<p class="small muted">No one else yet.</p>`}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Home Screen</span><p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p></div>
-    ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}`;
+    ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
+    <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p>`;
   let kind = "idea";
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");
