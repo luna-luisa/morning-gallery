@@ -604,6 +604,8 @@ function answered(x, ok){
 }
 /* ---------------- hold a picture to see it bigger; let go to close ---------------- */
 let peekEl = null;
+/* belt and braces for iPhone: never start a text selection during a round */
+document.addEventListener("selectstart", e => { if (document.body.classList.contains("inround") && !/^(INPUT|TEXTAREA)$/.test(e.target.nodeName || "")) e.preventDefault(); });
 function peek(src){ unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom"; peekEl.innerHTML = `<span class="zimg" style="background-image:url('${esc(src)}')"></span>`; peekEl.onclick = unpeek; document.body.appendChild(peekEl); }
 function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
 addEventListener("pointerup", () => setTimeout(unpeek, 30)); addEventListener("pointercancel", unpeek); addEventListener("scroll", unpeek, {passive:true});
