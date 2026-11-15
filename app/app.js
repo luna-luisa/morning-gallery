@@ -328,6 +328,15 @@ function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, 
 
 /* ---------------- images: check before showing, swap failures ---------------- */
 const imgOK = {};
+/* a ~500px copy for tiles and thumbnails; the full picture is kept for the big view and question pictures */
+function sm(u){
+  if (!u) return u;
+  if (/\/thumb\//.test(u)) return u.replace(/\/(\d+)px-([^/]+)$/, (a, n, f) => +n > 500 ? `/500px-${f}` : a);
+  if (/iiif\.micr\.io/.test(u)) return u.replace(/\/full\/\d+,\//, "/full/600,/");
+  return u;
+}
+const tsrc = u => imgOK[sm(u)] === false ? u : sm(u); // small copy unless it failed to load
+const loadSm = async u => (await loadImg(sm(u))) || (sm(u) !== u && loadImg(u));
 function loadImg(url){
   if (!url) return Promise.resolve(false);
   if (url in imgOK) return Promise.resolve(imgOK[url]);
@@ -344,13 +353,13 @@ async function prepare(q){
   if (!q || q.type === "divider") return q;
   if (q.type === "pick"){
     const imgs = q.images.slice(), spare = (q.spare || []).filter(id => !imgs.includes(id)), spareR = (q.spareRight || []).filter(id => !imgs.includes(id));
-    const oks = await Promise.all(imgs.map(id => loadImg(W[id].img)));
+    const oks = await Promise.all(imgs.map(id => loadSm(W[id].img)));
     for (let i = 0; i < imgs.length; i++){
       if (oks[i]) continue;
       const isR = q.multi ? q.answers.includes(i) : i === q.answer;
       if (isR && !q.multi) return null;
       const from = isR ? spareR : spare;
-      let rep = null; while (from.length && !rep){ const c = from.shift(); if (await loadImg(W[c].img)) rep = c; }
+      let rep = null; while (from.length && !rep){ const c = from.shift(); if (await loadSm(W[c].img)) rep = c; }
       if (!rep) return null; imgs[i] = rep;
     }
     if (q.multi && imgs.some((id, i) => id !== q.images[i])){ // a picture was swapped: keep the explanation in step
@@ -359,15 +368,15 @@ async function prepare(q){
     }
     return Object.assign({}, q, {images: imgs});
   }
-  if (q.type === "order"){ await Promise.all(q.items.map(it => it.art && W[it.art] ? loadImg(W[it.art].img) : true)); return q; }
+  if (q.type === "order"){ await Promise.all(q.items.map(it => it.art && W[it.art] ? loadSm(W[it.art].img) : true)); return q; }
   if (q.art && W[q.art] && !(await loadImg(W[q.art].img))) return q.needsArt ? null : Object.assign({}, q, {art:null});
   if (q.type === "mc" && q.options.every(venue)){
-    const ok = await Promise.all(q.options.map(o => loadImg(venue(o).img)));
+    const ok = await Promise.all(q.options.map(o => loadSm(venue(o).img)));
     if (ok.every(Boolean)) return Object.assign({}, q, {venues:true});
   }
   return q;
 }
-function prefetch(q){ if (!q) return; if (q.type === "pick") q.images.forEach(id => loadImg(W[id].img)); else if (q.art && W[q.art]) loadImg(W[q.art].img); }
+function prefetch(q){ if (!q) return; if (q.type === "pick") q.images.forEach(id => loadSm(W[id].img)); else if (q.art && W[q.art]) loadImg(W[q.art].img); }
 
 /* ---------------- sessions ---------------- */
 let S = null;
@@ -402,7 +411,7 @@ function startRound(){
           <div class="rtext"><b>${esc(t.name)}</b><span class="muted">${fresh ? `A short introduction, then ${nq} questions.` : `${nq} questions, a little deeper each time.`}</span></div></div></div>
       ${dv ? `<div class="room r2"><div class="sign"><span class="n">2</span></div>
         <div class="rtext"><b>Quick <span class="serif">fire</span></b><span class="muted">${dv.count} on art news and other topics</span>
-          <div class="thumbs">${thumbs.map(u => `<span style="background-image:url('${esc(u)}')"></span>`).join("")}<span class="news">News</span></div></div></div>` : ""}
+          <div class="thumbs">${thumbs.map(u => `<span style="background-image:url('${esc(tsrc(u))}')"></span>`).join("")}<span class="news">News</span></div></div></div>` : ""}
     </div><div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
   $("#back").onclick = () => go("today");
   $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
@@ -444,7 +453,7 @@ async function next(delta){
 function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); }
 $$("nav.tabs button").forEach(b => b.onclick = () => { S = null; go(b.dataset.tab); });
 function go(t, a){ inRound(false); setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
-function figure(w, cls = ""){ return w ? `<figure class="spot ${cls}" data-src="${esc(w.img)}"><img src="${esc(w.img)}" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('gone')"></figure>` : ""; }
+function figure(w, cls = ""){ const u = /thumb/.test(cls) ? tsrc(w && w.img) : w && w.img; return w ? `<figure class="spot ${cls}" data-src="${esc(w.img)}"><img src="${esc(u)}" decoding="async" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="const f=this.closest('figure');if(this.src!==f.dataset.src){this.src=f.dataset.src}else{f.classList.add('gone')}"></figure>` : ""; }
 function label(w){
   if (!w) return "";
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
@@ -522,7 +531,7 @@ function render(){
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w, "qpic") : ""}
     <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
-    ${x.multi ? (/\b(two|three|four|five|[2-5])\b/i.test(x.prompt) ? "" : `<p class="small muted hint">Pick ${x.answers.length}.</p>`) : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
+    ${x.multi ? "" : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans" class="ansarea"></div>
     <div class="dock"><button class="btn ghost" id="check">Not sure</button></div>
@@ -535,12 +544,12 @@ function render(){
 const tileText = o => `<span class="tt${o.length > 22 ? " long" : ""}">${esc(o)}</span>`;
 function renderMC(x){
   $("#ans").innerHTML = `<div class="tiles${x.venues ? "" : " text"}">${x.options.map((o, i) => x.venues
-    ? `<button class="tile venue" data-i="${i}" data-src="${esc(venue(o).img)}"><span class="ph" style="background-image:url('${esc(venue(o).img)}')"></span>${tileText(o)}</button>`
+    ? `<button class="tile venue" data-i="${i}" data-src="${esc(venue(o).img)}"><span class="ph" style="background-image:url('${esc(tsrc(venue(o).img))}')"></span>${tileText(o)}</button>`
     : `<button class="tile" data-i="${i}">${tileText(o)}</button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer);
 }
 function renderPick(x){
-  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(W[id].img)}')"></span></button>`).join("")}</div>`;
+  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(tsrc(W[id].img))}')"></span></button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer, true);
 }
 /* tap to select (tap again or another to change), then Check; with nothing picked the same button reads "Not sure" and shows the answer (counts as a miss) */
@@ -569,7 +578,7 @@ function choose(x, isRight, caps){
 }
 /* drag the rows into order (oldest at the top), then Check; years only appear once checked */
 function renderOrder(x){
-  $("#ans").innerHTML = `<p class="small muted">Drag them into order, oldest at the top.</p><div class="order">${x.items.map((it, i) => `<div class="oitem" data-i="${i}" role="listitem"><span class="n"></span>${it.art && W[it.art] && imgOK[W[it.art].img] ? `<img class="mini" src="${esc(W[it.art].img)}" alt="" referrerpolicy="no-referrer" draggable="false">` : ""}<span class="ol"><span>${esc(it.label)}</span><span class="small muted sub hidden">${esc(it.sub || "")}</span></span><span class="grip" aria-hidden="true"><i></i><i></i><i></i></span></div>`).join("")}</div>`;
+  $("#ans").innerHTML = `<p class="small muted">Drag them into order, oldest at the top.</p><div class="order">${x.items.map((it, i) => `<div class="oitem" data-i="${i}" role="listitem"><span class="n"></span>${it.art && W[it.art] && (imgOK[W[it.art].img] || imgOK[sm(W[it.art].img)]) ? `<img class="mini" src="${esc(tsrc(W[it.art].img))}" alt="" referrerpolicy="no-referrer" draggable="false">` : ""}<span class="ol"><span>${esc(it.label)}</span><span class="small muted sub hidden">${esc(it.sub || "")}</span></span><span class="grip" aria-hidden="true"><i></i><i></i><i></i></span></div>`).join("")}</div>`;
   const list = $(".order"), check = $("#check"), rows = () => $$(".oitem");
   let moved = false, done = false;
   const paint = () => rows().forEach((b, k) => { b.classList.toggle("placed", moved); b.querySelector(".n").textContent = moved ? k + 1 : ""; });
@@ -635,7 +644,7 @@ function answered(x, ok){
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
-      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
+      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
@@ -660,7 +669,12 @@ function answered(x, ok){
 let peekEl = null;
 /* belt and braces for iPhone: never start a text selection during a round */
 document.addEventListener("selectstart", e => { if (document.body.classList.contains("inround") && !/^(INPUT|TEXTAREA)$/.test(e.target.nodeName || "")) e.preventDefault(); });
-function peek(src){ unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom"; peekEl.innerHTML = `<img class="zfull" src="${esc(src)}" alt="" referrerpolicy="no-referrer">`; peekEl.onclick = unpeek; document.body.appendChild(peekEl); }
+function peek(src){
+  unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom";
+  const quick = imgOK[src] ? src : imgOK[sm(src)] ? sm(src) : src; // show the copy already on the phone straight away
+  peekEl.innerHTML = `<img class="zfull" src="${esc(quick)}" alt="" referrerpolicy="no-referrer" decoding="async">`; peekEl.onclick = unpeek; document.body.appendChild(peekEl);
+  if (quick !== src){ const el = peekEl, im = new Image(); im.referrerPolicy = "no-referrer"; im.onload = () => { imgOK[src] = true; const z = el.querySelector(".zfull"); if (z) z.src = src; }; im.src = src; }
+}
 function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
 const FINE = !!(window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches);
 addEventListener("keydown", e => { if (e.key === "Escape") unpeek(); });
@@ -958,9 +972,10 @@ async function showWelcome(done){
 
 
 (async function boot(){
+  const pp = store.listProfiles().catch(() => null); // fetch profiles while the collection loads
   try { await loadContent(); }
   catch(e){ view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
-  profiles = await store.listProfiles(); computeHidden();
+  profiles = (await pp) || await store.listProfiles(); computeHidden();
   const last = local.get("last");
   const start = () => { if (last && profiles[last]) use(last); else renderProfiles(); };
   if (!local.get("welcomed")) showWelcome(start); else start();
