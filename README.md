@@ -20,6 +20,7 @@ Nothing personal is stored here. Profiles, progress and feedback live in Supabas
 ## How the app should feel (Luna's rules, apply to every change)
 
 - Always ask: how can this be as intuitive, fun and straightforward as possible? Keep wording minimal.
+- The "Stretch" label on questions above your level stays (Luna likes it: it makes you feel smart).
 - Never explain the app's mechanics on screen (how levels, scoring, review rounds or progress are worked out). The only levelling text is "You're not far from becoming a <next level>." when someone is close.
 - Question screen: answers sit just above the Check button and nothing moves when the answer appears. No "Pick N" line or tag on pick-several questions; the button counts down instead.
 - Every topic intro has 3 cards, each with its own picture that matches the card (never repeated, never missing). Card 1 says who or what the topic is and what the art is like, so a complete newcomer gets a feel for it; "In the news" comes second.
