@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 18:00"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 19:21"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -174,7 +174,7 @@ function revealFor(tid, x){
   return byRight.length ? byRight[hash(x.id || x.q) % byRight.length].id : null;
 }
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
-const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
+const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["van-gogh","postimpressionism"],["van-gogh","expressionism"],["alfred-wallis","modern-british"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
