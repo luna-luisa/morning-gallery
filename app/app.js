@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 21:28"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 21:57"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -113,7 +113,7 @@ function levelStatus(tid){
   const days = new Set(right.flatMap(q => t.hits[q.key]).filter(d => !t.since || d >= t.since));
   const need = at.length ? Math.min(at.length, Math.max(5, Math.min(8, Math.ceil(at.length * 0.7)))) : 0;
   const hasNext = L < 5 && all.some(q => q.level === L + 1);
-  return {L, have: right.length, need, total: at.length, days: days.size, hasNext, ready: at.length > 0 && right.length >= need && days.size >= 2 && L < 5};
+  return {L, have: right.length, need, total: at.length, days: days.size, today: days.has(today()), hasNext, ready: at.length > 0 && right.length >= need && days.size >= 2 && L < 5};
 }
 function maybeLevelUp(tid){
   const s = levelStatus(tid);
@@ -124,12 +124,19 @@ function maybeLevelUp(tid){
 }
 function dots(L, cls = ""){ return `<span class="dots ${cls}" role="img" aria-label="Level ${L} of 5, ${LEVELS[L-1]}">${[1,2,3,4,5].map(i => `<i class="${i <= L ? "on" : ""}"></i>`).join("")}</span>`; }
 function nextText(tid){
-  const s = levelStatus(tid);
+  const s = levelStatus(tid), next = `${an(LEVELS[s.L])} ${LEVELS[s.L]}`, now = LEVELS[s.L-1];
   if (s.L >= 5) return "Top level reached.";
-  if (!s.total) return `More ${LEVELS[s.L-1]} questions are on the way.`;
-  if (s.have < s.need) return `${s.have} of ${s.need} right to become ${an(LEVELS[s.L])} ${LEVELS[s.L]}.`;
-  if (s.days < 2) return `Come back another day to become ${an(LEVELS[s.L])} ${LEVELS[s.L]}.`;
+  if (!s.total) return `More ${now} questions are on the way.`;
+  const left = s.need - s.have; // only right answers at this level count, spread over two different days
+  const another = s.days === 0 || (s.days === 1 && s.today);
+  if (left > 0) return `Get ${left} more ${now} question${left > 1 ? "s" : ""} right${another ? (s.days ? ", on another day," : ", across two days,") : ""} to become ${next}.`;
+  if (s.days < 2) return `Come back another day to become ${next}.`;
   return `${LEVELS[s.L]} questions are on the way.`;
+}
+/* a small bar: one segment per right answer needed at this level */
+function climbBar(tid){
+  const s = levelStatus(tid); if (s.L >= 5 || !s.total || s.have >= s.need) return "";
+  return `<span class="climb" aria-hidden="true">${Array.from({length: s.need}, (_, i) => `<i class="${i < s.have ? "on" : ""}"></i>`).join("")}</span>`;
 }
 
 /* ---------------- spaced review ---------------- */
@@ -733,7 +740,7 @@ function finish(){
     <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
       <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
-    <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></button>
+    <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${climbBar(tid)}<span class="small muted">${esc(nextText(tid))}</span></button>
     <div class="stack"><button class="btn" id="keep">Keep going</button><button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
   $("#tcard").onclick = () => go("topic", tid);
@@ -774,7 +781,7 @@ function renderTopic(tid){
   view.innerHTML = `
     <div class="qhead"><button class="btn link" id="back">All topics</button></div>
     <div class="stack"><span class="eyebrow">${esc(grp)}${t.span ? " · " + esc(t.span) : ""}</span><h1>${esc(t.name)}</h1>
-      <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></div>
+      <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span>${climbBar(tid)}<span class="small muted">${esc(nextText(tid))}</span></div>
     <div class="row"><button class="btn" id="quiz">Play this topic now</button><button class="btn ghost" id="learn">Introduction</button></div>
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>
