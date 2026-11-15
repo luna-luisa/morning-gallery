@@ -557,7 +557,7 @@ body[data-screen="sw"] main > *{flex-shrink:0}
 .btn.link.small{min-height:0;margin-top:4px;font-size:13px;padding:0}
 .swintro .ico.heart svg{stroke:var(--pink-ink);fill:var(--pink-ink)}
 .swfan{flex:1 1 auto;min-height:150px;position:relative;margin:18px 0}
-.swfan span{position:absolute;top:50%;left:50%;height:min(100%,300px);aspect-ratio:3/4;background-size:cover;background-position:center;border-radius:8px;border:3px solid #fff;box-shadow:0 12px 28px rgba(40,30,15,.22)}
-.swfan span:nth-child(1){transform:translate(-92%,-50%) rotate(-11deg)}
+.swfan span{position:absolute;top:50%;left:50%;height:min(100%,220px);aspect-ratio:3/4;background-size:cover;background-position:center;border-radius:8px;border:3px solid #fff;box-shadow:0 12px 28px rgba(40,30,15,.22)}
+.swfan span:nth-child(1){transform:translate(-85%,-48%) rotate(-10deg)}
 .swfan span:nth-child(2){transform:translate(-50%,-53%);z-index:1}
-.swfan span:nth-child(3){transform:translate(-8%,-50%) rotate(11deg)}
+.swfan span:nth-child(3){transform:translate(-15%,-48%) rotate(10deg)}
