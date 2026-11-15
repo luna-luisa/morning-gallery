@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 20:43"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 21:16"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -861,7 +861,7 @@ function newProfile(){
 }
 function askPin(id, mode){
   const p = profiles[id], setting = mode === "set" || !p.pin;
-  if (!setting && id === pid && state) return go("today");
+  if (!setting && id === pid && state){ $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden"); return go("today"); } // your own profile: straight back, no PIN
   $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden");
   const adm = adminName();
   view.innerHTML = `
