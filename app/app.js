@@ -813,7 +813,7 @@ function artistTopic(name){
   return Object.keys(TOPICS).find(id => TOPICS[id].kind === "artist" && (TOPICS[id].name === n || WORKS.some(w => w.topic === id && plainArtist(w.artist) === n))) || null;
 }
 function swipeDeck(n = 10){
-  const pool = shuffle(WORKS.filter(w => w.hw >= 1.15 && !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img)));
+  const pool = shuffle(WORKS.filter(w => w.hw >= 1.24 && !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img)));
   const seen = state.swiped || {}, fresh = pool.filter(w => !seen[w.id]), rest = pool.filter(w => seen[w.id]);
   const pick = [], topics = new Set(), artists = new Set();
   [...fresh, ...rest].forEach(w => { const a = plainArtist(w.artist); if (pick.length < n && !topics.has(w.topic) && !artists.has(a)){ pick.push(w); topics.add(w.topic); artists.add(a); } });
@@ -833,7 +833,9 @@ function startSwipe(){
       <div class="swstage"><div class="swcard" id="card"><img src="${esc(w.img)}" alt="An artwork" referrerpolicy="no-referrer" draggable="false"><span class="stamp yes">Like</span><span class="stamp no">Pass</span></div></div>
       <p class="small muted center swhint">${i ? "&nbsp;" : "Swipe right if you like it, left if not."}</p>
       <div class="swbtns"><button class="swb no" id="no" aria-label="Not for me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button class="swb yes" id="yes" aria-label="I like this"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button></div>`;
-    const card = $("#card");
+    const card = $("#card"), im = card.querySelector("img");
+    const place = () => { card.style.setProperty("--st", (im.offsetTop + 18) + "px"); card.style.setProperty("--sl", (im.offsetLeft + 16) + "px"); card.style.setProperty("--sr", (card.clientWidth - im.offsetLeft - im.offsetWidth + 16) + "px"); };
+    if (im.complete) place(); else im.onload = place;
     const decide = like => {
       if (card.dataset.gone) return; card.dataset.gone = "1";
       (state.swiped = state.swiped || {})[w.id] = today(); if (like) liked.push(w);
