@@ -419,3 +419,52 @@ html{-webkit-tap-highlight-color:transparent}
 #pdeep::before{background:var(--pink)}
 .trow.pick .tname{font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
 .trow.pick .eyebrow{color:var(--klein)} #pdeep .eyebrow{color:var(--pink-ink)}
+
+/* ==== one question layout for every question ====
+   label on top, the picture (or empty space) fills the middle, the question sits right above the answers,
+   answers and Check pinned at the bottom. Same type size everywhere; only the picture shrinks to fit. */
+body[data-screen="q"] #app{height:100vh;height:100svh;min-height:0;display:flex;flex-direction:column}
+body[data-screen="q"] main{flex:1;min-height:0;gap:14px;padding:14px 24px calc(18px + env(safe-area-inset-bottom,0px))}
+body[data-screen="q"] .qspace{flex:1 1 0;min-height:0}
+body[data-screen="q"] .spot.qpic{flex:1 1 0;min-height:110px;margin:0 -24px;padding:0;position:relative;display:block}
+body[data-screen="q"] .spot.qpic img{position:absolute;inset:10px 24px;margin:auto;max-width:calc(100% - 48px);max-height:calc(100% - 20px);width:auto;height:auto}
+body[data-screen="q"] .prompt{font-size:28px;line-height:1.08;margin:0;flex:none}
+body[data-screen="q"] .hint, body[data-screen="q"] .stretch{margin:-4px 0 0;flex:none}
+body[data-screen="q"] .ansarea{margin-top:0;flex:none}
+body[data-screen="q"] .tiles, body[data-screen="q"] .tiles.text{--th:clamp(80px,14svh,132px);grid-auto-rows:auto;max-height:none;flex:none}
+body[data-screen="q"] .tile, body[data-screen="q"] .tiles.text .tile{height:var(--th);min-height:0}
+body[data-screen="q"] .tiles.text .tile{align-items:flex-end}
+body[data-screen="q"] .dock{margin-top:0;flex:none}
+.tag.pickn{background:var(--acc);color:#fff} body[data-room="2"] .tag.pickn{color:var(--ink)}
+.answerline s{color:var(--bad);text-decoration-thickness:2px}
+
+/* ---- pictures always centred ---- */
+.spot{justify-content:center;align-items:center;text-align:center}
+.spot img{margin-left:auto;margin-right:auto}
+.todcard .spot{width:calc(100% + 48px);align-self:center}
+
+/* ---- topic page: tidy row of equal frames ---- */
+.strip{grid-auto-columns:42%;gap:14px;align-items:start}
+.strip .sw{gap:8px;min-width:0}
+.strip .spot.thumb{margin:0;padding:10px;aspect-ratio:4/5;position:relative;display:block;background:#ebe7de;border-radius:4px;overflow:hidden}
+.strip .spot.thumb img{position:absolute;inset:10px;margin:auto;max-width:calc(100% - 20px);max-height:calc(100% - 20px);width:auto;height:auto;object-fit:contain;box-shadow:0 4px 10px rgba(40,30,15,.18)}
+.strip .sw .small{line-height:1.35;overflow-wrap:anywhere}
+
+/* ---- the status bar always covers content scrolling beneath it ---- */
+body::before{height:max(env(safe-area-inset-top,0px),0px);z-index:45}
+
+/* ---- tablet and desktop: the app sits as a card in the middle ---- */
+@media (min-width:700px){
+  html,body{background:#e6e1d6}
+  #app{max-width:600px;background:var(--wall);min-height:100vh;box-shadow:0 0 0 1px rgba(40,30,15,.06),0 24px 60px rgba(40,30,15,.12)}
+  body::before{background:transparent}
+  nav.tabs{left:50%;right:auto;width:600px;transform:translateX(-50%)}
+  nav.tabs .in{max-width:600px}
+  .sheetin{max-width:600px}
+  body[data-screen="q"] .spot.qpic{max-height:520px}
+}
+@media (min-width:700px) and (min-height:700px){
+  body[data-screen="q"] #app{height:min(100svh,940px);margin-top:max(0px,calc((100svh - 940px) / 2))}
+}
+body[data-screen="q"] .tile .tt, body[data-screen="q"] .tile .tt.long{font-size:16px;line-height:1.2}
+body[data-screen="q"] .tile.venue .tt{font-size:14px}

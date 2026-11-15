@@ -42,7 +42,7 @@
     "Peter Paul Rubens"
    ],
    "answer": 0,
-   "explain": "Painted around 1470, it was bought by the London-based Klesch Collection after the UK placed a temporary export bar on it.",
+   "explain": "Painted in the 1470s, it was bought by the London-based Klesch Collection after the UK placed a temporary export bar on it.",
    "source": "https://www.theartnewspaper.com/2026/11/12/botticelli-painting-saved-from-leaving-uk-goes-on-view-in-oxford",
    "reveal": {
     "img": "https://www.finestresullarte.info/rivista/immagini/2026/fn/sandro-botticelli-madonna-col-bambino-klesch-1-1.jpg",
@@ -80,7 +80,7 @@
    "level": 2,
    "headline": "Monet's Iris makes €50m in Paris",
    "summary": "A late Monet, never shown in public, became the priciest artwork ever sold at auction in France (Sotheby's, 22 October).",
-   "question": "Which Monet became the most expensive artwork ever auctioned in France?",
+   "question": "Which Monet set a new record for an artwork auctioned in France (before adjusting for inflation)?",
    "options": [
     "Iris",
     "Impression, Sunrise",
@@ -107,7 +107,7 @@
    "topic": "art-fairs",
    "level": 3,
    "headline": "Art Basel Paris closed two days early",
-   "summary": "Planned protests cut the fair short in October. French galleries are now asking for compensation.",
+   "summary": "Planned protests cut the fair short in October. After French galleries asked for compensation, Art Basel offered a 20% cut in stand fees.",
    "question": "Why did Art Basel Paris close two days early in October 2026?",
    "options": [
     "Planned protests in Paris",
@@ -116,8 +116,8 @@
     "A strike by art handlers"
    ],
    "answer": 0,
-   "explain": "Organisers cited weekend protests and the safety of visitors and artworks. Galleries have written asking for compensation.",
-   "source": "https://artincontext.org/art-basel-paris-gallery-compensation-demand/",
+   "explain": "The fair closed on Friday 23 October instead of Sunday 25 October, citing planned weekend demonstrations. On 11 November Art Basel offered exhibitors a 20% reduction in stand fees.",
+   "source": "https://www.theartnewspaper.com/2026/11/11/art-basel-offers-compensation-to-dealers-after-early-closure-of-paris-fair",
    "reveal": {
     "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/960px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
     "photo": true,
@@ -216,7 +216,7 @@
    ],
    "answer": 0,
    "explain": "The Love Letter heads the loan. Girl with a Pearl Earring belongs to the Mauritshuis, not the Rijksmuseum.",
-   "source": "https://www.arthistorynews.com/",
+   "source": "https://www.chinadailyhk.com/article/641732",
    "reveal": {
     "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/The_Love_Letter_-_Johannes_Vermeer.png/1280px-The_Love_Letter_-_Johannes_Vermeer.png",
     "artist": "Johannes Vermeer",
@@ -231,18 +231,18 @@
    "date": "2026-11-12",
    "topic": "art-fairs",
    "level": 3,
-   "headline": "Venice Biennale awards on its final day",
-   "summary": "The 61st Biennale closes on 22 November, when its postponed awards are finally given after the jury resigned in April.",
-   "question": "When will the 2026 Venice Biennale's postponed awards be presented?",
+   "headline": "Venice Biennale's visitor prizes on its final day",
+   "summary": "The 61st Biennale closes on 22 November, when visitor-voted 'Visitors' Lions' replace the jury prizes after the jury resigned in April.",
+   "question": "When will the 2026 Venice Biennale's visitor-voted 'Visitors' Lions' be announced?",
    "options": [
     "22 November, its closing day",
     "On opening day in May",
-    "Never, they were cancelled",
-    "At the 2027 edition"
+    "At the 2027 edition",
+    "At the Venice Film Festival in September"
    ],
    "answer": 0,
-   "explain": "The jury resigned on 30 April, so the May ceremony was moved to 22 November.",
-   "source": "https://en.wikipedia.org/wiki/61st_Venice_Biennale"
+   "explain": "The jury resigned on 30 April, so the May ceremony was dropped. Instead visitors vote for two 'Visitors' Lions', announced on 22 November.",
+   "source": "https://www.thenationalnews.com/arts-culture/2026/05/01/venice-biennale-jury-resigns-leading-organisers-to-scrap-golden-lion-awards-in-favour-of-public-vote/"
   },
   {
    "id": "2026-11-van-gogh-chestnut",
@@ -259,7 +259,7 @@
     "Irises"
    ],
    "answer": 0,
-   "explain": "Painted at Auvers-sur-Oise in May 1890, it is estimated at about $180m before fees. The record is $117m, for Orchard with Cypresses in 2022.",
+   "explain": "Painted at Auvers-sur-Oise in 1890, weeks before his death, it is estimated at about $180m before fees. The record is $117m, for Orchard with Cypresses in 2022.",
    "source": "https://www.theartnewspaper.com/2026/11/12/new-york-autumn-2026-auctions-preview-bonhams-christies-phillips-sothebys",
    "reveal": {
     "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",

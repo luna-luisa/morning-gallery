@@ -74,7 +74,8 @@
    "year": 1511,
    "place": "Vatican Museums, Vatican City",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/1280px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
-   "hook": "Plato and Aristotle stand at the centre. Plato is often said to have Leonardo's face."
+   "hook": "Plato and Aristotle stand at the centre. Plato is often said to have Leonardo's face.",
+   "yearLabel": "1509–11"
   },
   {
    "id": "venus-urbino",
@@ -279,7 +280,7 @@
    "approx": true,
    "place": "Museo di Capodimonte, Naples",
    "img": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Artemisia_Gentileschi_-_Judith_Beheading_Holofernes_-_WGA8563.jpg",
-   "hook": "Artemisia was one of the most successful painters of her day, and among the first women in Florence's Academy."
+   "hook": "Artemisia was one of the most successful painters of her day, and the first woman admitted to Florence's Academy of Drawing."
   },
   {
    "id": "raising-cross",
@@ -623,7 +624,8 @@
    "year": 1885,
    "place": "Van Gogh Museum, Amsterdam",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg/1280px-De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg",
-   "hook": "His dark early Dutch period, before Paris turned his palette bright."
+   "hook": "His dark early Dutch period, before Paris turned his palette bright.",
+   "quiz": false
   },
   {
    "id": "cafe-terrace",
@@ -665,7 +667,8 @@
    "year": 1884,
    "place": "Art Institute of Chicago",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/1280px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg",
-   "hook": "Two years of work in tiny dots of colour: pointillism."
+   "hook": "Two years of work in tiny dots of colour: pointillism.",
+   "yearLabel": "1884–86"
   },
   {
    "id": "asnieres",
@@ -1022,8 +1025,9 @@
    "topic": "preraphaelites",
    "tate": "N01506",
    "page": "https://www.tate.org.uk/art/artworks/millais-ophelia-n01506",
-   "hook": "Elizabeth Siddal posed in a bath of water for months. The plants were painted outdoors by a river in Surrey.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01506_10.jpg"
+   "hook": "Elizabeth Siddal posed for hours in a bath of water and caught a severe cold. The plants were painted outdoors by the Hogsmill River in Surrey.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_GC9dhUI.jpg",
+   "yearLabel": "1851–2"
   },
   {
    "id": "lady-shalott",
@@ -1036,7 +1040,7 @@
    "tate": "N01543",
    "page": "https://www.tate.org.uk/art/artworks/waterhouse-the-lady-of-shalott-n01543",
    "hook": "From Tennyson's poem. Waterhouse painted it decades after the Brotherhood, keeping its love of literature and detail.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01543_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_lSCWG27.jpg"
   },
   {
    "id": "proserpine",
@@ -1049,7 +1053,7 @@
    "tate": "N05064",
    "page": "https://www.tate.org.uk/art/artworks/rossetti-proserpine-n05064",
    "hook": "The model is Jane Morris. The pomegranate means Proserpine must stay in the underworld.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N05/N05064_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_AqgWlGK.jpg"
   },
   {
    "id": "beata-beatrix",
@@ -1062,7 +1066,8 @@
    "tate": "N01279",
    "page": "https://www.tate.org.uk/art/artworks/rossetti-beata-beatrix-n01279",
    "hook": "Rossetti's memorial to his wife, Elizabeth Siddal, painted after her death.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01279_10.jpg"
+   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01279_10.jpg",
+   "yearLabel": "c.1864–70"
   },
   {
    "id": "norham",
@@ -1113,7 +1118,7 @@
    "tate": "N01273",
    "page": "https://www.tate.org.uk/art/artworks/constable-flatford-mill-scene-on-a-navigable-river-n01273",
    "hook": "Painted near Constable's family mill in Suffolk: 'Constable Country'.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01273_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_K2dZGSl.jpg"
   },
   {
    "id": "newton",
@@ -1152,7 +1157,7 @@
    "tate": "N00112",
    "page": "https://www.tate.org.uk/art/artworks/hogarth-the-painter-and-his-pug-n00112",
    "hook": "Hogarth's self-portrait with his pug, Trump.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N00/N00112_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_uexYlTC.jpg"
   },
   {
    "id": "roast-beef",
@@ -1164,7 +1169,7 @@
    "topic": "british18c",
    "tate": "N01464",
    "page": "https://www.tate.org.uk/art/artworks/hogarth-o-the-roast-beef-of-old-england-the-gate-of-calais-n01464",
-   "img": "https://media.tate.org.uk/art/images/work/N/N01/N01464_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_T8XI2zp.jpg"
   },
   {
    "id": "haymakers",
@@ -1280,7 +1285,8 @@
    "tate": "N04948",
    "page": "https://www.tate.org.uk/art/artworks/kandinsky-cossacks-n04948",
    "hook": "Riders and lances are still just visible. Kandinsky was on the edge of pure abstraction.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N04/N04948_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_ZjZDZmH.jpg",
+   "yearLabel": "1910–11"
   },
   {
    "id": "mondrian-1937",
@@ -1293,7 +1299,8 @@
    "tate": "T00648",
    "page": "https://www.tate.org.uk/art/artworks/mondrian-composition-with-yellow-blue-and-red-t00648",
    "hook": "Black lines and primary colours: the classic De Stijl look.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T00/T00648_10.jpg"
+   "img": "https://media.tate.org.uk/art/images/work/T/T00/T00648_10.jpg",
+   "yearLabel": "1937–42"
   },
   {
    "id": "fountain",
@@ -1306,7 +1313,8 @@
    "tate": "T07573",
    "page": "https://www.tate.org.uk/art/artworks/duchamp-fountain-t07573",
    "hook": "A shop-bought urinal signed 'R. Mutt'. The original was lost; Tate's is a 1964 replica.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T07/T07573_10.jpg"
+   "img": "https://media.tate.org.uk/art/images/work/T/T07/T07573_10.jpg",
+   "yearLabel": "1917 (replica 1964)"
   },
   {
    "id": "narcissus",
@@ -1332,7 +1340,7 @@
    "tate": "T03257",
    "page": "https://www.tate.org.uk/art/artworks/dali-lobster-telephone-t03257",
    "hook": "Made for the collector Edward James. Real phone, plaster lobster.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T03/T03257_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_eDjXBEf.jpg"
   },
   {
    "id": "reckless-sleeper",
@@ -1371,7 +1379,7 @@
    "tate": "T01031",
    "page": "https://www.tate.org.uk/art/artworks/rothko-black-on-maroon-t01031",
    "hook": "One of the Seagram murals Rothko gave to Tate. They arrived on the day he died in 1970.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T01/T01031_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_DdDKwoH.jpg"
   },
   {
    "id": "summertime",
@@ -1397,7 +1405,7 @@
    "tate": "T03093",
    "page": "https://www.tate.org.uk/art/artworks/warhol-marilyn-diptych-t03093",
    "hook": "Made in the weeks after Marilyn Monroe's death in 1962. Colour on the left, fading black and white on the right.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T03/T03093_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_JJlQj5T.jpg"
   },
   {
    "id": "whaam",
@@ -1435,8 +1443,9 @@
    "topic": "popart",
    "tate": "T01269",
    "page": "https://www.tate.org.uk/art/artworks/hockney-mr-and-mrs-clark-and-percy-t01269",
-   "hook": "Fashion designer Ossie Clark and textile designer Celia Birtwell. Percy is the cat.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T01/T01269_10.jpg"
+   "hook": "Fashion designer Ossie Clark and textile designer Celia Birtwell. The cat is really Blanche; Percy was another of their cats.",
+   "img": "https://media.tate.org.uk/art/images/work/T/T01/T01269_10.jpg",
+   "yearLabel": "1970–1"
   },
   {
    "id": "resurrection",
@@ -1449,7 +1458,8 @@
    "tate": "N04239",
    "page": "https://www.tate.org.uk/art/artworks/spencer-the-resurrection-cookham-n04239",
    "hook": "The dead rise in Spencer's home village of Cookham, Berkshire.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N04/N04239_10.jpg"
+   "img": "https://media.tate.org.uk/art/images/work/N/N04/N04239_10.jpg",
+   "yearLabel": "1924–7"
   },
   {
    "id": "totes-meer",
@@ -1462,7 +1472,8 @@
    "tate": "N05717",
    "page": "https://www.tate.org.uk/art/artworks/nash-totes-meer-dead-sea-n05717",
    "hook": "'Dead Sea': a graveyard of wrecked German aircraft, painted in WWII.",
-   "img": "https://media.tate.org.uk/art/images/work/N/N05/N05717_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_BYVerVc.jpg",
+   "yearLabel": "1940–1"
   },
   {
    "id": "ennui",
@@ -1474,7 +1485,7 @@
    "topic": "modern-british",
    "tate": "N03846",
    "page": "https://www.tate.org.uk/art/artworks/sickert-ennui-n03846",
-   "img": "https://media.tate.org.uk/art/images/work/N/N03/N03846_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_xDsELCw.jpg"
   },
   {
    "id": "gwen-john",
@@ -1486,7 +1497,7 @@
    "topic": "modern-british",
    "tate": "N05366",
    "page": "https://www.tate.org.uk/art/artworks/john-self-portrait-n05366",
-   "img": "https://media.tate.org.uk/art/images/work/N/N05/N05366_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pM2a32v.jpg"
   },
   {
    "id": "pelagos",
@@ -1550,7 +1561,7 @@
    "tate": "T00616",
    "page": "https://www.tate.org.uk/art/artworks/riley-fall-t00616",
    "hook": "Op Art: one black line, repeated, that seems to move.",
-   "img": "https://media.tate.org.uk/art/images/work/T/T00/T00616_10.jpg"
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_Nv8p6RL.jpg"
   },
   {
    "id": "lowry-school",
@@ -1622,9 +1633,10 @@
    "title": "The Bar on East 13th",
    "year": 2019,
    "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/Smaller_New_ImageThe-Bar-on-East-13_2019_C33946_adj-High-1200x0-c-default.png",
-   "hook": "Toor's take on Manet's A Bar at the Folies-Bergère, which hangs in the same building, the Courtauld.",
+   "hook": "Toor's take on Manet's A Bar at the Folies-Bergère, which belongs to the Courtauld, where his show is on.",
    "credit": "The Courtauld",
-   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
+   "place": "Museum of Contemporary Art Chicago"
   },
   {
    "id": "toor-bar-boy",
@@ -1644,7 +1656,6 @@
    "artist": "Salman Toor",
    "title": "Three Friends in a Cab",
    "year": 2021,
-   "place": "Private collection",
    "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/EXH.2026.ST_.008_Three-Friends-in-a-Cab-2021-3-scaled-1200x0-c-default.jpg",
    "hook": "You sit in the back seat with three friends on a night out.",
    "credit": "The Courtauld",
@@ -1659,7 +1670,317 @@
    "img": "https://courtauld.ac.uk/wp-content/uploads/2025/09/EXH.2026.ST_.006_Ghost-Ball_2023_C37217_crop-3-scaled-1200x0-c-default.jpg",
    "hook": "A huge canvas, over three metres wide, now in the Pinault Collection. In his later work the figures turn looser and more ghostly.",
    "credit": "The Courtauld",
-   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/"
+   "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
+   "place": "Pinault Collection"
+  },
+  {
+   "id": "van-eyck-van-der-paele",
+   "topic": "van-eyck",
+   "artist": "Jan van Eyck",
+   "title": "The Madonna with Canon van der Paele",
+   "year": 1436,
+   "place": "Groeningemuseum, Bruges",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg/1280px-Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg",
+   "hook": "Painted in Bruges for Joris van der Paele, a canon of the city's church of St Donatian."
+  },
+  {
+   "id": "zoffany-academicians",
+   "topic": "british18c",
+   "artist": "Johan Zoffany",
+   "title": "The Academicians of the Royal Academy",
+   "year": 1772,
+   "approx": true,
+   "place": "Royal Collection",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg/960px-Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg",
+   "hook": "Reynolds, the Academy's first President, stands left of centre holding his ear trumpet."
+  },
+  {
+   "id": "ramsay-george-iii",
+   "topic": "royal-academy",
+   "artist": "Allan Ramsay",
+   "title": "George III in Coronation Robes",
+   "year": 1761,
+   "approx": true,
+   "place": "Royal Collection",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg/960px-Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg",
+   "hook": "George III founded the Royal Academy by personal act on 10 December 1768."
+  },
+  {
+   "id": "millais-isabella",
+   "topic": "preraphaelites",
+   "artist": "John Everett Millais",
+   "title": "Isabella",
+   "year": 1849,
+   "approx": true,
+   "place": "Walker Art Gallery, Liverpool",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg/1280px-John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg",
+   "hook": "The letters PRB are carved on Isabella's bench, a secret sign of the new Brotherhood."
+  },
+  {
+   "id": "sargent-monet-painting",
+   "topic": "impressionism",
+   "artist": "John Singer Sargent",
+   "title": "Claude Monet Painting by the Edge of a Wood",
+   "year": 1885,
+   "approx": true,
+   "place": "Tate, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/John_Singer_Sargent_(1856-1925)_-_Claude_Monet_Painting_by_the_Edge_of_a_Wood_-_N04103_-_National_Gallery.jpg/960px-John_Singer_Sargent_(1856-1925)_-_Claude_Monet_Painting_by_the_Edge_of_a_Wood_-_N04103_-_National_Gallery.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:John_Singer_Sargent_(1856-1925)_-_Claude_Monet_Painting_by_the_Edge_of_a_Wood_-_N04103_-_National_Gallery.jpg",
+   "hook": "Sargent caught his friend Monet at work outdoors, canvas propped on an easel in the open air.",
+   "quiz": false
+  },
+  {
+   "id": "fry-self-portrait",
+   "topic": "postimpressionism",
+   "artist": "Roger Fry",
+   "title": "Self-Portrait",
+   "year": 1928,
+   "place": "Courtauld Gallery, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Roger_Fry_self-portrait.jpg/960px-Roger_Fry_self-portrait.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Roger_Fry_self-portrait.jpg",
+   "hook": "Fry was a painter as well as a critic; he coined 'Post-Impressionism' for his 1910 show.",
+   "quiz": false
+  },
+  {
+   "id": "utamaro-three-beauties",
+   "topic": "edo-japan",
+   "artist": "Kitagawa Utamaro",
+   "title": "Three Beauties of the Present Day",
+   "year": 1793,
+   "approx": true,
+   "place": "Museum of Fine Arts, Boston",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg/960px-Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg",
+   "hook": "The sitters were celebrities of Edo: a geisha and two teahouse waitresses."
+  },
+  {
+   "id": "secession-building",
+   "topic": "vienna-1900",
+   "photo": true,
+   "title": "Secession Building, Vienna",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Wien-Secession-02-2007-gje.jpg/960px-Wien-Secession-02-2007-gje.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Wien-Secession-02-2007-gje.jpg",
+   "hook": "Joseph Maria Olbrich built it in 1897–98 as the group's own exhibition hall."
+  },
+  {
+   "id": "schiele-physalis",
+   "topic": "vienna-1900",
+   "artist": "Egon Schiele",
+   "title": "Self-Portrait with Physalis",
+   "year": 1912,
+   "place": "Leopold Museum, Vienna",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg/1280px-Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg",
+   "hook": "Schiele died in the 1918 flu pandemic, aged 28, only months after Klimt."
+  },
+  {
+   "id": "kirchner-potsdamer-platz",
+   "topic": "expressionism",
+   "artist": "Ernst Ludwig Kirchner",
+   "title": "Potsdamer Platz",
+   "year": 1914,
+   "place": "Neue Nationalgalerie, Berlin",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg/960px-Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg",
+   "hook": "Kirchner's Berlin street scenes turned the city's nightlife sharp-edged and anxious."
+  },
+  {
+   "id": "kirchner-soldier",
+   "topic": "expressionism",
+   "artist": "Ernst Ludwig Kirchner",
+   "title": "Self-Portrait as a Soldier",
+   "year": 1915,
+   "place": "Allen Memorial Art Museum, Oberlin, Ohio",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg/960px-Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg",
+   "hook": "Kirchner painted himself with a severed hand, though he never lost one: an image of his fear that war would end his art."
+  },
+  {
+   "id": "kirchner-street-dresden",
+   "topic": "expressionism",
+   "artist": "Ernst Ludwig Kirchner",
+   "title": "Street, Dresden",
+   "year": 1908,
+   "place": "Museum of Modern Art, New York",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg/960px-Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg",
+   "hook": "Kirchner co-founded Die Brücke in Dresden in 1905; he reworked this picture in 1919."
+  },
+  {
+   "id": "marc-blue-horse",
+   "topic": "expressionism",
+   "artist": "Franz Marc",
+   "title": "Blue Horse I",
+   "year": 1911,
+   "place": "Lenbachhaus, Munich",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg/1280px-Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg",
+   "hook": "For Marc, blue stood for the spiritual."
+  },
+  {
+   "id": "gris-breakfast",
+   "topic": "cubism",
+   "artist": "Juan Gris",
+   "title": "Breakfast",
+   "year": 1914,
+   "place": "Museum of Modern Art, New York",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/1914_Gris_Le_Petit_D%C3%A9jeuner.jpg/960px-1914_Gris_Le_Petit_D%C3%A9jeuner.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:1914_Gris_Le_Petit_D%C3%A9jeuner.jpg",
+   "hook": "Gris pasted printed papers into this still life, the papier collé technique Braque introduced in 1912."
+  },
+  {
+   "id": "slodki-cabaret-voltaire-poster",
+   "topic": "dada",
+   "artist": "Marcel Słodki",
+   "title": "Poster for the Cabaret Voltaire",
+   "year": 1916,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Marcel_S%C5%82odki_Cabaret-Voltaire-poster_1916.jpg/960px-Marcel_S%C5%82odki_Cabaret-Voltaire-poster_1916.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Marcel_S%C5%82odki_Cabaret-Voltaire-poster_1916.jpg",
+   "hook": "Słodki designed the poster for the opening of the Cabaret Voltaire in Zurich in 1916.",
+   "quiz": false
+  },
+  {
+   "id": "saatchi-gallery-chelsea",
+   "topic": "yba",
+   "photo": true,
+   "title": "Saatchi Gallery, Chelsea, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Top_floor_of_the_Saatchi_Gallery,_Chelsea_-_geograph.org.uk_-_2286447.jpg/960px-Top_floor_of_the_Saatchi_Gallery,_Chelsea_-_geograph.org.uk_-_2286447.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Top_floor_of_the_Saatchi_Gallery,_Chelsea_-_geograph.org.uk_-_2286447.jpg",
+   "hook": "Charles Saatchi's gallery has been in the Duke of York's HQ off the King's Road since 2008."
+  },
+  {
+   "id": "gordon-square-plaques",
+   "topic": "bloomsbury",
+   "photo": true,
+   "title": "Plaques at 46 Gordon Square, Bloomsbury",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Vanessa_Bell_%26_Duncan_Grant_and_John_Maynard_Keynes_plaques_-_46_Gordon_Square_Bloomsbury_Camden_London,_WC1H_0PD.jpg/960px-Vanessa_Bell_%26_Duncan_Grant_and_John_Maynard_Keynes_plaques_-_46_Gordon_Square_Bloomsbury_Camden_London,_WC1H_0PD.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Vanessa_Bell_%26_Duncan_Grant_and_John_Maynard_Keynes_plaques_-_46_Gordon_Square_Bloomsbury_Camden_London,_WC1H_0PD.jpg",
+   "hook": "Vanessa Bell and her siblings moved here in 1904; Keynes later lived here too."
+  },
+  {
+   "id": "fry-plaque-fitzroy-square",
+   "topic": "bloomsbury",
+   "photo": true,
+   "title": "Roger Fry plaque, 33 Fitzroy Square, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/ROGER_FRY_-_33_Fitzroy_Square_Fitzrovia_London_W1P_6AY_est.jpg/960px-ROGER_FRY_-_33_Fitzroy_Square_Fitzrovia_London_W1P_6AY_est.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:ROGER_FRY_-_33_Fitzroy_Square_Fitzrovia_London_W1P_6AY_est.jpg",
+   "hook": "The Omega Workshops ran from this house from 1913 to 1919."
+  },
+  {
+   "id": "henry-tate-plaque",
+   "topic": "tate",
+   "photo": true,
+   "title": "Plaque to Sir Henry Tate, sugar magnate and founder of the Tate Gallery",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg/960px-Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg",
+   "hook": "Tate's sugar fortune paid for the gallery at Millbank, opened in 1897."
+  },
+  {
+   "id": "lawrence-angerstein",
+   "topic": "national-gallery",
+   "artist": "Thomas Lawrence and workshop",
+   "title": "John Julius Angerstein (replica of an 1816 portrait)",
+   "year": 1816,
+   "approx": true,
+   "place": "Metropolitan Museum of Art, New York",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/John_Julius_Angerstein_(1736%E2%80%931823)_MET_DP162165.jpg/960px-John_Julius_Angerstein_(1736%E2%80%931823)_MET_DP162165.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:John_Julius_Angerstein_(1736%E2%80%931823)_MET_DP162165.jpg",
+   "hook": "Parliament bought 38 of Angerstein's paintings in 1824 to found the National Gallery.",
+   "quiz": false
+  },
+  {
+   "id": "frith-private-view",
+   "topic": "royal-academy",
+   "artist": "William Powell Frith",
+   "title": "A Private View at the Royal Academy, 1881",
+   "year": 1883,
+   "place": "Private collection",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Frith_A_Private_View.jpg/960px-Frith_A_Private_View.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Frith_A_Private_View.jpg",
+   "hook": "Frith packed the RA's annual exhibition with celebrities, including Oscar Wilde and Gladstone.",
+   "quiz": false
+  },
+  {
+   "id": "sothebys-new-bond-street",
+   "topic": "auctions",
+   "photo": true,
+   "title": "Sotheby's, New Bond Street, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Sotheby%27s_34-35_New_Bond_St,_Mayfair,_London_W1A_2AA,_UK.jpg/960px-Sotheby%27s_34-35_New_Bond_St,_Mayfair,_London_W1A_2AA,_UK.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sotheby%27s_34-35_New_Bond_St,_Mayfair,_London_W1A_2AA,_UK.jpg",
+   "hook": "Sotheby's has held its London sales on New Bond Street since 1917."
+  },
+  {
+   "id": "christies-microcosm",
+   "topic": "auctions",
+   "artist": "Thomas Rowlandson and Augustus Charles Pugin",
+   "title": "Auction Room, Christie's (from The Microcosm of London)",
+   "year": 1808,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Microcosm_of_London_Plate_006_-_Auction_Room,_Christie%27s_(colour).jpg/960px-Microcosm_of_London_Plate_006_-_Auction_Room,_Christie%27s_(colour).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Microcosm_of_London_Plate_006_-_Auction_Room,_Christie%27s_(colour).jpg",
+   "hook": "A sale in progress at Christie's Pall Mall rooms, drawn for Ackermann's Microcosm of London.",
+   "quiz": false
+  },
+  {
+   "id": "messe-basel-hall-2",
+   "topic": "art-fairs",
+   "photo": true,
+   "title": "Messe Basel, Hall 2",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Basel_-_Messe_Basel_-_Eingang_Halle_2.jpg/960px-Basel_-_Messe_Basel_-_Eingang_Halle_2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Basel_-_Messe_Basel_-_Eingang_Halle_2.jpg",
+   "hook": "Art Basel fills the Messe Basel halls every June."
+  },
+  {
+   "id": "regents-park",
+   "topic": "art-fairs",
+   "photo": true,
+   "title": "Regent's Park, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Regent%27s_Park_London.jpg/960px-Regent%27s_Park_London.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Regent%27s_Park_London.jpg",
+   "hook": "Frieze London and Frieze Masters put up their tents here every October."
+  },
+  {
+   "id": "somerset-house",
+   "topic": "salman-toor",
+   "photo": true,
+   "title": "Somerset House, London",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Somerset_House.jpg/960px-Somerset_House.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Somerset_House.jpg",
+   "hook": "The Courtauld Gallery occupies the Strand wing of Somerset House."
+  },
+  {
+   "id": "vermeer-officer",
+   "topic": "salman-toor",
+   "artist": "Johannes Vermeer",
+   "title": "Officer and Laughing Girl",
+   "year": 1657,
+   "approx": true,
+   "place": "Frick Collection, New York",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Johannes_Vermeer_-_De_Soldaat_en_het_Lachende_Meisje_-_Google_Art_Project.jpg/1280px-Johannes_Vermeer_-_De_Soldaat_en_het_Lachende_Meisje_-_Google_Art_Project.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_De_Soldaat_en_het_Lachende_Meisje_-_Google_Art_Project.jpg",
+   "hook": "Toor's Museum Boys hung in the same room as this Vermeer at Frick Madison in 2021.",
+   "quiz": false
+  },
+  {
+   "id": "biennale-central-pavilion",
+   "topic": "salman-toor",
+   "photo": true,
+   "title": "Central Pavilion, Giardini della Biennale, Venice",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Venezia_-_Giardini_della_Biennale,_padiglione_italiano_-_Foto_di_Paolo_Steffan.jpg/960px-Venezia_-_Giardini_della_Biennale,_padiglione_italiano_-_Foto_di_Paolo_Steffan.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Venezia_-_Giardini_della_Biennale,_padiglione_italiano_-_Foto_di_Paolo_Steffan.jpg",
+   "hook": "The Biennale's main exhibition is split between this pavilion and the Arsenale."
+  },
+  {
+   "id": "sundarbans-mangroves",
+   "topic": "salman-toor",
+   "photo": true,
+   "title": "Mangroves in the Sundarbans",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sundarban_mangrove.jpg/960px-Sundarban_mangrove.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sundarban_mangrove.jpg",
+   "hook": "The Sundarbans, shared by India and Bangladesh, is the world's largest mangrove forest."
   }
  ]
 }

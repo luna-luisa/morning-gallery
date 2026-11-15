@@ -41,7 +41,8 @@
       "Revolution",
       "Reform"
      ],
-     "explain": "French for rebirth: the revival of classical learning and art."
+     "explain": "French for rebirth: the revival of classical learning and art.",
+     "reveal": "birth-venus"
     },
     {
      "id": "renaissance-2",
@@ -53,7 +54,8 @@
       "The Netherlands",
       "Spain"
      ],
-     "explain": "Florence in particular, funded by families like the Medici."
+     "explain": "Florence in particular, funded by families like the Medici.",
+     "reveal": "primavera"
     },
     {
      "id": "renaissance-3",
@@ -126,12 +128,12 @@
      "q": "What's hidden across the floor of Holbein's The Ambassadors?",
      "options": [
       "A stretched skull",
-      "A hidden signature",
+      "A sleeping dog",
       "A cat",
       "A map of London"
      ],
      "explain": "An anamorphic skull: view it from the side and it snaps into shape. A reminder of death.",
-     "art": "ambassadors"
+     "reveal": "ambassadors"
     },
     {
      "id": "renaissance-9",
@@ -169,7 +171,7 @@
       "Bible stories",
       "Dutch cities"
      ],
-     "explain": "Six scenes of the farming year, painted in 1565. Five survive; three are in Vienna.",
+     "explain": "Probably six scenes of the farming year, painted in 1565. Five survive; three are in Vienna.",
      "art": "hunters-snow"
     }
    ],
@@ -214,7 +216,8 @@
       "Paris, France",
       "Seville, Spain"
      ],
-     "explain": "Bruges, in today's Belgium, the great trading city of the 1400s."
+     "explain": "Bruges, in today's Belgium, the great trading city of the 1400s.",
+     "reveal": "van-eyck-van-der-paele"
     },
     {
      "id": "van-eyck-2",
@@ -223,10 +226,10 @@
      "options": [
       "The Arnolfini Portrait",
       "The Ghent Altarpiece",
-      "Las Meninas",
-      "The Night Watch"
+      "The Madonna of Chancellor Rolin",
+      "The Madonna of Canon van der Paele"
      ],
-     "explain": "Bought in 1842. It's the centrepiece of the new show.",
+     "explain": "Bought in 1842. In the new show it hangs for the first time beside a Berlin portrait that may show the same man.",
      "art": "arnolfini"
     },
     {
@@ -239,7 +242,8 @@
       "Tempera on gold",
       "Watercolour"
      ],
-     "explain": "He didn't invent oil paint, but he took it further than anyone before him."
+     "explain": "He didn't invent oil paint, but he took it further than anyone before him.",
+     "reveal": "arnolfini"
     },
     {
      "id": "van-eyck-4",
@@ -265,7 +269,7 @@
       "'Plus ultra'"
      ],
      "explain": "A pun on his name: 'As I/Eyck can'.",
-     "art": "red-turban"
+     "reveal": "red-turban"
     },
     {
      "id": "van-eyck-6",
@@ -278,7 +282,7 @@
       "A portrait of the Duke"
      ],
      "explain": "Above it he wrote, in Latin: 'Jan van Eyck was here 1434'.",
-     "art": "arnolfini"
+     "reveal": "arnolfini"
     },
     {
      "id": "van-eyck-7",
@@ -290,7 +294,7 @@
       "The Portinari Altarpiece",
       "The Wilton Diptych"
      ],
-     "explain": "Begun with his brother Hubert, in St Bavo's Cathedral, Ghent.",
+     "explain": "Begun by his brother Hubert (died 1426) and finished by Jan. It's in St Bavo's Cathedral, Ghent.",
      "art": "ghent"
     },
     {
@@ -347,7 +351,8 @@
       "1800s",
       "1900s"
      ],
-     "explain": "From about 1600 to 1750."
+     "explain": "From about 1600 to 1750.",
+     "reveal": "night-watch"
     },
     {
      "id": "baroque-2",
@@ -385,7 +390,8 @@
       "Flat gold backgrounds",
       "Dots of pure colour"
      ],
-     "explain": "Chiaroscuro: strong contrast of light and dark."
+     "explain": "Chiaroscuro: strong contrast of light and dark.",
+     "reveal": "calling-matthew"
     },
     {
      "id": "baroque-5",
@@ -411,7 +417,7 @@
       "Above"
      ],
      "explain": "Soft daylight from the left falls across a quiet room.",
-     "art": "milkmaid"
+     "reveal": "milkmaid"
     },
     {
      "id": "baroque-7",
@@ -468,7 +474,7 @@
     {
      "id": "baroque-11",
      "level": 3,
-     "q": "Where can you see a self-portrait by Rembrandt?",
+     "q": "In which three of these places can you see a self-portrait by Rembrandt?",
      "options": [
       "National Gallery, London",
       "Kenwood House, London",
@@ -483,7 +489,7 @@
     {
      "id": "baroque-12",
      "level": 4,
-     "q": "Which of these Vermeers belong to the Rijksmuseum in Amsterdam?",
+     "q": "Which three of these Vermeers belong to the Rijksmuseum in Amsterdam?",
      "options": [
       "The Milkmaid",
       "The Love Letter",
@@ -537,7 +543,8 @@
       "Spain",
       "England"
      ],
-     "explain": "Paris and the court of Louis XV."
+     "explain": "Paris and the court of Louis XV.",
+     "reveal": "cythera"
     },
     {
      "id": "rococo-2",
@@ -647,7 +654,8 @@
       "Tate",
       "The British Museum"
      ],
-     "explain": "With Joshua Reynolds as its first President."
+     "explain": "With Joshua Reynolds as its first President.",
+     "reveal": "zoffany-academicians"
     },
     {
      "id": "british18c-2",
@@ -660,7 +668,7 @@
       "Children"
      ],
      "explain": "He dissected horses to publish The Anatomy of the Horse (1766).",
-     "art": "whistlejacket"
+     "reveal": "whistlejacket"
     },
     {
      "id": "british18c-3",
@@ -672,7 +680,7 @@
       "Tapestries",
       "Stained glass"
      ],
-     "explain": "Like A Rake's Progress or Marriage A-la-Mode, sold as cheap prints too.",
+     "explain": "Like A Rake's Progress or Marriage A-la-Mode, which also sold widely as engravings.",
      "art": "marriage-mode"
     },
     {
@@ -686,7 +694,7 @@
       "At a desk"
      ],
      "explain": "He loved landscape and painted it with feathery brushwork.",
-     "art": "andrews"
+     "reveal": "andrews"
     },
     {
      "id": "british18c-5",
@@ -771,7 +779,8 @@
       "c.1870–1890",
       "c.1920–1940"
      ],
-     "explain": "Around the turn of the 19th century."
+     "explain": "Around the turn of the 19th century.",
+     "reveal": "wanderer"
     },
     {
      "id": "romanticism-2",
@@ -783,7 +792,8 @@
       "Everyday modern life",
       "Pure geometry"
      ],
-     "explain": "Feeling over reason."
+     "explain": "Feeling over reason.",
+     "reveal": "nightmare"
     },
     {
      "id": "romanticism-3",
@@ -818,7 +828,7 @@
       "Swirling light and colour that dissolve shapes",
       "Sharp outlines",
       "Tiny dots",
-      "Flat black outlines"
+      "A smooth, polished finish"
      ],
      "explain": "Critics called some of his late pictures 'soapsuds and whitewash'.",
      "art": "rain-steam"
@@ -847,7 +857,7 @@
       "A royal yacht"
      ],
      "explain": "A Trafalgar veteran pulled by a steam tug: the old age giving way to the new.",
-     "art": "temeraire"
+     "reveal": "temeraire"
     },
     {
      "id": "romanticism-8",
@@ -931,7 +941,8 @@
       "1874",
       "1905"
      ],
-     "explain": "1848, a year of revolutions across Europe."
+     "explain": "1848, a year of revolutions across Europe.",
+     "reveal": "millais-isabella"
     },
     {
      "id": "preraphaelites-2",
@@ -943,7 +954,8 @@
       "Courtauld",
       "Royal Academy"
      ],
-     "explain": "Ophelia, The Lady of Shalott, Proserpine and more."
+     "explain": "Ophelia, The Lady of Shalott, Proserpine and more.",
+     "reveal": "ophelia"
     },
     {
      "id": "preraphaelites-3",
@@ -981,7 +993,8 @@
       "Greek philosophy",
       "Science"
      ],
-     "explain": "Shakespeare, Tennyson, Dante, Arthurian legend."
+     "explain": "Shakespeare, Tennyson, Dante, Arthurian legend.",
+     "reveal": "lady-shalott"
     },
     {
      "id": "preraphaelites-6",
@@ -1045,7 +1058,7 @@
     },
     {
      "title": "Courbet",
-     "text": "Gustave Courbet led the charge: 'Show me an angel and I'll paint one.'",
+     "text": "Gustave Courbet led the charge. He is said to have quipped: 'Show me an angel and I'll paint one.'",
      "art": "stone-breakers"
     },
     {
@@ -1065,7 +1078,8 @@
       "Germany",
       "Italy"
      ],
-     "explain": "Around 1848, with Courbet and Millet."
+     "explain": "Around 1848, with Courbet and Millet.",
+     "reveal": "gleaners"
     },
     {
      "id": "realism-2",
@@ -1077,7 +1091,8 @@
       "Saints",
       "Dreams"
      ],
-     "explain": "Courbet painted everyday life at the huge size usually kept for history paintings."
+     "explain": "Courbet painted everyday life at the huge size usually kept for history paintings.",
+     "reveal": "stone-breakers"
     },
     {
      "id": "realism-3",
@@ -1175,7 +1190,8 @@
       "1863",
       "1889"
      ],
-     "explain": "In the former studio of the photographer Nadar."
+     "explain": "In the former studio of the photographer Nadar.",
+     "reveal": "impression-sunrise"
     },
     {
      "id": "impressionism-2",
@@ -1200,7 +1216,8 @@
       "On wet plaster",
       "In one sitting"
      ],
-     "explain": "New paint tubes made it practical."
+     "explain": "New paint tubes made it practical.",
+     "reveal": "sargent-monet-painting"
     },
     {
      "id": "impressionism-4",
@@ -1261,7 +1278,7 @@
      "options": [
       "A Bar at the Folies-Bergère",
       "Olympia",
-      "Le Déjeuner sur l'herbe",
+      "The Fifer",
       "The Railway"
      ],
      "explain": "His last major painting, 1882.",
@@ -1296,7 +1313,7 @@
     {
      "id": "impressionism-11",
      "level": 3,
-     "q": "Which of these artists showed work at the first Impressionist exhibition in 1874?",
+     "q": "Which three of these artists showed work at the first Impressionist exhibition in 1874?",
      "options": [
       "Claude Monet",
       "Berthe Morisot",
@@ -1352,7 +1369,8 @@
       "Émile Zola",
       "Clive Bell"
      ],
-     "explain": "For 'Manet and the Post-Impressionists' at the Grafton Galleries, London, 1910."
+     "explain": "For 'Manet and the Post-Impressionists' at the Grafton Galleries, London, 1910.",
+     "reveal": "fry-self-portrait"
     },
     {
      "id": "postimpressionism-2",
@@ -1364,7 +1382,8 @@
       "Vincent van Gogh",
       "Paul Gauguin"
      ],
-     "explain": "Monet stayed an Impressionist to the end."
+     "explain": "Monet stayed an Impressionist to the end.",
+     "reveal": "water-lilies"
     },
     {
      "id": "postimpressionism-3",
@@ -1512,7 +1531,8 @@
       "Prints of the mountain",
       "Scenes of the capital"
      ],
-     "explain": "A Buddhist idea of fleeting life, recast as city pleasures."
+     "explain": "A Buddhist idea of fleeting life, recast as city pleasures.",
+     "reveal": "utamaro-three-beauties"
     },
     {
      "id": "edo-japan-2",
@@ -1537,7 +1557,8 @@
       "Etching on copper",
       "Silk embroidery"
      ],
-     "explain": "A key block for the outlines, plus one carved block for each colour."
+     "explain": "A key block for the outlines, plus one carved block for each colour.",
+     "reveal": "great-wave"
     },
     {
      "id": "edo-japan-4",
@@ -1571,11 +1592,11 @@
      "q": "Which Hiroshige print did Van Gogh copy in oil?",
      "options": [
       "Plum Park in Kameido",
-      "The Great Wave",
-      "Red Fuji",
-      "Evening Snow"
+      "Evening Snow at Kanbara",
+      "Fireworks at Ryōgoku",
+      "Kinryūzan Temple, Asakusa"
      ],
-     "explain": "In 1887, along with the Sudden Shower.",
+     "explain": "In 1887, along with Sudden Shower over Shin-Ōhashi Bridge.",
      "art": "plum-park"
     }
    ],
@@ -1620,7 +1641,8 @@
       "1919",
       "1874"
      ],
-     "explain": "Klimt was its first president."
+     "explain": "Klimt was its first president.",
+     "reveal": "secession-building"
     },
     {
      "id": "vienna-1900-2",
@@ -1667,11 +1689,12 @@
      "q": "Which younger Viennese artist did Klimt mentor?",
      "options": [
       "Egon Schiele",
-      "Oskar Kokoschka",
+      "Alfons Mucha",
       "Kandinsky",
       "Paul Klee"
      ],
-     "explain": "Schiele's twisted, raw figures took Klimt's line in a darker direction."
+     "explain": "Schiele's twisted, raw figures took Klimt's line in a darker direction.",
+     "reveal": "schiele-physalis"
     }
    ],
    "as": "from Vienna 1900"
@@ -1716,7 +1739,8 @@
       "Free spirits",
       "Mad painters"
      ],
-     "explain": "The critic Louis Vauxcelles' jibe, 1905."
+     "explain": "The critic Louis Vauxcelles' jibe, 1905.",
+     "reveal": "woman-hat"
     },
     {
      "id": "fauvism-2",
@@ -1768,7 +1792,7 @@
       "Orange, purple and brown"
      ],
      "explain": "Commissioned by the Moscow collector Sergei Shchukin.",
-     "art": "dance"
+     "reveal": "dance"
     }
    ],
    "as": "Fauvist"
@@ -1813,7 +1837,8 @@
       "Italy",
       "Spain"
      ],
-     "explain": "Dresden, Berlin and Munich."
+     "explain": "Dresden, Berlin and Munich.",
+     "reveal": "kirchner-potsdamer-platz"
     },
     {
      "id": "expressionism-2",
@@ -1838,7 +1863,8 @@
       "Pure geometry",
       "Light at one moment"
      ],
-     "explain": "Distortion and clashing colour express feeling."
+     "explain": "Distortion and clashing colour express feeling.",
+     "reveal": "scream"
     },
     {
      "id": "expressionism-4",
@@ -1850,7 +1876,8 @@
       "Dots of pure colour",
       "Gold leaf"
      ],
-     "explain": "Tension made visible."
+     "explain": "Tension made visible.",
+     "reveal": "kirchner-soldier"
     },
     {
      "id": "expressionism-5",
@@ -1862,7 +1889,8 @@
       "Berlin",
       "Vienna"
      ],
-     "explain": "By architecture students including Kirchner."
+     "explain": "By architecture students including Kirchner.",
+     "reveal": "kirchner-street-dresden"
     },
     {
      "id": "expressionism-6",
@@ -1874,7 +1902,8 @@
       "Edvard Munch",
       "Otto Dix"
      ],
-     "explain": "Munich, 1911. Marc loved blue horses."
+     "explain": "Munich, 1911. Marc loved blue horses.",
+     "reveal": "marc-blue-horse"
     },
     {
      "id": "expressionism-7",
@@ -1983,7 +2012,8 @@
       "Sgraffito",
       "Decalcomania"
      ],
-     "explain": "Braque made the first one in 1912."
+     "explain": "Braque made the first one in 1912.",
+     "reveal": "gris-breakfast"
     },
     {
      "id": "cubism-6",
@@ -2039,7 +2069,7 @@
     },
     {
      "title": "De Stijl",
-     "text": "Mondrian's Dutch group, from 1917: only straight lines, black, white and the three primary colours.",
+     "text": "A Dutch group founded in 1917 by Theo van Doesburg, with Mondrian as its star: straight lines, right angles, black, white, grey and the three primary colours.",
      "art": "mondrian-rby"
     }
    ],
@@ -2054,7 +2084,8 @@
       "Everyday life",
       "Ancient myths"
      ],
-     "explain": "Colour, line and shape for their own sake."
+     "explain": "Colour, line and shape for their own sake.",
+     "reveal": "composition-vii"
     },
     {
      "id": "abstraction-2",
@@ -2080,7 +2111,7 @@
       "Dots"
      ],
      "explain": "Red, yellow, blue, with black and white.",
-     "art": "mondrian-rby"
+     "reveal": "mondrian-rby"
     },
     {
      "id": "abstraction-4",
@@ -2092,7 +2123,7 @@
       "Poetry",
       "Photography"
      ],
-     "explain": "He called big works 'Compositions' and 'Improvisations'.",
+     "explain": "He gave his paintings musical titles like Compositions and Improvisations.",
      "art": "composition-vii"
     },
     {
@@ -2124,14 +2155,15 @@
     {
      "id": "abstraction-7",
      "level": 4,
-     "q": "Mondrian's De Stijl group came from…",
+     "q": "De Stijl, Mondrian's group, came from…",
      "options": [
       "The Netherlands",
       "Germany",
       "Russia",
       "Belgium"
      ],
-     "explain": "Founded 1917 with Theo van Doesburg."
+     "explain": "Founded in 1917 by Theo van Doesburg, with Mondrian as its star.",
+     "reveal": "mondrian-rby"
     }
    ],
    "as": "abstract art"
@@ -2169,14 +2201,15 @@
     {
      "id": "dada-1",
      "level": 1,
-     "q": "Dada began in 1916 in…",
+     "q": "Dada got its name and started in 1916 at the Cabaret Voltaire in…",
      "options": [
       "Zurich",
       "Paris",
       "Berlin",
       "New York"
      ],
-     "explain": "At the Cabaret Voltaire, founded by Hugo Ball and Emmy Hennings."
+     "explain": "The club was founded by Hugo Ball and Emmy Hennings. Similar anti-art ideas were brewing in New York at the same time.",
+     "reveal": "slodki-cabaret-voltaire-poster"
     },
     {
      "id": "dada-2",
@@ -2188,7 +2221,8 @@
       "Photography",
       "Impressionism"
      ],
-     "explain": "If reason led to war, Dada chose nonsense."
+     "explain": "If reason led to war, Dada chose nonsense.",
+     "reveal": "slodki-cabaret-voltaire-poster"
     },
     {
      "id": "dada-3",
@@ -2214,7 +2248,7 @@
       "Snow shovel"
      ],
      "explain": "Signed 'R. Mutt', 1917. Tate's version is a 1964 replica.",
-     "art": "fountain"
+     "reveal": "fountain"
     },
     {
      "id": "dada-5",
@@ -2227,7 +2261,7 @@
       "A cigarette"
      ],
      "explain": "On a cheap postcard, 1919.",
-     "art": "lhooq"
+     "reveal": "lhooq"
     }
    ],
    "as": "Dada"
@@ -2252,7 +2286,7 @@
     },
     {
      "title": "Two routes",
-     "text": "Precise dream scenes (Dalí, Magritte) or letting the hand wander freely (Miró, Ernst).",
+     "text": "Precise dream scenes (Dalí, Magritte, and Ernst's Celebes, pictured) or letting the hand wander freely (Miró, and Ernst's later rubbings).",
      "art": "celebes"
     },
     {
@@ -2284,7 +2318,8 @@
       "Pure geometry",
       "Industrial machines"
      ],
-     "explain": "Inspired by Freud."
+     "explain": "Inspired by Freud.",
+     "reveal": "narcissus"
     },
     {
      "id": "surrealism-3",
@@ -2309,7 +2344,7 @@
       "A portrait of a king"
      ],
      "explain": "Dream logic, painted realistically.",
-     "art": "reckless-sleeper"
+     "reveal": "reckless-sleeper"
     },
     {
      "id": "surrealism-5",
@@ -2392,12 +2427,13 @@
       "London",
       "Berlin"
      ],
-     "explain": "Pollock, Rothko, de Kooning, Krasner."
+     "explain": "Pollock, Rothko, de Kooning, Krasner.",
+     "reveal": "summertime"
     },
     {
      "id": "abexp-2",
      "level": 2,
-     "q": "Pollock's dripping technique is called…",
+     "q": "Pollock's energetic, whole-body way of painting was dubbed…",
      "options": [
       "Action painting",
       "Colour field",
@@ -2418,7 +2454,7 @@
       "Geometric grids"
      ],
      "explain": "Meant to be seen up close, in dim light.",
-     "art": "black-maroon"
+     "reveal": "black-maroon"
     },
     {
      "id": "abexp-4",
@@ -2464,7 +2500,7 @@
    "intro": [
     {
      "title": "Born in Britain",
-     "text": "London's Independent Group got there first. Richard Hamilton's 1956 collage is often called the first Pop artwork.",
+     "text": "London's Independent Group got there first. Richard Hamilton's 1956 collage is often called the first Pop artwork. Pictured: David Hockney's A Bigger Splash, 1967.",
      "art": "bigger-splash"
     },
     {
@@ -2489,7 +2525,8 @@
       "Dreams",
       "Nature"
      ],
-     "explain": "Popular culture."
+     "explain": "Popular culture.",
+     "reveal": "marilyn"
     },
     {
      "id": "popart-2",
@@ -2541,7 +2578,7 @@
       "A newspaper photo"
      ],
      "explain": "A 1962 panel from All-American Men of War.",
-     "art": "whaam"
+     "reveal": "whaam"
     },
     {
      "id": "popart-6",
@@ -2640,7 +2677,7 @@
       "Surrealism"
      ],
      "explain": "Optical art: patterns that seem to move.",
-     "art": "riley-fall"
+     "reveal": "riley-fall"
     },
     {
      "id": "modern-british-4",
@@ -2653,7 +2690,7 @@
       "Cartoon-like"
      ],
      "explain": "Raw and unsettling.",
-     "art": "three-studies"
+     "reveal": "three-studies"
     },
     {
      "id": "modern-british-5",
@@ -2679,7 +2716,7 @@
       "Ships at Dunkirk"
      ],
      "explain": "A sea of broken planes, painted in 1940–41.",
-     "art": "totes-meer"
+     "reveal": "totes-meer"
     },
     {
      "id": "modern-british-7",
@@ -2737,7 +2774,8 @@
       "Frieze",
       "Brilliant!"
      ],
-     "explain": "Organised by Hirst. Frieze, the fair, came later (2003)."
+     "explain": "Organised by Hirst. Frieze, the fair, came later (2003).",
+     "reveal": "pharmacy"
     },
     {
      "id": "yba-2",
@@ -2749,7 +2787,8 @@
       "Nicholas Serota",
       "Larry Gagosian"
      ],
-     "explain": "His 'Sensation' show went to the RA in 1997."
+     "explain": "His 'Sensation' show went to the RA in 1997.",
+     "reveal": "saatchi-gallery-chelsea"
     },
     {
      "id": "yba-3",
@@ -2761,7 +2800,8 @@
       "Oil glazes",
       "Watercolour landscapes"
      ],
-     "explain": "Animals, beds, medicine cabinets."
+     "explain": "Animals, beds, medicine cabinets.",
+     "reveal": "pharmacy"
     },
     {
      "id": "yba-4",
@@ -2773,7 +2813,8 @@
       "Rachel Whiteread",
       "Gillian Wearing"
      ],
-     "explain": "Shown at the Turner Prize in 1999."
+     "explain": "Shown at the Turner Prize in 1999.",
+     "reveal": "tate-britain-building"
     },
     {
      "id": "yba-5",
@@ -2831,7 +2872,8 @@
       "Dora Carrington",
       "Ottoline Morrell"
      ],
-     "explain": "The novelist."
+     "explain": "The novelist.",
+     "reveal": "studland"
     },
     {
      "id": "bloomsbury-2",
@@ -2843,7 +2885,8 @@
       "A painting",
       "A country house"
      ],
-     "explain": "Where many of them lived, around Gordon Square."
+     "explain": "Where many of them lived, around Gordon Square.",
+     "reveal": "gordon-square-plaques"
     },
     {
      "id": "bloomsbury-3",
@@ -2868,7 +2911,8 @@
       "Buildings",
       "Fashion shows"
      ],
-     "explain": "Through Roger Fry's Omega Workshops."
+     "explain": "Through Roger Fry's Omega Workshops.",
+     "reveal": "charleston"
     },
     {
      "id": "bloomsbury-5",
@@ -2893,7 +2937,8 @@
       "Morris & Co.",
       "Hogarth Press"
      ],
-     "explain": "In Fitzroy Square. (The Hogarth Press was the Woolfs' publishing house.)"
+     "explain": "In Fitzroy Square. (The Hogarth Press was the Woolfs' publishing house.)",
+     "reveal": "fry-plaque-fitzroy-square"
     },
     {
      "id": "bloomsbury-7",
@@ -2950,7 +2995,8 @@
       "Architect",
       "Art critic"
      ],
-     "explain": "One of the 20th century's great collectors."
+     "explain": "One of the 20th century's great collectors.",
+     "reveal": "guggenheim-venice"
     },
     {
      "id": "guggenheim-2",
@@ -2975,7 +3021,7 @@
       "Japanese prints"
      ],
      "explain": "She was briefly married to the Surrealist Max Ernst.",
-     "art": "celebes"
+     "reveal": "celebes"
     },
     {
      "id": "guggenheim-4",
@@ -2985,7 +3031,7 @@
       "Jackson Pollock",
       "Andy Warhol",
       "Edward Hopper",
-      "Mark Rothko"
+      "Roy Lichtenstein"
      ],
      "explain": "She gave him a contract and his first solo show (1943).",
      "art": "summertime"
@@ -3046,7 +3092,7 @@
       "Brewery"
      ],
      "explain": "Bankside Power Station, converted by Herzog & de Meuron, opened 2000.",
-     "art": "tate-modern-building"
+     "reveal": "tate-modern-building"
     },
     {
      "id": "tate-2",
@@ -3058,7 +3104,8 @@
       "Tea",
       "Railways"
      ],
-     "explain": "Tate & Lyle descends from his company."
+     "explain": "Tate & Lyle descends from his company.",
+     "reveal": "henry-tate-plaque"
     },
     {
      "id": "tate-3",
@@ -3083,7 +3130,8 @@
       "1995",
       "2000"
      ],
-     "explain": "Malcolm Morley was the first winner."
+     "explain": "Malcolm Morley was the first winner.",
+     "reveal": "tate-britain-building"
     },
     {
      "id": "tate-5",
@@ -3091,7 +3139,7 @@
      "q": "Tate Britain's Clore Gallery holds…",
      "options": [
       "The Turner Bequest",
-      "The Rothko Room",
+      "Henry Moore's sculptures",
       "The Pre-Raphaelites",
       "Hepworth's studio"
      ],
@@ -3115,7 +3163,7 @@
    "intro": [
     {
      "title": "Founded 1824",
-     "text": "It began with 38 paintings bought from the banker John Julius Angerstein, and moved to Trafalgar Square in 1838.",
+     "text": "It began with 38 paintings from the collection of the late financier John Julius Angerstein, bought by the government in 1824. It moved to Trafalgar Square in 1838.",
      "art": "ng-building"
     },
     {
@@ -3153,7 +3201,8 @@
       "1897",
       "1769"
      ],
-     "explain": "The British Museum is older (1753)."
+     "explain": "The British Museum is older (1753).",
+     "reveal": "ng-building"
     },
     {
      "id": "national-gallery-3",
@@ -3165,7 +3214,8 @@
       "1950",
       "Today"
      ],
-     "explain": "Later art is mostly at Tate."
+     "explain": "Later art is mostly at Tate.",
+     "reveal": "sunflowers"
     },
     {
      "id": "national-gallery-4",
@@ -3183,14 +3233,15 @@
     {
      "id": "national-gallery-5",
      "level": 4,
-     "q": "The founding collection came from which banker?",
+     "q": "The founding collection came from which financier?",
      "options": [
       "John Julius Angerstein",
       "Henry Tate",
       "Richard Wallace",
       "Samuel Courtauld"
      ],
-     "explain": "38 paintings bought by Parliament."
+     "explain": "38 paintings from his collection, bought by the government in 1824 after his death.",
+     "reveal": "lawrence-angerstein"
     }
    ]
   },
@@ -3244,10 +3295,11 @@
      "options": [
       "George III",
       "Queen Victoria",
-      "Joshua Reynolds alone",
+      "William Hogarth",
       "Parliament"
      ],
-     "explain": "Reynolds was its first President."
+     "explain": "Reynolds was its first President.",
+     "reveal": "ramsay-george-iii"
     },
     {
      "id": "royal-academy-3",
@@ -3259,7 +3311,8 @@
       "Only sculpture",
       "It's in a park"
      ],
-     "explain": "Held every year since 1769."
+     "explain": "Held every year since 1769.",
+     "reveal": "frith-private-view"
     },
     {
      "id": "royal-academy-4",
@@ -3271,7 +3324,8 @@
       "Frieze",
       "Brilliant!"
      ],
-     "explain": "Charles Saatchi's collection."
+     "explain": "Charles Saatchi's collection.",
+     "reveal": "burlington"
     }
    ]
   },
@@ -3308,14 +3362,15 @@
     {
      "id": "auctions-1",
      "level": 1,
-     "q": "Which auction house is older?",
+     "q": "Which of these auction houses is the oldest?",
      "options": [
       "Sotheby's",
       "Christie's",
       "Phillips",
       "Bonhams"
      ],
-     "explain": "Sotheby's, 1744. Christie's followed in 1766."
+     "explain": "Sotheby's, 1744. Christie's followed in 1766.",
+     "reveal": "sothebys-new-bond-street"
     },
     {
      "id": "auctions-2",
@@ -3340,7 +3395,8 @@
       "Guarantee",
       "Estimate"
      ],
-     "explain": "A percentage of the hammer price."
+     "explain": "A percentage of the hammer price.",
+     "reveal": "christies-microcosm"
     },
     {
      "id": "auctions-4",
@@ -3352,19 +3408,21 @@
       "Hammer price",
       "Premium"
      ],
-     "explain": "If bidding falls short, the lot is 'bought in'."
+     "explain": "If bidding falls short, the lot is 'bought in'.",
+     "reveal": "christies-microcosm"
     },
     {
      "id": "auctions-5",
      "level": 4,
-     "q": "A 'guarantee' at auction means…",
+     "q": "When an auction house gives a seller a 'guarantee', it means…",
      "options": [
       "The seller is promised a minimum price",
-      "The work is certified real",
+      "The lot is sold without a reserve",
       "Free shipping",
       "The buyer can return it"
      ],
-     "explain": "Houses offer it to win big consignments."
+     "explain": "Houses offer it to win big consignments.",
+     "reveal": "sothebys-new-bond-street"
     },
     {
      "id": "auctions-6",
@@ -3405,8 +3463,7 @@
     },
     {
      "title": "Frieze",
-     "text": "Frieze London launched in Regent's Park in 2003. Frieze Masters, for older art, followed in 2012.",
-     "art": "grand-palais"
+     "text": "Frieze London launched in Regent's Park in 2003. Frieze Masters, for older art, followed in 2012."
     }
    ],
    "questions": [
@@ -3420,7 +3477,8 @@
       "2003",
       "1955"
      ],
-     "explain": "By Basel gallerists including Ernst Beyeler."
+     "explain": "By Basel gallerists including Ernst Beyeler.",
+     "reveal": "messe-basel-hall-2"
     },
     {
      "id": "art-fairs-2",
@@ -3432,7 +3490,8 @@
       "Battersea Park",
       "Olympia"
      ],
-     "explain": "Every October."
+     "explain": "Every October.",
+     "reveal": "regents-park"
     },
     {
      "id": "art-fairs-3",
@@ -3444,7 +3503,8 @@
       "Artists directly",
       "Museums"
      ],
-     "explain": "Each gallery rents a booth."
+     "explain": "Each gallery rents a booth.",
+     "reveal": "messe-basel-hall-2"
     },
     {
      "id": "art-fairs-4",
@@ -3501,7 +3561,8 @@
       "London, England",
       "Dhaka, Bangladesh"
      ],
-     "explain": "In 1983. He now lives and works in New York."
+     "explain": "In 1983. He now lives and works in New York.",
+     "reveal": "toor-ghost-ball"
     },
     {
      "id": "salman-toor-2",
@@ -3514,7 +3575,7 @@
       "Black"
      ],
      "explain": "A glowing green, almost like absinthe, sets the mood in many of his scenes.",
-     "art": "toor-bar-13th"
+     "reveal": "toor-bar-13th"
     },
     {
      "id": "salman-toor-3",
@@ -3526,7 +3587,8 @@
       "National Gallery, London",
       "Hayward Gallery, London"
      ],
-     "explain": "It's his first solo museum show in Europe."
+     "explain": "It's his first solo museum show in Europe.",
+     "reveal": "somerset-house"
     },
     {
      "id": "salman-toor-4",
@@ -3551,7 +3613,8 @@
       "Lahore",
       "Paris"
      ],
-     "explain": "He trained in the US, at Ohio Wesleyan University and then Pratt Institute in Brooklyn."
+     "explain": "He trained in the US, at Ohio Wesleyan University and then Pratt Institute in Brooklyn.",
+     "reveal": "toor-bar-13th"
     },
     {
      "id": "salman-toor-6",
@@ -3575,7 +3638,8 @@
       "Guggenheim Museum, New York",
       "Metropolitan Museum of Art, New York"
      ],
-     "explain": "'How Will I Know' ran at the Whitney in 2020 to 2021."
+     "explain": "'How Will I Know' ran at the Whitney in 2020 to 2021.",
+     "reveal": "toor-bar-boy"
     },
     {
      "id": "salman-toor-8",
@@ -3587,7 +3651,8 @@
       "Andy Warhol",
       "Frida Kahlo"
      ],
-     "explain": "Two Vermeers: a sign of how closely his work talks to the Old Masters."
+     "explain": "Two Vermeers: a sign of how closely his work talks to the Old Masters.",
+     "reveal": "vermeer-officer"
     },
     {
      "id": "salman-toor-9",
@@ -3599,7 +3664,8 @@
       "Ancient Egyptian art",
       "Abstract Expressionism"
      ],
-     "explain": "He has named Van Dyck, Rubens, Caravaggio and Watteau among his influences."
+     "explain": "He has named Van Dyck, Rubens, Caravaggio and Watteau among his influences.",
+     "reveal": "cythera"
     },
     {
      "id": "salman-toor-10",
@@ -3624,7 +3690,8 @@
       "The Turner Prize",
       "The Archibald Prize"
      ],
-     "explain": "He was in the main exhibition of the 60th Venice Biennale."
+     "explain": "He was in the main exhibition of the 60th Venice Biennale.",
+     "reveal": "biennale-central-pavilion"
     },
     {
      "id": "salman-toor-12",
@@ -3648,7 +3715,8 @@
       "Zadie Smith",
       "Mohsin Hamid"
      ],
-     "explain": "A retelling of a legend from the Sundarbans, the mangrove forests of India and Bangladesh."
+     "explain": "A retelling of a legend from the Sundarbans, the mangrove forests of India and Bangladesh.",
+     "reveal": "sundarbans-mangroves"
     }
    ]
   }

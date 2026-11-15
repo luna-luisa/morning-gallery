@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 09:39"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 11:43"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -44,9 +44,9 @@ async function loadContent(){
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
   W = Object.fromEntries(WORKS.map(x => [x.id, x]));
-  ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic]);
+  ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic] && x.quiz !== false);
 }
-const yearText = w => (w.approx ? "c." : "") + w.year;
+const yearText = w => w.yearLabel || (w.approx ? "c." : "") + w.year;
 const tName = id => (TOPICS[id] && TOPICS[id].name) || "";
 
 /* ---------------- storage ---------------- */
@@ -137,7 +137,7 @@ const BOX = [1, 3, 7, 21];
 function srs(q, ok){
   const k = q.key, it = state.srs[k];
   if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "This one will come back in a later round."; }
-  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return `You'll see it again in ${BOX[it.box]} days.`; }
+  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return ""; }
   return "";
 }
 const seenToday = k => (state.lastSeen || {})[k] === today();
@@ -155,6 +155,24 @@ function nearArtists(w, n, r){
   const pool = others.sort((a, b) => Math.abs(yr(a) - w.year) - Math.abs(yr(b) - w.year)).slice(0, 10);
   return shuffle(pool, r).slice(0, n);
 }
+/* a picture shown before answering must not hand over the answer */
+const STOP = new Set(["the","and","with","from","into","over","this","that","portrait","study","self","of","a","an","in","on","at"]);
+const words = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(/[a-z]{4,}/g) || [];
+function givesAway(x, w){
+  if (/\b(this|these|here|shown|pictured|above)\b/i.test(x.q)) return false; // the question is about the picture itself
+  const qw = new Set(words(x.q)), tw = words(w.title).filter(t => !STOP.has(t));
+  if (tw.length && tw.every(t => qw.has(t)) && !x.options.some(o => o.toLowerCase().includes(w.title.toLowerCase()))) return false; // the question names the work: showing it is fine
+  const right = x.options.slice(0, x.correct || 1).join(" "), rw = new Set(words(right));
+  const title = words(w.title).filter(t => !STOP.has(t)), artist = words(w.artist).filter(t => !STOP.has(t));
+  return title.some(t => rw.has(t)) || artist.some(t => rw.has(t)) || x.options.some(o => o.toLowerCase().includes(w.title.toLowerCase()));
+}
+/* a question without its own picture: after answering, show a work that fits, labelled, never one tied to a wrong option */
+function revealFor(tid, x){
+  const right = words(x.options.slice(0, x.correct || 1).join(" ")), wrong = new Set(words(x.options.slice(x.correct || 1).join(" ")));
+  const pool = ART.filter(w => w.topic === tid && w.img && !words(w.artist + " " + w.title).some(t => wrong.has(t)));
+  const byRight = pool.filter(w => words(w.artist + " " + w.title).some(t => right.includes(t) && !STOP.has(t)));
+  return byRight.length ? byRight[hash(x.id || x.q) % byRight.length].id : null;
+}
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
 const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
@@ -162,8 +180,8 @@ const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /,
 const BUILD = {
   Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null;
     if (x.correct > 1){ const opts = shuffle(x.options); return {key, topic:tid, level:x.level, type:"mc", multi:true, prompt:x.q, options:opts, answers:x.options.slice(0, x.correct).map(o => opts.indexOf(o)), answer:opts.indexOf(x.options[0]), explain:x.explain, art:x.art}; }
-    const aw = W[x.art], gives = aw && x.level >= 2 && x.options.some(o => o.toLowerCase().includes(aw.title.toLowerCase()));
-    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art: gives ? null : x.art, reveal: gives ? x.art : x.reveal}); },
+    const aw = W[x.art], gives = aw && !x.keepArt && givesAway(x, aw);
+    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art: gives ? null : x.art, reveal: gives ? x.art : x.reveal || (aw ? null : revealFor(tid, x))}); },
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
@@ -194,7 +212,7 @@ const BUILD = {
     return mc({key, topic:w.topic, level:3, prompt:"Who made this?", options:[w.artist, ...nearArtists(w, 3, rng(key))], art:w.id, explain:w.hook, needsArt:true});
   },
   H(key){
-    const wid = key.split(":")[1], w = W[wid]; if (!w || !w.place || /Private|Destroyed/.test(w.place) || !TOPICS[w.topic]) return null;
+    const wid = key.split(":")[1], w = W[wid]; if (!w || !w.place || /Private|Destroyed|Pinault/.test(w.place) || !TOPICS[w.topic]) return null;
     const places = [...new Set(WORKS.map(x => x.place).filter(p => p && p !== w.place && !/Private|Destroyed|^Tate, London$/.test(p) && (!venue(w.place) || venue(p)) && !(/Vatican/.test(p) && /Vatican/.test(w.place))))];
     return mc({key, topic:w.topic, level:3, prompt:"Where can you see this?", options:[w.place, ...shuffle(places, rng(key)).slice(0, 3)], art:w.id, explain:w.hook, needsArt:true, long:true});
   },
@@ -470,9 +488,8 @@ function fitScreen(){
   const img = $("#view > .spot img"), pr = $("#view > .prompt"), over = () => document.documentElement.scrollHeight > innerHeight + 1;
   if (img) img.style.maxHeight = ""; if (pr) pr.style.fontSize = "";
   for (let h = 26; over() && img && h >= 12; h -= 2) img.style.maxHeight = h + "svh";
-  for (let f = 28; over() && pr && f >= 21; f -= 1) pr.style.fontSize = f + "px";
 }
-function inRound(on){ document.body.classList.toggle("inround", on); if (!on){ closeSheet(); delete document.body.dataset.room; } }
+function inRound(on){ document.body.classList.toggle("inround", on); delete document.body.dataset.screen; if (!on){ closeSheet(); delete document.body.dataset.room; } }
 function render(){
   view.ontouchstart = view.ontouchend = null; closeSheet(); inRound(true);
   const x = S.q[S.i];
@@ -487,6 +504,7 @@ function render(){
       <div class="dock"><button class="btn" id="go">Go</button></div>`;
     $("#go").onclick = () => next(1); return;
   }
+  document.body.dataset.screen = "q";
   const w = x.art && x.type !== "pick" ? W[x.art] : null;
   const L = x.topic && TOPICS[x.topic] && !x.news ? lvlOf(x.topic) : 0;
   const pics = x.type === "pick" || x.venues, hint = pics && (state.hints || 0) < 3;
@@ -496,12 +514,12 @@ function render(){
     <div class="qhead">
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
-    ${w ? figure(w) : ""}
+    ${w ? figure(w, "qpic") : `<div class="qspace"></div>`}
     <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
-    ${x.multi ? `<p class="small muted hint">More than one is right. Pick all you think fit.</p>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
+    ${x.multi ? `<div class="stretch"><span class="tag pickn">Pick ${x.answers.length}</span></div>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
-    <div id="ans" class="ansarea ${w ? "" : "tall"}"></div>
-    <div class="dock"><button class="btn" id="check" disabled>Check</button></div>
+    <div id="ans" class="ansarea"></div>
+    <div class="dock"><button class="btn" id="check" disabled>${x.multi ? `Pick ${x.answers.length}` : "Check"}</button></div>
     ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
   $("#quit").onclick = () => { S = null; go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
@@ -525,14 +543,16 @@ function choose(x, isRight, caps){
   tiles.forEach(b => b.addEventListener("click", () => {
     if (b.disabled) return;
     const i = +b.dataset.i;
-    if (x.multi) picked.has(i) ? picked.delete(i) : picked.add(i);
+    const need = x.multi ? x.answers.length : 1;
+    if (x.multi){ if (picked.has(i)) picked.delete(i); else if (picked.size < need) picked.add(i); else return; }
     else { const had = picked.has(i); picked.clear(); if (!had) picked.add(i); }
     tiles.forEach(t => { const on = picked.has(+t.dataset.i); t.classList.toggle("sel", on); t.setAttribute("aria-pressed", String(on)); });
-    check.disabled = !picked.size;
+    check.disabled = picked.size < need;
+    if (x.multi) check.textContent = picked.size >= need ? "Check" : picked.size ? `Pick ${need - picked.size} more` : `Pick ${need}`;
   }));
   check.onclick = () => {
     const right = tiles.map(t => +t.dataset.i).filter(isRight), found = [...picked].filter(i => right.includes(i)).length;
-    const ok = found === right.length && picked.size === right.length;
+    const ok = found === right.length && picked.size === right.length; x.mine = [...picked];
     tiles.forEach(t => { const i = +t.dataset.i; t.disabled = true; t.classList.remove("sel");
       if (right.includes(i)) t.classList.add(picked.has(i) || !x.multi ? "right" : "missed"); else if (picked.has(i)) t.classList.add("wrong"); else t.classList.add("dim");
       if (caps){ const w = W[x.images[i]]; t.insertAdjacentHTML("beforeend", `<span class="cap">${esc(w.artist)}, ${yearText(w)}</span>`); } });
@@ -609,8 +629,8 @@ function answered(x, ok){
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
-      ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
-      ${x.type === "pick" && x.multi ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${x.answers.includes(i) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
+      ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
+      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>${x.multi ? "" : `<span class="small muted">Yours is marked in red, the right one in green.</span>`}` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
