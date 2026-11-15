@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 22:03"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 22:04"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -535,7 +535,7 @@ function render(){
     ${w ? figure(w, "qpic") : ""}
     <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
     ${x.multi ? "" : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
-    ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
+    
     <div id="ans" class="ansarea"></div>
     <div class="dock"><button class="btn ghost" id="check">Not sure</button></div>
     ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
@@ -763,7 +763,7 @@ function renderToday(){
   if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
 }
 function renderTopics(){
-  view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1><p class="muted">Every topic has five levels, from Visitor to Curator. You move up by getting most of a level right, on at least two different days.</p></div>
+  view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1><p class="muted">Every topic has five levels, from Visitor to Curator. Keep playing and you'll climb.</p></div>
     ${GROUPS.filter(([g]) => Object.values(TOPICS).some(t => t.group === g)).map(([g, label]) => `<div><span class="eyebrow">${label}</span>${Object.keys(TOPICS).filter(t => TOPICS[t].group === g).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0)).map(t => `<button class="trow" data-t="${t}"><span class="tname">${esc(TOPICS[t].name)}${featured().includes(t) ? ' <span class="eyebrow gold">in the news</span>' : ""}</span><span class="lv">${dots(lvlOf(t))} ${LEVELS[lvlOf(t)-1]}</span></button>`).join("")}</div>`).join("")}`;
   $$(".trow").forEach(b => b.onclick = () => go("topic", b.dataset.t));
 }
