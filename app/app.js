@@ -763,7 +763,122 @@ function renderToday(){
   if ($("#pnew")) $("#pnew").onclick = () => playTopic(ex.fresh);
   if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
 }
+const isAdmin = () => !!(profiles[pid] && profiles[pid].admin);
+/* ---------- topics page (trial for the admin): search + sections by kind ---------- */
+const KINDS = [["artist", "Artists"], ["movement", "Movements"], ["place", "Museums & galleries"], ["market", "The art market"]];
+const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+function topicHits(q){
+  const f = fold(q).trim(); if (!f) return null;
+  const out = {};
+  Object.entries(TOPICS).forEach(([id, t]) => {
+    if (fold(t.name).includes(f) || fold(t.as).includes(f)) { out[id] = ""; return; }
+    const w = WORKS.find(x => x.topic === id && (fold(x.artist).includes(f) || fold(x.title).includes(f)));
+    if (w) out[id] = fold(w.artist).includes(f) ? w.artist : w.title;
+  });
+  return out;
+}
+const trowHTML = (t, via) => `<button class="trow" data-t="${t}"><span class="tname">${esc(TOPICS[t].name)}${featured().includes(t) ? ' <span class="eyebrow gold">in the news</span>' : ""}</span>${via ? `<span class="small muted">${esc(via)}</span>` : ""}<span class="lv">${dots(lvlOf(t))} ${LEVELS[lvlOf(t)-1]}</span></button>`;
+function renderTopicsNew(){
+  const pics = swipeDeck(3);
+  view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1></div>
+    <button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">Ten artworks. Find what you like.</span></span></button>
+    <label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">
+    <div id="tlist"></div>`;
+  const list = $("#tlist"), q = $("#tq");
+  const draw = () => {
+    const hits = topicHits(q.value), term = q.value.trim();
+    const ids = hits ? Object.keys(hits) : Object.keys(TOPICS);
+    const sec = KINDS.map(([k, label]) => {
+      const mine = ids.filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
+      return mine.length ? `<div><span class="eyebrow">${label}</span>${mine.map(t => trowHTML(t, hits && hits[t])).join("")}</div>` : "";
+    }).join("");
+    const done = state.asked["want:" + fold(term)];
+    const ask = term.length >= 3 && store.online ? `<div class="askrow"><span class="small muted">${ids.length ? "Not what you're after?" : `Nothing on “${esc(term)}” yet.`}</span><button class="btn ghost" id="want" ${done ? "disabled" : ""}>${done ? "Thanks, we'll look into it" : `Ask for “${esc(term)}”`}</button></div>` : "";
+    list.innerHTML = sec + ask;
+    $$("#tlist .trow").forEach(b => b.onclick = () => go("topic", b.dataset.t));
+    if ($("#want") && !done) $("#want").onclick = async () => {
+      const b = $("#want"); b.disabled = true; b.textContent = "Sending…";
+      try { await requestMore("", "content", `Searched the topics for "${term}" and would like to learn about it`, "search:" + term); state.asked["want:" + fold(term)] = today(); save(); b.textContent = "Thanks, we'll look into it"; }
+      catch(e){ b.disabled = false; b.textContent = "Couldn't send. Tap to try again."; }
+    };
+  };
+  q.oninput = draw; draw();
+  $("#swipe").onclick = startSwipe;
+}
+
+/* ---------- swipe to discover (trial for the admin) ---------- */
+const plainArtist = a => String(a || "").replace(/\s*\((attributed|after|workshop)[^)]*\)/i, "").replace(/\s+and workshop$/i, "").trim();
+function artistTopic(name){
+  const n = plainArtist(name);
+  return Object.keys(TOPICS).find(id => TOPICS[id].kind === "artist" && (TOPICS[id].name === n || WORKS.some(w => w.topic === id && plainArtist(w.artist) === n))) || null;
+}
+function swipeDeck(n = 10){
+  const pool = shuffle(WORKS.filter(w => w.hw >= 1.15 && !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img)));
+  const seen = state.swiped || {}, fresh = pool.filter(w => !seen[w.id]), rest = pool.filter(w => seen[w.id]);
+  const pick = [], topics = new Set(), artists = new Set();
+  [...fresh, ...rest].forEach(w => { const a = plainArtist(w.artist); if (pick.length < n && !topics.has(w.topic) && !artists.has(a)){ pick.push(w); topics.add(w.topic); artists.add(a); } });
+  return pick;
+}
+function startSwipe(){
+  const deck = swipeDeck(10), liked = []; let i = 0;
+  if (!deck.length) return;
+  deck.forEach(w => loadImg(w.img));
+  inRound(true); document.body.dataset.screen = "sw"; scrollTo(0, 0);
+  const draw = () => {
+    if (i >= deck.length) return swipeEnd(deck, liked);
+    const w = deck[i];
+    view.innerHTML = `
+      <div class="line"><i style="width:${i / deck.length * 100}%"></i></div>
+      <div class="qhead"><span class="eyebrow">Discover · ${i + 1} of ${deck.length}</span><button class="btn link" id="x">Close</button></div>
+      <div class="swstage"><div class="swcard" id="card"><img src="${esc(w.img)}" alt="An artwork" referrerpolicy="no-referrer" draggable="false"><span class="stamp yes">Like</span><span class="stamp no">Pass</span></div></div>
+      <p class="small muted center swhint">${i ? "&nbsp;" : "Swipe right if you like it, left if not."}</p>
+      <div class="swbtns"><button class="swb no" id="no" aria-label="Not for me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button class="swb yes" id="yes" aria-label="I like this"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button></div>`;
+    const card = $("#card");
+    const decide = like => {
+      if (card.dataset.gone) return; card.dataset.gone = "1";
+      (state.swiped = state.swiped || {})[w.id] = today(); if (like) liked.push(w);
+      card.style.transition = "transform .3s ease, opacity .3s ease";
+      card.style.transform = `translateX(${like ? 130 : -130}%) rotate(${like ? 14 : -14}deg)`; card.style.opacity = "0";
+      setTimeout(() => { i++; draw(); }, 260);
+    };
+    let x0 = null, dx = 0;
+    card.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.setPointerCapture(e.pointerId); card.style.transition = "none"; });
+    card.addEventListener("pointermove", e => { if (x0 === null) return; dx = e.clientX - x0; card.style.transform = `translateX(${dx}px) rotate(${dx / 22}deg)`; card.style.setProperty("--yes", Math.max(0, Math.min(1, dx / 90))); card.style.setProperty("--no", Math.max(0, Math.min(1, -dx / 90))); });
+    const up = () => { if (x0 === null) return; x0 = null; if (Math.abs(dx) > 90) decide(dx > 0); else { card.style.transition = "transform .2s ease"; card.style.transform = ""; card.style.setProperty("--yes", 0); card.style.setProperty("--no", 0); } };
+    card.addEventListener("pointerup", up); card.addEventListener("pointercancel", up);
+    $("#yes").onclick = () => decide(true);
+    $("#no").onclick = () => decide(false);
+    $("#x").onclick = () => { save(); go("topics"); };
+  };
+  draw();
+}
+function swipeEnd(deck, liked){
+  save(); document.body.dataset.screen = ""; delete document.body.dataset.screen;
+  view.innerHTML = `
+    <div class="line"><i style="width:100%"></i></div>
+    <div class="qhead"><span class="eyebrow">Discover</span><button class="btn link" id="x">Close</button></div>
+    <div class="stack"><h1>${liked.length ? `Your <span class="serif">picks</span>` : `Nothing <span class="serif">clicked?</span>`}</h1>
+      <p class="muted">${liked.length ? `You liked ${liked.length} of ${deck.length}. Here's who made them.` : "Try another ten. Taste takes a few rounds."}</p></div>
+    <div class="picks">${liked.map((w, k) => { const at = artistTopic(w.artist), asked = state.asked["artist:" + plainArtist(w.artist)];
+      return `<div class="pick"><span class="pimg" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="pinfo"><b>${esc(w.artist)}</b><span class="small"><i>${esc(w.title)}</i>, ${esc(yearText(w))}</span>
+        ${at ? `<button class="btn small" data-play="${at}">Play ${esc(tName(at))}</button>`
+             : store.online ? `<button class="btn ghost small" data-want="${k}" ${asked ? "disabled" : ""}>${asked ? "Asked, coming soon" : `Learn more about ${esc(plainArtist(w.artist))}`}</button>` : ""}
+        ${at === w.topic ? "" : `<button class="btn link small" data-topic="${w.topic}">Explore ${esc(tName(w.topic))}</button>`}</div></div>`; }).join("")}</div>
+    <div class="stack"><button class="btn" id="again">Swipe ten more</button><button class="btn ghost" id="back">Back to topics</button></div>`;
+  wireHold(view);
+  $("#x").onclick = $("#back").onclick = () => go("topics");
+  $("#again").onclick = startSwipe;
+  $$("[data-play]").forEach(b => b.onclick = () => playTopic(b.dataset.play));
+  $$("[data-topic]").forEach(b => b.onclick = () => go("topic", b.dataset.topic));
+  $$("[data-want]").forEach(b => b.onclick = async () => {
+    const w = liked[+b.dataset.want], a = plainArtist(w.artist); b.disabled = true; b.textContent = "Sending…";
+    try { await requestMore(w.topic, "content", `Liked ${a}'s ${w.title} in Swipe to discover and would like a topic on ${a}`, "artist:" + a); state.asked["artist:" + a] = today(); save(); b.textContent = "Asked, coming soon"; }
+    catch(e){ b.disabled = false; b.textContent = "Couldn't send. Tap to try again."; }
+  });
+  scrollTo(0, 0);
+}
 function renderTopics(){
+  if (isAdmin()) return renderTopicsNew();
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1><p class="muted">Every topic has five levels, from Visitor to Curator. Keep playing and you'll climb.</p></div>
     ${GROUPS.filter(([g]) => Object.values(TOPICS).some(t => t.group === g)).map(([g, label]) => `<div><span class="eyebrow">${label}</span>${Object.keys(TOPICS).filter(t => TOPICS[t].group === g).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0)).map(t => `<button class="trow" data-t="${t}"><span class="tname">${esc(TOPICS[t].name)}${featured().includes(t) ? ' <span class="eyebrow gold">in the news</span>' : ""}</span><span class="lv">${dots(lvlOf(t))} ${LEVELS[lvlOf(t)-1]}</span></button>`).join("")}</div>`).join("")}`;
   $$(".trow").forEach(b => b.onclick = () => go("topic", b.dataset.t));
