@@ -555,3 +555,4 @@ body[data-screen="sw"] main > *{flex-shrink:0}
 .pinfo b{font-size:18px}
 .btn.small{min-height:40px;font-size:12px;padding:0 14px;width:auto;margin-top:8px}
 .btn.link.small{min-height:0;margin-top:4px;font-size:13px;padding:0}
+.swintro .ico.heart svg{stroke:var(--pink-ink);fill:var(--pink-ink)}

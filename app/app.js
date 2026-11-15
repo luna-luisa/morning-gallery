@@ -819,7 +819,29 @@ function swipeDeck(n = 10){
   [...fresh, ...rest].forEach(w => { const a = plainArtist(w.artist); if (pick.length < n && !topics.has(w.topic) && !artists.has(a)){ pick.push(w); topics.add(w.topic); artists.add(a); } });
   return pick;
 }
+/* a single welcome-style card, the first three times */
+function swipeIntro(done){
+  const el = document.createElement("div"); el.id = "welcome"; el.className = "welcome"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Swipe to discover");
+  const ic = d => `<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+  el.innerHTML = `<div class="wpage swintro"><button class="btn link wskip" data-go="x">Close</button>
+    <span class="eyebrow" style="color:var(--klein)">Swipe to discover</span>
+    <h2 class="wh2">Find what <span class="serif">you like</span></h2>
+    <div class="wtips">
+      <div class="wtip"><span class="ico heart">${ic('<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>')}</span>Swipe right if you like it.</div>
+      <div class="wtip"><span class="ico">${ic('<path d="M6 6l12 12M18 6L6 18"/>')}</span>Swipe left if not.</div>
+      <div class="wtip"><span class="ico">${ic('<path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.3 7.6C3.6 9.4 2 12 2 12s4 6 10 6a9.6 9.6 0 0 0 4.4-1.1"/>')}</span>No names, just the art.</div>
+      <div class="wtip"><span class="ico">${ic('<path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/>')}</span>Then see who made your favourites.</div></div>
+    <div class="wfoot"><button class="btn" data-go="go">Let's swipe</button></div></div>`;
+  document.body.appendChild(el); document.body.classList.add("welcoming");
+  const close = () => { el.remove(); document.body.classList.remove("welcoming"); };
+  el.querySelector('[data-go="go"]').onclick = () => { state.swIntro = (state.swIntro || 0) + 1; save(); close(); done(); };
+  el.querySelector('[data-go="x"]').onclick = close;
+}
 function startSwipe(){
+  if ((state.swIntro || 0) < 3 && !document.getElementById("welcome")) return swipeIntro(startSwipeNow);
+  startSwipeNow();
+}
+function startSwipeNow(){
   const deck = swipeDeck(10), liked = []; let i = 0;
   if (!deck.length) return;
   deck.forEach(w => loadImg(w.img));
@@ -869,7 +891,7 @@ function swipeEnd(deck, liked){
     <div class="stack"><button class="btn" id="again">Swipe ten more</button><button class="btn ghost" id="back">Back to topics</button></div>`;
   wireHold(view);
   $("#x").onclick = $("#back").onclick = () => go("topics");
-  $("#again").onclick = startSwipe;
+  $("#again").onclick = startSwipeNow;
   $$("[data-play]").forEach(b => b.onclick = () => playTopic(b.dataset.play));
   $$("[data-topic]").forEach(b => b.onclick = () => go("topic", b.dataset.topic));
   $$("[data-want]").forEach(b => b.onclick = async () => {
