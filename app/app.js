@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 19:21"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 19:45"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -174,7 +174,7 @@ function revealFor(tid, x){
   return byRight.length ? byRight[hash(x.id || x.q) % byRight.length].id : null;
 }
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
-const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["van-gogh","postimpressionism"],["van-gogh","expressionism"],["alfred-wallis","modern-british"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
+const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["van-gogh","postimpressionism"],["van-gogh","expressionism"],["alfred-wallis","modern-british"],["impressionism","postimpressionism"],["impressionism","van-gogh"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
@@ -522,10 +522,10 @@ function render(){
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w, "qpic") : ""}
     <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
-    ${x.multi ? "" : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
+    ${x.multi ? `<p class="small muted hint">Pick ${x.answers.length}.</p>` : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans" class="ansarea"></div>
-    <div class="dock"><button class="btn" id="check" disabled>${x.multi ? `Pick ${x.answers.length}` : "Check"}</button></div>
+    <div class="dock"><button class="btn ghost" id="check">Not sure</button></div>
     ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
   $("#quit").onclick = () => { S = null; go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
@@ -543,7 +543,7 @@ function renderPick(x){
   $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(W[id].img)}')"></span></button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer, true);
 }
-/* tap to select (tap again or another to change), then Check */
+/* tap to select (tap again or another to change), then Check; with nothing picked the same button reads "Not sure" and shows the answer (counts as a miss) */
 function choose(x, isRight, caps){
   const picked = new Set(), tiles = $$(".tile"), check = $("#check");
   tiles.forEach(b => b.addEventListener("click", () => {
@@ -553,12 +553,12 @@ function choose(x, isRight, caps){
     if (x.multi){ if (picked.has(i)) picked.delete(i); else if (picked.size < need) picked.add(i); else return; }
     else { const had = picked.has(i); picked.clear(); if (!had) picked.add(i); }
     tiles.forEach(t => { const on = picked.has(+t.dataset.i); t.classList.toggle("sel", on); t.setAttribute("aria-pressed", String(on)); });
-    check.disabled = picked.size < need;
-    if (x.multi) check.textContent = picked.size >= need ? "Check" : picked.size ? `Pick ${need - picked.size} more` : `Pick ${need}`;
+    const n = picked.size; check.classList.toggle("ghost", !n); check.disabled = n > 0 && n < need;
+    check.textContent = !n ? "Not sure" : n >= need ? "Check" : `Pick ${need - n} more`;
   }));
   check.onclick = () => {
     const right = tiles.map(t => +t.dataset.i).filter(isRight), found = [...picked].filter(i => right.includes(i)).length;
-    const ok = found === right.length && picked.size === right.length; x.mine = [...picked];
+    const ok = found === right.length && picked.size === right.length; x.mine = [...picked]; x.unsure = !picked.size;
     tiles.forEach(t => { const i = +t.dataset.i; t.disabled = true; t.classList.remove("sel");
       if (right.includes(i)) t.classList.add(picked.has(i) || !x.multi ? "right" : "missed"); else if (picked.has(i)) t.classList.add("wrong"); else t.classList.add("dim");
       if (caps){ const w = W[x.images[i]]; t.insertAdjacentHTML("beforeend", `<span class="cap">${esc(w.artist)}, ${yearText(w)}</span>`); } });
@@ -583,7 +583,7 @@ function renderOrder(x){
     let y0 = e.clientY, started = false;
     const move = ev => {
       let dy = ev.clientY - y0;
-      if (!started){ if (Math.abs(dy) < 4) return; started = true; b.classList.add("drag"); if (!moved){ moved = true; check.disabled = false; } }
+      if (!started){ if (Math.abs(dy) < 4) return; started = true; b.classList.add("drag"); if (!moved){ moved = true; check.classList.remove("ghost"); check.textContent = "Check"; } }
       for (;;){
         const nx = b.nextElementSibling, pv = b.previousElementSibling;
         if (nx && dy > (nx.offsetHeight + gap()) / 2){ const t = nx.getBoundingClientRect().top; list.insertBefore(nx, b); y0 += nx.offsetHeight + gap(); dy = ev.clientY - y0; slide(nx, t); }
@@ -601,10 +601,10 @@ function renderOrder(x){
     b.addEventListener("pointermove", move); b.addEventListener("pointerup", up); b.addEventListener("pointercancel", up);
   }));
   check.onclick = () => {
-    if (done) return; done = true;
+    if (done) return; done = true; x.unsure = !moved;
     const now = rows(), order = now.map(b => +b.dataset.i);
     const sorted = x.items.map((_, j) => j).sort((a, b) => x.items[a].year - x.items[b].year);
-    const ys = order.map(j => x.items[j].year), ok = ys.every((y, k) => !k || y >= ys[k - 1]);
+    const ys = order.map(j => x.items[j].year), ok = !x.unsure && ys.every((y, k) => !k || y >= ys[k - 1]);
     moved = true; paint();
     now.forEach((b, k) => { const j = +b.dataset.i; b.classList.add("locked", x.items[sorted[k]].year === x.items[j].year ? "right" : "wrong"); b.querySelector(".sub").classList.remove("hidden"); });
     if (!ok){ const tops = new Map(now.map(b => [b, b.getBoundingClientRect().top])); sorted.forEach(j => list.appendChild(now.find(b => +b.dataset.i === j))); rows().forEach((b, k) => { b.querySelector(".n").textContent = k + 1; slide(b, tops.get(b)); }); }
@@ -631,7 +631,7 @@ function answered(x, ok){
   closeSheet();
   const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
   sh.innerHTML = `<div class="sheetin"><button class="grab" id="grab" aria-label="Show or hide the explanation"><i></i></button>
-      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
+      <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.unsure ? (x.type === "order" ? "Here's the right order." : "Now you know.") : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
