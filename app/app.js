@@ -765,7 +765,7 @@ function renderToday(){
 }
 const isAdmin = () => !!(profiles[pid] && profiles[pid].admin);
 /* ---------- topics page (trial for the admin): search + sections by kind ---------- */
-const KINDS = [["artist", "Artists"], ["movement", "Movements"], ["place", "Museums & galleries"], ["market", "The art market"]];
+const KINDS = [["artist", "Artists & collectors"], ["movement", "Movements"], ["place", "Museums & galleries"], ["market", "The art market"]];
 const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 function topicHits(q){
   const f = fold(q).trim(); if (!f) return null;
