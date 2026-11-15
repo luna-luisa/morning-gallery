@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "14 Nov, 2"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 09:39"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -262,22 +262,51 @@ function topicSet(tid, n = 6, exclude = new Set()){
   return out.slice(0, n).sort((a, b) => a.level - b.level);
 }
 
-/* ---------------- topic of the day ---------------- */
-function nextTopic(cur){
-  const open = id => id !== cur && lvlOf(id) < 3;
-  const nf = featured().filter(open), rel = cur ? TOPICS[cur].related.filter(r => TOPICS[r] && open(r)) : [];
-  const start = Object.keys(TOPICS).filter(t => TOPICS[t].group === "start" && open(t));
-  return rel.find(r => nf.includes(r)) || nf[0] || rel[0] || start[0] || Object.keys(TOPICS).filter(open)[0] || cur || Object.keys(TOPICS)[0];
+/* ---------------- topic of the day ----------------
+   Each person gets their own morning topic, worked out fresh every day from their own progress:
+   never a topic they played today or yesterday; first choice a topic in this week's news,
+   then one they haven't tried yet, then one they're still learning. Ties are broken per person,
+   so friends don't all get the same one. Topics played from the Topics page never change it. */
+function lastDay(tid){
+  let d = (state.played || {})[tid] || "";
+  Object.values(T(tid).hits || {}).forEach(a => a.forEach(x => { if (x > d) d = x; }));
+  return d;
+}
+const studied = tid => !!(T(tid).intro || lastDay(tid));
+function pickBy(list, salt){ return list.slice().sort((a, b) => hash(salt + a) - hash(salt + b))[0]; }
+function morningTier(t){
+  const ago = daysSince(lastDay(t));
+  if (featured().includes(t) && ago >= 7) return 0;
+  if (!studied(t)) return TOPICS[t].group === "start" || TOPICS[t].group === "now" ? 1 : 2;
+  return lvlOf(t) < 3 ? 3 : 4;
+}
+function pickMorning(){
+  const all = Object.keys(TOPICS), seed = (pid || "") + today();
+  let pool = all.filter(t => daysSince(lastDay(t)) >= 2 && lvlOf(t) < 5);
+  if (!pool.length) pool = all.filter(t => daysSince(lastDay(t)) >= 1);
+  if (!pool.length) pool = all;
+  const best = Math.min(...pool.map(morningTier));
+  return pickBy(pool.filter(t => morningTier(t) === best), seed);
 }
 function topicOfDay(){
-  const d = today();
-  if (state.today && state.today.date === d && TOPICS[state.today.topic]) return state.today;
-  const prev = state.today && TOPICS[state.today.topic] ? state.today.topic : null;
-  const stay = prev && state.today.startLv === lvlOf(prev); // stay until you've climbed a level
-  const t = stay ? prev : nextTopic(prev);
-  state.today = {date: d, topic: t, startLv: lvlOf(t)}; save();
+  const d = today(), cur = state.today;
+  const keep = cur && cur.date === d && TOPICS[cur.topic] && (cur.v === 2 || state.stats.lastRound === d);
+  if (keep) return cur;
+  state.today = {date: d, topic: pickMorning(), v: 2}; save();
   return state.today;
 }
+/* after the morning round: one new topic and one to go deeper in, both fixed for the day */
+function extraPicks(){
+  const all = Object.keys(TOPICS), td = topicOfDay().topic, salt = (pid || "") + today() + "x";
+  const notToday = t => t !== td && daysSince(lastDay(t)) >= 1;
+  const fresh = all.filter(t => !studied(t) && notToday(t));
+  const newsFresh = fresh.filter(t => featured().includes(t));
+  const deep = all.filter(t => studied(t) && notToday(t) && lvlOf(t) < 5);
+  const deepWeek = deep.filter(t => daysSince(lastDay(t)) >= 7);
+  return {fresh: pickBy(newsFresh.length ? newsFresh : fresh, salt), deep: pickBy(deepWeek.length ? deepWeek : deep, salt)};
+}
+function markPlayed(tid){ (state.played || (state.played = {}))[tid] = today(); }
+function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, () => startTopic(tid), "Start the questions"); }
 
 /* ---------------- images: check before showing, swap failures ---------------- */
 const imgOK = {};
@@ -645,7 +674,8 @@ async function requestMore(topic, kind, message, item){
 }
 function finish(){
   inRound(false);
-  if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); }
+  if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); }
+  if (S.mode === "topic") markPlayed(S.topic);
   save();
   const tid = S.mode === "topic" ? S.topic : topicOfDay().topic, L = lvlOf(tid), ups = S.results.filter(r => r.up);
   const missed = S.results.filter(r => !r.ok).length;
@@ -667,16 +697,22 @@ function finish(){
 function renderToday(){
   const td = topicOfDay(), t = TOPICS[td.topic], L = lvlOf(td.topic);
   const w = W[(t.intro[0] || {}).art], played = state.stats.lastRound === today(), items = newsItems();
+  const ex = played ? extraPicks() : {};
+  const opt = (id, tid, label) => tid ? `<button class="trow pick" id="${id}"><span class="eyebrow">${label}</span><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(lvlOf(tid))} ${LEVELS[lvlOf(tid)-1]}</span></button>` : "";
   view.innerHTML = `
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
-      <h1>${played ? "Another" : "Your"} <span class="serif">coffee round</span></h1>
-      </div>
-    <button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
-    <button class="btn" id="go">${played ? "Play another round" : "Start"}</button>
+      <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
+      ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}</div>
+    ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}</div>`
+      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
+    <button class="btn" id="go">Start</button>`}
     <button class="btn ghost" id="endless">Free play</button>
     ${items.length ? `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>` : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;
-  $("#go").onclick = startRound; $("#endless").onclick = startEndless; $("#tod").onclick = () => go("topic", td.topic);
+  $("#endless").onclick = startEndless;
+  if ($("#go")){ $("#go").onclick = startRound; $("#tod").onclick = () => go("topic", td.topic); }
+  if ($("#pnew")) $("#pnew").onclick = () => playTopic(ex.fresh);
+  if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
 }
 function renderTopics(){
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1><p class="muted">Every topic has five levels, from Visitor to Curator. You move up by getting most of a level right, on at least two different days.</p></div>
@@ -690,15 +726,13 @@ function renderTopic(tid){
     <div class="qhead"><button class="btn link" id="back">All topics</button></div>
     <div class="stack"><span class="eyebrow">${esc(grp)}${t.span ? " · " + esc(t.span) : ""}</span><h1>${esc(t.name)}</h1>
       <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></div>
-    <div class="row"><button class="btn" id="quiz">Quiz me</button><button class="btn ghost" id="learn">Introduction</button></div>
-    ${tid !== topicOfDay().topic ? `<button class="btn link" id="make">Make this today's topic</button>` : ""}
+    <div class="row"><button class="btn" id="quiz">Play this topic now</button><button class="btn ghost" id="learn">Introduction</button></div>
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>
     ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Got it, more questions on this soon" : "Ask me more on this topic"}</button>` : ""}`;
   $("#back").onclick = () => go("topics");
-  $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Quiz me");
+  $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Play this topic now");
   $("#quiz").onclick = () => startTopic(tid);
-  if ($("#make")) $("#make").onclick = () => { state.today = {date: today(), topic: tid, startLv: L}; save(); go("today"); };
   $$(".chipbtn").forEach(b => b.onclick = () => go("topic", b.dataset.t));
   if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Got it, more questions on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }
