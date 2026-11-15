@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 20:22"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 20:41"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -187,13 +187,13 @@ const BUILD = {
     const r = rng(key);
     const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
     const chosen = shuffle(others, r).slice(0, 3), set = shuffle([right, ...chosen]);
-    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
+    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
   },
   I(key){ // which one isn't
     const [, tid, odd] = key.split(":"), t = TOPICS[tid], oddW = W[odd]; if (!t || !oddW) return null;
     const r = rng(key), pool = shuffle(ART.filter(w => w.topic === tid), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
     const set = shuffle([oddW, ...mine]);
-    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
+    return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
   },
   M(){ return null; }, // retired: "which movement is this?" gave itself away, because the topic name is always on screen
   A(key){ // which of these are <topic>: four pictures, two or three right
@@ -202,7 +202,7 @@ const BUILD = {
     const right = mine.slice(0, k), yr = right.reduce((s, w) => s + w.year, 0) / k;
     const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && right.some(x => x.artist === w.artist))).sort((a, b) => Math.abs(a.year - yr) - Math.abs(b.year - yr)).slice(0, 16);
     const wrong = shuffle(others, r).slice(0, 4 - k), set = shuffle([...right, ...wrong], r);
-    const what = t.kind === "artist" ? "by *" + t.name.replace(/^.*: /, "") + "*" : "*" + qName(t) + "*";
+    const what = t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*";
     const names = right.map(w => `${w.artist}'s ${w.title}`);
     return {key, topic:tid, level:2, type:"pick", multi:true, prompt:`Which of these are ${what}?`, images:set.map(w => w.id), answers:right.map(w => set.indexOf(w)), answer:set.indexOf(right[0]), art:right[0].id,
       explain:`The ${k === 2 ? "two" : "three"} that fit: ${names.slice(0, -1).join(", ")} and ${names[k - 1]}.`, spare:others.filter(o => !wrong.includes(o)).map(w => w.id), spareRight:mine.slice(k).map(w => w.id)};
@@ -227,6 +227,8 @@ const BUILD = {
   },
   N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, source:it.source, reveal: it.reveal || (W[it.art] ? it.art : null), news:true, long:true}); }
 };
+/* a pair like "Bell & Grant" made their paintings separately: ask "by Bell or Grant" */
+const byWho = t => t.name.replace(/^.*: /, "").replace(/ & /g, " or ");
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 const qcache = {};
 function allQuestions(tid){
@@ -482,7 +484,7 @@ function showIntro(tid, done, finishLabel){
   setTab("today"); draw();
 }
 
-function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; }
+function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; const app = $("#app"); if (app && app.style.height){ app.style.height = ""; scrollTo(0, 0); } }
 /* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
 function keepPromptVisible(){
   const sh = $("#sheet .sheetin"), p = $("#view .order") || $(".prompt"); if (!sh || !p) return; // for sorting, keep the right order in view
@@ -490,7 +492,7 @@ function keepPromptVisible(){
     const qh = $("#view > .qhead"), qp = $("#view .spot.qpic");
     if (qh) qh.style.marginBottom = getComputedStyle(qh).marginBottom; // freeze the spare room as it is
     if (qp) qp.style.flex = `0 0 ${qp.offsetHeight}px`;
-    view.style.paddingBottom = (sh.offsetHeight + 14) + "px";
+    const app = $("#app"); app.style.height = (app.offsetHeight + sh.offsetHeight) + "px"; // the whole page scrolls (works on iPhones), far enough to see every answer
     return;
   }
   const top = sh.getBoundingClientRect().top, r = p.getBoundingClientRect();
