@@ -517,6 +517,3 @@ body[data-screen="q"] .dock{position:sticky;bottom:0;z-index:3;background:var(--
   body[data-screen="q"] .tile.venue .ph{width:76px}
 }
 body[data-screen="q"] main > .qhead, body[data-screen="q"] main > .line{flex-shrink:0}
-.climb{display:flex;gap:4px;width:100%;max-width:220px;margin:2px 0 -2px}
-.climb i{flex:1;height:5px;border-radius:3px;background:var(--line)}
-.climb i.on{background:var(--acc,var(--klein))}
