@@ -503,9 +503,8 @@ html,body{overflow-x:hidden}
 .zbtn svg{width:15px;height:15px}
 @media (hover:hover) and (pointer:fine){ .tile.pic:hover .zbtn, .tile.venue:hover .zbtn, .spot:hover .zbtn, .mini:hover .zbtn, .rimg:hover .zbtn{display:grid} }
 .spot, .rimg, .mini{position:relative}
-body[data-screen="q"] main{position:relative;transition:padding-bottom .32s ease;overflow-y:auto;scrollbar-width:none}
+body[data-screen="q"] main{position:relative;overflow-y:auto;scrollbar-width:none}
 body[data-screen="q"] main::-webkit-scrollbar{display:none}
-body.sheetopen[data-screen="q"] .dock.gone{display:none}
 body[data-screen="q"] .tile.venue .tt{background:transparent}
 /* Check never drops off the screen, even on a small phone with a long question */
 body[data-screen="q"] .dock{position:sticky;bottom:0;z-index:3;background:var(--wall);box-shadow:0 -10px 10px -2px var(--wall)}

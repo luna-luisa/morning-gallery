@@ -486,9 +486,11 @@ function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.c
 /* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
 function keepPromptVisible(){
   const sh = $("#sheet .sheetin"), p = $("#view .order") || $(".prompt"); if (!sh || !p) return; // for sorting, keep the right order in view
-  if (document.body.dataset.screen === "q"){ // answers sit at the bottom: lift the question and answers above the panel as it slides up
+  if (document.body.dataset.screen === "q"){ // nothing moves: the panel slides over the answers, and the page can scroll up behind it
+    const qh = $("#view > .qhead"), qp = $("#view .spot.qpic");
+    if (qh) qh.style.marginBottom = getComputedStyle(qh).marginBottom; // freeze the spare room as it is
+    if (qp) qp.style.flex = `0 0 ${qp.offsetHeight}px`;
     view.style.paddingBottom = (sh.offsetHeight + 14) + "px";
-    setTimeout(() => { if (view.scrollHeight > view.clientHeight + 1) view.scrollTo({top: Math.min(view.scrollHeight - view.clientHeight, Math.max(0, $(".prompt").offsetTop - 10)), behavior: "smooth"}); }, 330);
     return;
   }
   const top = sh.getBoundingClientRect().top, r = p.getBoundingClientRect();
