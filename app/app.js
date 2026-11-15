@@ -831,6 +831,7 @@ function swipeIntro(done){
       <div class="wtip"><span class="ico">${ic('<path d="M6 6l12 12M18 6L6 18"/>')}</span>Swipe left if not.</div>
       <div class="wtip"><span class="ico">${ic('<path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.3 7.6C3.6 9.4 2 12 2 12s4 6 10 6a9.6 9.6 0 0 0 4.4-1.1"/>')}</span>No names, just the art.</div>
       <div class="wtip"><span class="ico">${ic('<path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/>')}</span>Then see who made your favourites.</div></div>
+    <div class="swfan" aria-hidden="true">${swipeDeck(3).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</div>
     <div class="wfoot"><button class="btn" data-go="go">Let's swipe</button></div></div>`;
   document.body.appendChild(el); document.body.classList.add("welcoming");
   const close = () => { el.remove(); document.body.classList.remove("welcoming"); };
