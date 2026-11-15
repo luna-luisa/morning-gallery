@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 22:05"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 22:37"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -863,8 +863,8 @@ function swipeEnd(deck, liked){
       <p class="muted">${liked.length ? `You liked ${liked.length} of ${deck.length}. Here's who made them.` : "Try another ten. Taste takes a few rounds."}</p></div>
     <div class="picks">${liked.map((w, k) => { const at = artistTopic(w.artist), asked = state.asked["artist:" + plainArtist(w.artist)];
       return `<div class="pick"><span class="pimg" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="pinfo"><b>${esc(w.artist)}</b><span class="small"><i>${esc(w.title)}</i>, ${esc(yearText(w))}</span>
-        ${at ? `<button class="btn small" data-play="${at}">Play ${esc(tName(at))}</button>`
-             : store.online ? `<button class="btn ghost small" data-want="${k}" ${asked ? "disabled" : ""}>${asked ? "Asked, coming soon" : `Learn more about ${esc(plainArtist(w.artist))}`}</button>` : ""}
+        ${at ? `<button class="btn small" data-play="${at}">Play this artist</button>`
+             : store.online ? `<button class="btn ghost small" data-want="${k}" ${asked ? "disabled" : ""}>${asked ? "Asked, coming soon" : "I'd like to learn more"}</button>` : ""}
         ${at === w.topic ? "" : `<button class="btn link small" data-topic="${w.topic}">Explore ${esc(tName(w.topic))}</button>`}</div></div>`; }).join("")}</div>
     <div class="stack"><button class="btn" id="again">Swipe ten more</button><button class="btn ghost" id="back">Back to topics</button></div>`;
   wireHold(view);
