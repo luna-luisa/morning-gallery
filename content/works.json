@@ -2116,6 +2116,32 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-voyage-to-labrador-t00220",
    "hook": "A memory of his Atlantic crossings as a young sailor.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_LqYfJxK.jpg"
+  },
+  {
+   "id": "derain-pool-of-london",
+   "artist": "André Derain",
+   "title": "The Pool of London",
+   "year": 1906,
+   "place": "Tate, London",
+   "topic": "fauvism",
+   "tate": "N06030",
+   "page": "https://www.tate.org.uk/art/artworks/derain-the-pool-of-london-n06030",
+   "hook": "Sent to London to paint the Thames, Derain turned it into blazing colour.",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg/1280px-Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg"
+  },
+  {
+   "id": "whiteread-stairs",
+   "artist": "Rachel Whiteread",
+   "title": "Untitled (Stairs)",
+   "year": 2001,
+   "place": "Tate, London",
+   "topic": "yba",
+   "quiz": false,
+   "tate": "T07939",
+   "page": "https://www.tate.org.uk/art/artworks/whiteread-untitled-stairs-t07939",
+   "credit": "Tate",
+   "hook": "Whiteread casts the empty spaces of everyday things, here a staircase.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_wbCq7ur.jpg"
   }
  ]
 }

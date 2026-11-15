@@ -1721,7 +1721,7 @@
     {
      "title": "Breaking away",
      "text": "In 1897 Klimt and friends left Vienna's official art body to found the Vienna Secession. They wanted modern art in every part of life: paintings, posters, furniture and buildings.",
-     "art": "kiss"
+     "art": "secession-building"
     },
     {
      "title": "Gold",
@@ -1824,12 +1824,12 @@
     {
      "title": "Colour set free",
      "text": "Green faces, red trees, orange skies. Colour expresses feeling, not reality.",
-     "art": "woman-hat"
+     "art": "dance"
     },
     {
      "title": "Who",
      "text": "Henri Matisse led, with André Derain and Maurice de Vlaminck. Derain painted the Thames in blazing colour.",
-     "art": "dance"
+     "art": "derain-pool-of-london"
     }
    ],
    "questions": [
@@ -1942,7 +1942,7 @@
     {
      "title": "Inside out",
      "text": "Painting how the world feels, not how it looks: anxiety, longing, energy.",
-     "art": "scream"
+     "art": "kirchner-street-dresden"
     },
     {
      "title": "The forerunner",
@@ -1952,7 +1952,7 @@
     {
      "title": "Two German groups",
      "text": "Die Brücke (Dresden, 1905, with Kirchner) and Der Blaue Reiter (Munich, 1911, with Kandinsky and Franz Marc).",
-     "art": "cossacks"
+     "art": "marc-blue-horse"
     }
    ],
    "questions": [
@@ -2313,7 +2313,7 @@
     {
      "title": "Anti-art",
      "text": "Born in Zurich in 1916, at the Cabaret Voltaire, in disgust at the First World War. Nonsense as protest.",
-     "art": "lhooq"
+     "art": "slodki-cabaret-voltaire-poster"
     },
     {
      "title": "Readymades",
@@ -2949,12 +2949,12 @@
     {
      "title": "The patron",
      "text": "Adman Charles Saatchi bought heavily. His 'Sensation' show at the Royal Academy (1997) caused uproar.",
-     "art": "pharmacy"
+     "art": "saatchi-gallery-chelsea"
     },
     {
      "title": "Look for",
      "text": "Shock, everyday materials, death, confession: sharks in formaldehyde, unmade beds, casts of empty spaces.",
-     "art": "pharmacy"
+     "art": "whiteread-stairs"
     }
    ],
    "questions": [
@@ -3494,12 +3494,12 @@
     {
      "title": "Run by artists",
      "text": "Founded by George III in 1768. Elected artists put 'RA' after their names.",
-     "art": "burlington"
+     "art": "ramsay-george-iii"
     },
     {
      "title": "Summer Exhibition",
      "text": "Every year since 1769: the world's oldest open-submission show. Anyone can enter.",
-     "art": "burlington"
+     "art": "frith-private-view"
     },
     {
      "title": "On now",
@@ -3579,12 +3579,12 @@
     {
      "title": "The big two",
      "text": "Sotheby's (1744) and Christie's (1766), both founded in London. Phillips is the third big name.",
-     "art": "salvator"
+     "art": "sothebys-new-bond-street"
     },
     {
      "title": "How a sale works",
      "text": "Each lot has an estimate. The hammer price is the winning bid; the buyer then pays a premium on top.",
-     "art": "lederer"
+     "art": "christies-microcosm"
     },
     {
      "title": "Records",
@@ -3693,11 +3693,12 @@
     {
      "title": "Art Basel",
      "text": "Founded in Basel in 1970. Now also in Miami Beach, Hong Kong, Paris (in the Grand Palais) and, since 2026, Doha in Qatar.",
-     "art": "grand-palais"
+     "art": "messe-basel-hall-2"
     },
     {
      "title": "Frieze",
-     "text": "Frieze London launched in Regent's Park in 2003. Frieze Masters, for older art, followed in 2012."
+     "text": "Frieze London launched in Regent's Park in 2003. Frieze Masters, for older art, followed in 2012.",
+     "art": "regents-park"
     }
    ],
    "questions": [
