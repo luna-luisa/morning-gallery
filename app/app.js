@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 11:43"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 18:00"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -136,8 +136,8 @@ function nextText(tid){
 const BOX = [1, 3, 7, 21];
 function srs(q, ok){
   const k = q.key, it = state.srs[k];
-  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return "This one will come back in a later round."; }
-  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return "You've learned this one for good."; } it.due = Date.now() + BOX[it.box] * DAY; return ""; }
+  if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return ""; }
+  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return ""; } it.due = Date.now() + BOX[it.box] * DAY; return ""; }
   return "";
 }
 const seenToday = k => (state.lastSeen || {})[k] === today();
@@ -477,6 +477,11 @@ function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.c
 /* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
 function keepPromptVisible(){
   const sh = $("#sheet .sheetin"), p = $("#view .order") || $(".prompt"); if (!sh || !p) return; // for sorting, keep the right order in view
+  if (document.body.dataset.screen === "q"){ // answers sit at the bottom: lift the question and answers above the panel as it slides up
+    view.style.paddingBottom = (sh.offsetHeight + 14) + "px";
+    setTimeout(() => { if (view.scrollHeight > view.clientHeight + 1) view.scrollTo({top: Math.min(view.scrollHeight - view.clientHeight, Math.max(0, $(".prompt").offsetTop - 10)), behavior: "smooth"}); }, 330);
+    return;
+  }
   const top = sh.getBoundingClientRect().top, r = p.getBoundingClientRect();
   if (r.bottom <= top - 12) return;
   view.style.paddingBottom = (innerHeight - top + 40) + "px";
@@ -484,7 +489,7 @@ function keepPromptVisible(){
 }
 /* make a question fit on one screen so Check never drops out of view: shrink the picture first, then the question text */
 function fitScreen(){
-  if (!document.body.classList.contains("inround")) return;
+  if (!document.body.classList.contains("inround") || document.body.dataset.screen === "q") return;
   const img = $("#view > .spot img"), pr = $("#view > .prompt"), over = () => document.documentElement.scrollHeight > innerHeight + 1;
   if (img) img.style.maxHeight = ""; if (pr) pr.style.fontSize = "";
   for (let h = 26; over() && img && h >= 12; h -= 2) img.style.maxHeight = h + "svh";
@@ -509,14 +514,15 @@ function render(){
   const L = x.topic && TOPICS[x.topic] && !x.news ? lvlOf(x.topic) : 0;
   const pics = x.type === "pick" || x.venues, hint = pics && (state.hints || 0) < 3;
   if (hint){ state.hints = (state.hints || 0) + 1; }
+  view.dataset.kind = w ? "pic" : x.type === "pick" ? "picans" : x.type === "order" ? "order" : x.venues ? "venue" : "text";
   view.innerHTML = `
     ${S.mode === "endless" ? `<div class="line"></div>` : `<div class="line"><i style="width:${progress}%"></i></div>`}
     <div class="qhead">
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
-    ${w ? figure(w, "qpic") : `<div class="qspace"></div>`}
+    ${w ? figure(w, "qpic") : ""}
     <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
-    ${x.multi ? `<div class="stretch"><span class="tag pickn">Pick ${x.answers.length}</span></div>` : hint ? `<p class="small muted hint">Hold a picture to see it bigger.</p>` : ""}
+    ${x.multi ? "" : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     <div id="ans" class="ansarea"></div>
     <div class="dock"><button class="btn" id="check" disabled>${x.multi ? `Pick ${x.answers.length}` : "Check"}</button></div>
@@ -628,9 +634,8 @@ function answered(x, ok){
       <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
-      ${x.multi && !ok ? `<span class="small">${esc(x.tally || "")} The right ones are marked in green.</span>` : ""}
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
-      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>${x.multi ? "" : `<span class="small muted">Yours is marked in red, the right one in green.</span>`}` : ""}
+      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(W[id].img)}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
@@ -640,7 +645,7 @@ function answered(x, ok){
       <button class="btn" id="next">${last ? "See results" : "Next"}</button></div>`;
   document.body.appendChild(sh); document.body.classList.add("sheetopen");
   requestAnimationFrame(() => sh.classList.add("up"));
-  setTimeout(keepPromptVisible, 320);
+  if (document.body.dataset.screen === "q") keepPromptVisible(); else setTimeout(keepPromptVisible, 320);
   $("#grab").onclick = () => sh.classList.toggle("min");
   wireHold(sh);
   if ($("#flag")) wireFlag(x);
@@ -655,9 +660,11 @@ function answered(x, ok){
 let peekEl = null;
 /* belt and braces for iPhone: never start a text selection during a round */
 document.addEventListener("selectstart", e => { if (document.body.classList.contains("inround") && !/^(INPUT|TEXTAREA)$/.test(e.target.nodeName || "")) e.preventDefault(); });
-function peek(src){ unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom"; peekEl.innerHTML = `<span class="zimg" style="background-image:url('${esc(src)}')"></span>`; peekEl.onclick = unpeek; document.body.appendChild(peekEl); }
+function peek(src){ unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom"; peekEl.innerHTML = `<img class="zfull" src="${esc(src)}" alt="" referrerpolicy="no-referrer">`; peekEl.onclick = unpeek; document.body.appendChild(peekEl); }
 function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
-addEventListener("pointerup", () => setTimeout(unpeek, 30)); addEventListener("pointercancel", unpeek); addEventListener("scroll", unpeek, {passive:true});
+const FINE = !!(window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches);
+addEventListener("keydown", e => { if (e.key === "Escape") unpeek(); });
+addEventListener("pointerup", () => { if (!FINE) setTimeout(unpeek, 30); }); addEventListener("pointercancel", unpeek); addEventListener("scroll", unpeek, {passive:true});
 function wireHold(root){
   root.querySelectorAll("[data-src]").forEach(el => {
     let t = null, held = false, x0 = 0, y0 = 0;
@@ -665,6 +672,10 @@ function wireHold(root){
     el.addEventListener("pointermove", e => { if (Math.abs(e.clientX - x0) + Math.abs(e.clientY - y0) > 12) clearTimeout(t); });
     ["pointerup", "pointerleave", "pointercancel"].forEach(ev => el.addEventListener(ev, () => clearTimeout(t)));
     el.addEventListener("contextmenu", e => e.preventDefault());
+    if (FINE && !el.querySelector(".zbtn") && el.matches(".tile.pic, .tile.venue, .spot, .mini, .rimg")){
+      const b = document.createElement("span"); b.className = "zbtn"; b.title = "See it bigger"; b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
+      b.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); peek(el.dataset.src); }); el.appendChild(b);
+    }
     el.addEventListener("click", e => { if (held){ e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
   });
 }
@@ -702,7 +713,7 @@ function finish(){
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
     <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
-      <p class="muted">${missed ? `The ${missed === 1 ? "one" : missed} you missed will come back in a later round, so ${missed === 1 ? "it sticks" : "they stick"}.` : "Clean sweep."}</p></div>
+      <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span><span class="small muted">${esc(nextText(tid))}</span></button>
     <div class="stack"><button class="btn" id="keep">Keep going</button><button class="btn ghost" id="home">Back to today</button></div>

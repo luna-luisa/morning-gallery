@@ -468,3 +468,52 @@ body::before{height:max(env(safe-area-inset-top,0px),0px);z-index:45}
 }
 body[data-screen="q"] .tile .tt, body[data-screen="q"] .tile .tt.long{font-size:16px;line-height:1.2}
 body[data-screen="q"] .tile.venue .tt{font-size:14px}
+
+/* ==== question screen v3 (phone first, after Duolingo / Quizlet / Kahoot) ====
+   label → picture (if any) → question → answers right beneath → spare space → Check pinned.
+   Two answer styles only: full-width rows for words, a 2×2 grid of cropped squares for pictures. */
+body[data-screen="q"] main{gap:14px}
+body[data-screen="q"] .qside{display:contents}
+body[data-screen="q"] .prompt{margin-top:6px}
+body[data-screen="q"] .ansarea, body[data-screen="q"] .ansarea.tall{flex:none;margin-top:0;display:block;min-height:0}
+/* words: stacked rows */
+body[data-screen="q"] .tiles.text, body[data-screen="q"] .tiles:has(.venue){display:flex;flex-direction:column;gap:10px;max-height:none}
+body[data-screen="q"] .tiles.text .tile{height:auto;min-height:56px;padding:15px 18px;justify-content:flex-start;align-items:center;text-align:left}
+body[data-screen="q"] .tiles.text .tile .tt{font-size:17px;line-height:1.25}
+/* museums: rows with a photo */
+body[data-screen="q"] .tile.venue{height:64px;min-height:0;display:flex;flex-direction:row;align-items:center;padding:0;overflow:hidden;text-align:left}
+body[data-screen="q"] .tile.venue .ph{position:relative;inset:auto;flex:none;width:92px;height:100%}
+body[data-screen="q"] .tile.venue .tt{padding:0 16px;font-size:16px}
+/* pictures: 2×2 cropped squares */
+body[data-screen="q"] .tiles:not(.text):not(:has(.venue)){display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body[data-screen="q"] .tile.pic{height:auto;aspect-ratio:1/1;padding:0;background:#e2ddd2}
+body[data-screen="q"] .tile.pic .ph{inset:0;background-size:cover;background-position:center;filter:none}
+/* question picture takes the room that's left */
+body[data-screen="q"] .spot.qpic{flex:1 1 0;min-height:120px}
+/* answers and Check stay put just above your thumb; any spare room goes above the question */
+body[data-screen="q"] .dock{margin-top:0}
+body[data-screen="q"] main > .qhead{margin-bottom:auto}
+body[data-screen="q"] main[data-kind="pic"] > .qhead{margin-bottom:0}
+/* see it bigger: whole picture, centred, as big as the screen allows */
+.zoom{position:fixed;inset:0;z-index:80;background:rgba(243,241,236,.97);display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 16px max(20px,env(safe-area-inset-bottom));box-sizing:border-box;cursor:zoom-out}
+.zoom .zfull{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;box-shadow:0 18px 40px rgba(40,30,15,.3)}
+html,body{overflow-x:hidden}
+/* computers: a small corner button opens the big view (no long press with a mouse) */
+.zbtn{position:absolute;right:6px;top:6px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--ink);display:none;place-items:center;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:zoom-in;z-index:2}
+.zbtn svg{width:15px;height:15px}
+@media (hover:hover) and (pointer:fine){ .tile.pic:hover .zbtn, .tile.venue:hover .zbtn, .spot:hover .zbtn, .mini:hover .zbtn, .rimg:hover .zbtn{display:grid} }
+.spot, .rimg, .mini{position:relative}
+body[data-screen="q"] main{position:relative;transition:padding-bottom .32s ease;overflow-y:auto;scrollbar-width:none}
+body[data-screen="q"] main::-webkit-scrollbar{display:none}
+body.sheetopen[data-screen="q"] .dock.gone{display:none}
+body[data-screen="q"] .tile.venue .tt{background:transparent}
+/* Check never drops off the screen, even on a small phone with a long question */
+body[data-screen="q"] .dock{position:sticky;bottom:0;z-index:3;background:var(--wall);box-shadow:0 -10px 10px -2px var(--wall)}
+@media (max-height:720px){
+  body[data-screen="q"] main{gap:10px}
+  body[data-screen="q"] .prompt{font-size:24px}
+  body[data-screen="q"] .tiles.text, body[data-screen="q"] .tiles:has(.venue){gap:8px}
+  body[data-screen="q"] .tiles.text .tile{min-height:48px;padding:12px 16px}
+  body[data-screen="q"] .tile.venue{height:52px}
+  body[data-screen="q"] .tile.venue .ph{width:76px}
+}
