@@ -1,4 +1,8 @@
 {
  "about": "Questions that were flagged, checked and found fine (or fixed). Key: question key, value: date checked (YYYY-MM-DD). A flag older than this date no longer hides the question.",
- "cleared": {}
+ "cleared": {
+  "Q:van-eyck:0": "2026-11-15",
+  "Q:van-eyck:1": "2026-11-15",
+  "P:van-eyck:red-turban": "2026-11-15"
+ }
 }

@@ -1,5 +1,5 @@
 {
- "version": "2026-11-13",
+ "version": "2026-11-15",
  "topics": {
   "renaissance": {
    "name": "The Renaissance",
@@ -309,6 +309,31 @@
      ],
      "explain": "Many think it's a self-portrait; the frame carries his motto.",
      "art": "red-turban"
+    },
+    {
+     "id": "van-eyck-9",
+     "level": 3,
+     "q": "Van Eyck was court painter to which ruler?",
+     "options": [
+      "Philip the Good, Duke of Burgundy",
+      "Lorenzo de' Medici",
+      "King Henry VIII of England",
+      "Emperor Charles V"
+     ],
+     "explain": "He joined Philip's court in 1425 and even went on secret missions for him."
+    },
+    {
+     "id": "van-eyck-10",
+     "level": 5,
+     "q": "Which panel of the Ghent Altarpiece was stolen in 1934 and has never been found?",
+     "options": [
+      "The Just Judges",
+      "Adam and Eve",
+      "The Adoration of the Mystic Lamb",
+      "The Annunciation"
+     ],
+     "explain": "The panel in place today is a copy, painted in the 1940s.",
+     "reveal": "ghent"
     }
    ]
   },
@@ -1034,6 +1059,44 @@
      ],
      "explain": "Waterhouse painted it in 1888.",
      "art": "lady-shalott"
+    },
+    {
+     "id": "preraphaelites-9",
+     "level": 3,
+     "q": "Rossetti painted Beata Beatrix in memory of…",
+     "options": [
+      "His wife, Elizabeth Siddal",
+      "Jane Morris",
+      "Effie Gray",
+      "His mother"
+     ],
+     "explain": "Siddal died in 1862. He shows her as Dante's Beatrice, in a trance.",
+     "reveal": "beata-beatrix"
+    },
+    {
+     "id": "preraphaelites-10",
+     "level": 4,
+     "q": "Where did Millais hide the letters 'PRB' in Isabella (1849)?",
+     "options": [
+      "Carved on Isabella's seat",
+      "On a wine glass",
+      "In the sky",
+      "On the dog's collar"
+     ],
+     "explain": "The secret initials of the new Brotherhood. Isabella hangs in the Walker Art Gallery, Liverpool.",
+     "reveal": "millais-isabella"
+    },
+    {
+     "id": "preraphaelites-11",
+     "level": 5,
+     "q": "Rossetti buried a notebook of his poems with Siddal in 1862. What happened seven years later?",
+     "options": [
+      "He had it dug up so he could publish them",
+      "Gravediggers found it by accident",
+      "His sister rewrote them from memory",
+      "Nothing: it's still there"
+     ],
+     "explain": "The poems came out in 1870."
     }
    ],
    "as": "Pre-Raphaelite"
@@ -1324,6 +1387,32 @@
      ],
      "correct": 3,
      "explain": "Monet and Morisot were core members, and Cézanne was there too. Manet never showed with the group, Cassatt joined in 1879, and Van Gogh was a 21-year-old art dealer's assistant in London who hadn't started painting yet."
+    },
+    {
+     "id": "impressionism-12",
+     "level": 4,
+     "q": "Who invited Mary Cassatt to show with the Impressionists?",
+     "options": [
+      "Edgar Degas",
+      "Claude Monet",
+      "Édouard Manet",
+      "Paul Cézanne"
+     ],
+     "explain": "In 1877. Born near Pittsburgh, she had settled in Paris, and went on to show in four of their exhibitions.",
+     "reveal": "childs-bath"
+    },
+    {
+     "id": "impressionism-13",
+     "level": 5,
+     "q": "When was the eighth and last Impressionist exhibition?",
+     "options": [
+      "1886",
+      "1879",
+      "1892",
+      "1900"
+     ],
+     "explain": "Seurat's A Sunday on La Grande Jatte caused a stir there, while Monet and Renoir stayed away.",
+     "reveal": "grande-jatte"
     }
    ],
    "as": "Impressionist"
@@ -1339,7 +1428,8 @@
     "impressionism",
     "fauvism",
     "expressionism",
-    "edo-japan"
+    "edo-japan",
+    "van-gogh"
    ],
    "intro": [
     {
@@ -1488,6 +1578,19 @@
      ],
      "explain": "The short man in the bowler hat.",
      "art": "moulin-rouge"
+    },
+    {
+     "id": "postimpressionism-11",
+     "level": 5,
+     "q": "Gauguin died in 1903, far from France, in…",
+     "options": [
+      "The Marquesas Islands",
+      "Martinique",
+      "Madagascar",
+      "Japan"
+     ],
+     "explain": "On the island of Hiva Oa in French Polynesia, after years in Tahiti.",
+     "reveal": "gauguin-where"
     }
    ],
    "as": "Post-Impressionist"
@@ -1501,7 +1604,8 @@
    "timeline": false,
    "related": [
     "impressionism",
-    "postimpressionism"
+    "postimpressionism",
+    "van-gogh"
    ],
    "intro": [
     {
@@ -1793,6 +1897,31 @@
      ],
      "explain": "Commissioned by the Moscow collector Sergei Shchukin.",
      "reveal": "dance"
+    },
+    {
+     "id": "fauvism-6",
+     "level": 5,
+     "q": "Which Moscow collector commissioned Matisse's Dance (1910)?",
+     "options": [
+      "Sergei Shchukin",
+      "Gertrude Stein",
+      "Peggy Guggenheim",
+      "Ambroise Vollard"
+     ],
+     "explain": "Dance and its partner, Music, were made for his Moscow mansion. Both are now in the Hermitage, St Petersburg.",
+     "reveal": "dance"
+    },
+    {
+     "id": "fauvism-7",
+     "level": 4,
+     "q": "Which Paris dealer sent André Derain to London in 1906 to paint the city?",
+     "options": [
+      "Ambroise Vollard",
+      "Paul Durand-Ruel",
+      "Joseph Duveen",
+      "Peggy Guggenheim"
+     ],
+     "explain": "Derain painted the Thames, its bridges and Westminster in blazing colour."
     }
    ],
    "as": "Fauvist"
@@ -2262,6 +2391,57 @@
      ],
      "explain": "On a cheap postcard, 1919.",
      "reveal": "lhooq"
+    },
+    {
+     "id": "dada-6",
+     "level": 3,
+     "q": "Duchamp signed Fountain with a made-up name. Which?",
+     "options": [
+      "R. Mutt",
+      "Rrose Sélavy",
+      "Dada 1916",
+      "Mr Readymade"
+     ],
+     "explain": "'R. Mutt 1917', in black paint. Rrose Sélavy was a different alter ego Duchamp used later.",
+     "reveal": "fountain"
+    },
+    {
+     "id": "dada-7",
+     "level": 4,
+     "q": "The original Fountain of 1917 is lost. What is the one at Tate in London?",
+     "options": [
+      "A replica made in 1964",
+      "The 1917 original, found later",
+      "A plaster model made by Tate",
+      "A photograph of the original"
+     ],
+     "explain": "Duchamp approved a small edition of replicas in 1964. The original survives only in a photograph by Alfred Stieglitz.",
+     "reveal": "fountain"
+    },
+    {
+     "id": "dada-8",
+     "level": 5,
+     "q": "In 1917 Fountain was sent to a New York show that promised to hang anything entered. Whose show?",
+     "options": [
+      "The Society of Independent Artists",
+      "The Museum of Modern Art",
+      "The Salon d'Automne",
+      "The Royal Academy"
+     ],
+     "explain": "It was never put on display. Duchamp, one of the society's directors, resigned in protest.",
+     "reveal": "fountain"
+    },
+    {
+     "id": "dada-9",
+     "level": 4,
+     "q": "Which Romanian-born poet wrote the Dada Manifesto of 1918?",
+     "options": [
+      "Tristan Tzara",
+      "André Breton",
+      "Guillaume Apollinaire",
+      "Kurt Schwitters"
+     ],
+     "explain": "Tzara read it in Zurich. It argued for doubt, nonsense and spontaneity."
     }
    ],
    "as": "Dada"
@@ -2383,6 +2563,19 @@
      ],
      "explain": "Freud had just fled Vienna.",
      "art": "narcissus"
+    },
+    {
+     "id": "surrealism-8",
+     "level": 5,
+     "q": "Who gave a talk in a deep-sea diving suit at the 1936 International Surrealist Exhibition in London?",
+     "options": [
+      "Salvador Dalí",
+      "Max Ernst",
+      "René Magritte",
+      "André Breton"
+     ],
+     "explain": "He nearly ran out of air before the helmet could be taken off.",
+     "reveal": "lobster-phone"
     }
    ],
    "as": "Surrealist"
@@ -2620,7 +2813,8 @@
     "bloomsbury",
     "popart",
     "yba",
-    "tate"
+    "tate",
+    "alfred-wallis"
    ],
    "intro": [
     {
@@ -3048,6 +3242,44 @@
      ],
      "explain": "Palazzo Venier dei Leoni, on the Grand Canal.",
      "art": "guggenheim-venice"
+    },
+    {
+     "id": "guggenheim-6",
+     "level": 3,
+     "q": "Peggy Guggenheim was briefly married to which Surrealist painter?",
+     "options": [
+      "Max Ernst",
+      "Salvador Dalí",
+      "René Magritte",
+      "Joan Miró"
+     ],
+     "explain": "They married in 1941 and split up a few years later.",
+     "reveal": "celebes"
+    },
+    {
+     "id": "guggenheim-7",
+     "level": 4,
+     "q": "What was her New York gallery, opened in 1942, called?",
+     "options": [
+      "Art of This Century",
+      "Guggenheim Jeune",
+      "Gallery 291",
+      "The Factory"
+     ],
+     "explain": "It showed Surrealist and abstract art, and gave Jackson Pollock his first solo show."
+    },
+    {
+     "id": "guggenheim-8",
+     "level": 5,
+     "q": "Her museum in Venice is an unfinished 18th-century palace on the Grand Canal. What's it called?",
+     "options": [
+      "Palazzo Venier dei Leoni",
+      "Palazzo Ducale",
+      "Ca' d'Oro",
+      "Palazzo Grassi"
+     ],
+     "explain": "She bought it in 1949. Only the ground floor was ever built.",
+     "reveal": "guggenheim-venice"
     }
    ]
   },
@@ -3061,7 +3293,8 @@
    "related": [
     "romanticism",
     "preraphaelites",
-    "modern-british"
+    "modern-british",
+    "alfred-wallis"
    ],
    "intro": [
     {
@@ -3339,7 +3572,8 @@
    "related": [
     "art-fairs",
     "impressionism",
-    "vienna-1900"
+    "vienna-1900",
+    "van-gogh"
    ],
    "intro": [
     {
@@ -3717,6 +3951,408 @@
      ],
      "explain": "A retelling of a legend from the Sundarbans, the mangrove forests of India and Bangladesh.",
      "reveal": "sundarbans-mangroves"
+    }
+   ]
+  },
+  "van-gogh": {
+   "name": "Vincent van Gogh",
+   "kind": "artist",
+   "group": "next",
+   "year": 1888,
+   "span": "1853–1890",
+   "timeline": false,
+   "related": [
+    "postimpressionism",
+    "edo-japan",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "On 18 November 2026 Sotheby's in New York offers Blossoming Chestnut Trees, one of his last paintings from 1890, estimated at about $180m.",
+     "art": "auvers"
+    },
+    {
+     "title": "Who was he?",
+     "text": "A Dutch painter, born in 1853. He painted for only about ten years, from 1880 until his death in France in 1890.",
+     "art": "vg-bandaged-ear"
+    },
+    {
+     "title": "Look for",
+     "text": "Thick paint you can almost feel, swirling brushstrokes and bold, bright colour. Japanese prints taught him strong outlines and flat areas of colour.",
+     "art": "vg-almond"
+    }
+   ],
+   "questions": [
+    {
+     "id": "van-gogh-1",
+     "level": 1,
+     "q": "In which country was Van Gogh born?",
+     "options": [
+      "The Netherlands",
+      "Belgium",
+      "France",
+      "Germany"
+     ],
+     "explain": "In 1853, in Zundert, a village in the south of the Netherlands.",
+     "reveal": "vg-bandaged-ear"
+    },
+    {
+     "id": "van-gogh-2",
+     "level": 1,
+     "q": "Which museum has the world's largest collection of Van Gogh's work?",
+     "options": [
+      "Van Gogh Museum, Amsterdam",
+      "Musée d'Orsay, Paris",
+      "Museum of Modern Art, New York",
+      "National Gallery, London"
+     ],
+     "explain": "It grew from the family's own collection and opened in 1973.",
+     "reveal": "vg-almond"
+    },
+    {
+     "id": "van-gogh-3",
+     "level": 1,
+     "q": "Which brother, an art dealer in Paris, supported Vincent with money for years?",
+     "options": [
+      "Theo",
+      "Paul",
+      "Émile",
+      "Camille"
+     ],
+     "explain": "Theo paid for his paints and living costs, and the two wrote hundreds of letters to each other.",
+     "reveal": "vg-yellow-house"
+    },
+    {
+     "id": "van-gogh-4",
+     "level": 2,
+     "q": "In February 1888 Van Gogh left Paris and moved to…",
+     "options": [
+      "Arles",
+      "Pont-Aven, Brittany",
+      "Giverny, Normandy",
+      "Barbizon, near Paris"
+     ],
+     "explain": "He rented rooms in the Yellow House and painted some of his best-known works there.",
+     "art": "vg-yellow-house"
+    },
+    {
+     "id": "van-gogh-5",
+     "level": 2,
+     "q": "Which painter came to stay with him in Arles in late 1888?",
+     "options": [
+      "Paul Gauguin",
+      "Paul Cézanne",
+      "Claude Monet",
+      "Georges Seurat"
+     ],
+     "explain": "Gauguin stayed about two months. Van Gogh had painted Sunflowers that August to decorate the room Gauguin would use.",
+     "reveal": "sunflowers"
+    },
+    {
+     "id": "van-gogh-6",
+     "level": 2,
+     "q": "Which 1885 painting shows a peasant family eating supper by lamplight?",
+     "options": [
+      "The Potato Eaters",
+      "The Night Café",
+      "The Bedroom",
+      "Café Terrace at Night"
+     ],
+     "explain": "Painted in Nuenen in the Netherlands, in dark earthy colours, before Paris brightened his palette.",
+     "reveal": "potato-eaters"
+    },
+    {
+     "id": "van-gogh-7",
+     "level": 3,
+     "q": "Van Gogh collected cheap woodblock prints from which country?",
+     "options": [
+      "Japan",
+      "China",
+      "India",
+      "Persia"
+     ],
+     "explain": "He even made painted copies of some, such as Hiroshige's Plum Park in Kameido.",
+     "reveal": "plum-park"
+    },
+    {
+     "id": "van-gogh-8",
+     "level": 3,
+     "q": "Where did Van Gogh paint The Starry Night in 1889?",
+     "options": [
+      "In a hospital at Saint-Rémy, Provence",
+      "In his brother's flat in Paris",
+      "In the Yellow House in Arles",
+      "In an inn at Auvers"
+     ],
+     "explain": "He had gone there to recover. The view is from his window, but the village was largely invented.",
+     "art": "starry-night"
+    },
+    {
+     "id": "van-gogh-9",
+     "level": 3,
+     "q": "Which painting is usually said to be the only one Van Gogh sold in his lifetime?",
+     "options": [
+      "The Red Vineyard",
+      "The Starry Night",
+      "Sunflowers",
+      "The Potato Eaters"
+     ],
+     "explain": "The Belgian painter Anna Boch bought it in 1890 for about 400 francs. Records suggest he sold at least one other work too. It's now in the Pushkin Museum, Moscow."
+    },
+    {
+     "id": "van-gogh-10",
+     "level": 3,
+     "q": "Van Gogh painted Almond Blossom (1890) as a gift. What was it celebrating?",
+     "options": [
+      "The birth of his brother Theo's son",
+      "Theo's wedding",
+      "His own birthday",
+      "The opening of an exhibition"
+     ],
+     "explain": "The baby was named Vincent Willem after him. Years later that nephew founded the Van Gogh Museum.",
+     "art": "vg-almond"
+    },
+    {
+     "id": "van-gogh-11",
+     "level": 4,
+     "q": "Which three of these did Van Gogh paint while living in Arles?",
+     "options": [
+      "Sunflowers (National Gallery, London)",
+      "Café Terrace at Night",
+      "The Yellow House",
+      "The Starry Night",
+      "The Potato Eaters",
+      "A Wheatfield, with Cypresses"
+     ],
+     "explain": "Sunflowers, Café Terrace at Night and The Yellow House all date from 1888 in Arles. The Starry Night and the Wheatfield come from Saint-Rémy (1889), The Potato Eaters from Nuenen (1885).",
+     "correct": 3,
+     "reveal": "cafe-terrace"
+    },
+    {
+     "id": "van-gogh-12",
+     "level": 5,
+     "q": "Who did most to make Van Gogh famous after he and Theo died?",
+     "options": [
+      "Jo van Gogh-Bonger, Theo's widow",
+      "Paul Gauguin",
+      "Dr Paul Gachet",
+      "Anna Boch"
+     ],
+     "explain": "She looked after hundreds of his paintings and drawings, lent them to exhibitions and published his letters to Theo in 1914."
+    },
+    {
+     "id": "van-gogh-13",
+     "level": 5,
+     "q": "The National Gallery in London has the finished A Wheatfield, with Cypresses. Where is his first version, painted outdoors?",
+     "options": [
+      "Metropolitan Museum of Art, New York",
+      "Musée d'Orsay, Paris",
+      "Art Institute of Chicago",
+      "National Gallery of Art, Washington"
+     ],
+     "explain": "He painted it in June 1889 near Saint-Rémy and saw it as a study for the London picture.",
+     "art": "vg-wheatfield"
+    }
+   ]
+  },
+  "alfred-wallis": {
+   "name": "Alfred Wallis",
+   "kind": "artist",
+   "group": "now",
+   "year": 1928,
+   "span": "1855–1942",
+   "timeline": false,
+   "related": [
+    "modern-british",
+    "tate"
+   ],
+   "intro": [
+    {
+     "title": "In the news",
+     "text": "'Alfred Wallis: an Artists' Artist' opens at Pallant House Gallery, Chichester, on 21 November 2026 and runs until May 2027.",
+     "art": "aw-st-ives"
+    },
+    {
+     "title": "Who was he?",
+     "text": "A sailor and fisherman, born in Devon, who settled in St Ives, Cornwall, and later dealt in scrap from ships. He began painting at about 70, after his wife died, with no training at all.",
+     "art": "aw-schooner"
+    },
+    {
+     "title": "Look for",
+     "text": "Boats, harbours and lighthouses painted from memory on scraps of cardboard, often with ship's paint. No perspective: important things are simply bigger.",
+     "art": "aw-houses"
+    }
+   ],
+   "questions": [
+    {
+     "id": "alfred-wallis-1",
+     "level": 1,
+     "q": "At about what age did Alfred Wallis start painting?",
+     "options": [
+      "About 70",
+      "About 10",
+      "About 25",
+      "About 45"
+     ],
+     "explain": "Around 1925, a few years after his wife died.",
+     "reveal": "aw-blue-ship"
+    },
+    {
+     "id": "alfred-wallis-2",
+     "level": 1,
+     "q": "Wallis lived and painted in which seaside town?",
+     "options": [
+      "St Ives",
+      "Brighton",
+      "Whitby",
+      "Margate"
+     ],
+     "explain": "His family moved there in 1882. His grave looks down over the town and Tate St Ives.",
+     "reveal": "aw-st-ives"
+    },
+    {
+     "id": "alfred-wallis-3",
+     "level": 1,
+     "q": "What did Wallis usually paint on?",
+     "options": [
+      "Scraps of cardboard",
+      "Canvas",
+      "Silk",
+      "Copper"
+     ],
+     "explain": "Often torn from boxes, odd shapes and all. He used household and ship's paint.",
+     "reveal": "aw-schooner"
+    },
+    {
+     "id": "alfred-wallis-4",
+     "level": 2,
+     "q": "What did Wallis mostly paint?",
+     "options": [
+      "Ships, harbours and the sea",
+      "Portraits",
+      "Flowers",
+      "City streets"
+     ],
+     "explain": "Above all the sailing ships he had known as a young man.",
+     "reveal": "aw-voyage"
+    },
+    {
+     "id": "alfred-wallis-5",
+     "level": 2,
+     "q": "Which two of these artists came across Wallis on a day trip to St Ives in 1928 and bought his paintings?",
+     "options": [
+      "Ben Nicholson",
+      "Christopher Wood",
+      "L.S. Lowry",
+      "Francis Bacon",
+      "Stanley Spencer"
+     ],
+     "explain": "Ben Nicholson and Christopher Wood spotted his paintings in August 1928 and soon introduced his work to other artists.",
+     "correct": 2,
+     "reveal": "aw-st-ives"
+    },
+    {
+     "id": "alfred-wallis-6",
+     "level": 2,
+     "q": "Wallis painted his boats and harbours mostly…",
+     "options": [
+      "From memory",
+      "From photographs",
+      "Outdoors, looking at the view",
+      "From postcards"
+     ],
+     "explain": "Often the sailing ships of his youth, by then being replaced by motor boats.",
+     "reveal": "aw-schooner"
+    },
+    {
+     "id": "alfred-wallis-7",
+     "level": 3,
+     "q": "Wallis had no art training. Art by self-taught painters like him is often called…",
+     "options": [
+      "Naive art",
+      "Baroque",
+      "Pointillism",
+      "Rococo"
+     ],
+     "explain": "'Naive' here means untrained, not foolish: direct, simple and often very bold.",
+     "reveal": "aw-houses"
+    },
+    {
+     "id": "alfred-wallis-8",
+     "level": 3,
+     "q": "In Wallis's pictures, what usually decides how big something is?",
+     "options": [
+      "How important it is",
+      "How close it is",
+      "Its real size",
+      "The colour of the paint"
+     ],
+     "explain": "He ignored perspective, so his harbours often look like old maps.",
+     "art": "aw-st-ives"
+    },
+    {
+     "id": "alfred-wallis-9",
+     "level": 3,
+     "q": "Which collector, whose home Kettle's Yard in Cambridge is now a museum, championed Wallis?",
+     "options": [
+      "Jim Ede",
+      "Peggy Guggenheim",
+      "Samuel Courtauld",
+      "Henry Tate"
+     ],
+     "explain": "Ede promoted Wallis in London. Kettle's Yard still shows his paintings.",
+     "reveal": "aw-blue-ship"
+    },
+    {
+     "id": "alfred-wallis-10",
+     "level": 4,
+     "q": "Which famous potter made the tiles on Wallis's grave in St Ives?",
+     "options": [
+      "Bernard Leach",
+      "Clarice Cliff",
+      "Lucie Rie",
+      "Grayson Perry"
+     ],
+     "explain": "They show a small old man at the foot of a lighthouse, a subject Wallis often painted."
+    },
+    {
+     "id": "alfred-wallis-11",
+     "level": 4,
+     "q": "Wallis painted Voyage to Labrador from memories of his years at sea. Labrador is part of which country today?",
+     "options": [
+      "Canada",
+      "Norway",
+      "Iceland",
+      "Scotland"
+     ],
+     "explain": "As a young sailor he crossed the Atlantic on schooners and spent months there as ship's cook.",
+     "art": "aw-voyage"
+    },
+    {
+     "id": "alfred-wallis-12",
+     "level": 5,
+     "q": "Boats at Quayside was begun by one artist and finished by Wallis. Who started it?",
+     "options": [
+      "Christopher Wood",
+      "Ben Nicholson",
+      "Barbara Hepworth",
+      "Peter Lanyon"
+     ],
+     "explain": "Wood began this view of a harbour in Brittany and probably gave it to Wallis around 1930, who completed it."
+    },
+    {
+     "id": "alfred-wallis-13",
+     "level": 5,
+     "q": "Why did Wallis say he took up painting?",
+     "options": [
+      "For company",
+      "To make money",
+      "A doctor told him to",
+      "To win a competition"
+     ],
+     "explain": "He told Ben Nicholson so after his wife's death. His pictures sold for only a few shillings.",
+     "reveal": "aw-blue-ship"
     }
    ]
   }

@@ -1,5 +1,5 @@
 {
- "version": "2026-11-13",
+ "version": "2026-11-15",
  "works": [
   {
    "id": "mona-lisa",
@@ -1981,6 +1981,141 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sundarban_mangrove.jpg/960px-Sundarban_mangrove.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Sundarban_mangrove.jpg",
    "hook": "The Sundarbans, shared by India and Bangladesh, is the world's largest mangrove forest."
+  },
+  {
+   "id": "vg-bandaged-ear",
+   "topic": "van-gogh",
+   "artist": "Vincent van Gogh",
+   "title": "Self-Portrait with Bandaged Ear",
+   "year": 1889,
+   "place": "Courtauld Gallery, London",
+   "img": "https://courtauld.ac.uk/wp-content/uploads/2021/03/Self-Portrait-with-Bandaged-Ear-Banner.jpg",
+   "hook": "Painted in Arles in January 1889, about a week after he left hospital. Behind him hangs a Japanese print.",
+   "credit": "The Courtauld",
+   "page": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/"
+  },
+  {
+   "id": "vg-bedroom",
+   "topic": "van-gogh",
+   "artist": "Vincent van Gogh",
+   "title": "The Bedroom",
+   "year": 1888,
+   "place": "Van Gogh Museum, Amsterdam",
+   "img": "https://iiif.micr.io/ZKSPH/full/1280,/0/default.jpg",
+   "hook": "His own room in the Yellow House in Arles. He later painted two more versions.",
+   "credit": "Van Gogh Museum",
+   "page": "https://www.vangoghmuseum.nl/en/collection/s0047V1962"
+  },
+  {
+   "id": "vg-yellow-house",
+   "topic": "van-gogh",
+   "artist": "Vincent van Gogh",
+   "title": "The Yellow House",
+   "year": 1888,
+   "place": "Van Gogh Museum, Amsterdam",
+   "img": "https://iiif.micr.io/NyxcG/full/1280,/0/default.jpg",
+   "hook": "The house on Place Lamartine in Arles where he rented rooms in 1888.",
+   "credit": "Van Gogh Museum",
+   "page": "https://vangoghmuseum.nl/en/collection/s0032V1962"
+  },
+  {
+   "id": "vg-almond",
+   "topic": "van-gogh",
+   "artist": "Vincent van Gogh",
+   "title": "Almond Blossom",
+   "year": 1890,
+   "place": "Van Gogh Museum, Amsterdam",
+   "img": "https://iiif.micr.io/rAERt/full/1280,/0/default.jpg",
+   "hook": "A gift for Theo and Jo when their son, named Vincent after him, was born.",
+   "credit": "Van Gogh Museum",
+   "page": "https://vangoghmuseum.nl/en/collection/s0176V1962"
+  },
+  {
+   "id": "vg-wheatfield",
+   "topic": "van-gogh",
+   "artist": "Vincent van Gogh",
+   "title": "A Wheatfield, with Cypresses",
+   "year": 1889,
+   "place": "National Gallery, London",
+   "img": "https://www.nationalgallery.org.uk/media/b2gj4uld/n-3861-00-000081-xl-hd.jpg",
+   "hook": "Painted at Saint-Rémy in September 1889, a studio version of a view he first painted outdoors that summer.",
+   "credit": "The National Gallery",
+   "page": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses"
+  },
+  {
+   "id": "aw-st-ives",
+   "artist": "Alfred Wallis",
+   "title": "St Ives",
+   "year": 1928,
+   "approx": true,
+   "yearLabel": "c.1928",
+   "medium": "Oil paint, graphite and crayon on cardboard",
+   "place": "Tate",
+   "topic": "alfred-wallis",
+   "tate": "T00881",
+   "page": "https://www.tate.org.uk/art/artworks/wallis-st-ives-t00881",
+   "hook": "Given to Tate by Ben Nicholson in 1966.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_MoFADn6.jpg"
+  },
+  {
+   "id": "aw-blue-ship",
+   "artist": "Alfred Wallis",
+   "title": "The Blue Ship",
+   "year": 1934,
+   "approx": true,
+   "yearLabel": "c.1934",
+   "medium": "Oil paint on board on wood",
+   "place": "Tate",
+   "topic": "alfred-wallis",
+   "tate": "T00291",
+   "page": "https://www.tate.org.uk/art/artworks/wallis-the-blue-ship-t00291",
+   "hook": "Painted from memory, like all his ships.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_tvf3G0h.jpg"
+  },
+  {
+   "id": "aw-schooner",
+   "artist": "Alfred Wallis",
+   "title": "Schooner under the Moon",
+   "year": 1935,
+   "approx": true,
+   "yearLabel": "c.1935–6",
+   "medium": "Oil paint and graphite on cardboard on plywood",
+   "place": "Tate",
+   "topic": "alfred-wallis",
+   "tate": "T00219",
+   "page": "https://www.tate.org.uk/art/artworks/wallis-schooner-under-the-moon-t00219",
+   "hook": "A schooner, the kind of sailing ship he crewed as a young man.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_jk8yx9p.jpg"
+  },
+  {
+   "id": "aw-houses",
+   "artist": "Alfred Wallis",
+   "title": "Houses at St Ives, Cornwall",
+   "year": 1928,
+   "approx": true,
+   "yearLabel": "c.1928–33",
+   "medium": "Oil paint on cardboard",
+   "place": "Tate",
+   "topic": "alfred-wallis",
+   "tate": "T00239",
+   "page": "https://www.tate.org.uk/art/artworks/wallis-houses-at-st-ives-cornwall-t00239",
+   "hook": "His own town, painted on cardboard without perspective.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_LoNJiwd.jpg"
+  },
+  {
+   "id": "aw-voyage",
+   "artist": "Alfred Wallis",
+   "title": "Voyage to Labrador",
+   "year": 1935,
+   "approx": true,
+   "yearLabel": "c.1935–6",
+   "medium": "Oil paint on wood",
+   "place": "Tate",
+   "topic": "alfred-wallis",
+   "tate": "T00220",
+   "page": "https://www.tate.org.uk/art/artworks/wallis-voyage-to-labrador-t00220",
+   "hook": "A memory of his Atlantic crossings as a young sailor.",
+   "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_LqYfJxK.jpg"
   }
  ]
 }
