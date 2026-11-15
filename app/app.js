@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 21:16"; // shown as a small footnote on the Me page
+const BUILD_AT = "15 Nov, 21:28"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -24,7 +24,7 @@ const pick = (a, r = Math.random) => a[Math.floor(r() * a.length)];
 
 /* ---------------- content ---------------- */
 let WORKS = [], W = {}, TOPICS = {}, NEWS = null, ART = [], CLEARED = {}, VENUES = {};
-const venue = t => VENUES[String(t || "").trim().toLowerCase()] || null;
+const venue = t => { const k = String(t || "").trim().toLowerCase(); return VENUES[k] || VENUES[k.replace(/^the /, "")] || null; };
 /* questions anyone has flagged stay hidden for everyone until they're checked and listed in cleared.json */
 let HIDDEN = new Set();
 function computeHidden(){

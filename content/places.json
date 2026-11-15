@@ -92,7 +92,8 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/MoMa_NY_USA_1.jpg/960px-MoMa_NY_USA_1.jpg",
    "aliases": [
     "MoMA, New York",
-    "MoMA"
+    "MoMA",
+    "Museum of Modern Art"
    ],
    "credit": "Wikimedia Commons"
   },
@@ -242,7 +243,8 @@
   "Tate Britain": {
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Tate_Britain_%285822081512%29_%282%29.jpg/960px-Tate_Britain_%285822081512%29_%282%29.jpg",
    "aliases": [
-    "Tate Britain, London"
+    "Tate Britain, London",
+    "Tate"
    ],
    "credit": "Wikimedia Commons"
   },
@@ -291,7 +293,9 @@
   },
   "Peggy Guggenheim Collection, Venice": {
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/PI5DAE~2_-_CopyPeggy_Guggenheim_Museum.JPG/960px-PI5DAE~2_-_CopyPeggy_Guggenheim_Museum.JPG",
-   "aliases": [],
+   "aliases": [
+    "Palazzo Venier dei Leoni"
+   ],
    "credit": "Wikimedia Commons"
   },
   "British Museum, London": {
@@ -307,6 +311,91 @@
     "Whitney Museum",
     "Whitney Museum, New York"
    ],
+   "credit": "Wikimedia Commons"
+  },
+  "Musée Picasso, Paris": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/H%C3%B4tel_Sal%C3%A9.JPG/960px-H%C3%B4tel_Sal%C3%A9.JPG",
+   "aliases": [
+    "Musée Picasso"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Reina Sofía, Madrid": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Edificio_Sabatini._Museo_Nacional_Centro_de_Arte_Reina_Sof%C3%ADa.jpg/960px-Edificio_Sabatini._Museo_Nacional_Centro_de_Arte_Reina_Sof%C3%ADa.jpg",
+   "aliases": [
+    "Reina Sofía",
+    "Museo Reina Sofía"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Tate Liverpool": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Tate_Liverpool_-_geograph.org.uk_-_903501.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Tate St Ives": {
+   "img": "https://upload.wikimedia.org/wikipedia/commons/1/11/Tate_St_Ives_-_geograph.org.uk_-_1208300.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Frick Collection, New York": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Frickmusjeh.JPG/960px-Frickmusjeh.JPG",
+   "aliases": [
+    "Frick Collection",
+    "The Frick"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Groeningemuseum, Bruges": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Brugge_-_Dijver_12_-Voormalig_poortgebouw_van_de_proosdij_van_Onze-Lieve-Vrouw%2C_heden_ingang_van_het_Groeningemuseum_-_82339.jpg/960px-Brugge_-_Dijver_12_-Voormalig_poortgebouw_van_de_proosdij_van_Onze-Lieve-Vrouw%2C_heden_ingang_van_het_Groeningemuseum_-_82339.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Lenbachhaus, Munich": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/2013-05-04_Lenbachhaus_Muenchen-8.jpg/960px-2013-05-04_Lenbachhaus_Muenchen-8.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Leopold Museum, Vienna": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Wien_07_Leopold_Museum_a.jpg/960px-Wien_07_Leopold_Museum_a.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Museum of Contemporary Art Chicago": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/MCA_Chicago_060930.jpg/960px-MCA_Chicago_060930.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Neue Nationalgalerie, Berlin": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Berlin_Neue_Nationalgalerie_asv2021-11_img1.jpg/960px-Berlin_Neue_Nationalgalerie_asv2021-11_img1.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Walker Art Gallery, Liverpool": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Walker_Art_Gallery%2C_Liverpool_161009.JPG/960px-Walker_Art_Gallery%2C_Liverpool_161009.JPG",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Allen Memorial Art Museum, Oberlin, Ohio": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Oberlin_College_-_Allen_Memorial_Art_Museum.jpg/960px-Oberlin_College_-_Allen_Memorial_Art_Museum.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Palazzo Ducale": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/%28Venice%29_Doge%27s_Palace_and_campanile_of_St._Mark%27s_Basilica_facing_the_sea.jpg/960px-%28Venice%29_Doge%27s_Palace_and_campanile_of_St._Mark%27s_Basilica_facing_the_sea.jpg",
+   "aliases": [
+    "Doge's Palace, Venice"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Ca' d'Oro": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Ca%27_d%27Oro_facciata.jpg/960px-Ca%27_d%27Oro_facciata.jpg",
+   "aliases": [],
+   "credit": "Wikimedia Commons"
+  },
+  "Palazzo Grassi": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Palais_Grassi.jpg/960px-Palais_Grassi.jpg",
+   "aliases": [],
    "credit": "Wikimedia Commons"
   }
  }
