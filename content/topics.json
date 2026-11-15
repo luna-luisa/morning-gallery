@@ -190,13 +190,13 @@
    ],
    "intro": [
     {
-     "title": "In the news",
-     "text": "'Van Eyck: The Portraits' at the National Gallery, 21 November 2026 to 11 April 2027, gathers his surviving portraits together for the first time.",
+     "title": "Who was he?",
+     "text": "A Flemish painter of the first half of the 1400s, based in Bruges and court painter to the Duke of Burgundy. His faces are so lifelike you can see every wrinkle and hint of stubble.",
      "art": "red-turban"
     },
     {
-     "title": "Who was he?",
-     "text": "A Flemish painter working in Bruges, court painter to the Duke of Burgundy. One of the founders of 'Northern Renaissance' art.",
+     "title": "In the news",
+     "text": "'Van Eyck: The Portraits' at the National Gallery, 21 November 2026 to 11 April 2027, gathers his surviving portraits together for the first time.",
      "art": "leal-souvenir"
     },
     {
@@ -1719,13 +1719,13 @@
    ],
    "intro": [
     {
-     "title": "The Secession",
-     "text": "In 1897 Klimt and friends broke away from Vienna's official art body to found the Vienna Secession.",
+     "title": "Breaking away",
+     "text": "In 1897 Klimt and friends left Vienna's official art body to found the Vienna Secession. They wanted modern art in every part of life: paintings, posters, furniture and buildings.",
      "art": "kiss"
     },
     {
      "title": "Gold",
-     "text": "Klimt's 'golden period' used real gold leaf and patterns from mosaics and decorative art.",
+     "text": "Klimt's 'golden period' used real gold leaf and patterns borrowed from mosaics: dreamy, sensual figures wrapped in glittering decoration.",
      "art": "kiss"
     },
     {
@@ -2595,7 +2595,7 @@
    "intro": [
     {
      "title": "New York takes over",
-     "text": "After the Second World War, the centre of the art world moved from Paris to New York.",
+     "text": "After the Second World War, New York painters made huge abstract canvases to express raw feeling, and New York took over from Paris as the centre of the art world.",
      "art": "interchange"
     },
     {
@@ -2693,7 +2693,7 @@
    "intro": [
     {
      "title": "Born in Britain",
-     "text": "London's Independent Group got there first. Richard Hamilton's 1956 collage is often called the first Pop artwork. Pictured: David Hockney's A Bigger Splash, 1967.",
+     "text": "Art made from adverts, comics and celebrity. It began in London: Richard Hamilton's 1956 collage is often called the first Pop artwork. Pictured: David Hockney's A Bigger Splash, 1967.",
      "art": "bigger-splash"
     },
     {
@@ -2819,7 +2819,7 @@
    "intro": [
     {
      "title": "A British century",
-     "text": "Not one movement but a strong line: Spencer, Nash, Lowry, Moore, Hepworth, Bacon, Freud, Riley, Rego.",
+     "text": "Not one style but a century of British artists making modern art their own, often rooted in place: Paul Nash's war landscapes, L.S. Lowry's northern streets, Barbara Hepworth's carvings from St Ives.",
      "art": "totes-meer"
     },
     {
@@ -2943,7 +2943,7 @@
    "intro": [
     {
      "title": "Freeze, 1988",
-     "text": "Student Damien Hirst organised a show in an empty Docklands building. It launched a generation.",
+     "text": "A loud, shocking generation of London artists in the 1990s. It began when student Damien Hirst organised a show called Freeze in an empty Docklands building.",
      "art": "pharmacy"
     },
     {
@@ -3040,18 +3040,18 @@
    ],
    "intro": [
     {
+     "title": "Who were they?",
+     "text": "Two painters at the heart of the Bloomsbury Group, a circle of London artists, writers and thinkers that included Vanessa's sister, Virginia Woolf. Bell and Grant lived and worked together for over 40 years.",
+     "art": "bathing"
+    },
+    {
      "title": "In the news",
      "text": "Tate Britain's 'Vanessa Bell & Duncan Grant: Inside Bloomsbury' runs 12 November 2026 to 11 April 2027.",
      "art": "studland"
     },
     {
-     "title": "The Bloomsbury Group",
-     "text": "Writers, painters and thinkers around Bloomsbury, London: Virginia Woolf (Vanessa's sister), Roger Fry, Maynard Keynes.",
-     "art": "bathing"
-    },
-    {
-     "title": "Charleston",
-     "text": "From 1916 Bell and Grant lived at Charleston farmhouse in Sussex and painted every surface, walls and furniture included.",
+     "title": "Look for",
+     "text": "Bold colour and simple shapes inspired by French painters like Cézanne and Matisse, still daring in Britain then. They also decorated furniture, fabrics and pottery, and painted almost every surface of Charleston, their Sussex farmhouse.",
      "art": "charleston"
     }
    ],
@@ -3163,19 +3163,19 @@
    ],
    "intro": [
     {
+     "title": "Who was she?",
+     "text": "An American heiress (1898–1979) who became one of the boldest collectors of modern art, buying Surrealist and abstract works when few others would. Her Venice palazzo is now her museum.",
+     "art": "guggenheim-venice"
+    },
+    {
      "title": "In the news",
      "text": "'Peggy Guggenheim in London: The Making of a Collector' at the Royal Academy, 21 November 2026 to 14 March 2027.",
      "art": "burlington"
     },
     {
-     "title": "Cork Street",
-     "text": "Her first gallery, Guggenheim Jeune, ran at 30 Cork Street, London, 1938–39. It gave Kandinsky his first UK solo show.",
+     "title": "Cork Street to New York",
+     "text": "Her first gallery, Guggenheim Jeune, ran at 30 Cork Street, London, in 1938–39 and gave Kandinsky his first UK solo show. Later, in New York, she championed a young Jackson Pollock.",
      "art": "cossacks"
-    },
-    {
-     "title": "New York to Venice",
-     "text": "Her New York gallery championed a young Jackson Pollock. She ended up in a Venetian palazzo, now her museum.",
-     "art": "guggenheim-venice"
     }
    ],
    "questions": [
@@ -3769,14 +3769,14 @@
    ],
    "intro": [
     {
-     "title": "In the news",
-     "text": "'Salman Toor: Someone Like You' at the Courtauld Gallery, London, runs until 10 January 2027. It's his first solo museum show in Europe: 19 paintings.",
-     "art": "toor-bar-13th"
-    },
-    {
      "title": "Who is he?",
      "text": "Born in Lahore, Pakistan, in 1983, he trained in the US and lives in New York. A 2020 solo show at the Whitney Museum made his name.",
      "art": "toor-bar-boy"
+    },
+    {
+     "title": "In the news",
+     "text": "'Salman Toor: Someone Like You' at the Courtauld Gallery, London, runs until 10 January 2027. It's his first solo museum show in Europe: 19 paintings.",
+     "art": "toor-bar-13th"
     },
     {
      "title": "Look for",
@@ -3968,14 +3968,14 @@
    ],
    "intro": [
     {
+     "title": "Who was he?",
+     "text": "A Dutch painter (1853–1890) who poured his feelings into colour and brushwork. He painted for only about ten years and sold very little, but became one of the best-loved artists of all.",
+     "art": "vg-bandaged-ear"
+    },
+    {
      "title": "In the news",
      "text": "On 18 November 2026 Sotheby's in New York offers Blossoming Chestnut Trees, one of his last paintings from 1890, estimated at about $180m.",
      "art": "auvers"
-    },
-    {
-     "title": "Who was he?",
-     "text": "A Dutch painter, born in 1853. He painted for only about ten years, from 1880 until his death in France in 1890.",
-     "art": "vg-bandaged-ear"
     },
     {
      "title": "Look for",
@@ -4169,14 +4169,14 @@
    ],
    "intro": [
     {
-     "title": "In the news",
-     "text": "'Alfred Wallis: an Artists' Artist' opens at Pallant House Gallery, Chichester, on 21 November 2026 and runs until May 2027.",
-     "art": "aw-st-ives"
-    },
-    {
      "title": "Who was he?",
      "text": "A sailor and fisherman, born in Devon, who settled in St Ives, Cornwall, and later dealt in scrap from ships. He began painting at about 70, after his wife died, with no training at all.",
      "art": "aw-schooner"
+    },
+    {
+     "title": "In the news",
+     "text": "'Alfred Wallis: an Artists' Artist' opens at Pallant House Gallery, Chichester, on 21 November 2026 and runs until May 2027.",
+     "art": "aw-st-ives"
     },
     {
      "title": "Look for",
