@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "15 Nov, 23:14"; // shown as a small footnote on the Me page
+const BUILD_AT = "16 Nov, 07:30"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -431,6 +431,18 @@ function pushEndless(){
   if (!x) x = Object.assign({}, topicSet(tid, 6)[0], {section:"topic"});
   S.used.add(x.key); S.q.push(x);
 }
+/* the round in progress is kept on the phone, so a reload (reading a news link, closing the app) picks up where you were */
+function keepRound(){
+  if (!S || !pid || S.mode === "endless") return;
+  local.set("round:" + pid, {day: today(), S: Object.assign({}, S, {used: undefined})});
+}
+function dropRound(){ if (pid) try { localStorage.removeItem("mg:round:" + pid); } catch(e){} }
+function resumeRound(){
+  const r = pid && local.get("round:" + pid);
+  if (!r || r.day !== today() || !r.S || !Array.isArray(r.S.q) || r.S.i >= r.S.q.length){ dropRound(); return false; }
+  S = r.S; setTab("today"); inRound(true);
+  next(S.ans === S.i ? 1 : 0); return true;
+}
 let loadingToken = 0;
 async function next(delta){
   if (!S) return;
@@ -447,7 +459,7 @@ async function next(delta){
   clearTimeout(slow);
   if (tok !== loadingToken || !S) return;
   if (!q){ S.q.splice(S.i, 1); return next(0); }
-  S.q[S.i] = q; render(); prefetch(S.q[S.i + 1]);
+  S.q[S.i] = q; render(); prefetch(S.q[S.i + 1]); keepRound();
 }
 
 /* ---------------- rendering ---------------- */
@@ -540,7 +552,7 @@ function render(){
     <div id="ans" class="ansarea"></div>
     <div class="dock"><button class="btn ghost" id="check">Not sure</button></div>
     ${S.mode === "endless" ? `<p class="small muted center tally">${S.score} right so far</p>` : ""}`;
-  $("#quit").onclick = () => { S = null; go("today"); };
+  $("#quit").onclick = () => { S = null; dropRound(); go("today"); };
   if (x.type === "mc") renderMC(x); else if (x.type === "pick") renderPick(x); else renderOrder(x);
   wireHold(view);
   fitScreen(); const fi = $("#view > .spot img"); if (fi && !fi.complete) fi.addEventListener("load", fitScreen, {once: true});
@@ -636,8 +648,8 @@ function answered(x, ok){
   const note = x.news ? "" : srs(x, ok);
   if (x.news) state.seenNews[x.key.slice(2)] = true;
   state.stats.answered++; if (ok) state.stats.correct++;
-  S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up});
-  save();
+  S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up}); S.ans = S.i;
+  save(); keepRound();
   const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
@@ -722,7 +734,7 @@ async function requestMore(topic, kind, message, item){
   return store.feedback({kind, profile_name: p.name || "", topic: topic || "", item: item || "", message: String(message || "").slice(0, 1500)});
 }
 function finish(){
-  inRound(false);
+  dropRound(); inRound(false);
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); }
   if (S.mode === "topic") markPlayed(S.topic);
   save();
@@ -1046,7 +1058,7 @@ async function use(id){
   const p = profiles[id];
   setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
-  go("today");
+  if (!resumeRound()) go("today");
 }
 $("#who").onclick = renderProfiles;
 
