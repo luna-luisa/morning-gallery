@@ -1,14 +1,41 @@
 {
- "week": "w/c 9 Nov 2026",
- "updated": "2026-11-15",
+ "week": "w/c 16 Nov 2026",
+ "updated": "2026-11-16",
  "featuredTopics": [
   "auctions",
+  "van-gogh",
   "art-fairs",
   "van-eyck",
-  "bloomsbury",
-  "renaissance"
+  "bloomsbury"
  ],
  "items": [
+  {
+   "id": "2026-11-van-gogh-heirs",
+   "date": "2026-11-14",
+   "topic": "van-gogh",
+   "level": 3,
+   "headline": "Heirs ask Sotheby's to pull a $180m Van Gogh",
+   "summary": "Descendants of the German publisher Samuel Fischer say Blossoming Chestnut Trees was sold under Nazi pressure in 1936.",
+   "question": "Heirs of which German publisher want a $180m Van Gogh withdrawn from auction?",
+   "options": [
+    "Samuel Fischer",
+    "Axel Springer",
+    "Ernst Rowohlt",
+    "Kurt Wolff"
+   ],
+   "answer": 0,
+   "explain": "They say it was sold in Amsterdam in 1936, months after the family left Nazi Germany, while Sotheby's says its research has not shown the sale was forced.",
+   "source": "https://haaretz.com/life/2026-11-14/ty-article/report-jewish-heirs-seek-to-pull-van-gogh-piece-from-auction-over-nazi-era-sale/000001a1-d983-da30-a7fb-d9bfb37c0000",
+   "reveal": {
+    "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
+    "artist": "Vincent van Gogh",
+    "title": "Blossoming Chestnut Trees",
+    "year": 1890,
+    "place": "Sotheby's New York, 18 November 2026",
+    "credit": "Sotheby's, via The Art Newspaper",
+    "page": "https://theartnewspaper.com/2026/10/02/the-story-behind-the-180m-van-gogh-up-for-auction-this-november"
+   }
+  },
   {
    "id": "2026-11-frieze-abu-dhabi",
    "date": "2026-11-13",
@@ -99,29 +126,6 @@
     "place": "Sold at Sotheby's Paris, 2026",
     "credit": "Sotheby's, via Smithsonian Magazine",
     "page": "https://www.smithsonianmag.com/smart-news/claude-monets-long-hidden-iris-is-about-to-become-the-most-expensive-painting-ever-auctioned-in-france-180989546/"
-   }
-  },
-  {
-   "id": "2026-11-basel-paris",
-   "date": "2026-11-12",
-   "topic": "art-fairs",
-   "level": 3,
-   "headline": "Art Basel Paris closed two days early",
-   "summary": "Planned protests cut the fair short in October. After French galleries asked for compensation, Art Basel offered a 20% cut in stand fees.",
-   "question": "Why did Art Basel Paris close two days early in October 2026?",
-   "options": [
-    "Planned protests in Paris",
-    "A fire at the Grand Palais",
-    "A storm",
-    "A strike by art handlers"
-   ],
-   "answer": 0,
-   "explain": "The fair closed on Friday 23 October instead of Sunday 25 October, citing planned weekend demonstrations. On 11 November Art Basel offered exhibitors a 20% reduction in stand fees.",
-   "source": "https://www.theartnewspaper.com/2026/11/11/art-basel-offers-compensation-to-dealers-after-early-closure-of-paris-fair",
-   "reveal": {
-    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/960px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
-    "photo": true,
-    "title": "The Grand Palais, Paris, home of Art Basel Paris"
    }
   },
   {
