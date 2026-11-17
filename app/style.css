@@ -612,5 +612,8 @@ details.tsub > summary .chev{margin-left:auto;width:9px;height:9px;border-width:
 .sheet.min .sheetin{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
 /* once answered, the order list scrolls like everything else */
 .sheetopen .oitem{touch-action:auto;cursor:default}
-.splash{z-index:90;transition:opacity .4s ease}
+.splash{z-index:90;transition:opacity .4s ease;animation:none}
 .splash.out{opacity:0;pointer-events:none}
+/* keep the bare shell hidden until the app has started (it shows the opening card straight away); reveal anyway after 6s as a fallback */
+body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgreveal 0s 6s forwards}
+@keyframes mgreveal{to{visibility:visible}}

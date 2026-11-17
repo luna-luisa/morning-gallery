@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 08:18"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 08:25"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1299,7 +1299,7 @@ function splash(){
   return () => setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 450); }, Math.max(0, 1300 - (Date.now() - t0)));
 }
 (async function boot(){
-  const unsplash = splash();
+  const unsplash = splash(); document.body.classList.add("booted");
   const pp = store.listProfiles().catch(() => null); // fetch profiles while the collection loads
   try { await loadContent(); }
   catch(e){ unsplash(); view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
