@@ -620,3 +620,10 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 @keyframes mgreveal{to{visibility:visible}}
 
 .splash .arch span,.splash .archcap{opacity:0;transition:opacity .5s ease}.splash.pic .arch span{opacity:1}.splash.pic .archcap{opacity:.6}
+
+/* swipe: no stamps; the chosen side's button swells and fills as you drag */
+.swb .ring{transition:transform .12s ease,background .12s ease,box-shadow .12s ease}
+.swb.yes .ring{transform:scale(calc(1 + var(--yes,0) * .22));box-shadow:0 6px 16px rgba(40,30,15,.14),0 0 0 calc(var(--yes,0) * 8px) rgba(241,156,184,.35)}
+.swb.no .ring{transform:scale(calc(1 + var(--no,0) * .22));background:color-mix(in srgb,var(--ink) calc(var(--no,0) * 85%),var(--paper));box-shadow:0 6px 16px rgba(40,30,15,.14),0 0 0 calc(var(--no,0) * 8px) rgba(40,30,15,.12)}
+.swb.no svg{stroke:color-mix(in srgb,#fff calc(var(--no,0) * 100%),var(--muted))}
+.swb:active .ring{transform:scale(.92)}

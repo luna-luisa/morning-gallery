@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 08:29"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 08:39"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -938,7 +938,7 @@ function artistTopic(name){
 }
 const artistTopics = name => { const n = plainArtist(name); return [...new Set(WORKS.filter(w => plainArtist(w.artist) === n && TOPICS[w.topic]).map(w => w.topic))]; };
 /* upright works fill the phone without cropping; modern pieces may be a little squarer so they get a fair share */
-const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img) && (w.hw >= 1.24 || (w.year >= 1900 && w.hw >= .98)));
+const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img) && w.hw >= 1.2);
 function swipeDeck(n = 10, peek = false){
   const seen = state.swiped || {}, fresh = shuffle(swipePool().filter(w => !seen[w.id] || peek));
   const modern = fresh.filter(w => w.year >= 1900), older = fresh.filter(w => w.year < 1900), pick = [], per = {};
@@ -978,24 +978,26 @@ function startSwipeNow(){
     const w = deck[i];
     view.innerHTML = `
       <div class="qhead"><span class="swdots" aria-label="${i + 1} of ${deck.length}">${deck.map((_, k) => `<i class="${k < i ? "done" : k === i ? "on" : ""}"></i>`).join("")}</span><button class="btn link" id="x">Close</button></div>
-      <div class="swstage"><div class="swcard" id="card"><img src="${esc(w.img)}" alt="An artwork" referrerpolicy="no-referrer" draggable="false"><span class="stamp yes">Speaks to me</span><span class="stamp no">Not for me</span></div></div>
-      <div class="swbtns"><button class="swb no" id="no"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span><span class="lab">Not for me</span></button><button class="swb yes" id="yes"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="lab">Speaks to me</span></button></div>`;
+      <div class="swstage"><div class="swcard" id="card"><img src="${esc(w.img)}" alt="An artwork" referrerpolicy="no-referrer" draggable="false"></div></div>
+      <div class="swbtns"><button class="swb no" id="no"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="lab">Not for me</span></button><button class="swb yes" id="yes"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="lab">Speaks to me</span></button></div>`;
     const card = $("#card"), im = card.querySelector("img");
     const place = () => { card.style.setProperty("--st", (im.offsetTop + 16) + "px"); card.style.setProperty("--sl", (im.offsetLeft + 14) + "px"); card.style.setProperty("--sr", (card.clientWidth - im.offsetLeft - im.offsetWidth + 14) + "px"); };
     if (im.complete) place(); else im.onload = place;
+    /* while you drag, the button on that side grows and fills, so you can see which way you're choosing */
+    const lean = (y, n) => { view.style.setProperty("--yes", y); view.style.setProperty("--no", n); };
     const decide = like => {
-      if (card.dataset.gone) return; card.dataset.gone = "1";
+      if (card.dataset.gone) return; card.dataset.gone = "1"; lean(like ? 1 : 0, like ? 0 : 1);
       (state.swiped = state.swiped || {})[w.id] = today();
       if (like){ loved.push(w); state.taste = (state.taste || []).filter(x => x.id !== w.id).concat([{id: w.id, d: today()}]); }
       save();
       card.style.transition = "transform .32s cubic-bezier(.2,.7,.3,1), opacity .32s ease";
       card.style.transform = `translateX(${like ? 125 : -125}%) rotate(${like ? 12 : -12}deg)`; card.style.opacity = "0";
-      setTimeout(() => { i++; draw(); }, 240);
+      setTimeout(() => { lean(0, 0); i++; draw(); }, 240);
     };
     let x0 = null, dx = 0;
     card.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.setPointerCapture(e.pointerId); card.style.transition = "none"; });
-    card.addEventListener("pointermove", e => { if (x0 === null) return; dx = e.clientX - x0; card.style.transform = `translateX(${dx}px) rotate(${dx / 24}deg)`; card.style.setProperty("--yes", Math.max(0, Math.min(1, dx / 90))); card.style.setProperty("--no", Math.max(0, Math.min(1, -dx / 90))); });
-    const up = () => { if (x0 === null) return; x0 = null; if (Math.abs(dx) > 90) decide(dx > 0); else { card.style.transition = "transform .2s ease"; card.style.transform = ""; card.style.setProperty("--yes", 0); card.style.setProperty("--no", 0); } };
+    card.addEventListener("pointermove", e => { if (x0 === null) return; dx = e.clientX - x0; card.style.transform = `translateX(${dx}px) rotate(${dx / 24}deg)`; lean(Math.max(0, Math.min(1, dx / 90)), Math.max(0, Math.min(1, -dx / 90))); });
+    const up = () => { if (x0 === null) return; x0 = null; if (Math.abs(dx) > 90) decide(dx > 0); else { card.style.transition = "transform .2s ease"; card.style.transform = ""; lean(0, 0); } };
     card.addEventListener("pointerup", up); card.addEventListener("pointercancel", up);
     $("#yes").onclick = () => decide(true);
     $("#no").onclick = () => decide(false);
