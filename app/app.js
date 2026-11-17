@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 07:54"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 07:55"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -109,11 +109,13 @@ const lvlOf = tid => T(tid).lv;
 function levelStatus(tid){
   const t = T(tid), L = t.lv, all = allQuestions(tid);
   const at = all.filter(q => q.level === L);
-  const right = at.filter(q => t.hits[q.key]);
+  /* climbing gets slower: more of the level right (and still right the last time you saw it), over more days */
+  const PCT = [.7, .8, .85, .9, 1][L-1], MIN = [5, 6, 7, 8, 8][L-1], DAYS = [2, 3, 4, 5, 5][L-1];
+  const right = at.filter(q => t.hits[q.key] && state.seen[q.key] !== "wrong");
   const days = new Set(right.flatMap(q => t.hits[q.key]).filter(d => !t.since || d >= t.since));
-  const need = at.length ? Math.min(at.length, Math.max(5, Math.min(8, Math.ceil(at.length * 0.7)))) : 0;
+  const need = at.length ? Math.min(at.length, Math.max(MIN, Math.ceil(at.length * PCT))) : 0;
   const hasNext = L < 5 && all.some(q => q.level === L + 1);
-  return {L, have: right.length, need, total: at.length, days: days.size, today: days.has(today()), hasNext, ready: at.length > 0 && right.length >= need && days.size >= 2 && L < 5};
+  return {L, have: right.length, need, total: at.length, days: days.size, today: days.has(today()), hasNext, ready: at.length > 0 && right.length >= need && days.size >= DAYS && L < 5, daysNeed: DAYS};
 }
 function maybeLevelUp(tid){
   const s = levelStatus(tid);
@@ -180,7 +182,7 @@ const BUILD = {
   Q(key){ const [, tid, i] = key.split(":"); const t = TOPICS[tid]; const x = t && t.questions[+i]; if (!x) return null;
     if (x.correct > 1){ const opts = shuffle(x.options); return {key, topic:tid, level:x.level, type:"mc", multi:true, prompt:x.q, options:opts, answers:x.options.slice(0, x.correct).map(o => opts.indexOf(o)), answer:opts.indexOf(x.options[0]), explain:x.explain, art:x.art}; }
     const aw = W[x.art], gives = aw && !x.keepArt && givesAway(x, aw);
-    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, art: gives ? null : x.art, reveal: gives ? x.art : x.reveal || (aw ? null : revealFor(tid, x))}); },
+    return mc({key, topic:tid, level:x.level, prompt:x.q, options:x.options, explain:x.explain, notes:x.notes, art: gives ? null : x.art, reveal: gives ? x.art : x.reveal || (aw ? null : revealFor(tid, x))}); },
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
@@ -224,11 +226,32 @@ const BUILD = {
     const set = key.slice(2).split(","); if (!set.every(x => TOPICS[x])) return null;
     return {key, topic:set[0], level:2, type:"order", prompt:"Put these in order, oldest first.", topics:set, items: shuffle(set.map(x => ({label:TOPICS[x].name, sub:TOPICS[x].span, year:TOPICS[x].year, art:(ART.find(w => w.topic === x) || {}).id})))};
   },
-  N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, source:it.source, reveal: it.reveal || (W[it.art] ? it.art : null), news:true, long:true}); }
+  N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, notes:it.notes, source:it.source, reveal: it.reveal || (W[it.art] ? it.art : null), news:true, long:true}); }
 };
 /* a pair like "Bell & Grant" made their paintings separately: ask "by Bell or Grant" */
 const byWho = t => t.name.replace(/^.*: /, "").replace(/ & /g, " or ");
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
+/* a short note about the answer you picked, when it was wrong */
+const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
+function wrongNote(x, pickIdx){
+  if (pickIdx == null || pickIdx === x.answer || !x.options) return "";
+  const said = x.options[pickIdx], k = x.key || "";
+  if (x.notes && x.notes[said]) return esc(x.notes[said]);
+  const asked = W[x.art];
+  if (k[0] === "W"){ // you named another artist
+    const w = WORKS.find(y => y.artist === said && y.id !== x.art && TOPICS[y.topic]);
+    return w ? `${esc(said)} is known for ${workLine(w)}, in ${esc(tName(w.topic))}.` : "";
+  }
+  if (k[0] === "H"){ // you named another museum
+    const w = WORKS.find(y => y.place === said && y.id !== x.art && !y.photo);
+    return w ? `${esc(said)} has ${esc(w.artist)}'s ${workLine(w)}.` : "";
+  }
+  if (k[0] === "T"){ // you named another work
+    const w = WORKS.find(y => y.title === said && y.id !== x.art);
+    return w ? (asked && w.artist === asked.artist ? `${workLine(w)} is another work by ${esc(w.artist)}.` : `${workLine(w)} is by ${esc(w.artist)}.`) : "";
+  }
+  return "";
+}
 const qcache = {};
 function allQuestions(tid){
   if (qcache[tid]) return qcache[tid];
@@ -667,7 +690,7 @@ function answered(x, ok){
       <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.unsure ? (x.type === "order" ? "Here's the right order." : "Now you know.") : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
-      ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>` : ""}
+      ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}

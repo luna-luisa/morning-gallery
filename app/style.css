@@ -562,3 +562,4 @@ body[data-screen="sw"] main > *{flex-shrink:0}
 .swfan span:nth-child(1){transform:translate(-85%,-48%) rotate(-10deg)}
 .swfan span:nth-child(2){transform:translate(-50%,-53%);z-index:1}
 .swfan span:nth-child(3){transform:translate(-15%,-48%) rotate(10deg)}
+.wrongnote{margin:-4px 0 0;font-size:15px;line-height:1.45;color:var(--muted)}
