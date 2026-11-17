@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 08:15"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 08:18"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -121,7 +121,7 @@ function maybeLevelUp(tid){
   const s = levelStatus(tid);
   if (!s.ready) return null;
   if (!s.hasNext){ if (!state.asked["cap:" + tid + s.L]){ state.asked["cap:" + tid + s.L] = today(); requestMore(tid, "level-cap", `Ready for ${LEVELS[s.L]} level in ${tName(tid)} but there are no questions yet`).catch(() => {}); } return null; }
-  T(tid).lv = s.L + 1; T(tid).since = today(); save();
+  T(tid).lv = s.L + 1; T(tid).since = today(); if (lessonFor(tid, s.L + 1).length) T(tid).lesson = s.L + 1; save();
   return s.L + 1;
 }
 function dots(L, cls = ""){ return `<span class="dots ${cls}" role="img" aria-label="Level ${L} of 5, ${LEVELS[L-1]}">${[1,2,3,4,5].map(i => `<i class="${i <= L ? "on" : ""}"></i>`).join("")}</span>`; }
@@ -438,9 +438,16 @@ function startRound(){
           <div class="thumbs">${thumbs.map(u => `<span style="background-image:url('${esc(tsrc(u))}')"></span>`).join("")}<span class="news">News</span></div></div></div>` : ""}
     </div><div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
   $("#back").onclick = () => go("today");
-  $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
+  $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : withLesson(td.topic, begin);
 }
-function startTopic(tid){ T(tid).intro = true; S = {mode:"topic", topic:tid, q: topicSet(tid, 6).map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]}; next(0); }
+const lessonFor = (tid, L) => ((TOPICS[tid] && TOPICS[tid].lessons) || {})[L] || [];
+/* a new level unlocks a short lesson, shown at the start of the next round on that topic (never mid-round, never in quick fire) */
+function withLesson(tid, go){
+  const L = T(tid).lesson; if (!L || !lessonFor(tid, L).length) return go();
+  showIntro(tid, () => { delete T(tid).lesson; save(); go(); }, "Start the questions", L);
+}
+function startTopic(tid){ if (T(tid).lesson && lessonFor(tid, T(tid).lesson).length) return withLesson(tid, () => startTopicNow(tid)); startTopicNow(tid); }
+function startTopicNow(tid){ T(tid).intro = true; S = {mode:"topic", topic:tid, q: topicSet(tid, 6).map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]}; next(0); }
 function quickFireIntro(){
   inRound(true); scrollTo(0, 0);
   view.innerHTML = `<div class="qhead"><span class="eyebrow">Quick fire</span><button class="btn link" id="x">Close</button></div>
@@ -505,13 +512,14 @@ function label(w){
 }
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
-function showIntro(tid, done, finishLabel){
-  const t = TOPICS[tid], cards = t.intro.filter(c => c.title !== "In the news" || featured().includes(tid)); let i = 0; inRound(true);
+function showIntro(tid, done, finishLabel, lessonLevel){
+  const t = TOPICS[tid], cards = lessonLevel ? lessonFor(tid, lessonLevel) : t.intro.filter(c => c.title !== "In the news" || featured().includes(tid)); let i = 0; inRound(true);
+  const what = lessonLevel ? `${LEVELS[lessonLevel-1]} lesson` : "introduction";
   const draw = () => {
     const c = cards[i], w = W[c.art];
     view.innerHTML = `
       <div class="line"><i style="width:${(i + 1) / cards.length * 100}%"></i></div>
-      <div class="qhead"><span class="eyebrow">${esc(t.name)} · introduction</span><button class="btn link" id="x">Close</button></div>
+      <div class="qhead"><span class="eyebrow">${esc(t.name)} · ${what}</span><button class="btn link" id="x">Close</button></div>
       <div class="introbody">${figure(w, "big")}${label(w)}
       <h2>${esc(c.title)}</h2><p class="lead">${esc(c.text)}</p></div>
       <div class="dock row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === cards.length - 1 ? finishLabel : "Next"}</button></div>`;
@@ -1057,11 +1065,13 @@ function renderTopic(tid){
     <div class="stack"><span class="eyebrow">${esc(grp)}${t.span ? " · " + esc(t.span) : ""}</span><h1>${esc(t.name)}</h1>
       <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</div>
     <div class="row"><button class="btn" id="quiz">Play this topic now</button><button class="btn ghost" id="learn">Introduction</button></div>
+    ${[2, 3, 4, 5].filter(l => l <= L && lessonFor(tid, l).length).length ? `<div class="chips">${[2, 3, 4, 5].filter(l => l <= L && lessonFor(tid, l).length).map(l => `<button class="chipbtn" data-lesson="${l}">${LEVELS[l-1]} lesson</button>`).join("")}</div>` : ""}
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>`;
   $("#back").onclick = () => go("topics");
   $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Play this topic now");
   $("#quiz").onclick = () => startTopic(tid);
+  $$("[data-lesson]").forEach(b => b.onclick = () => showIntro(tid, () => go("topic", tid), "Done", +b.dataset.lesson));
   $$(".chipbtn").forEach(b => b.onclick = () => go("topic", b.dataset.t));
   if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Got it, more questions on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }

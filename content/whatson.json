@@ -17,7 +17,8 @@
      "until": "2027-04-11",
      "topic": "van-eyck",
      "blurb": "All of Jan van Eyck's portraits together for the first time.",
-     "from": "2026-11-21"
+     "from": "2026-11-21",
+     "url": "https://www.nationalgallery.org.uk/about-us/press-and-media/press-releases-archive/van-eyck-the-portraits"
     },
     {
      "id": "tb-bloomsbury",
@@ -28,7 +29,8 @@
      "until": "2027-04-11",
      "topic": "bloomsbury",
      "blurb": "A big show on the two Bloomsbury painters.",
-     "from": "2026-11-12"
+     "from": "2026-11-12",
+     "url": "https://www.tate.org.uk/press/press-releases/vanessa-bell--duncan-grant-inside-bloomsbury"
     },
     {
      "id": "ra-guggenheim",
@@ -39,7 +41,8 @@
      "until": "2027-03-14",
      "topic": "guggenheim",
      "blurb": "The story of her short-lived London gallery, Guggenheim Jeune.",
-     "from": "2026-11-21"
+     "from": "2026-11-21",
+     "url": "https://www.royalacademy.org.uk/exhibition/peggy-guggenheim-in-london"
     },
     {
      "id": "ng-renoir",
@@ -50,17 +53,19 @@
      "until": "2027-01-31",
      "topic": "impressionism",
      "blurb": "The National Gallery's first big Renoir show since 2007.",
-     "from": "2026-10-03"
+     "from": "2026-10-03",
+     "url": "https://www.nationalgallery.org.uk/exhibitions/renoir-and-love"
     },
     {
      "id": "dulwich-hokusai",
-     "title": "Hokusai: Thirty-six Views of Mount Fuji",
+     "title": "Hokusai: Thirty-six Views of Mt. Fuji",
      "venue": "Dulwich Picture Gallery",
      "art": "great-wave",
      "until": "2027-01-17",
      "topic": "edo-japan",
      "blurb": "The complete Mount Fuji series, Great Wave included.",
-     "from": "2026-10-20"
+     "from": "2026-10-20",
+     "url": "https://www.dulwichpicturegallery.org.uk/whats-on/hokusai-thirty-six-views-of-mt-fuji-from-the-iuchi-collection/"
     },
     {
      "id": "tm-frida",
@@ -77,8 +82,10 @@
      "title": "Ana Mendieta",
      "venue": "Tate Modern",
      "place": "Tate Modern",
-     "until": "2027-01-10",
-     "blurb": "A major show of the Cuban-American artist."
+     "until": "2027-01-17",
+     "blurb": "The UK's first major show of the Cuban-American artist in over a decade.",
+     "from": "2026-07-15",
+     "url": "https://www.tate.org.uk/press/press-releases/ana-mendieta-opening"
     },
     {
      "id": "tb-90s",
@@ -86,8 +93,7 @@
      "venue": "Tate Britain",
      "place": "Tate Britain",
      "until": "2027-02-14",
-     "topic": "yba",
-     "blurb": "The decade of the Young British Artists.",
+     "blurb": "The art, photography and fashion of 1990s Britain, from the YBAs to McQueen.",
      "from": "2026-10-08"
     },
     {
@@ -97,7 +103,7 @@
      "place": "Hayward Gallery, London",
      "until": "2027-03-07",
      "url": "https://www.southbankcentre.co.uk/whats-on/nan-goldin-you-never-did-anything-wrong/",
-     "blurb": "Her first UK museum show since 2002.",
+     "blurb": "Her first museum exhibition in the UK since 2002.",
      "from": "2026-11-24"
     }
    ]
@@ -115,7 +121,8 @@
      "until": "2027-01-25",
      "topic": "baroque",
      "blurb": "A big retrospective of the Spanish Golden Age painter.",
-     "from": "2026-10-07"
+     "from": "2026-10-07",
+     "url": "https://www.louvre.fr/en/what-s-on/exhibitions/zurbaran"
     }
    ]
   },
@@ -130,7 +137,8 @@
      "venue": "Stedelijk Museum",
      "until": "2027-01-17",
      "blurb": "More than 70 years of her work.",
-     "from": "2026-09-11"
+     "from": "2026-09-11",
+     "url": "https://stedelijk.nl/en/exhibitions/yayoi-kusama-en"
     },
     {
      "id": "vgm-whistler",
@@ -138,7 +146,7 @@
      "venue": "Van Gogh Museum",
      "place": "Van Gogh Museum, Amsterdam",
      "until": "2027-01-10",
-     "url": "https://www.vangoghmuseum.nl/en/about/news-and-press/news/20260825-highlights-of-the-upcoming-cultural-season",
+     "url": "https://www.vangoghmuseum.nl/en/visit/whats-on/exhibitions/whistler",
      "blurb": "The first Whistler retrospective in the Netherlands.",
      "from": "2026-10-16"
     }
