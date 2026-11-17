@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "16 Nov, 07:30"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 07:54"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -418,6 +418,14 @@ function startRound(){
   $("#go").onclick = () => fresh ? showIntro(td.topic, () => { T(td.topic).intro = true; save(); begin(); }, "Start the questions") : begin();
 }
 function startTopic(tid){ T(tid).intro = true; S = {mode:"topic", topic:tid, q: topicSet(tid, 6).map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]}; next(0); }
+function quickFireIntro(){
+  inRound(true); scrollTo(0, 0);
+  view.innerHTML = `<div class="qhead"><span class="eyebrow">Quick fire</span><button class="btn link" id="x">Close</button></div>
+    <div class="stack"><h1>A bit of <span class="serif">everything</span></h1><p class="muted">Questions from all over the collection, one after another. Stop whenever you like.</p></div>
+    <div class="dock row"><button class="btn ghost" id="back">Back</button><button class="btn" id="go">Let's go</button></div>`;
+  $("#x").onclick = $("#back").onclick = () => go("today");
+  $("#go").onclick = startEndless;
+}
 function startEndless(){ S = {mode:"endless", q:[], i:0, score:0, results:[], used:new Set()}; next(0); }
 function pushEndless(){
   const tid = topicOfDay().topic; let x = null;
@@ -475,7 +483,7 @@ function label(w){
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
 function showIntro(tid, done, finishLabel){
-  const t = TOPICS[tid], cards = t.intro; let i = 0; inRound(true);
+  const t = TOPICS[tid], cards = t.intro.filter(c => c.title !== "In the news" || featured().includes(tid)); let i = 0; inRound(true);
   const draw = () => {
     const c = cards[i], w = W[c.art];
     view.innerHTML = `
@@ -495,7 +503,7 @@ function showIntro(tid, done, finishLabel){
   setTab("today"); draw();
 }
 
-function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; const app = $("#app"); if (app && app.style.height){ app.style.height = ""; scrollTo(0, 0); } }
+function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; view.scrollTop = 0; }
 /* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
 function keepPromptVisible(){
   const sh = $("#sheet .sheetin"), p = $("#view .order") || $(".prompt"); if (!sh || !p) return; // for sorting, keep the right order in view
@@ -503,7 +511,7 @@ function keepPromptVisible(){
     const qh = $("#view > .qhead"), qp = $("#view .spot.qpic");
     if (qh) qh.style.marginBottom = getComputedStyle(qh).marginBottom; // freeze the spare room as it is
     if (qp) qp.style.flex = `0 0 ${qp.offsetHeight}px`;
-    const app = $("#app"); app.style.height = (app.offsetHeight + sh.offsetHeight) + "px"; // the whole page scrolls (works on iPhones), far enough to see every answer
+    view.style.paddingBottom = (sh.offsetHeight + 14) + "px"; // the question area scrolls, far enough to see every answer; the page itself stays put
     return;
   }
   const top = sh.getBoundingClientRect().top, r = p.getBoundingClientRect();
@@ -688,17 +696,19 @@ document.addEventListener("selectstart", e => { if (document.body.classList.cont
 function peek(src){
   unpeek(); peekEl = document.createElement("div"); peekEl.className = "zoom";
   const quick = imgOK[src] ? src : imgOK[sm(src)] ? sm(src) : src; // show the copy already on the phone straight away
-  peekEl.innerHTML = `<img class="zfull" src="${esc(quick)}" alt="" referrerpolicy="no-referrer" decoding="async">`; peekEl.onclick = unpeek; document.body.appendChild(peekEl);
+  peekEl.innerHTML = `<img class="zfull" src="${esc(quick)}" alt="" referrerpolicy="no-referrer" decoding="async">`; peekEl.onclick = () => { if (peekEl && peekEl.dataset.armed) unpeek(); }; document.body.appendChild(peekEl);
+  if (!holding) peekEl.dataset.armed = "1";
   if (quick !== src){ const el = peekEl, im = new Image(); im.referrerPolicy = "no-referrer"; im.onload = () => { imgOK[src] = true; const z = el.querySelector(".zfull"); if (z) z.src = src; }; im.src = src; }
 }
 function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
 const FINE = !!(window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches);
 addEventListener("keydown", e => { if (e.key === "Escape") unpeek(); });
-addEventListener("pointerup", () => { if (!FINE) setTimeout(unpeek, 30); }); addEventListener("pointercancel", unpeek); addEventListener("scroll", unpeek, {passive:true});
+let holding = false; // after a long press, the lifting finger must not close the picture straight away
+addEventListener("pointerup", () => { if (peekEl && !peekEl.dataset.armed) setTimeout(() => { if (peekEl) peekEl.dataset.armed = "1"; }, 60); holding = false; });
 function wireHold(root){
   root.querySelectorAll("[data-src]").forEach(el => {
     let t = null, held = false, x0 = 0, y0 = 0;
-    el.addEventListener("pointerdown", e => { held = false; x0 = e.clientX; y0 = e.clientY; clearTimeout(t); t = setTimeout(() => { held = true; peek(el.dataset.src); }, 380); });
+    el.addEventListener("pointerdown", e => { held = false; x0 = e.clientX; y0 = e.clientY; clearTimeout(t); t = setTimeout(() => { held = true; holding = true; peek(el.dataset.src); }, 380); });
     el.addEventListener("pointermove", e => { if (Math.abs(e.clientX - x0) + Math.abs(e.clientY - y0) > 12) clearTimeout(t); });
     ["pointerup", "pointerleave", "pointercancel"].forEach(ev => el.addEventListener(ev, () => clearTimeout(t)));
     el.addEventListener("contextmenu", e => e.preventDefault());
@@ -707,6 +717,7 @@ function wireHold(root){
       b.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); peek(el.dataset.src); }); el.appendChild(b);
     }
     el.addEventListener("click", e => { if (held){ e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
+    if (!el.matches(".tile, .tile *")) el.addEventListener("click", () => { if (!held) peek(el.dataset.src); }); // pictures you don't answer with open with a tap
   });
 }
 const L0 = x => x.topic && TOPICS[x.topic] && !x.news;
@@ -746,10 +757,11 @@ function finish(){
       <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</button>
-    <div class="stack"><button class="btn" id="keep">Keep going</button><button class="btn ghost" id="home">Back to today</button></div>
+    <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : ""}<button class="btn ${S.mode === "topic" ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button><button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
   $("#tcard").onclick = () => go("topic", tid);
-  $("#keep").onclick = startEndless;
+  $("#keep").onclick = quickFireIntro;
+  if ($("#again")) $("#again").onclick = () => startTopic(tid);
   $("#home").onclick = () => go("today");
   $("#fbk").onclick = () => go("me", "feedback");
   S = null; scrollTo(0, 0);
@@ -929,8 +941,7 @@ function renderTopic(tid){
       <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</div>
     <div class="row"><button class="btn" id="quiz">Play this topic now</button><button class="btn ghost" id="learn">Introduction</button></div>
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
-    <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>
-    ${store.online ? `<button class="btn ghost" id="ask" ${state.asked["topic:" + tid] ? "disabled" : ""}>${state.asked["topic:" + tid] ? "Got it, more questions on this soon" : "Ask me more on this topic"}</button>` : ""}`;
+    <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>`;
   $("#back").onclick = () => go("topics");
   $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Play this topic now");
   $("#quiz").onclick = () => startTopic(tid);

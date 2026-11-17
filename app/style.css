@@ -503,7 +503,8 @@ html,body{overflow-x:hidden}
 .zbtn svg{width:15px;height:15px}
 @media (hover:hover) and (pointer:fine){ .tile.pic:hover .zbtn, .tile.venue:hover .zbtn, .spot:hover .zbtn, .mini:hover .zbtn, .rimg:hover .zbtn{display:grid} }
 .spot, .rimg, .mini{position:relative}
-body[data-screen="q"] main{position:relative;overflow-y:auto;scrollbar-width:none}
+body[data-screen="q"] main{position:relative;overflow-y:auto;scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+body[data-screen="q"]{position:fixed;inset:0;overflow:hidden}
 body[data-screen="q"] main::-webkit-scrollbar{display:none}
 body[data-screen="q"] .tile.venue .tt{background:transparent}
 /* Check never drops off the screen, even on a small phone with a long question */

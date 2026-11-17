@@ -2311,6 +2311,19 @@
    "hook": "Whiteread casts the empty spaces of everyday things, here a staircase.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_wbCq7ur.jpg",
    "hw": 0.713
+  },
+  {
+   "id": "vg-chestnut-trees",
+   "artist": "Vincent van Gogh",
+   "title": "Blossoming Chestnut Trees",
+   "year": 1890,
+   "place": "Private collection",
+   "topic": "van-gogh",
+   "quiz": false,
+   "credit": "Sotheby's, via The Art Newspaper",
+   "page": "https://theartnewspaper.com/2026/10/02/the-story-behind-the-180m-van-gogh-up-for-auction-this-november",
+   "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
+   "hw": 1.214
   }
  ]
 }
