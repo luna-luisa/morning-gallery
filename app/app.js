@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 08:25"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 08:26"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1296,7 +1296,11 @@ function splash(){
   el.innerHTML = `<div class="wpage poster"><div class="arch"><span style="background-image:url('${img}')"></span></div><span class="archcap">${esc(artist)}, <i>${esc(title)}</i></span>
     <h1 class="wtitle">Morning <span class="serif">Gallery</span></h1><p class="wlead">A little art with your morning coffee.</p></div>`;
   document.body.appendChild(el);
-  return () => setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 450); }, Math.max(0, 1300 - (Date.now() - t0)));
+  /* stays up at least 2.5s (counted from when its picture appears, up to 1.5s wait for it), or until the app is ready if that's longer; a tap skips it */
+  let shown = null, ready = false, gone = false; const im = new Image(); im.onload = () => { shown = Date.now(); }; im.src = img;
+  const close = () => { if (gone) return; gone = true; el.classList.add("out"); setTimeout(() => el.remove(), 450); };
+  el.onclick = () => { if (ready) close(); };
+  return () => { ready = true; setTimeout(close, Math.max(0, Math.min(shown || t0 + 1500, t0 + 1500) + 2500 - Date.now())); };
 }
 (async function boot(){
   const unsplash = splash(); document.body.classList.add("booted");
