@@ -25,3 +25,10 @@ Nothing personal is stored here. Profiles, progress and feedback live in Supabas
 - Question screen: answers sit just above the Check button and nothing moves when the answer appears. No "Pick N" line or tag on pick-several questions; the button counts down instead.
 - Every topic intro has 3 cards, each with its own picture that matches the card (never repeated, never missing). Card 1 says who or what the topic is and what the art is like, so a complete newcomer gets a feel for it; "In the news" comes second.
 - Trial features, shown only to the admin profile for now: the searchable Topics page (sections by kind) and "Swipe to discover" (upright works only, using each work's "hw" = height ÷ width; give new works an "hw" value). Requests from failed searches and from liked artists without their own topic arrive in the weekly feedback as kind "content": treat them as suggestions for new topics, especially artist topics.
+
+## Level-up lessons (weekly task)
+Each topic can have `lessons` in content/topics.json: `{"2":[cards],"3":[cards],...}`, keyed by level (2 Regular, 3 onwards). Cards have the same shape as intro cards (`title`, `text`, `art`, an existing works.json id). A lesson is shown once, at the start of the next round on that topic after someone levels up, and can be reopened from the topic page.
+- Each week, check progress for topics where players have reached a level with no lesson yet, and write that lesson first (3 cards, going a little deeper than the intro, with historical context). Then fill in the most-played topics.
+- Two independent fact checks before publishing, as for everything else.
+- Questions you write can carry `notes`: `{"<wrong option>":"one short line about it"}`, shown when a player picks that option.
+- Swipe deck: add upright works (`hw` ≥ 1.24, height ÷ width), especially modern ones, with `hw` set.
