@@ -1,0 +1,176 @@
+{
+ "updated": "2026-11-17",
+ "note": "Current exhibitions by area. Kept up to date by the daily task. 'place' must match content/places.json for a photo; otherwise 'art' (a works.json id) is shown.",
+ "areas": {
+  "London": {
+   "aliases": [
+    "london",
+    "greater london"
+   ],
+   "items": [
+    {
+     "id": "ng-van-eyck",
+     "title": "Van Eyck: The Portraits",
+     "venue": "National Gallery",
+     "place": "National Gallery, London",
+     "art": "arnolfini",
+     "until": "2027-04-11",
+     "topic": "van-eyck",
+     "blurb": "All of Jan van Eyck's portraits together for the first time.",
+     "from": "2026-11-21"
+    },
+    {
+     "id": "tb-bloomsbury",
+     "title": "Vanessa Bell & Duncan Grant: Inside Bloomsbury",
+     "venue": "Tate Britain",
+     "place": "Tate Britain",
+     "art": "studland",
+     "until": "2027-04-11",
+     "topic": "bloomsbury",
+     "blurb": "A big show on the two Bloomsbury painters.",
+     "from": "2026-11-12"
+    },
+    {
+     "id": "ra-guggenheim",
+     "title": "Peggy Guggenheim in London: The Making of a Collector",
+     "venue": "Royal Academy",
+     "place": "Royal Academy",
+     "art": "cossacks",
+     "until": "2027-03-14",
+     "topic": "guggenheim",
+     "blurb": "The story of her short-lived London gallery, Guggenheim Jeune.",
+     "from": "2026-11-21"
+    },
+    {
+     "id": "ng-renoir",
+     "title": "Renoir and Love",
+     "venue": "National Gallery",
+     "place": "National Gallery, London",
+     "art": "moulin-galette",
+     "until": "2027-01-31",
+     "topic": "impressionism",
+     "blurb": "The National Gallery's first big Renoir show since 2007.",
+     "from": "2026-10-03"
+    },
+    {
+     "id": "dulwich-hokusai",
+     "title": "Hokusai: Thirty-six Views of Mount Fuji",
+     "venue": "Dulwich Picture Gallery",
+     "art": "great-wave",
+     "until": "2027-01-17",
+     "topic": "edo-japan",
+     "blurb": "The complete Mount Fuji series, Great Wave included.",
+     "from": "2026-10-20"
+    },
+    {
+     "id": "tm-frida",
+     "title": "Frida: The Making of an Icon",
+     "venue": "Tate Modern",
+     "place": "Tate Modern",
+     "until": "2027-01-03",
+     "url": "https://www.tate.org.uk/whats-on/tate-modern/frida-kahlo-the-making-of-an-icon",
+     "blurb": "How Frida Kahlo became a global icon.",
+     "from": "2026-06-25"
+    },
+    {
+     "id": "tm-mendieta",
+     "title": "Ana Mendieta",
+     "venue": "Tate Modern",
+     "place": "Tate Modern",
+     "until": "2027-01-10",
+     "blurb": "A major show of the Cuban-American artist."
+    },
+    {
+     "id": "tb-90s",
+     "title": "The 90s: Art and Fashion",
+     "venue": "Tate Britain",
+     "place": "Tate Britain",
+     "until": "2027-02-14",
+     "topic": "yba",
+     "blurb": "The decade of the Young British Artists.",
+     "from": "2026-10-08"
+    },
+    {
+     "id": "hayward-goldin",
+     "title": "Nan Goldin: You Never Did Anything Wrong",
+     "venue": "Hayward Gallery",
+     "place": "Hayward Gallery, London",
+     "until": "2027-03-07",
+     "url": "https://www.southbankcentre.co.uk/whats-on/nan-goldin-you-never-did-anything-wrong/",
+     "blurb": "Her first UK museum show since 2002.",
+     "from": "2026-11-24"
+    }
+   ]
+  },
+  "Paris": {
+   "aliases": [
+    "paris"
+   ],
+   "items": [
+    {
+     "id": "louvre-zurbaran",
+     "title": "Zurbarán",
+     "venue": "Louvre",
+     "place": "Louvre, Paris",
+     "until": "2027-01-25",
+     "topic": "baroque",
+     "blurb": "A big retrospective of the Spanish Golden Age painter.",
+     "from": "2026-10-07"
+    }
+   ]
+  },
+  "Amsterdam": {
+   "aliases": [
+    "amsterdam"
+   ],
+   "items": [
+    {
+     "id": "stedelijk-kusama",
+     "title": "Yayoi Kusama",
+     "venue": "Stedelijk Museum",
+     "until": "2027-01-17",
+     "blurb": "More than 70 years of her work.",
+     "from": "2026-09-11"
+    },
+    {
+     "id": "vgm-whistler",
+     "title": "Whistler. Dandy and Disruptor",
+     "venue": "Van Gogh Museum",
+     "place": "Van Gogh Museum, Amsterdam",
+     "until": "2027-01-10",
+     "url": "https://www.vangoghmuseum.nl/en/about/news-and-press/news/20260825-highlights-of-the-upcoming-cultural-season",
+     "blurb": "The first Whistler retrospective in the Netherlands.",
+     "from": "2026-10-16"
+    }
+   ]
+  },
+  "New York": {
+   "aliases": [
+    "new york",
+    "nyc",
+    "new york city",
+    "manhattan",
+    "brooklyn"
+   ],
+   "items": [
+    {
+     "id": "met-krasner-pollock",
+     "title": "Krasner and Pollock: Past Continuous",
+     "venue": "The Met",
+     "place": "Metropolitan Museum of Art, New York",
+     "until": "2027-01-31",
+     "topic": "abexp",
+     "url": "https://www.metmuseum.org/exhibitions/krasner-and-pollock-past-continuous",
+     "blurb": "Lee Krasner and Jackson Pollock side by side.",
+     "from": "2026-10-04"
+    }
+   ]
+  }
+ },
+ "hubs": [
+  "London",
+  "Paris",
+  "Amsterdam",
+  "New York"
+ ]
+}
