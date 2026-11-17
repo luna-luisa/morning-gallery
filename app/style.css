@@ -615,5 +615,8 @@ details.tsub > summary .chev{margin-left:auto;width:9px;height:9px;border-width:
 .splash{z-index:90;transition:opacity .4s ease;animation:none}
 .splash.out{opacity:0;pointer-events:none}
 /* keep the bare shell hidden until the app has started (it shows the opening card straight away); reveal anyway after 6s as a fallback */
+html:has(body:not(.booted)),body:not(.booted){background:var(--klein)}
 body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgreveal 0s 6s forwards}
 @keyframes mgreveal{to{visibility:visible}}
+
+.splash .arch span,.splash .archcap{opacity:0;transition:opacity .5s ease}.splash.pic .arch span{opacity:1}.splash.pic .archcap{opacity:.6}
