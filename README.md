@@ -32,3 +32,6 @@ Each topic can have `lessons` in content/topics.json: `{"2":[cards],"3":[cards],
 - Two independent fact checks before publishing, as for everything else.
 - Questions you write can carry `notes`: `{"<wrong option>":"one short line about it"}`, shown when a player picks that option.
 - Swipe deck: add upright works (`hw` ≥ 1.24, height ÷ width), especially modern ones, with `hw` set.
+
+## Opening pictures
+The opening card and the welcome screen use the hand-picked `SPLASH` list in app/app.js. Every picture must look good inside the arch: upright, filling it, with no frames, borders or blank margins showing. Check each new one by eye in the arch shape before adding it.

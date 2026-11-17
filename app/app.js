@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 08:39"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 11:23"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1226,9 +1226,9 @@ function bigImg(url, minW = 1000, minH = 700){
     i.referrerPolicy = "no-referrer"; i.src = url;
   });
 }
+/* the welcome uses the same hand-checked pictures as the opening card: upright, no frames or borders inside the arch */
 async function welcomeArt(){
-  const pool = shuffle(ART.filter(w => !w.photo && !w.credit && /wikimedia\.org|tate\.org\.uk/.test(w.img)));
-  const picks = pool.slice(0, 8), ok = await Promise.all(picks.map(w => bigImg(w.img)));
+  const picks = shuffle(SPLASH.map(([img, artist, title]) => ({img, artist, title}))).slice(0, 4), ok = await Promise.all(picks.map(w => bigImg(w.img)));
   return picks[ok.indexOf(true)] || null;
 }
 async function showWelcome(done){
@@ -1277,6 +1277,7 @@ async function showWelcome(done){
 
 
 /* opening card: the gallery poster with a different painting each time, while the app gets ready */
+/* opening pictures: each one checked by eye in the arch (no frames, borders or blank margins showing); check any new one the same way */
 const SPLASH = [
  ["https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/500px-1665_Girl_with_a_Pearl_Earring.jpg", "Johannes Vermeer", "Girl with a Pearl Earring"],
  ["https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/500px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg", "Caspar David Friedrich", "Wanderer above the Sea of Fog"],
@@ -1287,7 +1288,6 @@ const SPLASH = [
  ["https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg/500px-Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg", "Vincent van Gogh", "Café Terrace at Night"],
  ["https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Matisse-Woman-with-a-Hat.jpg/500px-Matisse-Woman-with-a-Hat.jpg", "Henri Matisse", "Woman with a Hat"],
  ["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg/500px-Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg", "Claude Monet", "Woman with a Parasol"],
- ["https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pM2a32v.jpg", "Gwen John", "Self-Portrait"],
  ["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg/500px-Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg", "Kitagawa Utamaro", "Three Beauties of the Present Day"]
 ];
 function splash(){
