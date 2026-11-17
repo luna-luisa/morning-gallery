@@ -606,3 +606,11 @@ details.tsub > summary .chev{margin-left:auto;width:9px;height:9px;border-width:
 .rm{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--ink);font-size:17px;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .acard .chips{margin-top:6px}
 .acard .chipbtn.on{background:var(--ink);color:var(--wall)}
+.zoom{touch-action:none;overscroll-behavior:contain}
+.zoom .zfull{transition:transform .08s linear;transform-origin:center center;will-change:transform}
+.sheetin{transition:transform .25s ease}
+.sheet.min .sheetin{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+/* once answered, the order list scrolls like everything else */
+.sheetopen .oitem{touch-action:auto;cursor:default}
+.splash{z-index:90;transition:opacity .4s ease}
+.splash.out{opacity:0;pointer-events:none}

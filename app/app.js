@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 07:55"; // shown as a small footnote on the Me page
+const BUILD_AT = "17 Nov, 08:15"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -204,7 +204,7 @@ const BUILD = {
     const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && right.some(x => x.artist === w.artist))).sort((a, b) => Math.abs(a.year - yr) - Math.abs(b.year - yr)).slice(0, 16);
     const wrong = shuffle(others, r).slice(0, 4 - k), set = shuffle([...right, ...wrong], r);
     const what = t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*";
-    const names = right.map(w => `${w.artist}'s ${w.title}`);
+    const names = set.filter(w => right.includes(w)).map(w => `${w.artist}'s ${w.title}`); // in the order they appear on screen
     return {key, topic:tid, level:2, type:"pick", multi:true, prompt:`Which of these are ${what}?`, images:set.map(w => w.id), answers:right.map(w => set.indexOf(w)), answer:set.indexOf(right[0]), art:right[0].id,
       explain:`The ${k === 2 ? "two" : "three"} that fit: ${names.slice(0, -1).join(", ")} and ${names[k - 1]}.`, spare:others.filter(o => !wrong.includes(o)).map(w => w.id), spareRight:mine.slice(k).map(w => w.id)};
   },
@@ -702,7 +702,13 @@ function answered(x, ok){
   document.body.appendChild(sh); document.body.classList.add("sheetopen");
   requestAnimationFrame(() => sh.classList.add("up"));
   if (document.body.dataset.screen === "q") keepPromptVisible(); else setTimeout(keepPromptVisible, 320);
-  $("#grab").onclick = () => sh.classList.toggle("min");
+  const inner = sh.querySelector(".sheetin");
+  const setMin = m => { sh.classList.toggle("min", m); if (document.body.dataset.screen === "q") requestAnimationFrame(() => { view.style.paddingBottom = (inner.offsetHeight + 14) + "px"; }); };
+  $("#grab").onclick = () => setMin(!sh.classList.contains("min"));
+  let y0 = null, dy = 0;
+  inner.addEventListener("pointerdown", e => { if (e.target.closest("button:not(.grab), a, .rimg, .mini") || e.clientY - inner.getBoundingClientRect().top > 90) return; y0 = e.clientY; dy = 0; inner.style.transition = "none"; });
+  addEventListener("pointermove", e => { if (y0 === null || !sh.isConnected) return; dy = e.clientY - y0; if (!sh.classList.contains("min")) inner.style.transform = `translateY(${Math.max(0, dy)}px)`; });
+  addEventListener("pointerup", () => { if (y0 === null || !sh.isConnected) return; y0 = null; inner.style.transition = ""; inner.style.transform = ""; if (dy > 50) setMin(true); else if (dy < -30) setMin(false); });
   wireHold(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
@@ -721,9 +727,31 @@ function peek(src){
   const quick = imgOK[src] ? src : imgOK[sm(src)] ? sm(src) : src; // show the copy already on the phone straight away
   peekEl.innerHTML = `<img class="zfull" src="${esc(quick)}" alt="" referrerpolicy="no-referrer" decoding="async">`; peekEl.onclick = () => { if (peekEl && peekEl.dataset.armed) unpeek(); }; document.body.appendChild(peekEl);
   if (!holding) peekEl.dataset.armed = "1";
+  pinchZoom(peekEl, peekEl.querySelector(".zfull"));
   if (quick !== src){ const el = peekEl, im = new Image(); im.referrerPolicy = "no-referrer"; im.onload = () => { imgOK[src] = true; const z = el.querySelector(".zfull"); if (z) z.src = src; }; im.src = src; }
 }
 function unpeek(){ if (peekEl){ peekEl.remove(); peekEl = null; } }
+/* pinch and drag inside the big picture only: the page itself never zooms */
+function pinchZoom(box, img){
+  const pts = new Map(); let sc = 1, tx = 0, ty = 0, d0 = 0, s0 = 1, p0 = null, t0 = {x: 0, y: 0}, moved = false, lastTap = 0;
+  const apply = () => { img.style.transform = `translate(${tx}px, ${ty}px) scale(${sc})`; };
+  const dist = () => { const [a, b] = [...pts.values()]; return Math.hypot(a.x - b.x, a.y - b.y); };
+  box.addEventListener("pointerdown", e => { pts.set(e.pointerId, {x: e.clientX, y: e.clientY}); moved = false;
+    if (pts.size === 2){ d0 = dist(); s0 = sc; } else { p0 = {x: e.clientX, y: e.clientY}; t0 = {x: tx, y: ty}; } });
+  box.addEventListener("pointermove", e => { if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, {x: e.clientX, y: e.clientY});
+    if (pts.size === 2 && d0){ sc = Math.min(5, Math.max(1, s0 * dist() / d0)); if (sc === 1){ tx = ty = 0; } moved = true; apply(); }
+    else if (pts.size === 1 && sc > 1 && p0){ tx = t0.x + e.clientX - p0.x; ty = t0.y + e.clientY - p0.y; if (Math.abs(e.clientX - p0.x) + Math.abs(e.clientY - p0.y) > 6) moved = true; apply(); } });
+  const end = e => { pts.delete(e.pointerId); if (pts.size < 2) d0 = 0; if (pts.size === 1){ const [q] = [...pts.values()]; p0 = q; t0 = {x: tx, y: ty}; } };
+  box.addEventListener("pointerup", end); box.addEventListener("pointercancel", end);
+  box.addEventListener("click", e => { // a tap closes; a double tap zooms in or out; a pinch or drag does neither
+    if (moved){ e.stopImmediatePropagation(); moved = false; return; }
+    const now = Date.now();
+    if (now - lastTap < 280){ e.stopImmediatePropagation(); sc = sc > 1 ? 1 : 2.5; tx = ty = 0; apply(); lastTap = 0; return; }
+    lastTap = now; if (sc > 1){ e.stopImmediatePropagation(); setTimeout(() => { if (lastTap === now){ sc = 1; tx = ty = 0; apply(); } }, 290); return; }
+    e.stopImmediatePropagation(); setTimeout(() => { if (lastTap === now && peekEl === box && box.dataset.armed) unpeek(); }, 290);
+  }, true);
+}
+document.addEventListener("gesturestart", e => { if (peekEl) e.preventDefault(); }); // iPhone: no page zoom while a picture is open
 const FINE = !!(window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches);
 addEventListener("keydown", e => { if (e.key === "Escape") unpeek(); });
 let holding = false; // after a long press, the lifting finger must not close the picture straight away
@@ -1211,7 +1239,7 @@ async function showWelcome(done){
         <div class="wroom r2"><span class="wsign">2</span><div><b>Quick <span class="serif">fire</span></b><span>This week's art news and a mix from other topics.</span></div></div>
         <div class="wtips">
           <div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap an answer, then Check.</div>
-          <div class="wtip"><span class="ico">${HOST_ICONS.zoom}</span>Hold any picture to see it bigger.</div>
+          <div class="wtip"><span class="ico">${HOST_ICONS.zoom}</span>Tap or hold a picture to see it bigger.</div>
           <div class="wtip"><span class="ico">${HOST_ICONS.flag}</span>Spot a mistake? Tap the flag.</div>
           <div class="wtip"><span class="ico">${dots(2)}</span>Climb from Visitor to Curator in every topic.</div></div>
         <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`,
@@ -1236,12 +1264,37 @@ async function showWelcome(done){
 }
 
 
+/* opening card: the gallery poster with a different painting each time, while the app gets ready */
+const SPLASH = [
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/500px-1665_Girl_with_a_Pearl_Earring.jpg", "Johannes Vermeer", "Girl with a Pearl Earring"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/500px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg", "Caspar David Friedrich", "Wanderer above the Sea of Fog"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/500px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg", "Leonardo da Vinci", "Lady with an Ermine"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Swing_%28P430%29.jpg/500px-The_Swing_%28P430%29.jpg", "Jean-Honoré Fragonard", "The Swing"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/500px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg", "Edvard Munch", "The Scream"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/500px-Vincent_Willem_van_Gogh_127.jpg", "Vincent van Gogh", "Sunflowers"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg/500px-Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg", "Vincent van Gogh", "Café Terrace at Night"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Matisse-Woman-with-a-Hat.jpg/500px-Matisse-Woman-with-a-Hat.jpg", "Henri Matisse", "Woman with a Hat"],
+ ["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg/500px-Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg", "Claude Monet", "Woman with a Parasol"],
+ ["https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pM2a32v.jpg", "Gwen John", "Self-Portrait"],
+ ["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg/500px-Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg", "Kitagawa Utamaro", "Three Beauties of the Present Day"]
+];
+function splash(){
+  if (!local.get("welcomed")) return () => {};
+  const last = local.get("splash"), opts = SPLASH.filter((_, k) => k !== last), k = SPLASH.indexOf(pick(opts)); local.set("splash", k);
+  const [img, artist, title] = SPLASH[k], t0 = Date.now();
+  const el = document.createElement("div"); el.className = "welcome splash"; el.setAttribute("aria-hidden", "true");
+  el.innerHTML = `<div class="wpage poster"><div class="arch"><span style="background-image:url('${img}')"></span></div><span class="archcap">${esc(artist)}, <i>${esc(title)}</i></span>
+    <h1 class="wtitle">Morning <span class="serif">Gallery</span></h1><p class="wlead">A little art with your morning coffee.</p></div>`;
+  document.body.appendChild(el);
+  return () => setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 450); }, Math.max(0, 1300 - (Date.now() - t0)));
+}
 (async function boot(){
+  const unsplash = splash();
   const pp = store.listProfiles().catch(() => null); // fetch profiles while the collection loads
   try { await loadContent(); }
-  catch(e){ view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
+  catch(e){ unsplash(); view.innerHTML = `<p class="muted">The gallery couldn't load its collection. Check your connection and reload.</p>`; return; }
   profiles = (await pp) || await store.listProfiles(); computeHidden();
   const last = local.get("last");
   const start = () => { if (last && profiles[last]) use(last); else renderProfiles(); };
-  if (!local.get("welcomed")) showWelcome(start); else start();
+  if (!local.get("welcomed")) showWelcome(start); else { start(); unsplash(); }
 })();
