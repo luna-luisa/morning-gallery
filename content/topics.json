@@ -175,7 +175,26 @@
      "art": "hunters-snow"
     }
    ],
-   "as": "Renaissance art"
+   "as": "Renaissance art",
+   "lessons": {
+    "2": [
+     {
+      "title": "Rebirth",
+      "text": "Renaissance means ‘rebirth’. From about 1400, Italian artists and scholars looked back to ancient Greece and Rome, and rich patrons like the Medici family in Florence paid for new art to show off their wealth and faith.",
+      "art": "birth-venus"
+     },
+     {
+      "title": "New tools",
+      "text": "Painters worked out linear perspective, so a flat wall seemed to open into deep space, and studied anatomy to make bodies convincing. Leonardo even dissected corpses to understand how muscles work.",
+      "art": "school-athens"
+     },
+     {
+      "title": "North and south",
+      "text": "In Italy many artists painted frescoes on wet plaster. In the north, Flemish painters like Jan van Eyck perfected oil paint, building up glowing detail in thin layers. Ideas travelled in both directions.",
+      "art": "arnolfini"
+     }
+    ]
+   }
   },
   "van-eyck": {
    "name": "Jan van Eyck",
@@ -527,7 +546,26 @@
      "explain": "The Rijksmuseum owns four Vermeers, the fourth being Woman Reading a Letter. Girl with a Pearl Earring and View of Delft are at the Mauritshuis in The Hague, and The Art of Painting is in Vienna."
     }
    ],
-   "as": "Baroque"
+   "as": "Baroque",
+   "lessons": {
+    "2": [
+     {
+      "title": "Art with a mission",
+      "text": "After the Protestant Reformation, the Catholic Church wanted art that moved people and drew them back to the faith. Baroque painters answered with drama, movement and strong light.",
+      "art": "calling-matthew"
+     },
+     {
+      "title": "Light and dark",
+      "text": "Caravaggio lit his figures like a spotlight in a dark room. His saints looked like ordinary people from the streets of Rome, which shocked some viewers and thrilled others.",
+      "art": "emmaus"
+     },
+     {
+      "title": "Two Baroques",
+      "text": "Catholic Spain and Flanders made grand religious and royal pictures, by painters like Velázquez and Rubens. In the Protestant Dutch Republic, buyers wanted portraits, landscapes and everyday scenes for their homes.",
+      "art": "las-meninas"
+     }
+    ]
+   }
   },
   "rococo": {
    "name": "Rococo",
@@ -1415,7 +1453,26 @@
      "reveal": "grande-jatte"
     }
    ],
-   "as": "Impressionist"
+   "as": "Impressionist",
+   "lessons": {
+    "2": [
+     {
+      "title": "Outside the Salon",
+      "text": "In 1874 a group of artists tired of the official Paris Salon put on their own exhibition. A critic mocked Monet's Impression, Sunrise, and the name Impressionists stuck.",
+      "art": "impression-sunrise"
+     },
+     {
+      "title": "Painting outdoors",
+      "text": "Paint in metal tubes, invented in the 1840s, made it easy to work outside. The Impressionists painted fast to catch changing light, with visible brushstrokes and bright colour.",
+      "art": "parasol"
+     },
+     {
+      "title": "Modern life",
+      "text": "Instead of myths and history, they painted the Paris of their own day: cafés, dance halls, railway stations and boating trips.",
+      "art": "moulin-galette"
+     }
+    ]
+   }
   },
   "postimpressionism": {
    "name": "Post-Impressionism",
@@ -1593,7 +1650,26 @@
      "reveal": "gauguin-where"
     }
    ],
-   "as": "Post-Impressionist"
+   "as": "Post-Impressionist",
+   "lessons": {
+    "2": [
+     {
+      "title": "After Impressionism",
+      "text": "By the 1880s some painters felt Impressionism was too much about fleeting light. Post-Impressionism is not one style but a label, coined in 1910 by the critic Roger Fry, for artists who went their own ways.",
+      "art": "card-players"
+     },
+     {
+      "title": "Four paths",
+      "text": "Cézanne built solid forms from patches of colour. Seurat used tiny dots. Van Gogh poured feeling into colour and brushwork. Gauguin used flat, symbolic colour.",
+      "art": "grande-jatte"
+     },
+     {
+      "title": "Towards modern art",
+      "text": "Cézanne's way of turning nature into simple shapes led on to Cubism, while the bold colour of Van Gogh and Gauguin fed into Fauvism and Expressionism.",
+      "art": "sainte-victoire"
+     }
+    ]
+   }
   },
   "edo-japan": {
    "name": "Edo Japan",
@@ -2171,7 +2247,26 @@
      "art": "nude-staircase"
     }
    ],
-   "as": "Cubist"
+   "as": "Cubist",
+   "lessons": {
+    "2": [
+     {
+      "title": "Many views at once",
+      "text": "Working side by side from about 1908, Picasso and Braque broke objects into facets, as if you could see them from several angles in a single picture.",
+      "art": "clarinet"
+     },
+     {
+      "title": "Two phases",
+      "text": "Early Cubism used muted browns and greys and took forms apart. From around 1912 it turned brighter and simpler, and artists began gluing paper and other materials onto their pictures, an early kind of collage.",
+      "art": "gris-breakfast"
+     },
+     {
+      "title": "Cézanne's legacy",
+      "text": "They built on Cézanne's advice to see nature in terms of simple shapes: the cylinder, the sphere and the cone.",
+      "art": "demoiselles"
+     }
+    ]
+   }
   },
   "abstraction": {
    "name": "Abstract art",
@@ -2578,7 +2673,26 @@
      "reveal": "lobster-phone"
     }
    ],
-   "as": "Surrealist"
+   "as": "Surrealist",
+   "lessons": {
+    "2": [
+     {
+      "title": "Freud and dreams",
+      "text": "The poet André Breton launched Surrealism in Paris in 1924 with a manifesto. Inspired by Freud, the Surrealists wanted to unlock the unconscious mind.",
+      "art": "narcissus"
+     },
+     {
+      "title": "Two approaches",
+      "text": "Some, like Dalí and Magritte, painted dream scenes in precise, realistic detail. Others, like Miró and Max Ernst, let chance and ‘automatic’ drawing guide the hand.",
+      "art": "reckless-sleeper"
+     },
+     {
+      "title": "Out of Dada",
+      "text": "Many Surrealists began in Dada, the anti-art movement born during the First World War, and kept its love of shock and humour.",
+      "art": "lobster-phone"
+     }
+    ]
+   }
   },
   "abexp": {
    "name": "Abstract Expressionism",
@@ -2800,7 +2914,26 @@
      "art": "marilyn"
     }
    ],
-   "as": "Pop Art"
+   "as": "Pop Art",
+   "lessons": {
+    "2": [
+     {
+      "title": "Britain first",
+      "text": "Pop Art began in Britain. In the 1950s London's Independent Group, including Richard Hamilton and Eduardo Paolozzi, were fascinated by American adverts, comics and films. Later British artists like David Hockney took up its bright, flat look; he painted this Californian pool in 1967.",
+      "art": "bigger-splash"
+     },
+     {
+      "title": "New York",
+      "text": "In the early 1960s Andy Warhol and Roy Lichtenstein borrowed from soup cans, comic strips and celebrity photos. Warhol used commercial silkscreen printing, while Lichtenstein copied the dots of cheap printing by hand.",
+      "art": "whaam"
+     },
+     {
+      "title": "Why it mattered",
+      "text": "Pop blurred the line between ‘high’ art and everyday mass culture, and asked whether art could be made like any other product.",
+      "art": "marilyn"
+     }
+    ]
+   }
   },
   "modern-british": {
    "name": "Modern British art",
@@ -4155,7 +4288,26 @@
      "explain": "He painted it in June 1889 near Saint-Rémy and saw it as a study for the London picture.",
      "art": "vg-wheatfield"
     }
-   ]
+   ],
+   "lessons": {
+    "2": [
+     {
+      "title": "A late start",
+      "text": "Van Gogh worked as an art dealer, a teacher and a preacher before deciding, at 27, to become an artist. His early pictures, like The Potato Eaters, are dark and earthy.",
+      "art": "potato-eaters"
+     },
+     {
+      "title": "Paris and colour",
+      "text": "In Paris, from 1886 to 1888, he met the Impressionists and fell for Japanese prints, and his colours brightened dramatically. The love of Japan stayed with him: a Japanese print hangs behind him in this self-portrait, painted in Arles in 1889.",
+      "art": "vg-bandaged-ear"
+     },
+     {
+      "title": "The last years",
+      "text": "In Arles in the south of France he painted his Sunflowers. After a breakdown he spent a year at an asylum in Saint-Rémy, where he painted The Starry Night. He died in Auvers in 1890.",
+      "art": "starry-night"
+     }
+    ]
+   }
   },
   "alfred-wallis": {
    "name": "Alfred Wallis",
