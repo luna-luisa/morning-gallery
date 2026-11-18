@@ -1,6 +1,6 @@
 {
  "week": "w/c 16 Nov 2026",
- "updated": "2026-11-17",
+ "updated": "2026-11-18",
  "featuredTopics": [
   "auctions",
   "van-gogh",
@@ -9,6 +9,27 @@
   "bloomsbury"
  ],
  "items": [
+  {
+   "id": "2026-11-kandinsky-record",
+   "date": "2026-11-17",
+   "topic": "abstraction",
+   "level": 2,
+   "headline": "Kandinsky sets an $85.8m auction record",
+   "summary": "His Bauhaus-era painting Betonte Ecken sold at Christie's New York on 17 November, nearly doubling his previous record.",
+   "question": "Whose painting Betonte Ecken set an $85.8m auction record?",
+   "options": [
+    "Wassily Kandinsky",
+    "Paul Klee",
+    "Piet Mondrian",
+    "Kazimir Malevich"
+   ],
+   "answer": 0,
+   "explain": "Kandinsky painted it in Weimar in 1922 to 1923 while teaching at the Bauhaus; his previous record was $44.8m, set at Sotheby's London in 2023.",
+   "notes": {
+    "Paul Klee": "Klee taught at the Bauhaus alongside Kandinsky, but this record painting is not his."
+   },
+   "source": "https://news.artnet.com/market/kandinsky-record-85-8-million-christies-2837796"
+  },
   {
    "id": "2026-11-book-of-miracles",
    "date": "2026-11-16",
@@ -29,12 +50,12 @@
   },
   {
    "id": "2026-11-van-gogh-heirs",
-   "date": "2026-11-14",
+   "date": "2026-11-17",
    "topic": "van-gogh",
    "level": 3,
-   "headline": "Heirs ask Sotheby's to pull a $180m Van Gogh",
-   "summary": "Descendants of the German publisher Samuel Fischer say Blossoming Chestnut Trees was sold under Nazi pressure in 1936.",
-   "question": "Heirs of which German publisher want a $180m Van Gogh withdrawn from auction?",
+   "headline": "Sotheby's settles Van Gogh claim before sale",
+   "summary": "On 17 November, the day before its New York sale, Sotheby's said the sellers and the Fischer heirs had reached an agreement over Blossoming Chestnut Trees.",
+   "question": "Heirs of which Berlin publisher reached a deal over a Van Gogh estimated at $180m?",
    "options": [
     "Samuel Fischer",
     "Axel Springer",
@@ -42,8 +63,8 @@
     "Kurt Wolff"
    ],
    "answer": 0,
-   "explain": "They say it was sold in Amsterdam in 1936, months after the family left Nazi Germany, while Sotheby's says its research has not shown the sale was forced.",
-   "source": "https://haaretz.com/life/2026-11-14/ty-article/report-jewish-heirs-seek-to-pull-van-gogh-piece-from-auction-over-nazi-era-sale/000001a1-d983-da30-a7fb-d9bfb37c0000",
+   "explain": "Samuel and Hedwig Fischer owned the painting from 1909, and their heirs say its 1936 sale happened under Nazi persecution; the terms of the deal were not disclosed.",
+   "source": "https://www.theartnewspaper.com/2026/11/17/sothebys-makes-last-minute-deal-with-jewish-heirs-to-sell-180m-van-gogh-painting",
    "reveal": {
     "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
     "artist": "Vincent van Gogh",
@@ -181,7 +202,7 @@
    "topic": "auctions",
    "level": 2,
    "headline": "New York's November sales test the top end",
-   "summary": "Sotheby's offers a Cézanne estimated around $120m on 18 November; Christie's leads with a $60–80m Kandinsky on 17 November.",
+   "summary": "Christie's set a Kandinsky record on 17 November; on 18 November Sotheby's New York offers Cézanne's Arlequin, estimated around $120m.",
    "question": "Sotheby's hopes a painting by which artist will beat his roughly $138m auction record on 18 November?",
    "options": [
     "Paul Cézanne",
@@ -191,34 +212,8 @@
    ],
    "answer": 0,
    "explain": "The Cézanne record is La Montagne Sainte-Victoire, sold at Christie's in 2022 for about $138m.",
-   "source": "https://www.beyondeveryart.com/new-york-november-2026-auctions-estimates-explained/",
+   "source": "https://theartnewspaper.com/2026/09/30/450m-impressionist-collectionincluding-a-potentially-record-breaking-van-gogh-paintingto-be-sold-at-sothebys-new-york",
    "reveal": "sainte-victoire"
-  },
-  {
-   "id": "2026-11-rijks-hk",
-   "date": "2026-11-12",
-   "topic": "auctions",
-   "level": 3,
-   "headline": "Rijksmuseum to send a Vermeer to Hong Kong",
-   "summary": "A new partnership with the Hong Kong Palace Museum includes a 2027 show of 100 Dutch Golden Age works.",
-   "question": "Which Vermeer will the Rijksmuseum in Amsterdam send to Hong Kong in 2027?",
-   "options": [
-    "The Love Letter",
-    "Girl with a Pearl Earring",
-    "View of Delft",
-    "The Milkmaid"
-   ],
-   "answer": 0,
-   "explain": "The Love Letter is the headline loan. Girl with a Pearl Earring belongs to the Mauritshuis in The Hague, not the Rijksmuseum.",
-   "source": "https://www.chinadailyhk.com/article/641732",
-   "reveal": {
-    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/The_Love_Letter_-_Johannes_Vermeer.png/1280px-The_Love_Letter_-_Johannes_Vermeer.png",
-    "artist": "Johannes Vermeer",
-    "title": "The Love Letter",
-    "year": 1669,
-    "approx": true,
-    "place": "Rijksmuseum, Amsterdam"
-   }
   },
   {
    "id": "2026-11-venice-awards",
