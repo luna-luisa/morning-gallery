@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:07"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:11"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -277,7 +277,8 @@ function whyParts(x, p){
   if (x.odd || p.topic === x.topic) return {custom: `That one is ${esc(eraOf(p) || asked.name)}.`};
   const era = eraOf(p), look = mine.look ? esc(mine.look) : "";
   if (asked.kind === "artist") return {era: esc(era), rel: `by ${esc(p.artist)}`, look};
-  const an = (asked.era || asked.name), the = /ism$|^The /.test(an) ? an.replace(/^The /, "the ") : "the " + an;
+  /* "the" only where English uses it: the Baroque, the Rococo, the Renaissance, the Pre-Raphaelites; not Georgian Britain, Impressionism, Pop Art... */
+  const an = (asked.era || asked.name), the = /^The /.test(an) ? an.replace(/^The /, "the ") : THE_ERA.has(x.topic) ? "the " + an : an;
   let rel = "";
   if (asked.from && p.year){
     const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
@@ -286,6 +287,7 @@ function whyParts(x, p){
   if (p.why) return {custom: `${esc(era)}${rel ? ", " + rel : ""}. ${esc(p.why)}`}; /* hand-written note: movement and timing, then the note */
   return {era: esc(era), rel, look};
 }
+const THE_ERA = new Set(["baroque", "rococo", "preraphaelites", "yba"]);
 const cap = t => t ? t[0].toUpperCase() + t.slice(1) : t;
 function whyLine(x, p){
   const w = whyParts(x, p); if (w.custom) return w.custom;
