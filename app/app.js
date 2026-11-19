@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 07:26"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 07:54"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -232,6 +232,10 @@ const BUILD = {
 const byWho = t => t.name.replace(/^.*: /, "").replace(/ & /g, " or ");
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 /* a short note about the answer you picked, when it was wrong */
+/* the movement or period a work belongs to, for answer panels */
+const ERA = {"van-eyck": "Early Netherlandish painting", "van-gogh": "Post-Impressionism", "alfred-wallis": "Modern British art", "salman-toor": "Contemporary art", "bloomsbury": "The Bloomsbury Group", "vienna-1900": "Vienna 1900", "renaissance": "Renaissance"};
+const eraOf = w => { const t = w && TOPICS[w.topic]; if (!t) return ""; return ERA[w.topic] || (t.kind === "movement" ? t.name : ""); };
+const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
 const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
 function wrongNote(x, pickIdx){
   if (pickIdx == null || pickIdx === x.answer || !x.options) return "";
@@ -695,14 +699,15 @@ function answered(x, ok){
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
   closeSheet();
-  const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
+  const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : x.unsure ? "unsure" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
   sh.innerHTML = `<div class="sheetin"><button class="grab" id="grab" aria-label="Show or hide the explanation"><i></i></button>
       <div class="vrow"><span class="verdict">${ok ? pick(["Spot on.", "Yes.", "Exactly.", "Nicely seen."]) : x.unsure ? (x.type === "order" ? "Here's the right order." : "Now you know.") : x.type === "order" ? "Not quite. Here's the right order." : x.multi ? "Not quite." : "Not this time."}</span>${store.online ? `<button class="flag" id="flag" aria-label="Report this question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></button>` : ""}</div>
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
-      ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}</div>` : ""}${w && w !== rw ? label(w) : ""}
+      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<p class="wrongnote">You picked ${esc(p.artist)}'s ${workLine(p)}.${eraTag(p)}</p>`).join("") : ""}
+      ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}

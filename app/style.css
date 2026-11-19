@@ -630,3 +630,7 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 
 .tgrow{text-align:center;font-size:13px;color:var(--muted);margin:22px 0 4px}
 .tgrow .btn.link{font-size:13px;padding:0;min-height:0;display:inline}
+
+/* "Not sure": neutral, so the right answer reads as something to remember, not a mistake */
+.sheet.unsure .sheetin{background:var(--paper)} .unsure .verdict{color:var(--klein)}
+.era{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--klein);background:rgba(31,63,209,.08);border-radius:999px;padding:2px 8px;margin-left:2px;vertical-align:1px;white-space:nowrap}
