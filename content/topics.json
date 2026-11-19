@@ -2457,8 +2457,9 @@
    "as": "abstract art",
    "era": "Abstract art",
    "from": 1910,
-   "to": 2030,
-   "look": "pictures with no recognisable subject, just colour, line and shape"
+   "to": 2025,
+   "look": "pictures with no recognisable subject, just colour, line and shape",
+   "fade": true
   },
   "dada": {
    "name": "Dada",
@@ -3147,7 +3148,10 @@
    "as": "modern British art",
    "era": "Modern British art",
    "look": "British painting and sculpture of the 20th century, from figurative to abstract",
-   "region": "Britain"
+   "region": "Britain",
+   "from": 1900,
+   "to": 1970,
+   "fade": true
   },
   "yba": {
    "name": "Young British Artists",

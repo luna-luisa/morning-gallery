@@ -741,3 +741,7 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 
 .sheetin{transition:transform .25s ease,max-height .3s ease}
 .sheet.full .sheetin{max-height:calc(100svh - env(safe-area-inset-top,0px) - 10px)}
+
+/* loose labels with no hard end: the band fades out */
+.th .gband.fade{background:linear-gradient(90deg,rgba(29,107,63,.40) 0 55%,rgba(29,107,63,0) 100%);border-radius:12px 0 0 12px}
+.th .fband.fade{background:linear-gradient(90deg,rgba(163,39,29,.10) 0 55%,rgba(163,39,29,0) 100%);border-radius:6px 0 0 6px}

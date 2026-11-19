@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:24"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:29"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -282,7 +282,7 @@ function whyParts(x, p){
   let rel = "";
   if (asked.region && mine.region && asked.region !== mine.region && asked.from && p.year && p.year > asked.from - 30 && p.year < Math.min(asked.to, 2025) + 30) rel = esc(`made in ${mine.region}, not ${asked.region}`);
   else if (asked.from && p.year){
-    const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
+    const to = asked.fade ? 9999 : Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
     rel = esc(!d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`);
   }
   if (p.why) return {custom: `${esc(era)}${rel ? ", " + rel : ""}. ${esc(p.why)}`}; /* hand-written note: movement and timing, then the note */
@@ -320,8 +320,8 @@ function timeH(asked, rights, wrongs){
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const many = wrongs.length > 1;
   return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(asked.era || asked.name)}</b>` : ""}<span class="tlline"></span>
-    ${faint.map(f => `<span class="fband" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
-    ${band ? `<span class="gband" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
+    ${faint.map(f => `<span class="fband ${f.t.fade ? "fade" : ""}" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
+    ${band ? `<span class="gband ${asked.fade ? "fade" : ""}" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
     ${rights.filter(w => w.year).map(w => `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>`).join("")}
     ${wrongs.filter(w => w.year).map((w, i) => many ? `<span class="n" style="left:${X(w.year)}">${i + 1}</span>` : `<span class="d bad" style="left:${X(w.year)}"></span>`).join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>
