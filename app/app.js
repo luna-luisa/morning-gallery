@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 11:03"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 11:18"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -260,8 +260,15 @@ function timeline(t, pts, big, t2){
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
   const ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const name = esc(t.era || t.name);
-  return `<div class="tl ${big ? "big" : ""}"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>${to2 ? `<span class="band two" style="left:${X(t2.from)};width:calc(${X(to2)} - ${X(t2.from)})"><b>${esc(t2.era || t2.name)}</b></span>` : ""}
-    ${pts.map((p, i) => big ? `<button class="d ${p.kind}" style="left:${X(p.year)}" data-tl="${i}" aria-label="${esc(p.title || "")}"></button>` : `<span class="d ${p.kind}" style="left:${X(p.year)}"></span><span class="dl ${p.kind} ${p.year <= Math.min(...ys) && pts.length > 1 ? "l" : "r"}" style="left:${X(p.year)}">${esc(p.label)}</span>`).join("")}
+  if (!big) /* answer panel: the answer's movement as a green band on the line, your pick's as a red bracket under it, dots for the two paintings */
+    return `<div class="tlh ${to2 ? "two" : ""}"><b class="gl" style="left:${X(t.from)}">${name}</b><span class="tlline"></span>
+    <span class="gband" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"></span>
+    ${to2 ? `<span class="rbr" style="left:${X(t2.from)};width:calc(${X(to2)} - ${X(t2.from)})"></span><b class="rl" style="left:${X(t2.from)}">${esc(t2.era || t2.name)}</b>` : ""}
+    ${pts.map(p => `<span class="d ${p.kind}" style="left:${X(p.year)}"></span>`).join("")}
+    ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>
+    <div class="tllegend"><span><i style="background:var(--good)"></i>The answer</span><span><i style="background:var(--bad)"></i>Your pick</span></div>`;
+  return `<div class="tl big"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>
+    ${pts.map((p, i) => `<button class="d ${p.kind}" style="left:${X(p.year)}" data-tl="${i}" aria-label="${esc(p.title || "")}"></button>`).join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";

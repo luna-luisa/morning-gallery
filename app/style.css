@@ -694,3 +694,17 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
   .minis .mini[data-tip]:last-child:hover::after{left:auto;right:0;transform:none}
 }
 @media (hover:hover) and (pointer:fine){ .minis .mini.dim:hover{opacity:1} }
+
+/* answer-panel timeline (option H): green band = the answer's movement, red bracket = your pick's, dots = the two paintings */
+.tlh{position:relative;height:66px;margin:12px 6px 0}
+.tlh.two{height:90px}
+.tlh .tlline{position:absolute;left:0;right:0;top:25px;height:2px;background:var(--line)}
+.tlh .gl{position:absolute;top:0;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--good);white-space:nowrap}
+.tlh .gband{position:absolute;top:19px;height:14px;border-radius:7px;background:rgba(29,107,63,.22)}
+.tlh .rbr{position:absolute;top:40px;height:7px;border:2px solid var(--bad);border-top:0;box-sizing:border-box}
+.tlh .rl{position:absolute;top:51px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--bad);white-space:nowrap}
+.tlh .d{position:absolute;top:20px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid #fff;box-sizing:border-box}
+.tlh .d.good{background:var(--good)} .tlh .d.bad{background:var(--bad)}
+.tlh .tk{position:absolute;top:44px;font-size:10px;color:var(--muted);transform:translateX(-50%)}
+.tlh.two .tk{top:70px}
+.tl.big .band{background:rgba(29,107,63,.18)} .tl.big .band b{color:var(--good)}
