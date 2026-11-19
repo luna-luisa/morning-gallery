@@ -678,3 +678,10 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .tl:not(.big){margin-top:24px}
 .tl:not(.big) .band{overflow:visible}
 .tl:not(.big) .band b{position:absolute;left:0;right:0;top:-16px;line-height:13px;font-size:10px}
+
+.mlabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.mlabs span{font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.2}
+.tl:not(.big):has(.band.two){height:66px}
+.tl .band.two{top:auto;bottom:auto;top:46px;height:8px;background:rgba(163,39,29,.22)}
+.tl:not(.big) .band.two b{top:9px;color:var(--bad);font-size:9px;text-align:left;padding-left:2px}
+.tl:not(.big):has(.band.two) .tk{top:36px}

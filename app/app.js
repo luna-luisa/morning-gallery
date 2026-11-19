@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 10:22"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 10:55"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -242,19 +242,22 @@ function pickWhy(x, p, shown){
   if (p.why) return esc(p.why);
   const out = [];
   if (!shown && asked.from && p.year && (p.year < asked.from || (asked.to < 2025 && p.year > asked.to))) out.push(`It was painted ${p.year < asked.from ? "before" : "after"} ${esc((asked.era || asked.name).replace(/^The /, "the "))}'s heyday (about ${asked.from}${asked.to >= 2025 ? " onwards" : " to " + asked.to}).`);
-  if (mine.look && eraOf(p) !== (asked.era || asked.name)) out.push(`${esc(eraOf(p))} is known for ${esc(mine.look)}.`);
+  const inYears = asked.from && p.year && p.year >= asked.from && p.year <= Math.min(asked.to, 2025);
+  if (inYears && eraOf(p) && eraOf(p) !== (asked.era || asked.name)) out.push(`It dates from the ${esc((asked.era || asked.name).replace(/^The /, ""))} years, but it belongs to ${esc(eraOf(p).replace(/^The /, "the "))}${mine.look ? `, which is known for ${esc(mine.look)}` : ""}.`);
+  else if (mine.look && eraOf(p) !== (asked.era || asked.name)) out.push(`${esc(eraOf(p))} is known for ${esc(mine.look)}.`);
   return out.join(" ");
 }
 /* a timeline strip: the asked movement as a band, pictures as dots (red = your pick, green = the answer) */
 const tlFor = t => t && t.from && t.kind !== "artist";
-function timeline(t, pts, big){
+function timeline(t, pts, big, t2){
   const ys = pts.map(p => p.year).filter(Boolean), to = Math.min(t.to, 2025);
-  let lo = Math.min(t.from, ...ys), hi = Math.max(to, ...ys); const pad = Math.max(20, (hi - lo) * 0.08);
+  const to2 = t2 && t2.from ? Math.min(t2.to, 2025) : null;
+  let lo = Math.min(t.from, ...ys, ...(to2 ? [t2.from] : [])), hi = Math.max(to, ...ys, ...(to2 ? [to2] : [])); const pad = Math.max(20, (hi - lo) * 0.08);
   lo = Math.floor((lo - pad) / 50) * 50; hi = Math.ceil((hi + pad) / 50) * 50;
   const step = [50, 100, 200, 500].find(s => (hi - lo) / s <= (big ? 6 : 4)) || 500, X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
   const ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const name = esc(t.era || t.name);
-  return `<div class="tl ${big ? "big" : ""}"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>
+  return `<div class="tl ${big ? "big" : ""}"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>${to2 ? `<span class="band two" style="left:${X(t2.from)};width:calc(${X(to2)} - ${X(t2.from)})"><b>${esc(t2.era || t2.name)}</b></span>` : ""}
     ${pts.map((p, i) => big ? `<button class="d ${p.kind}" style="left:${X(p.year)}" data-tl="${i}" aria-label="${esc(p.title || "")}"></button>` : `<span class="d ${p.kind}" style="left:${X(p.year)}"></span><span class="dl ${p.kind} ${p.year <= Math.min(...ys) && pts.length > 1 ? "l" : "r"}" style="left:${X(p.year)}">${esc(p.label)}</span>`).join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>`;
 }
@@ -728,8 +731,8 @@ function answered(x, ok){
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
-      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
-      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickwrap"><div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}</div></div>${tlFor(TOPICS[x.topic]) && p.year && rw && rw.year ? timeline(TOPICS[x.topic], [{year: p.year, kind: "bad", label: "your pick"}, {year: rw.year, kind: "good", label: "answer"}]) : ""}${pickWhy(x, p, tlFor(TOPICS[x.topic])) ? `<p class="small pwhy">${pickWhy(x, p, tlFor(TOPICS[x.topic]))}</p>` : ""}</div>`).join("") : ""}
+      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div><div class="mlabs">${x.images.map(id => `<span>${esc((TOPICS[x.topic] && TOPICS[x.topic].kind === "artist") ? W[id].artist : (eraOf(W[id]) || W[id].artist))}</span>`).join("")}</div>` : ""}
+      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickwrap"><div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}</div></div>${tlFor(TOPICS[x.topic]) && p.year && rw && rw.year ? timeline(TOPICS[x.topic], [{year: p.year, kind: "bad", label: "your pick"}, {year: rw.year, kind: "good", label: "answer"}], false, p.topic !== x.topic && TOPICS[p.topic] && TOPICS[p.topic].kind !== "artist" && (TOPICS[p.topic].era || TOPICS[p.topic].name) !== (TOPICS[x.topic].era || TOPICS[x.topic].name) ? TOPICS[p.topic] : null) : ""}${pickWhy(x, p, tlFor(TOPICS[x.topic])) ? `<p class="small pwhy">${pickWhy(x, p, tlFor(TOPICS[x.topic]))}</p>` : ""}</div>`).join("") : ""}
       ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `<span class="eyebrow good anshead">The answer</span>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
