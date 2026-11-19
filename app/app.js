@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:17"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:24"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -309,18 +309,19 @@ function groupedWhy(x, wrongs){
   return {rows, shared};
 }
 function timeH(asked, rights, wrongs){
-  const to = Math.min(asked.to, 2025), faint = [];
+  /* a loose label with no set years (e.g. Modern British art) gets no green band, just the dots */
+  const band = !!asked.from, to = band ? Math.min(asked.to, 2025) : null, faint = [];
   wrongs.forEach(w => { const t = TOPICS[w.topic]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
-  let lo = Math.min(asked.from, ...ys, ...faint.map(f => f.from)), hi = Math.max(to, ...ys, ...faint.map(f => f.to));
+  let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
   lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const many = wrongs.length > 1;
-  return `<div class="th"><b class="gl" style="left:${X(asked.from)}">${esc(asked.era || asked.name)}</b><span class="tlline"></span>
+  return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(asked.era || asked.name)}</b>` : ""}<span class="tlline"></span>
     ${faint.map(f => `<span class="fband" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
-    <span class="gband" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>
+    ${band ? `<span class="gband" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
     ${rights.filter(w => w.year).map(w => `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>`).join("")}
     ${wrongs.filter(w => w.year).map((w, i) => many ? `<span class="n" style="left:${X(w.year)}">${i + 1}</span>` : `<span class="d bad" style="left:${X(w.year)}"></span>`).join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>
@@ -333,7 +334,7 @@ function reviewTiles(x, wrongIds, fact){
   const row = (w, inner, n) => `<div class="rrow">${n ? `<span class="n">${n}</span>` : ""}<span class="pthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="rvtext"><b><i>${esc(w.title)}</i></b><span class="small">${esc(w.artist)}, ${esc(yearText(w))}</span>${inner}</div></div>`;
   const g = groupedWhy(x, wrongs);
   return `<div class="rtile bad"><span class="eyebrow bad">${many ? "Your mix-ups" : "Your pick"}</span>${wrongs.map((w, i) => row(w, g.rows[i] ? `<span class="why">${g.rows[i]}</span>` : "", many ? i + 1 : 0)).join("")}${g.shared.map(t => `<p class="why shared">${t}</p>`).join("")}</div>
-    ${tlFor(asked) && !x.odd ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
+    ${asked && asked.kind !== "artist" && !x.odd && [...rights, ...wrongs].some(w => w.year) ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
     <div class="rtile good"><span class="eyebrow good">${rights.length > 1 ? "The answers" : "The answer"}</span>${rights.map(w => row(w, x.multi ? `<span class="rstat">${w.missed ? "Missed" : "You got this one"}</span>` : "")).join("")}${fact && !x.multi ? `<p>${esc(fact)}</p>` : ""}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
