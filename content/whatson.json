@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17",
+ "updated": "2026-11-19",
  "note": "Current exhibitions by area. Kept up to date by the daily task. 'place' must match content/places.json for a photo; otherwise 'art' (a works.json id) is shown.",
  "areas": {
   "London": {
@@ -171,6 +171,16 @@
      "url": "https://www.metmuseum.org/exhibitions/krasner-and-pollock-past-continuous",
      "blurb": "Lee Krasner and Jackson Pollock side by side.",
      "from": "2026-10-04"
+    },
+    {
+     "id": "moma-brancusi",
+     "title": "Brancusi: The Artist and His Studio",
+     "venue": "MoMA",
+     "place": "Museum of Modern Art, New York",
+     "from": "2026-10-25",
+     "until": "2027-02-27",
+     "blurb": "Brancusi's sculptures shown alongside the story of his Paris studio.",
+     "url": "https://www.moma.org/calendar/exhibitions/5910"
     }
    ]
   }

@@ -1,6 +1,6 @@
 {
  "week": "w/c 16 Nov 2026",
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "featuredTopics": [
   "auctions",
   "van-gogh",
@@ -29,6 +29,29 @@
     "Paul Klee": "Klee taught at the Bauhaus alongside Kandinsky, but this record painting is not his."
    },
    "source": "https://news.artnet.com/market/kandinsky-record-85-8-million-christies-2837796"
+  },
+  {
+   "id": "2026-11-van-gogh-record",
+   "date": "2026-11-18",
+   "topic": "postimpressionism",
+   "level": 2,
+   "headline": "Van Gogh sets a $190m auction record",
+   "summary": "Blossoming Chestnut Trees sold for $190.4m with fees at Sotheby's New York on 18 November, far above his previous record of $117.2m.",
+   "question": "Which Van Gogh sold for a record $190m in New York on 18 November?",
+   "options": [
+    "Blossoming Chestnut Trees",
+    "The Starry Night",
+    "Sunflowers",
+    "Irises"
+   ],
+   "answer": 0,
+   "explain": "He painted it at Auvers-sur-Oise in 1890, in the last weeks of his life; it beat the $117.2m paid for Orchard with Cypresses at Christie's in 2022.",
+   "notes": {
+    "The Starry Night": "It has been at the Museum of Modern Art in New York since 1941, so it was not for sale.",
+    "Irises": "Irises set a world record of $53.9m at Sotheby's in 1987 and is now at the Getty Museum in Los Angeles."
+   },
+   "source": "https://www.artnews.com/art-news/market/sothebys-modern-art-sale-blaquier-arrieta-van-gogh-1234806802/",
+   "reveal": "vg-chestnut-trees"
   },
   {
    "id": "2026-11-book-of-miracles",
@@ -198,22 +221,26 @@
   },
   {
    "id": "2026-11-ny-cezanne",
-   "date": "2026-11-12",
+   "date": "2026-11-18",
    "topic": "auctions",
    "level": 2,
-   "headline": "New York's November sales test the top end",
-   "summary": "Christie's set a Kandinsky record on 17 November; on 18 November Sotheby's New York offers Cézanne's Arlequin, estimated around $120m.",
-   "question": "Sotheby's hopes a painting by which artist will beat his roughly $138m auction record on 18 November?",
+   "headline": "Cézanne's Arlequin sells for $111m",
+   "summary": "Arlequin sold for $111m with fees at Sotheby's New York on 18 November, short of Cézanne's auction record of about $138m, set in 2022.",
+   "question": "Who posed for Cézanne's Arlequin, sold for $111m in New York?",
    "options": [
-    "Paul Cézanne",
-    "Vincent van Gogh",
-    "Claude Monet",
-    "Gustav Klimt"
+    "His son, Paul",
+    "His wife, Hortense",
+    "The writer Émile Zola",
+    "The painter Camille Pissarro"
    ],
    "answer": 0,
-   "explain": "The Cézanne record is La Montagne Sainte-Victoire, sold at Christie's in 2022 for about $138m.",
-   "source": "https://theartnewspaper.com/2026/09/30/450m-impressionist-collectionincluding-a-potentially-record-breaking-van-gogh-paintingto-be-sold-at-sothebys-new-york",
-   "reveal": "sainte-victoire"
+   "explain": "Paul junior modelled for Cézanne's harlequin paintings of 1888 to 1890, which Sotheby's says were inspired by the Mardi Gras parades of his childhood in Aix-en-Provence.",
+   "notes": {
+    "His wife, Hortense": "Hortense Fiquet sat for many portraits by Cézanne, but not this one.",
+    "The writer Émile Zola": "Zola was Cézanne's school friend in Aix-en-Provence, but he did not pose for this painting.",
+    "The painter Camille Pissarro": "Pissarro was Cézanne's mentor, not the model."
+   },
+   "source": "https://www.artnews.com/art-news/market/cezanne-arlequin-sothebys-sale-1234806687/"
   },
   {
    "id": "2026-11-venice-awards",
@@ -232,33 +259,6 @@
    "answer": 0,
    "explain": "The jury resigned on 30 April, so the May ceremony was dropped. Instead visitors vote for two 'Visitors' Lions', announced on 22 November.",
    "source": "https://www.thenationalnews.com/arts-culture/2026/05/01/venice-biennale-jury-resigns-leading-organisers-to-scrap-golden-lion-awards-in-favour-of-public-vote/"
-  },
-  {
-   "id": "2026-11-van-gogh-chestnut",
-   "date": "2026-11-12",
-   "topic": "postimpressionism",
-   "level": 2,
-   "headline": "A $180m Van Gogh goes under the hammer",
-   "summary": "Sotheby's New York offers Blossoming Chestnut Trees on 18 November, hoping to beat the Van Gogh auction record.",
-   "question": "Which Van Gogh could set his auction record at Sotheby's on 18 November?",
-   "options": [
-    "Blossoming Chestnut Trees",
-    "The Starry Night",
-    "Sunflowers",
-    "Irises"
-   ],
-   "answer": 0,
-   "explain": "Painted at Auvers-sur-Oise in 1890, weeks before his death, it is estimated at about $180m before fees. The record is $117m, for Orchard with Cypresses in 2022.",
-   "source": "https://www.theartnewspaper.com/2026/11/12/new-york-autumn-2026-auctions-preview-bonhams-christies-phillips-sothebys",
-   "reveal": {
-    "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
-    "artist": "Vincent van Gogh",
-    "title": "Blossoming Chestnut Trees",
-    "year": 1890,
-    "place": "Sotheby's New York, 18 November 2026",
-    "credit": "Sotheby's, via The Art Newspaper",
-    "page": "https://theartnewspaper.com/2026/10/02/the-story-behind-the-180m-van-gogh-up-for-auction-this-november"
-   }
   }
  ]
 }
