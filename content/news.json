@@ -50,7 +50,7 @@
     "The Starry Night": "It has been at the Museum of Modern Art in New York since 1941, so it was not for sale.",
     "Irises": "Irises set a world record of $53.9m at Sotheby's in 1987 and is now at the Getty Museum in Los Angeles."
    },
-   "source": "https://www.artnews.com/art-news/market/sothebys-modern-art-sale-blaquier-arrieta-van-gogh-1234806802/",
+   "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et",
    "reveal": "vg-chestnut-trees"
   },
   {
@@ -68,8 +68,7 @@
     "Dresden"
    ],
    "answer": 0,
-   "explain": "Its 167 watercolours of omens, natural wonders and Bible scenes are attributed to Hans Burgkmair the Younger, Heinrich Vogtherr the Younger and their workshops.",
-   "source": "https://www.theartnewspaper.com/2026/11/16/manuscript-filled-with-16th-century-apocalyptic-visions-could-fetch-%C2%A31-million-at-auction"
+   "explain": "Its 167 watercolours of omens, natural wonders and Bible scenes are attributed to Hans Burgkmair the Younger, Heinrich Vogtherr the Younger and their workshops."
   },
   {
    "id": "2026-11-van-gogh-heirs",
@@ -87,15 +86,15 @@
    ],
    "answer": 0,
    "explain": "Samuel and Hedwig Fischer owned the painting from 1909, and their heirs say its 1936 sale happened under Nazi persecution; the terms of the deal were not disclosed.",
-   "source": "https://www.theartnewspaper.com/2026/11/17/sothebys-makes-last-minute-deal-with-jewish-heirs-to-sell-180m-van-gogh-painting",
+   "source": "https://hyperallergic.com/a-marquee-week-of-indulgence/",
    "reveal": {
     "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
     "artist": "Vincent van Gogh",
     "title": "Blossoming Chestnut Trees",
     "year": 1890,
     "place": "Sotheby's New York, 18 November 2026",
-    "credit": "Sotheby's, via The Art Newspaper",
-    "page": "https://theartnewspaper.com/2026/10/02/the-story-behind-the-180m-van-gogh-up-for-auction-this-november"
+    "credit": "Sotheby's",
+    "page": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et"
    }
   },
   {
@@ -114,7 +113,7 @@
    ],
    "answer": 0,
    "explain": "The fair is a partnership with Abu Dhabi's Department of Culture and Tourism and replaces Abu Dhabi Art, which began in 2007 as ArtParis Abu Dhabi.",
-   "source": "https://www.theartnewspaper.com/2026/11/13/how-frieze-became-the-latest-step-in-abu-dhabis-cultural-masterplan"
+   "source": "https://www.frieze.com/article/frieze-abu-dhabi-reveals-global-line-shaped-region-its-inaugural-edition"
   },
   {
    "id": "2026-11-botticelli-oxford",
@@ -132,7 +131,7 @@
    ],
    "answer": 0,
    "explain": "Painted in the 1470s, it was bought by the London-based Klesch Collection after the UK placed a temporary export bar on it.",
-   "source": "https://www.theartnewspaper.com/2026/11/12/botticelli-painting-saved-from-leaving-uk-goes-on-view-in-oxford",
+   "source": "https://www.ashmolean.org/press/major-loan-press-release",
    "reveal": {
     "img": "https://www.finestresullarte.info/rivista/immagini/2026/fn/sandro-botticelli-madonna-col-bambino-klesch-1-1.jpg",
     "artist": "Sandro Botticelli",
@@ -140,8 +139,8 @@
     "year": 1470,
     "approx": true,
     "place": "Klesch Collection, on loan to the Ashmolean Museum, Oxford",
-    "credit": "Finestre sull'Arte",
-    "page": "https://www.finestresullarte.info/en/ancient-art/a-rediscovered-botticelli-it-was-in-danger-of-leaving-the-united-kingdom-but-is-now-on-display-in-oxford"
+    "credit": "Ashmolean Museum",
+    "page": "https://www.ashmolean.org/botticelli-the-virgin-and-child-enthroned"
    }
   },
   {
@@ -160,7 +159,7 @@
    ],
    "answer": 0,
    "explain": "Self-taught, he painted boats on scraps of cardboard, and Ben Nicholson and Christopher Wood befriended him in St Ives in 1928.",
-   "source": "https://www.theartnewspaper.com/2026/11/13/exhibition-explores-how-the-fisherman-turned-artist-alfred-wallis-inspired-leading-british-artists"
+   "source": "https://pallant.org.uk/whats-on/alfred-wallis-an-artists-artist/"
   },
   {
    "id": "2026-11-van-eyck",
@@ -240,7 +239,7 @@
     "The writer Émile Zola": "Zola was Cézanne's school friend in Aix-en-Provence, but he did not pose for this painting.",
     "The painter Camille Pissarro": "Pissarro was Cézanne's mentor, not the model."
    },
-   "source": "https://www.artnews.com/art-news/market/cezanne-arlequin-sothebys-sale-1234806687/"
+   "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/paul-cezanne-arlequin"
   },
   {
    "id": "2026-11-venice-awards",
