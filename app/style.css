@@ -627,3 +627,6 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .swb.no .ring{transform:scale(calc(1 + var(--no,0) * .22));background:color-mix(in srgb,var(--ink) calc(var(--no,0) * 85%),var(--paper));box-shadow:0 6px 16px rgba(40,30,15,.14),0 0 0 calc(var(--no,0) * 8px) rgba(40,30,15,.12)}
 .swb.no svg{stroke:color-mix(in srgb,#fff calc(var(--no,0) * 100%),var(--muted))}
 .swb:active .ring{transform:scale(.92)}
+
+.tgrow{text-align:center;font-size:13px;color:var(--muted);margin:22px 0 4px}
+.tgrow .btn.link{font-size:13px;padding:0;min-height:0;display:inline}

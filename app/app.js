@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 07:00"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 07:26"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -926,7 +926,9 @@ function renderTopicsNew(){
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
       ${whatsOnHTML()}
       ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
-        return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}`;
+        return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}
+      <p class="tgrow">New topics every week, shaped by what you play. <button class="btn link" id="askt">Ask for one</button></p>`;
+    if ($("#askt")) $("#askt").onclick = () => { q.focus(); q.placeholder = "Type an artist, movement or museum"; q.scrollIntoView({block: "center", behavior: "smooth"}); };
     wire();
   };
   q.oninput = draw; draw();
