@@ -738,3 +738,6 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 
 .rrow .rstat{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(29,107,63,.65);margin-top:3px}
 .rtile .why.shared{font-size:13px;line-height:1.4;margin:2px 0 0}
+
+.sheetin{transition:transform .25s ease,max-height .3s ease}
+.sheet.full .sheetin{max-height:calc(100svh - env(safe-area-inset-top,0px) - 10px)}

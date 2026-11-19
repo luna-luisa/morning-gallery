@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:11"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:17"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -280,7 +280,8 @@ function whyParts(x, p){
   /* "the" only where English uses it: the Baroque, the Rococo, the Renaissance, the Pre-Raphaelites; not Georgian Britain, Impressionism, Pop Art... */
   const an = (asked.era || asked.name), the = /^The /.test(an) ? an.replace(/^The /, "the ") : THE_ERA.has(x.topic) ? "the " + an : an;
   let rel = "";
-  if (asked.from && p.year){
+  if (asked.region && mine.region && asked.region !== mine.region && asked.from && p.year && p.year > asked.from - 30 && p.year < Math.min(asked.to, 2025) + 30) rel = esc(`made in ${mine.region}, not ${asked.region}`);
+  else if (asked.from && p.year){
     const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
     rel = esc(!d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`);
   }
@@ -821,11 +822,14 @@ function answered(x, ok){
   if (document.body.dataset.screen === "q") keepPromptVisible(); else setTimeout(keepPromptVisible, 320);
   const inner = sh.querySelector(".sheetin");
   const setMin = m => { sh.classList.toggle("min", m); if (document.body.dataset.screen === "q") requestAnimationFrame(() => { view.style.paddingBottom = (inner.offsetHeight + 14) + "px"; }); };
-  $("#grab").onclick = () => setMin(!sh.classList.contains("min"));
+  /* scrolling the panel's content opens it to full height; swipe down or tap the handle to bring it back */
+  const body = sh.querySelector(".sheetbody"), setFull = f => { sh.classList.toggle("full", f); if (!f && body) body.scrollTop = 0; };
+  if (body) body.addEventListener("scroll", () => { if (body.scrollTop > 4 && !sh.classList.contains("full") && !sh.classList.contains("min")) setFull(true); }, {passive: true});
+  $("#grab").onclick = () => sh.classList.contains("full") ? setFull(false) : setMin(!sh.classList.contains("min"));
   let y0 = null, dy = 0;
   inner.addEventListener("pointerdown", e => { if (e.target.closest("button:not(.grab), a, .rimg, .mini") || e.clientY - inner.getBoundingClientRect().top > 90) return; y0 = e.clientY; dy = 0; inner.style.transition = "none"; });
   addEventListener("pointermove", e => { if (y0 === null || !sh.isConnected) return; dy = e.clientY - y0; if (!sh.classList.contains("min")) inner.style.transform = `translateY(${Math.max(0, dy)}px)`; });
-  addEventListener("pointerup", () => { if (y0 === null || !sh.isConnected) return; y0 = null; inner.style.transition = ""; inner.style.transform = ""; if (dy > 50) setMin(true); else if (dy < -30) setMin(false); });
+  addEventListener("pointerup", () => { if (y0 === null || !sh.isConnected) return; y0 = null; inner.style.transition = ""; inner.style.transform = ""; if (dy > 50) { if (sh.classList.contains("full")) setFull(false); else setMin(true); } else if (dy < -30) setMin(false); });
   wireHold(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {

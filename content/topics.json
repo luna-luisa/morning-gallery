@@ -819,7 +819,8 @@
    "era": "Georgian Britain",
    "from": 1714,
    "to": 1830,
-   "look": "elegant portraits of the gentry, conversation pieces and satire"
+   "look": "elegant portraits of the gentry, conversation pieces and satire",
+   "region": "Britain"
   },
   "romanticism": {
    "name": "Romanticism",
@@ -1165,7 +1166,8 @@
    "era": "Pre-Raphaelites",
    "from": 1848,
    "to": 1900,
-   "look": "bright, highly detailed colour and medieval or literary subjects"
+   "look": "bright, highly detailed colour and medieval or literary subjects",
+   "region": "Britain"
   },
   "realism": {
    "name": "Realism",
@@ -1824,7 +1826,8 @@
    "era": "Edo Japan",
    "from": 1603,
    "to": 1868,
-   "look": "woodblock prints of actors, beauties and landscapes, with flat colour and strong outlines"
+   "look": "woodblock prints of actors, beauties and landscapes, with flat colour and strong outlines",
+   "region": "Japan"
   },
   "vienna-1900": {
    "name": "Vienna 1900: Klimt",
@@ -1925,7 +1928,8 @@
    "era": "Vienna 1900",
    "from": 1897,
    "to": 1918,
-   "look": "gold, ornament and psychological intensity, from Klimt to Schiele"
+   "look": "gold, ornament and psychological intensity, from Klimt to Schiele",
+   "region": "Vienna"
   },
   "fauvism": {
    "name": "Fauvism",
@@ -2866,7 +2870,8 @@
    "era": "Abstract Expressionism",
    "from": 1943,
    "to": 1965,
-   "look": "huge abstract canvases of energetic brushwork or fields of colour, made in New York"
+   "look": "huge abstract canvases of energetic brushwork or fields of colour, made in New York",
+   "region": "America"
   },
   "popart": {
    "name": "Pop Art",
@@ -3141,7 +3146,8 @@
    ],
    "as": "modern British art",
    "era": "Modern British art",
-   "look": "British painting and sculpture of the 20th century, from figurative to abstract"
+   "look": "British painting and sculpture of the 20th century, from figurative to abstract",
+   "region": "Britain"
   },
   "yba": {
    "name": "Young British Artists",
@@ -3243,7 +3249,8 @@
    "era": "Young British Artists",
    "from": 1988,
    "to": 2000,
-   "look": "shock, wit and everyday materials, from 1990s London"
+   "look": "shock, wit and everyday materials, from 1990s London",
+   "region": "Britain"
   },
   "bloomsbury": {
    "name": "Bloomsbury: Bell & Grant",
@@ -3370,7 +3377,8 @@
    "era": "The Bloomsbury Group",
    "from": 1905,
    "to": 1940,
-   "look": "bold colour and pattern, influenced by Post-Impressionism"
+   "look": "bold colour and pattern, influenced by Post-Impressionism",
+   "region": "Britain"
   },
   "guggenheim": {
    "name": "Peggy Guggenheim",
@@ -4604,7 +4612,8 @@
     }
    ],
    "era": "Modern British art",
-   "look": "British painting and sculpture of the 20th century, from figurative to abstract"
+   "look": "British painting and sculpture of the 20th century, from figurative to abstract",
+   "region": "Britain"
   }
  }
 }
