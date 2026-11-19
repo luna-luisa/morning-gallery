@@ -35,3 +35,6 @@ Each topic can have `lessons` in content/topics.json: `{"2":[cards],"3":[cards],
 
 ## Opening pictures
 The opening card and the welcome screen use the hand-picked `SPLASH` list in app/app.js. Every picture must look good inside the arch: upright, filling it, with no frames, borders or blank margins showing. Check each new one by eye in the arch shape before adding it.
+
+## Article links
+Players tap through to the source, so every `source` link must be free to read on a phone, with no paywall or sign-up wall, and from a quality site that isn't stuffed with ads. Prefer, in order: the museum, gallery, auction house or organiser's own page (press releases count), then Artnet News, ARTnews, Hyperallergic, The Art Newspaper, the Guardian or BBC. Never use paywalled or registration-walled sites (for example the FT, NYT, The Times, Telegraph, The National), aggregators, blogs, newsletters or listings sites. Facts can still be checked against any reliable source; only the link players see has to meet this rule.
