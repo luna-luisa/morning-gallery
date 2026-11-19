@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 11:18"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 11:27"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -743,9 +743,10 @@ function answered(x, ok){
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-tip="${esc(W[id].title + " · " + W[id].artist + ", " + yearText(W[id]) + (eraOf(W[id]) ? " · " + eraOf(W[id]) : ""))}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div><div class="mlabs">${x.images.map(id => `<span>${esc((TOPICS[x.topic] && TOPICS[x.topic].kind === "artist") ? W[id].artist : (eraOf(W[id]) || W[id].artist))}</span>`).join("")}</div>` : ""}
       ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickwrap"><div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}</div></div>${tlFor(TOPICS[x.topic]) && p.year && rw && rw.year ? timeline(TOPICS[x.topic], [{year: p.year, kind: "bad", label: "your pick"}, {year: rw.year, kind: "good", label: "answer"}], false, p.topic !== x.topic && TOPICS[p.topic] && TOPICS[p.topic].kind !== "artist" && (TOPICS[p.topic].era || TOPICS[p.topic].name) !== (TOPICS[x.topic].era || TOPICS[x.topic].name) ? TOPICS[p.topic] : null) : ""}${pickWhy(x, p, tlFor(TOPICS[x.topic])) ? `<p class="small pwhy">${pickWhy(x, p, tlFor(TOPICS[x.topic]))}</p>` : ""}</div>`).join("") : ""}
-      ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `<span class="eyebrow good anshead">The answer</span>` : ""}
+      ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `<div class="anscard"><span class="eyebrow good">The answer</span>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
+      ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `</div>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}
       ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Got it, more on this in future rounds" : "Ask me more about this in future rounds"}</button>` : ""}

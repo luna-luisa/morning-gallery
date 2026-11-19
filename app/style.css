@@ -708,3 +708,7 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .tlh .tk{position:absolute;top:44px;font-size:10px;color:var(--muted);transform:translateX(-50%)}
 .tlh.two .tk{top:70px}
 .tl.big .band{background:rgba(29,107,63,.18)} .tl.big .band b{color:var(--good)}
+
+/* the answer gets its own green card, matching the red "Your pick" card */
+.anscard{background:var(--good-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.anscard p{margin:0}
