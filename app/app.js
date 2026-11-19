@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 11:48"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:01"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -272,19 +272,38 @@ function timeline(t, pts, big, t2){
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>`;
 }
 /* wrong picture picks: three tiles — your pick(s) with why, the timeline, the answer(s) */
-function whyLine(x, p){
-  const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return "";
-  if (p.why) return esc(p.why);
-  if (x.odd || p.topic === x.topic) return `That one is ${esc(eraOf(p) || asked.name)}.`;
-  const era = eraOf(p), look = mine.look ? `: known for ${esc(mine.look)}` : "";
-  if (asked.kind === "artist") return `By ${esc(p.artist)}${era ? `, ${esc(era)}` : ""}${look}.`;
+function whyParts(x, p){
+  const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return {};
+  if (p.why) return {custom: esc(p.why)};
+  if (x.odd || p.topic === x.topic) return {custom: `That one is ${esc(eraOf(p) || asked.name)}.`};
+  const era = eraOf(p), look = mine.look ? esc(mine.look) : "";
+  if (asked.kind === "artist") return {era: esc(era), rel: `by ${esc(p.artist)}`, look};
   const an = (asked.era || asked.name), the = /ism$|^The /.test(an) ? an.replace(/^The /, "the ") : "the " + an;
   let rel = "";
   if (asked.from && p.year){
     const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
-    rel = !d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`;
+    rel = esc(!d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`);
   }
-  return era ? `${esc(era)}${rel ? ", " + esc(rel) : ""}${look}.` : rel ? `${esc(rel[0].toUpperCase() + rel.slice(1))}.` : "";
+  return {era: esc(era), rel, look};
+}
+const cap = t => t ? t[0].toUpperCase() + t.slice(1) : t;
+function whyLine(x, p){
+  const w = whyParts(x, p); if (w.custom) return w.custom;
+  return w.era ? `${w.era}${w.rel ? ", " + w.rel : ""}${w.look ? ": known for " + w.look : ""}.` : w.rel ? cap(w.rel) + "." : "";
+}
+/* several wrong picks from the same movement: say the shared part once, keep only what differs on each row */
+function groupedWhy(x, wrongs){
+  const parts = wrongs.map(w => whyParts(x, w)), rows = parts.map(() => ""), shared = [];
+  const groups = {};
+  parts.forEach((pt, i) => { if (pt.custom) rows[i] = pt.custom; else if (pt.era) (groups[pt.era] = groups[pt.era] || []).push(i); else rows[i] = whyLine(x, wrongs[i]); });
+  Object.entries(groups).forEach(([era, idx]) => {
+    if (idx.length < 2){ rows[idx[0]] = whyLine(x, wrongs[idx[0]]); return; }
+    const look = parts[idx[0]].look, rels = idx.map(i => parts[i].rel), same = rels.every(r => r === rels[0]);
+    const who = idx.length === wrongs.length ? (idx.length === 2 ? "Both are" : `All ${idx.length} are`) : `${idx.map(i => i + 1).join(" and ")} are`;
+    if (same) shared.push(`${who} ${era}${rels[0] ? ", " + rels[0] : ""}${look ? ": known for " + look : ""}.`);
+    else { idx.forEach(i => rows[i] = rels[i] ? cap(rels[i]) + "." : ""); shared.push(`${who} ${era}${look ? ": known for " + look : ""}.`); }
+  });
+  return {rows, shared};
 }
 function timeH(asked, rights, wrongs){
   const to = Math.min(asked.to, 2025), faint = [];
@@ -309,9 +328,10 @@ function reviewTiles(x, wrongIds, fact){
   const rightIdx = x.multi ? x.answers : [x.answer], mine = x.mine || [];
   const rights = rightIdx.map(i => Object.assign({}, W[x.images[i]], {missed: x.multi && !mine.includes(i)})).filter(w => w.id);
   const row = (w, inner, n) => `<div class="rrow">${n ? `<span class="n">${n}</span>` : ""}<span class="pthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="rvtext"><b><i>${esc(w.title)}</i></b><span class="small">${esc(w.artist)}, ${esc(yearText(w))}</span>${inner}</div></div>`;
-  return `<div class="rtile bad"><span class="eyebrow bad">${many ? "Your mix-ups" : "Your pick"}</span>${wrongs.map((w, i) => row(w, whyLine(x, w) ? `<span class="why">${whyLine(x, w)}</span>` : "", many ? i + 1 : 0)).join("")}</div>
+  const g = groupedWhy(x, wrongs);
+  return `<div class="rtile bad"><span class="eyebrow bad">${many ? "Your mix-ups" : "Your pick"}</span>${wrongs.map((w, i) => row(w, g.rows[i] ? `<span class="why">${g.rows[i]}</span>` : "", many ? i + 1 : 0)).join("")}${g.shared.map(t => `<p class="why shared">${t}</p>`).join("")}</div>
     ${tlFor(asked) && !x.odd ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
-    <div class="rtile good"><span class="eyebrow good">${rights.length > 1 ? "The answers" : "The answer"}</span>${rights.map(w => row(w, x.multi ? `<span class="small">${w.missed ? "Missed" : "You got this one"}</span>` : "")).join("")}${fact && !x.multi ? `<p>${esc(fact)}</p>` : ""}</div>`;
+    <div class="rtile good"><span class="eyebrow good">${rights.length > 1 ? "The answers" : "The answer"}</span>${rights.map(w => row(w, x.multi ? `<span class="rstat">${w.missed ? "Missed" : "You got this one"}</span>` : "")).join("")}${fact && !x.multi ? `<p>${esc(fact)}</p>` : ""}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
 const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
