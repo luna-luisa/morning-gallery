@@ -712,3 +712,26 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 /* the answer gets its own green card, matching the red "Your pick" card */
 .anscard{background:var(--good-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;margin-top:6px}
 .anscard p{margin:0}
+
+/* wrong-pick review: three tiles */
+.rtile{border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.rtile.bad{background:rgba(163,39,29,.07)} .rtile.time{background:var(--paper);border:1px solid rgba(0,0,0,.05)} .rtile.good{background:var(--good-soft)}
+.rtile p{margin:0;line-height:1.45}
+.eyebrow.muted{color:var(--muted)}
+.rrow{display:flex;gap:10px;align-items:flex-start}
+.rrow .pthumb{flex:none;width:44px;height:44px;border-radius:7px;background:center/cover no-repeat #ddd}
+.rrow .rvtext{display:flex;flex-direction:column;gap:1px;min-width:0}
+.rrow b{font-size:14px;line-height:1.25}
+.rrow .why{font-size:13px;line-height:1.4;margin-top:3px}
+.rrow > .n,.th .n{flex:none;width:20px;height:20px;border-radius:50%;background:var(--bad);color:#fff;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.rrow > .n{margin-top:12px}
+.th{position:relative;height:98px;margin:2px 8px 0}
+.th .gl{position:absolute;top:0;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--good);white-space:nowrap}
+.th .tlline{position:absolute;left:0;right:0;top:35px;height:2px;background:var(--line)}
+.th .fband{position:absolute;top:30px;height:12px;border-radius:6px;background:rgba(163,39,29,.10)}
+.th .fl{position:absolute;top:50px;font-size:10px;color:rgba(163,39,29,.6);white-space:nowrap;padding-left:3px}
+.th .gband{position:absolute;top:24px;height:24px;border-radius:12px;background:rgba(29,107,63,.40)}
+.th .d{position:absolute;top:28px;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:2px solid #fff;box-sizing:border-box}
+.th .d.good{background:var(--good)} .th .d.bad{background:var(--bad)} .th .d.miss{background:#fff;border-color:var(--good)}
+.th .n{position:absolute;top:24px;margin-left:-12px;border:2px solid #fff;box-sizing:content-box}
+.th .tk{position:absolute;top:76px;font-size:11px;color:var(--muted);transform:translateX(-50%)}

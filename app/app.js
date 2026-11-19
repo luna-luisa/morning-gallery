@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 11:27"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 11:48"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -270,6 +270,48 @@ function timeline(t, pts, big, t2){
   return `<div class="tl big"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>
     ${pts.map((p, i) => `<button class="d ${p.kind}" style="left:${X(p.year)}" data-tl="${i}" aria-label="${esc(p.title || "")}"></button>`).join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>`;
+}
+/* wrong picture picks: three tiles — your pick(s) with why, the timeline, the answer(s) */
+function whyLine(x, p){
+  const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return "";
+  if (p.why) return esc(p.why);
+  if (x.odd || p.topic === x.topic) return `That one is ${esc(eraOf(p) || asked.name)}.`;
+  const era = eraOf(p), look = mine.look ? `: known for ${esc(mine.look)}` : "";
+  if (asked.kind === "artist") return `By ${esc(p.artist)}${era ? `, ${esc(era)}` : ""}${look}.`;
+  const an = (asked.era || asked.name), the = /ism$|^The /.test(an) ? an.replace(/^The /, "the ") : "the " + an;
+  let rel = "";
+  if (asked.from && p.year){
+    const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
+    rel = !d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`;
+  }
+  return era ? `${esc(era)}${rel ? ", " + esc(rel) : ""}${look}.` : rel ? `${esc(rel[0].toUpperCase() + rel.slice(1))}.` : "";
+}
+function timeH(asked, rights, wrongs){
+  const to = Math.min(asked.to, 2025), faint = [];
+  wrongs.forEach(w => { const t = TOPICS[w.topic]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
+  const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
+  let lo = Math.min(asked.from, ...ys, ...faint.map(f => f.from)), hi = Math.max(to, ...ys, ...faint.map(f => f.to));
+  const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
+  const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
+  lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
+  const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
+  const many = wrongs.length > 1;
+  return `<div class="th"><b class="gl" style="left:${X(asked.from)}">${esc(asked.era || asked.name)}</b><span class="tlline"></span>
+    ${faint.map(f => `<span class="fband" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
+    <span class="gband" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>
+    ${rights.filter(w => w.year).map(w => `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>`).join("")}
+    ${wrongs.filter(w => w.year).map((w, i) => many ? `<span class="n" style="left:${X(w.year)}">${i + 1}</span>` : `<span class="d bad" style="left:${X(w.year)}"></span>`).join("")}
+    ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>
+    <div class="tllegend"><span><i style="background:var(--good)"></i>The answer${rights.length > 1 ? "s" : ""}</span><span><i style="background:var(--bad)"></i>Your pick${many ? "s" : ""}</span></div>`;
+}
+function reviewTiles(x, wrongIds, fact){
+  const asked = TOPICS[x.topic], wrongs = wrongIds.map(id => W[id]), many = wrongs.length > 1;
+  const rightIdx = x.multi ? x.answers : [x.answer], mine = x.mine || [];
+  const rights = rightIdx.map(i => Object.assign({}, W[x.images[i]], {missed: x.multi && !mine.includes(i)})).filter(w => w.id);
+  const row = (w, inner, n) => `<div class="rrow">${n ? `<span class="n">${n}</span>` : ""}<span class="pthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="rvtext"><b><i>${esc(w.title)}</i></b><span class="small">${esc(w.artist)}, ${esc(yearText(w))}</span>${inner}</div></div>`;
+  return `<div class="rtile bad"><span class="eyebrow bad">${many ? "Your mix-ups" : "Your pick"}</span>${wrongs.map((w, i) => row(w, whyLine(x, w) ? `<span class="why">${whyLine(x, w)}</span>` : "", many ? i + 1 : 0)).join("")}</div>
+    ${tlFor(asked) && !x.odd ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
+    <div class="rtile good"><span class="eyebrow good">${rights.length > 1 ? "The answers" : "The answer"}</span>${rights.map(w => row(w, x.multi ? `<span class="small">${w.missed ? "Missed" : "You got this one"}</span>` : "")).join("")}${fact && !x.multi ? `<p>${esc(fact)}</p>` : ""}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
 const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
@@ -734,6 +776,8 @@ function answered(x, ok){
   const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
   const last = S.mode !== "endless" && S.i === S.q.length - 1;
+  const wrongIds = x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => x.images[i]).filter(id => W[id]) : [];
+  const review = x.type === "pick" && !x.unsure && wrongIds.length > 0;
   closeSheet();
   const sh = document.createElement("div"); sh.id = "sheet"; sh.className = "sheet " + (ok ? "good" : x.unsure ? "unsure" : "bad"); sh.setAttribute("role", "dialog"); sh.setAttribute("aria-label", "Result");
   sh.innerHTML = `<div class="sheetin"><button class="grab" id="grab" aria-label="Show or hide the explanation"><i></i></button>
@@ -742,11 +786,9 @@ function answered(x, ok){
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-tip="${esc(W[id].title + " · " + W[id].artist + ", " + yearText(W[id]) + (eraOf(W[id]) ? " · " + eraOf(W[id]) : ""))}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div><div class="mlabs">${x.images.map(id => `<span>${esc((TOPICS[x.topic] && TOPICS[x.topic].kind === "artist") ? W[id].artist : (eraOf(W[id]) || W[id].artist))}</span>`).join("")}</div>` : ""}
-      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickwrap"><div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}</div></div>${tlFor(TOPICS[x.topic]) && p.year && rw && rw.year ? timeline(TOPICS[x.topic], [{year: p.year, kind: "bad", label: "your pick"}, {year: rw.year, kind: "good", label: "answer"}], false, p.topic !== x.topic && TOPICS[p.topic] && TOPICS[p.topic].kind !== "artist" && (TOPICS[p.topic].era || TOPICS[p.topic].name) !== (TOPICS[x.topic].era || TOPICS[x.topic].name) ? TOPICS[p.topic] : null) : ""}${pickWhy(x, p, tlFor(TOPICS[x.topic])) ? `<p class="small pwhy">${pickWhy(x, p, tlFor(TOPICS[x.topic]))}</p>` : ""}</div>`).join("") : ""}
-      ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `<div class="anscard"><span class="eyebrow good">The answer</span>` : ""}
-      ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
-      ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
-      ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `</div>` : ""}
+      ${review ? reviewTiles(x, wrongIds, fact) : ""}
+      ${!review && rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
+      ${!review && (fact || x.source) ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}
       ${note ? `<span class="small muted">${note}</span>` : ""}
       ${fact && store.online ? `<button class="btn link more" id="more" ${state.asked[x.key] ? "disabled" : ""}>${state.asked[x.key] ? "Got it, more on this in future rounds" : "Ask me more about this in future rounds"}</button>` : ""}
