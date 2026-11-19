@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 10:58"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 11:03"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -252,9 +252,12 @@ const tlFor = t => t && t.from && t.kind !== "artist";
 function timeline(t, pts, big, t2){
   const ys = pts.map(p => p.year).filter(Boolean), to = Math.min(t.to, 2025);
   const to2 = t2 && t2.from ? Math.min(t2.to, 2025) : null;
-  let lo = Math.min(t.from, ...ys, ...(to2 ? [t2.from] : [])), hi = Math.max(to, ...ys, ...(to2 ? [to2] : [])); const pad = Math.max(20, (hi - lo) * 0.08);
-  lo = Math.floor((lo - pad) / 50) * 50; hi = Math.ceil((hi + pad) / 50) * 50;
-  const step = [50, 100, 200, 500].find(s => (hi - lo) / s <= (big ? 6 : 4)) || 500, X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
+  let lo = Math.min(t.from, ...ys, ...(to2 ? [t2.from] : [])), hi = Math.max(to, ...ys, ...(to2 ? [to2] : []));
+  /* zoom to what's on the strip: the content fills most of the width, ticks land on round years */
+  const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.15);
+  const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= (big ? 7 : 6)) || 500;
+  lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
+  const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
   const ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const name = esc(t.era || t.name);
   return `<div class="tl ${big ? "big" : ""}"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>${to2 ? `<span class="band two" style="left:${X(t2.from)};width:calc(${X(to2)} - ${X(t2.from)})"><b>${esc(t2.era || t2.name)}</b></span>` : ""}
