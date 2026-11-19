@@ -148,7 +148,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/The_Arnolfini_portrait_%281434%29.jpg/1280px-The_Arnolfini_portrait_%281434%29.jpg",
    "hook": "The mirror reflects two more figures in the doorway. Above it he wrote 'Jan van Eyck was here 1434'.",
-   "hw": 1.368
+   "hw": 1.368,
+   "why": "Instead of Italian classical ideals, van Eyck builds realism from thin oil glazes, picking out every fur lining, straw hat and stained-glass pane."
   },
   {
    "id": "red-turban",
@@ -159,7 +160,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Jan_van_Eyck_-_Portrait_of_a_Man_%28Self_Portrait%3F%29_1433.jpg/1280px-Jan_van_Eyck_-_Portrait_of_a_Man_%28Self_Portrait%3F%29_1433.jpg",
    "hook": "The original frame reads 'Als ich can', his motto. Many think it's van Eyck himself.",
-   "hw": 1.376
+   "hw": 1.376,
+   "why": "Painted in Bruges, it records every bristle of stubble and each bloodshot eye in fine oil, under a vermilion headdress that is really a chaperon, not a turban."
   },
   {
    "id": "leal-souvenir",
@@ -170,7 +172,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Eyck%2C_Jan_van_-_Portrait_of_a_Young_Man_%28Tymotheos%29_-_National_Gallery%2C_London.jpg/1280px-Eyck%2C_Jan_van_-_Portrait_of_a_Young_Man_%28Tymotheos%29_-_National_Gallery%2C_London.jpg",
    "hook": "The carved stone parapet is painted so well it looks chipped and real.",
-   "hw": 1.796
+   "hw": 1.796,
+   "why": "Painted in oil on a single oak board, the sitter is set against flat black and studied with Netherlandish precision, down to the unreadable lines on his scroll."
   },
   {
    "id": "ghent",
@@ -181,7 +184,8 @@
    "place": "St Bavo's Cathedral, Ghent",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Ghent_Altarpiece_Google_Art_Project.jpg/1280px-Ghent_Altarpiece_Google_Art_Project.jpg",
    "hook": "Begun with his brother Hubert. It's one of the most stolen artworks in history.",
-   "hw": 0.738
+   "hw": 0.738,
+   "why": "Its meadows are painted plant by plant with almost scientific accuracy in glowing oil, a northern obsession with detail rather than Italian classical proportion."
   },
   {
    "id": "rolin",
@@ -192,7 +196,8 @@
    "approx": true,
    "place": "Louvre, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/The_Virgin_with_Chancellor_Rolin_by_Jan_van_Eyck_%28Louvre%29.webp/1280px-The_Virgin_with_Chancellor_Rolin_by_Jan_van_Eyck_%28Louvre%29.webp",
-   "hw": 1.04
+   "hw": 1.04,
+   "why": "Beyond the loggia, a minutely detailed river city, probably Rolin's hometown of Autun, unfolds with palaces, a towered bridge and hazy distant mountains."
   },
   {
    "id": "night-watch",
@@ -203,7 +208,8 @@
    "place": "Rijksmuseum, Amsterdam",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/La_ronda_de_noche%2C_por_Rembrandt_van_Rijn.jpg/1280px-La_ronda_de_noche%2C_por_Rembrandt_van_Rijn.jpg",
    "hook": "Actually a daytime scene. Darkened varnish gave it the nickname.",
-   "hw": 0.814
+   "hw": 0.814,
+   "why": "A group portrait commissioned by Captain Banninck Cocq's militia for their Amsterdam hall, made dramatic by pools of light and shadow and a company marching out."
   },
   {
    "id": "rembrandt-kenwood",
@@ -215,7 +221,8 @@
    "place": "Kenwood House, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Rembrandt_Self-portrait_%28Kenwood%29.jpg/1280px-Rembrandt_Self-portrait_%28Kenwood%29.jpg",
    "hook": "Free to see at Kenwood on Hampstead Heath. Nobody agrees what the circles mean.",
-   "hw": 1.206
+   "hw": 1.206,
+   "why": "Rembrandt grips palette, brushes and maulstick in a fur-lined robe, even scratching lines into the wet oil paint: a Dutch master asserting his own genius."
   },
   {
    "id": "pearl-earring",
@@ -227,7 +234,8 @@
    "place": "Mauritshuis, The Hague",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/1280px-1665_Girl_with_a_Pearl_Earring.jpg",
    "hook": "Not a portrait but a 'tronie': a study of a character or expression.",
-   "hw": 1.184
+   "hw": 1.184,
+   "why": "Vermeer modelled her face and exotic turban in oil paint with natural ultramarine, letting her glow out of a dark background of green glaze over black."
   },
   {
    "id": "milkmaid",
@@ -239,7 +247,8 @@
    "place": "Rijksmuseum, Amsterdam",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.png/1280px-Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.png",
    "hook": "Quiet everyday life, lit from a window on the left: pure Vermeer.",
-   "hw": 1.124
+   "hw": 1.124,
+   "why": "Tiny dots of paint make the bread crust glitter, and Vermeer chose costly ultramarine ground from lapis lazuli for the blues, all in oil on canvas."
   },
   {
    "id": "view-delft",
@@ -250,7 +259,8 @@
    "approx": true,
    "place": "Mauritshuis, The Hague",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Vermeer-view-of-delft.jpg/1280px-Vermeer-view-of-delft.jpg",
-   "hw": 0.83
+   "hw": 0.83,
+   "why": "Vermeer painted his hometown from across the water, boats moored with sails lowered as sunlight bathes the Nieuwe Kerk tower: a proud Dutch trading city."
   },
   {
    "id": "las-meninas",
@@ -261,7 +271,8 @@
    "place": "Prado, Madrid",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg/1280px-Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg",
    "hook": "The king and queen appear only in the mirror at the back. Velázquez paints himself at the easel.",
-   "hw": 1.15
+   "hw": 1.15,
+   "why": "A huge oil canvas from the Spanish court: the five-year-old Infanta Margaret Theresa surrounded by maids of honour, a chaperone, a bodyguard, two dwarfs and a dog."
   },
   {
    "id": "rokeby",
@@ -273,7 +284,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Diego_Vel%C3%A1zquez_-_Rokeby_Venus.jpg/1280px-Diego_Vel%C3%A1zquez_-_Rokeby_Venus.jpg",
    "hook": "A suffragette slashed it with a meat cleaver in 1914. It was repaired.",
-   "hw": 0.686
+   "hw": 0.686,
+   "why": "Cupid holds the mirror in which Venus's face is only a blur, a rare painted nude from Spain, where the Inquisition frowned on them."
   },
   {
    "id": "calling-matthew",
@@ -284,7 +296,8 @@
    "place": "San Luigi dei Francesi, Rome",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Caravaggio_%E2%80%94_The_Calling_of_Saint_Matthew.jpg/1280px-Caravaggio_%E2%80%94_The_Calling_of_Saint_Matthew.jpg",
    "hook": "A beam of light follows Christ's pointing hand into a gloomy tax office.",
-   "hw": 0.944
+   "hw": 0.944,
+   "why": "For his first major church commission, Caravaggio turned a Gospel story into a sudden, real-life moment of conversion, staged in stark contrasts of light and dark."
   },
   {
    "id": "emmaus",
@@ -307,7 +320,8 @@
    "place": "Museo di Capodimonte, Naples",
    "img": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Artemisia_Gentileschi_-_Judith_Beheading_Holofernes_-_WGA8563.jpg",
    "hook": "Artemisia was one of the most successful painters of her day, and the first woman admitted to Florence's Academy of Drawing.",
-   "hw": 1.273
+   "hw": 1.273,
+   "why": "Following Caravaggio, she floods the struggle with harsh light against deep darkness, making Judith a physically active killer rather than a demure heroine."
   },
   {
    "id": "raising-cross",
@@ -318,7 +332,8 @@
    "place": "Antwerp Cathedral",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Peter_Paul_Rubens_-_Raising_of_the_Cross_%28Antwerp_Cathedral%29.JPG/1280px-Peter_Paul_Rubens_-_Raising_of_the_Cross_%28Antwerp_Cathedral%29.JPG",
    "hook": "All muscle and diagonal strain: Baroque drama at full volume.",
-   "hw": 0.718
+   "hw": 0.718,
+   "why": "A huge oil-on-panel triptych for a church high altar in Antwerp, painted just after Rubens's years in Italy in the spirit of the Counter-Reformation."
   },
   {
    "id": "swing",
@@ -329,7 +344,8 @@
    "place": "Wallace Collection, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Swing_%28P430%29.jpg/1280px-The_Swing_%28P430%29.jpg",
    "hook": "A flying shoe, a hidden admirer in the bushes: a flirtatious private commission.",
-   "hw": 1.292
+   "hw": 1.292,
+   "why": "A courtier ordered this picture of his mistress, and Fragonard filled it with billowing skirts, garden bushes and a stone cupid raising a finger to its lips."
   },
   {
    "id": "cythera",
@@ -340,7 +356,8 @@
    "place": "Louvre, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/L%27Embarquement_pour_Cyth%C3%A8re%2C_by_Antoine_Watteau%2C_from_C2RMF_retouched.jpg/1280px-L%27Embarquement_pour_Cyth%C3%A8re%2C_by_Antoine_Watteau%2C_from_C2RMF_retouched.jpg",
    "hook": "The French Academy invented a new category for it: the fête galante.",
-   "hw": 0.656
+   "hw": 0.656,
+   "why": "Elegant couples drift towards a golden boat while cupids flutter around them, all in light, wispy brushwork: aristocratic pleasure after Louis XIV's sombre final years."
   },
   {
    "id": "boucher-venus",
@@ -351,7 +368,8 @@
    "place": "Metropolitan Museum of Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/The_Toilet_of_Venus%2C_by_Fran%C3%A7ois_Boucher.jpg/1280px-The_Toilet_of_Venus%2C_by_Fran%C3%A7ois_Boucher.jpg",
    "hook": "Painted for Madame de Pompadour, Louis XV's favourite and Boucher's great patron.",
-   "hw": 1.278
+   "hw": 1.278,
+   "why": "Made for the bathroom of Château de Bellevue, it shows putti fussing with Venus's hair and pearls beside a pair of doves, all in soft pastel colours."
   },
   {
    "id": "marriage-mode",
@@ -363,7 +381,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Marriage_A-la-Mode_1%2C_The_Marriage_Settlement_-_William_Hogarth.jpg/1280px-Marriage_A-la-Mode_1%2C_The_Marriage_Settlement_-_William_Hogarth.jpg",
    "hook": "Scene one of six: a money-for-title marriage that ends in disaster.",
-   "hw": 0.76
+   "hw": 0.76,
+   "why": "Made to be engraved as prints, it mocks English snobbery: a gouty, bankrupt earl points proudly at a family tree reaching back to William the Conqueror."
   },
   {
    "id": "andrews",
@@ -375,7 +394,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Thomas_Gainsborough_-_Mr_and_Mrs_Andrews.jpg/1280px-Thomas_Gainsborough_-_Mr_and_Mrs_Andrews.jpg",
    "hook": "Look at Mrs Andrews' lap: it was left unfinished.",
-   "hw": 0.58
+   "hw": 0.58,
+   "why": "Gainsborough sets a newly married Suffolk couple beside the actual fields of their estate, probably part of Mrs Andrews' dowry, fusing portrait and English landscape."
   },
   {
    "id": "blue-boy",
@@ -400,7 +420,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Whistlejacket_by_George_Stubbs_edit.jpg/1280px-Whistlejacket_by_George_Stubbs_edit.jpg",
    "hook": "Life-size, on a blank background. Stubbs knew horse anatomy from dissection.",
-   "hw": 1.2
+   "hw": 1.2,
+   "why": "Commissioned by the Marquess of Rockingham, this prized English racehorse rears up in oils with no rider, no landscape and no decorative frills."
   },
   {
    "id": "air-pump",
@@ -411,7 +432,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/An_Experiment_on_a_Bird_in_an_Air_Pump_by_Joseph_Wright_of_Derby%2C_1768.jpg/1280px-An_Experiment_on_a_Bird_in_an_Air_Pump_by_Joseph_Wright_of_Derby%2C_1768.jpg",
    "hook": "Science as drama, lit by a single candle. Will the bird survive?",
-   "hw": 0.75
+   "hw": 0.75,
+   "why": "Wright treats a natural philosopher's experiment with the reverence once reserved for religious and historical scenes, capturing Britain's Enlightenment and Industrial Revolution."
   },
   {
    "id": "hay-wain",
@@ -422,7 +444,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/John_Constable_-_The_Hay_Wain_%281821%29.jpg/1280px-John_Constable_-_The_Hay_Wain_%281821%29.jpg",
    "hook": "It failed to sell in London, then won a gold medal at the Paris Salon of 1824.",
-   "hw": 0.69
+   "hw": 0.69,
+   "why": "Constable painted the real countryside beside his father's Flatford Mill on the River Stour, working up the six-foot canvas from a full-size oil sketch."
   },
   {
    "id": "temeraire",
@@ -433,7 +456,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/The_Fighting_Temeraire%2C_JMW_Turner%2C_National_Gallery.jpg/1280px-The_Fighting_Temeraire%2C_JMW_Turner%2C_National_Gallery.jpg",
    "hook": "A Trafalgar warship towed to the breakers by a steam tug. Voted Britain's favourite painting in 2005.",
-   "hw": 0.742
+   "hw": 0.742,
+   "why": "Turner sets the pale, ghostly warship against a blazing sunset whose red is echoed in the river and the tug's smoke: the end of an era as emotion."
   },
   {
    "id": "rain-steam",
@@ -444,7 +468,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Rain_Steam_and_Speed_the_Great_Western_Railway.jpg/1280px-Rain_Steam_and_Speed_the_Great_Western_Railway.jpg",
    "hook": "Look closely: a tiny hare runs ahead of the train.",
-   "hw": 0.746
+   "hw": 0.746,
+   "why": "A steam train, probably a Great Western Firefly-class engine, charges across Maidenhead bridge into rain and mist: Turner made the industrial age sublime."
   },
   {
    "id": "slave-ship",
@@ -454,7 +479,8 @@
    "year": 1840,
    "place": "Museum of Fine Arts, Boston",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Slave-ship.jpg/1280px-Slave-ship.jpg",
-   "hw": 0.75
+   "hw": 0.75,
+   "why": "A blood-red sunset and looming typhoon engulf a slave ship as shackled victims sink amid fish and gulls, recalling the 1781 Zong massacre."
   },
   {
    "id": "wanderer",
@@ -466,7 +492,8 @@
    "place": "Hamburger Kunsthalle",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg/1280px-Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg",
    "hook": "Seen from behind, the figure invites you to stand in his place.",
-   "hw": 1.282
+   "hw": 1.282,
+   "why": "The rocky peaks come from the Elbe Sandstone Mountains, sketched outdoors then rearranged in the studio into a sublime, imagined panorama of mist."
   },
   {
    "id": "liberty",
@@ -477,7 +504,8 @@
    "place": "Louvre, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/La_Libert%C3%A9_guidant_le_peuple_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_129_-_apr%C3%A8s_restauration_2024.jpg/1280px-La_Libert%C3%A9_guidant_le_peuple_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_129_-_apr%C3%A8s_restauration_2024.jpg",
    "hook": "Painted to mark the July Revolution of 1830. Restored in 2024.",
-   "hw": 0.8
+   "hw": 0.8,
+   "why": "Freely brushed colour, an allegorical bare-breasted Liberty and fallen bodies on a barricade turn a real Paris uprising into passionate, heroic drama."
   },
   {
    "id": "medusa",
@@ -488,7 +516,8 @@
    "place": "Louvre, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg/1280px-JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg",
    "hook": "Based on a real 1816 shipwreck scandal. Géricault interviewed survivors.",
-   "hw": 0.682
+   "hw": 0.682,
+   "why": "Géricault studied dying and dead flesh in hospitals and morgues, then filled a vast over-life-size canvas with despair that broke with calm Neoclassical order."
   },
   {
    "id": "third-may",
@@ -499,7 +528,8 @@
    "place": "Prado, Madrid",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/El_Tres_de_Mayo%2C_by_Francisco_de_Goya%2C_from_Prado_thin_black_margin.jpg/1280px-El_Tres_de_Mayo%2C_by_Francisco_de_Goya%2C_from_Prado_thin_black_margin.jpg",
    "hook": "Faceless soldiers, a man with arms flung out like a crucifixion: a model for every anti-war picture after.",
-   "hw": 0.772
+   "hw": 0.772,
+   "why": "Commissioned by Spain's provisional government, a square lantern blazes on a labourer in a plain white shirt facing a French firing squad."
   },
   {
    "id": "nightmare",
@@ -510,7 +540,8 @@
    "place": "Detroit Institute of Arts",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Johann_Heinrich_F%C3%BCssli_-_The_Nightmare_55.5.A-d1-2019-04-15.jpg/1280px-Johann_Heinrich_F%C3%BCssli_-_The_Nightmare_55.5.A-d1-2019-04-15.jpg",
    "hook": "Shown at the Royal Academy in 1782, it caused a sensation.",
-   "hw": 0.802
+   "hw": 0.802,
+   "why": "An ape-like demon crouches on a sleeping woman's chest as a half-hidden horse looks on: Fuseli painted irrational dread, not polite Georgian society."
   },
   {
    "id": "gleaners",
@@ -521,7 +552,8 @@
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg/1280px-Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project_2.jpg",
    "hook": "Poor women picking up leftover grain, painted with the dignity usually given to heroes. Some critics found it political.",
-   "hw": 0.748
+   "hw": 0.748,
+   "why": "Three real peasant women from around Barbizon stoop in the foreground while the rich harvest glows in the sunlit distance: rural poverty, not medieval legend."
   },
   {
    "id": "stone-breakers",
@@ -531,8 +563,9 @@
    "year": 1849,
    "place": "Destroyed in 1945",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Gustave_Courbet_-_The_Stonebreakers_-_WGA05457.jpg/1280px-Gustave_Courbet_-_The_Stonebreakers_-_WGA05457.jpg",
-   "hook": "Destroyed in the Second World War. Courbet: 'Show me an angel and I'll paint one.'",
-   "hw": 0.608
+   "hook": "Lost in the Second World War, probably in the 1945 bombing of Dresden. Courbet reportedly said he could not paint an angel, having never seen one.",
+   "hw": 0.608,
+   "why": "Courbet saw these two road labourers near Maisières and painted them unidealised, faces turned away, in patched and tattered clothes."
   },
   {
    "id": "olympia",
@@ -543,7 +576,8 @@
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Edouard_Manet_-_Olympia_-_Google_Art_ProjectFXD.jpg/1280px-Edouard_Manet_-_Olympia_-_Google_Art_ProjectFXD.jpg",
    "hook": "A modern Paris courtesan in the pose of Titian's Venus. The 1865 Salon was outraged.",
-   "hw": 0.676
+   "hw": 0.676,
+   "why": "Broad, quick brushstrokes and harsh studio light flatten a real model, Victorine Meurent, who stares straight back at us: no idealised goddess, just modern Paris."
   },
   {
    "id": "dejeuner",
@@ -554,7 +588,8 @@
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg/1280px-Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg",
    "hook": "Rejected by the Salon, shown at the 1863 Salon des Refusés.",
-   "hw": 0.776
+   "hw": 0.776,
+   "why": "A nude woman lunches with two fully dressed modern men, painted with visible, unhidden brushstrokes, nothing like the smooth, flawless nudes of Cabanel or Ingres."
   },
   {
    "id": "impression-sunrise",
@@ -565,7 +600,8 @@
    "place": "Musée Marmottan Monet, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/1280px-Monet_-_Impression%2C_Sunrise.jpg",
    "hook": "The painting that gave the movement its name, the harbour of Le Havre.",
-   "hw": 0.776
+   "hw": 0.776,
+   "why": "Painted from his window, loose strokes only suggest the scene: those misty shapes are steamship smokestacks and cranes melting into the haze."
   },
   {
    "id": "parasol",
@@ -576,7 +612,8 @@
    "place": "National Gallery of Art, Washington",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg/1280px-Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg",
    "hook": "Monet's wife Camille and son Jean, caught in a breezy moment.",
-   "hw": 1.242
+   "hw": 1.242,
+   "why": "Painted outdoors in a few hours, its quick, splashy brushstrokes catch the wind tugging at Camille's veil and dress, a fleeting moment rather than a finished story."
   },
   {
    "id": "water-lilies",
@@ -586,7 +623,8 @@
    "year": 1919,
    "place": "Metropolitan Museum of Art, New York",
    "img": "img/water-lilies.jpg",
-   "hook": "Monet painted his Giverny pond around 250 times."
+   "hook": "Monet painted his Giverny pond around 250 times.",
+   "why": "Monet was still recording what he saw: light and reflections on the lily pond in his own Giverny garden, even as cataracts clouded his eyes."
   },
   {
    "id": "moulin-galette",
@@ -597,7 +635,8 @@
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Renoir%2C_Pierre-Auguste_-_Dance_at_Le_Moulin_de_la_Galette%2C_1876.jpg/1280px-Renoir%2C_Pierre-Auguste_-_Dance_at_Le_Moulin_de_la_Galette%2C_1876.jpg",
    "hook": "A Sunday dance in Montmartre, with dappled sunlight through the trees.",
-   "hw": 0.744
+   "hw": 0.744,
+   "why": "Renoir painted it on the spot, with friends and fellow painters posing among the dancers, in quick, fluid strokes of flickering light."
   },
   {
    "id": "boating-party",
@@ -608,7 +647,8 @@
    "place": "Phillips Collection, Washington",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Pierre-Auguste_Renoir_-_Luncheon_of_the_Boating_Party_-_Google_Art_Project.jpg/1280px-Pierre-Auguste_Renoir_-_Luncheon_of_the_Boating_Party_-_Google_Art_Project.jpg",
    "hook": "The woman with the dog is Aline Charigot, later Renoir's wife.",
-   "hw": 0.74
+   "hw": 0.74,
+   "why": "Renoir's friends lounge on a restaurant balcony by the Seine at Chatou, painted with fluid brushwork and flickering light: a modern day out, not a legend."
   },
   {
    "id": "rainy-day",
@@ -619,7 +659,8 @@
    "place": "Art Institute of Chicago",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg/1280px-Gustave_Caillebotte_-_Paris_Street%3B_Rainy_Day_-_Google_Art_Project.jpg",
    "hook": "Haussmann's brand-new Paris boulevards. Caillebotte also funded his friends' exhibitions.",
-   "hw": 0.758
+   "hw": 0.758,
+   "why": "Shown at the Third Impressionist Exhibition, it makes modern city life the subject: 24 mostly bourgeois pedestrians, led by a couple sharing an umbrella."
   },
   {
    "id": "cradle",
@@ -630,7 +671,8 @@
    "place": "Musée d'Orsay, Paris",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Berthe_Morisot_008.jpg/1280px-Berthe_Morisot_008.jpg",
    "hook": "Shown at the first Impressionist exhibition in 1874. Morisot showed in all but one of the eight.",
-   "hw": 1.286
+   "hw": 1.286,
+   "why": "Morisot painted her sister Edma watching over baby Blanche using few colours and a fluid brushstroke, a private, everyday moment rather than a story."
   },
   {
    "id": "childs-bath",
@@ -641,7 +683,8 @@
    "place": "Art Institute of Chicago",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Mary_Cassatt_-_The_Child%27s_Bath_-_Google_Art_Project.jpg/1280px-Mary_Cassatt_-_The_Child%27s_Bath_-_Google_Art_Project.jpg",
    "hook": "The high viewpoint and bold patterns come from Japanese prints.",
-   "hw": 1.526
+   "hw": 1.526,
+   "why": "Cassatt makes a modern everyday routine the whole subject, a mother bathing her child, at a time when French health campaigns urged regular bathing after cholera outbreaks."
   },
   {
    "id": "folies",
@@ -652,7 +695,8 @@
    "place": "Courtauld Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/%22Un_Bar_aux_Folies-Berg%C3%A8re%22_by_%C3%89douard_Manet_%281882%29.jpg/1280px-%22Un_Bar_aux_Folies-Berg%C3%A8re%22_by_%C3%89douard_Manet_%281882%29.jpg",
    "hook": "The reflection in the mirror doesn't quite add up. That's the puzzle.",
-   "hw": 0.734
+   "hw": 0.734,
+   "why": "A real barmaid, Suzon, stands before a mirror reflecting the music-hall crowd, with a trapeze artist's green feet dangling in the top corner: pure modern Paris."
   },
   {
    "id": "starry-night",
@@ -663,7 +707,8 @@
    "place": "Museum of Modern Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
    "hook": "The view from his window at the asylum in Saint-Rémy. The village was largely invented.",
-   "hw": 0.792
+   "hw": 0.792,
+   "why": "A swirling sky and a flame-like cypress, exaggerated in scale, turn a night view into feeling; the brightest 'star' beside the tree is actually Venus."
   },
   {
    "id": "sunflowers",
@@ -674,7 +719,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/1280px-Vincent_Willem_van_Gogh_127.jpg",
    "hook": "Painted in Arles to decorate Gauguin's room. There are several versions.",
-   "hw": 1.262
+   "hw": 1.262,
+   "why": "Fifteen sunflowers, from bud to wilting seed head, are built up in thick impasto and almost nothing but yellows, signed 'Vincent' in blue on the vase."
   },
   {
    "id": "potato-eaters",
@@ -697,7 +743,8 @@
    "place": "Kröller-Müller Museum, Otterlo",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg/1280px-Van_Gogh_-_Terrace_of_a_Caf%C3%A9_at_Night_%28Place_du_Forum%29_1888.jpg",
    "hook": "A night scene with no black paint: blues, violets and yellows.",
-   "hw": 1.248
+   "hw": 1.248,
+   "why": "Van Gogh set up his easel on the Place du Forum in Arles in September 1888, pitting a glowing yellow terrace against a star-studded blue sky."
   },
   {
    "id": "card-players",
@@ -710,7 +757,8 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Les_Joueurs_de_cartes%2C_par_Paul_C%C3%A9zanne.jpg/1280px-Les_Joueurs_de_cartes%2C_par_Paul_C%C3%A9zanne.jpg",
    "hook": "One of five versions. Solid, still, built from blocks of colour.",
    "hw": 0.82,
-   "yearLabel": "1892–95"
+   "yearLabel": "1892–95",
+   "why": "Cézanne's models were local farmhands, some working on his family's Jas de Bouffan estate, shown as still and weighty as the table between them."
   },
   {
    "id": "sainte-victoire",
@@ -722,7 +770,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Paul_C%C3%A9zanne_-_Montagne_Saint-victoire_-_Google_Art_Project.jpg/1280px-Paul_C%C3%A9zanne_-_Montagne_Saint-victoire_-_Google_Art_Project.jpg",
    "hook": "Cézanne painted this Provence mountain dozens of times.",
-   "hw": 0.66
+   "hw": 0.66,
+   "why": "Cézanne builds the mountain from geometry and blocks of colour, seeking its solid, lasting structure rather than the passing light effects the Impressionists chased."
   },
   {
    "id": "grande-jatte",
@@ -734,7 +783,8 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg/1280px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.jpg",
    "hook": "Two years of work in tiny dots of colour: pointillism.",
    "yearLabel": "1884–86",
-   "hw": 0.666
+   "hw": 0.666,
+   "why": "Seurat applied the colour theories of scientists like Chevreul and Rood, planning his Parisians through numerous drawings and oil sketches rather than catching a passing moment."
   },
   {
    "id": "asnieres",
@@ -745,7 +795,8 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Baigneurs_a_Asnieres.jpg/1280px-Baigneurs_a_Asnieres.jpg",
    "hook": "Factory chimneys in the distance: workers relaxing by the Seine.",
-   "hw": 0.664
+   "hw": 0.664,
+   "why": "No quick outdoor sketch: Seurat built this canvas, three metres wide, in his studio from over a dozen oil studies, and the Salon still rejected it."
   },
   {
    "id": "gauguin-where",
@@ -756,7 +807,8 @@
    "place": "Museum of Fine Arts, Boston",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Gauguin_-_Where_Do_We_Come_From%3F_What_Are_We%3F_Where_Are_We_Going%3F_%281897-98%29.jpg/1280px-Gauguin_-_Where_Do_We_Come_From%3F_What_Are_We%3F_Where_Are_We_Going%3F_%281897-98%29.jpg",
    "hook": "Painted in Tahiti and read right to left, from birth to old age.",
-   "hw": 0.368
+   "hw": 0.368,
+   "why": "Vivid flat colour on coarse sackcloth carries questions from Gauguin's schoolboy catechism class: a symbolic allegory of life, not an observed scene."
   },
   {
    "id": "moulin-rouge",
@@ -767,7 +819,8 @@
    "place": "Art Institute of Chicago",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Henri_de_Toulouse-Lautrec%2C_At_the_Moulin_Rouge.jpg/1280px-Henri_de_Toulouse-Lautrec%2C_At_the_Moulin_Rouge.jpg",
    "hook": "Lautrec painted himself into the background: the short man in the bowler hat.",
-   "hw": 0.874
+   "hw": 0.874,
+   "why": "May Milton's face glows an eerie green at the right edge and Jane Avril's hair flames red-orange: colour pushed for effect, not faithful to nature."
   },
   {
    "id": "great-wave",
@@ -779,7 +832,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1280px-Tsunami_by_hokusai_19th_century.jpg",
    "hook": "A print, so many museums own one, including the British Museum. Find tiny Mount Fuji.",
-   "hw": 0.672
+   "hw": 0.672,
+   "why": "A woodblock print from Hokusai's Thirty-six Views of Mount Fuji, its deep blue is Prussian blue, a pigment newly arrived in Japan."
   },
   {
    "id": "red-fuji",
@@ -791,7 +845,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/%E3%80%8C%E5%AF%8C%E5%B6%BD%E4%B8%89%E5%8D%81%E5%85%AD%E6%99%AF_%E5%87%B1%E9%A2%A8%E5%BF%AB%E6%99%B4%E3%80%8D-South_Wind%2C_Clear_Sky_%28Gaif%C5%AB_kaisei%29%2C_also_known_as_Red_Fuji%2C_from_the_series_Thirty-six_Views_of_Mount_Fuji_%28Fugaku_sanj%C5%ABrokkei%29_MET_DP141062.jpg/1280px-thumbnail.jpg",
    "hook": "From the same series as the Great Wave: Thirty-six Views of Mount Fuji.",
-   "hw": 0.69
+   "hw": 0.69,
+   "why": "A woodblock print, not an oil painting: flat blocks of Prussian blue and Bengal red catch Fuji turning red at sunrise on a clear early-autumn morning."
   },
   {
    "id": "plum-park",
@@ -802,7 +857,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/De_pruimenboomgaard_te_Kameido-Rijksmuseum_RP-P-1956-743.jpeg/1280px-De_pruimenboomgaard_te_Kameido-Rijksmuseum_RP-P-1956-743.jpeg",
    "hook": "Van Gogh copied this print in oil in 1887.",
-   "hw": 1.47
+   "hw": 1.47,
+   "why": "A woodblock print from Hiroshige's One Hundred Famous Views of Edo: a giant plum branch, cropped by the frame, lets us peer through at blossom-viewers beyond."
   },
   {
    "id": "sudden-shower",
@@ -813,7 +869,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Utagawa_Hiroshige_-_Evening_Shower_at_Atake_and_the_Great_Bridge.jpg/1280px-Utagawa_Hiroshige_-_Evening_Shower_at_Atake_and_the_Great_Bridge.jpg",
    "hook": "Rain as fine diagonal lines. Van Gogh copied this one too.",
-   "hw": 1.46
+   "hw": 1.46,
+   "why": "From Hiroshige's woodblock series One Hundred Famous Views of Edo: figures under hats, umbrellas and straw capes hurry across while a raftsman punts below."
   },
   {
    "id": "hoitsu",
@@ -824,7 +881,8 @@
    "approx": true,
    "place": "",
    "img": "img/hoitsu.jpg",
-   "hook": "Rinpa style: bold, decorative nature against gold leaf."
+   "hook": "Rinpa style: bold, decorative nature against gold leaf.",
+   "why": "A folding screen to divide a room and set the mood for tea gatherings, it follows Ogata Kōrin's style, which Hōitsu revived in Edo."
   },
   {
    "id": "kiss",
@@ -835,7 +893,8 @@
    "place": "Belvedere, Vienna",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/1280px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg",
    "hook": "Real gold leaf. The height of Klimt's 'golden period'.",
-   "hw": 1.004
+   "hw": 1.004,
+   "why": "After seeing Byzantine mosaics in Ravenna, Klimt flattened the lovers into shimmering pattern, the man's robe covered in geometric shapes, an icon of the Vienna Secession."
   },
   {
    "id": "lederer",
@@ -847,7 +906,8 @@
    "place": "Private collection",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Gustav_Klimt_Bildnis_der_Elisabeth_Lederer.jpg/1280px-Gustav_Klimt_Bildnis_der_Elisabeth_Lederer.jpg",
    "hook": "Sold at Sotheby's New York in November 2025 for $236.4m, a record for modern art at auction.",
-   "hw": 1.384
+   "hw": 1.384,
+   "why": "Behind her floats an ornamental field of figures drawn from Chinese ceramics and Peking opera, echoing the East Asian art Klimt collected."
   },
   {
    "id": "woman-hat",
@@ -858,7 +918,8 @@
    "place": "San Francisco Museum of Modern Art",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Matisse-Woman-with-a-Hat.jpg/1280px-Matisse-Woman-with-a-Hat.jpg",
    "hook": "Shown at the 1905 Salon d'Automne, where the 'wild beasts' got their name.",
-   "hw": 1.362
+   "hw": 1.362,
+   "why": "Matisse gave his wife Amélie a face of unnatural colours, split by a green line, under an imaginative hat: colour freed from describing reality."
   },
   {
    "id": "dance",
@@ -869,7 +930,8 @@
    "place": "Hermitage Museum, St Petersburg",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Henri_Matisse_-_Dance_II_%28Hermitage_Museum%29.jpg/1280px-Henri_Matisse_-_Dance_II_%28Hermitage_Museum%29.jpg",
    "hook": "Just three colours: red, green, blue. Commissioned by the Moscow collector Sergei Shchukin.",
-   "hw": 0.67
+   "hw": 0.67,
+   "why": "Five nude figures whirl hand in hand against a very simplified landscape, painted to hang on the staircase of a Moscow mansion and convey joyous release."
   },
   {
    "id": "scream",
@@ -880,7 +942,8 @@
    "place": "National Museum, Oslo",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
    "hook": "Munch made several versions. He described sensing 'an infinite scream passing through nature'.",
-   "hw": 1.242
+   "hw": 1.242,
+   "why": "Munch's diary recalls the clouds over the Oslofjord turning 'blood red'; he painted that feeling, not the view, in oil, tempera and pastel on cardboard."
   },
   {
    "id": "saturn",
@@ -892,7 +955,8 @@
    "place": "Prado, Madrid",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Francisco_de_Goya%2C_Saturno_devorando_a_su_hijo_%281819-1823%29.jpg/1280px-Francisco_de_Goya%2C_Saturno_devorando_a_su_hijo_%281819-1823%29.jpg",
    "hook": "One of the 'Black Paintings' Goya painted straight onto the walls of his house.",
-   "hw": 1.836
+   "hw": 1.836,
+   "why": "Goya painted it for no patron and gave it no title or explanation: a private vision of horror drawn from the myth of Saturn eating his children."
   },
   {
    "id": "demoiselles",
@@ -903,7 +967,8 @@
    "place": "Museum of Modern Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4c/Les_Demoiselles_d%27Avignon.jpg/1280px-Les_Demoiselles_d%27Avignon.jpg",
    "hook": "Even Picasso's friends were shocked. It opened the door to Cubism.",
-   "hw": 1.036
+   "hw": 1.036,
+   "why": "Five women from a Barcelona brothel are broken into flat, angular planes, their faces drawn from Iberian sculpture and African masks."
   },
   {
    "id": "nude-staircase",
@@ -914,7 +979,8 @@
    "place": "Philadelphia Museum of Art",
    "img": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c0/Duchamp_-_Nude_Descending_a_Staircase.jpg/1280px-Duchamp_-_Nude_Descending_a_Staircase.jpg",
    "hook": "Mocked at New York's 1913 Armory Show as 'an explosion in a shingle factory'.",
-   "hw": 1.65
+   "hw": 1.65,
+   "why": "Inspired by Marey's motion photography, Duchamp stacked fractured, overlapping figures in browns and ochres to show a body moving step by step."
   },
   {
    "id": "udnie",
@@ -924,7 +990,8 @@
    "year": 1913,
    "place": "Centre Pompidou, Paris",
    "img": "img/udnie.jpg",
-   "hook": "Inspired by a dancer Picabia saw on a ship to New York."
+   "hook": "Inspired by a dancer Picabia saw on a ship to New York.",
+   "why": "Picabia breaks movement into colliding, curving planes with metallic, machine-like reflections, a fractured form shaped by Futurist dynamism and Duchamp's mechanical imagery."
   },
   {
    "id": "contrast-forms",
@@ -934,7 +1001,8 @@
    "year": 1913,
    "place": "",
    "img": "img/contrast-forms.jpg",
-   "hook": "Léger's chunky cylinders earned the nickname 'Tubism'."
+   "hook": "Léger's chunky cylinders earned the nickname 'Tubism'.",
+   "why": "Tubes, cones and cubes in bold blocks of primary colour, plus green, black and white, make Léger's Cubism loud where Picasso and Braque's early Cubism was muted."
   },
   {
    "id": "composition-vii",
@@ -945,7 +1013,8 @@
    "place": "Tretyakov Gallery, Moscow",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Composition_VII_-_Wassily_Kandinsky%2C_GAC.jpg/1280px-Composition_VII_-_Wassily_Kandinsky%2C_GAC.jpg",
    "hook": "Kandinsky named his biggest works 'Compositions', like a composer.",
-   "hw": 0.664
+   "hw": 0.664,
+   "why": "Painted in about four days on a canvas three metres wide, it distils themes like the Flood and Judgement Day into pure colour and line."
   },
   {
    "id": "black-square",
@@ -956,7 +1025,8 @@
    "place": "Tretyakov Gallery, Moscow",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg/1280px-Kazimir_Malevich%2C_1915%2C_Black_Suprematic_Square%2C_oil_on_linen_canvas%2C_79.5_x_79.5_cm%2C_Tretyakov_Gallery%2C_Moscow.jpg",
    "hook": "At its first showing it hung high across a corner, where a Russian home places an icon.",
-   "hw": 1
+   "hw": 1,
+   "why": "Malevich called it the 'zero point of painting': no object at all, only form, in his bid to free art from 'the ballast of the objective world'."
   },
   {
    "id": "white-on-white",
@@ -966,7 +1036,8 @@
    "year": 1918,
    "place": "Museum of Modern Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/White_on_White_%28Malevich%2C_1918%29.png/1280px-White_on_White_%28Malevich%2C_1918%29.png",
-   "hw": 1
+   "hw": 1,
+   "why": "A tilted white square floats on a slightly warmer white ground, with no colour, depth or volume; Malevich meant white to suggest infinity."
   },
   {
    "id": "broadway",
@@ -977,7 +1048,8 @@
    "place": "Museum of Modern Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Piet_Mondrian%2C_1942_-_Broadway_Boogie_Woogie.jpg/1280px-Piet_Mondrian%2C_1942_-_Broadway_Boogie_Woogie.jpg",
    "hook": "New York's grid of streets and jazz rhythms, after he moved there in 1940.",
-   "hw": 1.002
+   "hw": 1.002,
+   "why": "Instead of dream imagery or dripped paint, Mondrian divided the canvas into a precise grid of small squares, his tribute to the boogie-woogie he loved."
   },
   {
    "id": "mondrian-rby",
@@ -988,7 +1060,8 @@
    "place": "Kunsthaus Zürich",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg/1280px-Piet_Mondriaan%2C_1930_-_Mondrian_Composition_II_in_Red%2C_Blue%2C_and_Yellow.jpg",
    "hook": "Only black lines, white, and the three primary colours.",
-   "hw": 1.014
+   "hw": 1.014,
+   "why": "Mondrian balances asymmetric flat planes against thick black bars as a harmony of opposites, with no objects, dreams or hidden figures to decode."
   },
   {
    "id": "mondrian-1913",
@@ -999,7 +1072,8 @@
    "approx": true,
    "place": "",
    "img": "img/mondrian.jpg",
-   "hook": "Mondrian in Paris, breaking trees and buildings into a grid on the way to pure abstraction."
+   "hook": "Mondrian in Paris, breaking trees and buildings into a grid on the way to pure abstraction.",
+   "why": "Mondrian absorbed Picasso and Braque's Cubism after arriving in Paris in 1912, but saw it only as a 'port of call' on his journey towards pure abstraction."
   },
   {
    "id": "lhooq",
@@ -1010,7 +1084,8 @@
    "place": "",
    "img": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/74/Marcel_Duchamp%2C_1919%2C_L.H.O.O.Q.jpg/1280px-Marcel_Duchamp%2C_1919%2C_L.H.O.O.Q.jpg",
    "hook": "A cheap Mona Lisa postcard with a moustache added. The letters make a rude pun in French.",
-   "hw": 1.292
+   "hw": 1.292,
+   "why": "No painting skill on show: Duchamp simply pencilled onto a found reproduction, a 'rectified readymade' mocking reverence for great art."
   },
   {
    "id": "interchange",
@@ -1021,7 +1096,8 @@
    "place": "Private collection",
    "img": "https://upload.wikimedia.org/wikipedia/en/5/5f/Photo_of_Interchanged_by_Willem_de_Kooning.jpg",
    "hook": "Reportedly sold privately in 2015 for about $300m.",
-   "hw": 1.132
+   "hw": 1.132,
+   "why": "De Kooning's quick, gestural marks, learned from Franz Kline, almost swallow a fleshy pink seated woman as his work shifts towards abstract urban landscapes."
   },
   {
    "id": "soup-cans",
@@ -1032,7 +1108,8 @@
    "place": "Museum of Modern Art, New York",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Campbell%27s_Soup_Cans_by_Andy_Warhol.jpg/1280px-Campbell%27s_Soup_Cans_by_Andy_Warhol.jpg",
    "hook": "32 canvases, one for each flavour then on sale.",
-   "hw": 0.582
+   "hw": 0.582,
+   "why": "Hand-painted supermarket packaging, first shown in Los Angeles in 1962 on narrow ledges like grocery items on a shelf."
   },
   {
    "id": "salvator",
@@ -1044,7 +1121,8 @@
    "place": "Private collection",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Leonardo_da_Vinci%2C_Salvator_Mundi%2C_c.1500%2C_oil_on_walnut%2C_45.4_%C3%97_65.6_cm.jpg/1280px-Leonardo_da_Vinci%2C_Salvator_Mundi%2C_c.1500%2C_oil_on_walnut%2C_45.4_%C3%97_65.6_cm.jpg",
    "hook": "$450.3m at Christie's in 2017, still the auction record. Some experts doubt it's by Leonardo.",
-   "hw": 1.472
+   "hw": 1.472,
+   "why": "Bought for just $1,175 at a New Orleans auction in 2005 as a damaged later copy, it was heavily restored before its record-breaking sale."
   },
   {
    "id": "ng-building",
@@ -1103,7 +1181,8 @@
    "year": 1805,
    "place": "Tate, London",
    "img": "img/shipwreck.jpg",
-   "hook": "Tiny people against overwhelming nature: the Romantic 'sublime'."
+   "hook": "Tiny people against overwhelming nature: the Romantic 'sublime'.",
+   "why": "Probably inspired by the Earl of Abergavenny's sinking off Weymouth that year, Turner turned current news into drama and showed it in his own London gallery."
   },
   {
    "id": "ophelia",
@@ -1118,7 +1197,8 @@
    "hook": "Elizabeth Siddal posed for hours in a bath of water and caught a severe cold. The plants were painted outdoors by the Hogsmill River in Surrey.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_GC9dhUI.jpg",
    "yearLabel": "1851–2",
-   "hw": 0.69
+   "hw": 0.69,
+   "why": "Millais painted the riverbank for up to 11 hours a day over five months, choosing each floating flower to match Shakespeare's description of Ophelia's garland."
   },
   {
    "id": "lady-shalott",
@@ -1132,7 +1212,8 @@
    "page": "https://www.tate.org.uk/art/artworks/waterhouse-the-lady-of-shalott-n01543",
    "hook": "From Tennyson's poem. Waterhouse painted it decades after the Brotherhood, keeping its love of literature and detail.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_lSCWG27.jpg",
-   "hw": 0.76
+   "hw": 0.76,
+   "why": "Every detail tells Tennyson's story: she sits on the tapestry she wove, beside a crucifix and three candles, two already blown out."
   },
   {
    "id": "proserpine",
@@ -1146,7 +1227,8 @@
    "page": "https://www.tate.org.uk/art/artworks/rossetti-proserpine-n05064",
    "hook": "The model is Jane Morris. The pomegranate means Proserpine must stay in the underworld.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_AqgWlGK.jpg",
-   "hw": 2.21
+   "hw": 2.21,
+   "why": "Rossetti painted at least eight versions of this one myth between 1871 and 1882, a poetic legend lovingly reworked rather than modern Paris life."
   },
   {
    "id": "beata-beatrix",
@@ -1161,7 +1243,8 @@
    "hook": "Rossetti's memorial to his wife, Elizabeth Siddal, painted after her death.",
    "img": "https://media.tate.org.uk/art/images/work/N/N01/N01279_10.jpg",
    "yearLabel": "c.1864–70",
-   "hw": 1.294
+   "hw": 1.294,
+   "why": "A red dove, messenger of love, brings a white poppy, symbol of the laudanum that killed Siddal, as Beatrice sits in a trance of 'spiritual transfiguration'."
   },
   {
    "id": "norham",
@@ -1175,7 +1258,8 @@
    "page": "https://www.tate.org.uk/art/artworks/turner-norham-castle-sunrise-n01981",
    "hook": "So loose it looks abstract. Turner never exhibited it.",
    "img": "https://media.tate.org.uk/art/images/work/N/N01/N01981_10.jpg",
-   "hw": 0.745
+   "hw": 0.745,
+   "why": "One of Turner's unfinished colour reworkings of his own print series, the Liber Studiorum, showing the castle above the River Tweed melting into light."
   },
   {
    "id": "snow-storm",
@@ -1189,7 +1273,8 @@
    "page": "https://www.tate.org.uk/art/artworks/turner-snow-storm-steam-boat-off-a-harbours-mouth-n00530",
    "hook": "Turner claimed he had himself tied to a ship's mast to experience the storm.",
    "img": "https://media.tate.org.uk/art/images/work/N/N00/N00530_10.jpg",
-   "hw": 0.75
+   "hw": 0.75,
+   "why": "Black steam merges into a whirling vortex of snow and sea, painted so loosely that critics mocked it as 'soapsuds and whitewash'."
   },
   {
    "id": "peace-burial",
@@ -1216,7 +1301,8 @@
    "page": "https://www.tate.org.uk/art/artworks/constable-flatford-mill-scene-on-a-navigable-river-n01273",
    "hook": "Painted near Constable's family mill in Suffolk: 'Constable Country'.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_K2dZGSl.jpg",
-   "hw": 0.807
+   "hw": 0.807,
+   "why": "A working river observed closely: one boy unhitches the tow-rope from a barge while another sits astride the tow-horse, near Constable's Suffolk village."
   },
   {
    "id": "newton",
@@ -1230,7 +1316,8 @@
    "page": "https://www.tate.org.uk/art/artworks/blake-newton-n05058",
    "hook": "Blake shows the scientist as a heroic but blinkered figure, measuring the world with dividers.",
    "img": "https://media.tate.org.uk/art/images/work/N/N05/N05058_10.jpg",
-   "hw": 0.768
+   "hw": 0.768,
+   "why": "Not a painting but a colour print: Blake puts Newton naked on a rock at the bottom of the sea, a visionary attack on Enlightenment science."
   },
   {
    "id": "great-day",
@@ -1244,7 +1331,8 @@
    "page": "https://www.tate.org.uk/art/artworks/martin-the-great-day-of-his-wrath-n05613",
    "hook": "John Martin's apocalypse paintings drew crowds like blockbuster films.",
    "img": "https://media.tate.org.uk/art/images/work/N/N05/N05613_10.jpg",
-   "hw": 0.656
+   "hw": 0.656,
+   "why": "Following Revelation, Martin shows mountains torn from their places and a whole city crashing into an abyss, part of his Last Judgement triptych."
   },
   {
    "id": "painter-pug",
@@ -1258,7 +1346,8 @@
    "page": "https://www.tate.org.uk/art/artworks/hogarth-the-painter-and-his-pug-n00112",
    "hook": "Hogarth's self-portrait with his pug, Trump.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_uexYlTC.jpg",
-   "hw": 1.301
+   "hw": 1.301,
+   "why": "Look at the palette: it shows Hogarth's serpentine 'Line of Beauty', his own theory of art, set beside books the pug ignores."
   },
   {
    "id": "roast-beef",
@@ -1271,7 +1360,8 @@
    "tate": "N01464",
    "page": "https://www.tate.org.uk/art/artworks/hogarth-o-the-roast-beef-of-old-england-the-gate-of-calais-n01464",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_T8XI2zp.jpg",
-   "hw": 0.83
+   "hw": 0.83,
+   "why": "Arrested as a spy while sketching in Calais, Hogarth took revenge: starving French soldiers and a fat friar gaze hungrily as English beef is carried past."
   },
   {
    "id": "haymakers",
@@ -1285,7 +1375,8 @@
    "page": "https://www.tate.org.uk/art/artworks/stubbs-haymakers-t02256",
    "hook": "Stubbs is best known for horses; here he turns to farm workers at harvest.",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02256_10.jpg",
-   "hw": 0.658
+   "hw": 0.658,
+   "why": "Painted in oil on a wooden panel for his pastoral Haymakers and Reapers series, it shows the English hay harvest as a calm idyll, not Romantic drama."
   },
   {
    "id": "baccelli",
@@ -1298,7 +1389,8 @@
    "tate": "T02000",
    "page": "https://www.tate.org.uk/art/artworks/gainsborough-giovanna-baccelli-t02000",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02000_10.jpg",
-   "hw": 1.538
+   "hw": 1.538,
+   "why": "Commissioned by the Duke of Dorset, the Italian dancer wears her ballet costume and stage make-up, caught in a dynamic pose with lightly flicked brushstrokes."
   },
   {
    "id": "poplars",
@@ -1312,7 +1404,8 @@
    "page": "https://www.tate.org.uk/art/artworks/monet-poplars-on-the-epte-n04183",
    "hook": "One of a series: Monet painted the same trees at different times of day.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04183_10.jpg",
-   "hw": 1.258
+   "hw": 1.258,
+   "why": "Monet painted from a boat studio on the Epte, and even bought the trees when they were auctioned before he had finished painting them outdoors."
   },
   {
    "id": "little-dancer",
@@ -1326,7 +1419,8 @@
    "page": "https://www.tate.org.uk/art/artworks/degas-little-dancer-aged-fourteen-n06076",
    "hook": "The only sculpture Degas ever exhibited, first shown in wax in 1881. This bronze was cast after his death, with a real fabric tutu.",
    "img": "https://media.tate.org.uk/art/images/work/N/N06/N06076_10.jpg",
-   "hw": 1.295
+   "hw": 1.295,
+   "why": "Her model was Marie van Goethem, a Paris Opera Ballet student, shown mid-exercise rather than angelic, and some viewers thought her a deliberate image of ugliness."
   },
   {
    "id": "vallier",
@@ -1340,7 +1434,8 @@
    "page": "https://www.tate.org.uk/art/artworks/cezanne-the-gardener-vallier-n04724",
    "hook": "One of Cézanne's last paintings: the figure built from blocks of colour.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04724_10.jpg",
-   "hw": 1.194
+   "hw": 1.194,
+   "why": "Cézanne's gardener at his Les Lauves studio, built from short patches of colour, with bare or thinly covered canvas left showing through."
   },
   {
    "id": "auvers",
@@ -1354,7 +1449,8 @@
    "page": "https://www.tate.org.uk/art/artworks/gogh-farms-near-auvers-n04713",
    "hook": "Painted in Van Gogh's final weeks at Auvers-sur-Oise, 1890.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04713_10.jpg",
-   "hw": 0.486
+   "hw": 0.486,
+   "why": "Hasty brushwork and a bare sky show van Gogh racing to capture mossy thatched roofs echoed by the hills behind, on a long double-square canvas."
   },
   {
    "id": "clarinet",
@@ -1368,7 +1464,8 @@
    "page": "https://www.tate.org.uk/art/artworks/braque-clarinet-and-bottle-of-rum-on-a-mantelpiece-t02318",
    "hook": "Analytic Cubism: objects split into facets in a narrow palette of browns and greys.",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02318_10.jpg",
-   "hw": 1.337
+   "hw": 1.337,
+   "why": "In 1911, when Braque's and Picasso's canvases became almost impossible to tell apart, Braque showed a clarinet on a mantelpiece from several viewpoints at once."
   },
   {
    "id": "dyn-suprematism",
@@ -1397,7 +1494,8 @@
    "hook": "Riders and lances are still just visible. Kandinsky was on the edge of pure abstraction.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_ZjZDZmH.jpg",
    "yearLabel": "1910–11",
-   "hw": 0.723
+   "hw": 0.723,
+   "why": "A cheerful rainbow, jagged mountains and birds float as black lines and blotches of primary colour, with no perspective: Kandinsky wanted painting to feel spiritual."
   },
   {
    "id": "mondrian-1937",
@@ -1412,7 +1510,8 @@
    "hook": "Black lines and primary colours: the classic De Stijl look.",
    "img": "https://media.tate.org.uk/art/images/work/T/T00/T00648_10.jpg",
    "yearLabel": "1937–42",
-   "hw": 1.041
+   "hw": 1.041,
+   "why": "Nothing dreamlike or hidden here: Mondrian restricted himself to red, blue and yellow with straight black lines, an art of pure balance he called Neoplasticism."
   },
   {
    "id": "fountain",
@@ -1427,7 +1526,8 @@
    "hook": "A shop-bought urinal signed 'R. Mutt'. The original was lost; Tate's is a 1964 replica.",
    "img": "https://media.tate.org.uk/art/images/work/T/T07/T07573_10.jpg",
    "yearLabel": "1917 (replica 1964)",
-   "hw": 0.874
+   "hw": 0.874,
+   "why": "Duchamp chose a factory-made porcelain urinal, turned it on its back and called it art: the artist's choice alone made it a sculpture."
   },
   {
    "id": "narcissus",
@@ -1441,7 +1541,8 @@
    "page": "https://www.tate.org.uk/art/artworks/dali-metamorphosis-of-narcissus-t02343",
    "hook": "Dalí showed this to Sigmund Freud in London in 1938.",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02343_10.jpg",
-   "hw": 0.657
+   "hw": 0.657,
+   "why": "Dalí doubles the crouching Narcissus with a stone hand holding a cracked egg that sprouts a narcissus flower, a visual trick from his 'paranoiac-critical' method."
   },
   {
    "id": "lobster-phone",
@@ -1455,7 +1556,8 @@
    "page": "https://www.tate.org.uk/art/artworks/dali-lobster-telephone-t03257",
    "hook": "Made with the collector Edward James. A working phone with a sculpted lobster for a receiver.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_eDjXBEf.jpg",
-   "hw": 0.658
+   "hw": 0.658,
+   "why": "Dalí fused two ordinary objects because lobsters and telephones both had strong sexual connotations for him, a classic Surrealist object rather than a pure abstract form."
   },
   {
    "id": "reckless-sleeper",
@@ -1469,7 +1571,8 @@
    "page": "https://www.tate.org.uk/art/artworks/magritte-the-reckless-sleeper-t01122",
    "hook": "Magritte's dream objects: everyday things placed where they don't belong.",
    "img": "https://media.tate.org.uk/art/images/work/T/T01/T01122_10.jpg",
-   "hw": 1.438
+   "hw": 1.438,
+   "why": "Painted with precise, almost illustrative realism, a bird, a mirror, a lit candle and an apple sit sunk into a slab beneath a sleeping man."
   },
   {
    "id": "celebes",
@@ -1483,7 +1586,8 @@
    "page": "https://www.tate.org.uk/art/artworks/ernst-celebes-t01988",
    "hook": "Ernst built this elephant-like machine from a photo of a corn bin.",
    "img": "https://media.tate.org.uk/art/images/work/T/T01/T01988_10.jpg",
-   "hw": 1.162
+   "hw": 1.162,
+   "why": "Painted in Cologne, it pairs a hulking machine-beast with a headless nude wearing a surgical glove, realistic painting used to create a hallucinatory dream."
   },
   {
    "id": "black-maroon",
@@ -1497,7 +1601,8 @@
    "page": "https://www.tate.org.uk/art/artworks/rothko-black-on-maroon-t01031",
    "hook": "One of the Seagram murals Rothko gave to Tate. They arrived on the day he died in 1970.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_DdDKwoH.jpg",
-   "hw": 0.7
+   "hw": 0.7,
+   "why": "Rothko painted these brooding maroons and blacks for the Four Seasons restaurant in New York's Seagram Building, inspired by Michelangelo's staircase room in Florence, then withdrew."
   },
   {
    "id": "summertime",
@@ -1511,7 +1616,8 @@
    "page": "https://www.tate.org.uk/art/artworks/pollock-summertime-number-9a-t03977",
    "hook": "Pollock dripped and poured paint onto canvas laid on the floor.",
    "img": "https://media.tate.org.uk/art/images/work/T/T03/T03977_10.jpg",
-   "hw": 0.161
+   "hw": 0.161,
+   "why": "Oil, enamel and commercial house paint flung across a long horizontal canvas, its rhythm likened by critics to a line of dancing figures."
   },
   {
    "id": "marilyn",
@@ -1525,7 +1631,8 @@
    "page": "https://www.tate.org.uk/art/artworks/warhol-marilyn-diptych-t03093",
    "hook": "Made in the weeks after Marilyn Monroe's death in 1962. Colour on the left, fading black and white on the right.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_JJlQj5T.jpg",
-   "hw": 0.707
+   "hw": 0.707,
+   "why": "Warhol silkscreened fifty copies of a single publicity still from the film Niagara, turning a real woman into a repeated, mass-produced image."
   },
   {
    "id": "whaam",
@@ -1539,7 +1646,8 @@
    "page": "https://www.tate.org.uk/art/artworks/lichtenstein-whaam-t00897",
    "hook": "Based on a panel from a 1962 war comic. Note the Ben-Day dots.",
    "img": "https://media.tate.org.uk/art/images/work/T/T00/T00897_10.jpg",
-   "hw": 0.43
+   "hw": 0.43,
+   "why": "Lichtenstein based it mainly on one comic panel by Irv Novick, enlarged into a four-metre two-panel canvas separating the firing plane from the explosion."
   },
   {
    "id": "bigger-splash",
@@ -1553,7 +1661,8 @@
    "page": "https://www.tate.org.uk/art/artworks/hockney-a-bigger-splash-t03254",
    "hook": "Two weeks to paint a splash that lasts two seconds, as Hockney put it.",
    "img": "https://media.tate.org.uk/art/images/work/T/T03/T03254_10.jpg",
-   "hw": 0.991
+   "hw": 0.991,
+   "why": "Based on a photo in a book of swimming pools, rolled flat with acrylic and framed by an unpainted border like a Polaroid."
   },
   {
    "id": "clarks-percy",
@@ -1568,7 +1677,8 @@
    "hook": "Fashion designer Ossie Clark and textile designer Celia Birtwell. The cat is really Blanche; Percy was another of their cats.",
    "img": "https://media.tate.org.uk/art/images/work/T/T01/T01269_10.jpg",
    "yearLabel": "1970–1",
-   "hw": 0.699
+   "hw": 0.699,
+   "why": "Painted in flat acrylic, the couple appear near life-size in their Notting Hill bedroom: recognisable real people in a modern home, not abstract shapes."
   },
   {
    "id": "resurrection",
@@ -1583,7 +1693,8 @@
    "hook": "The dead rise in Spencer's home village of Cookham, Berkshire.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04239_10.jpg",
    "yearLabel": "1924–7",
-   "hw": 0.495
+   "hw": 0.495,
+   "why": "In Holy Trinity churchyard, Spencer's friends and family climb from their graves and over a stile, and his wife Hilda appears several times."
   },
   {
    "id": "totes-meer",
@@ -1598,7 +1709,8 @@
    "hook": "'Dead Sea': a graveyard of wrecked German aircraft, painted in WWII.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_BYVerVc.jpg",
    "yearLabel": "1940–1",
-   "hw": 0.663
+   "hw": 0.663,
+   "why": "Based on Nash's sketches and photographs of a salvage dump at Cowley, near Oxford, where the wreckage looked to him like a surging sea under the moon."
   },
   {
    "id": "ennui",
@@ -1611,7 +1723,8 @@
    "tate": "N03846",
    "page": "https://www.tate.org.uk/art/artworks/sickert-ennui-n03846",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_xDsELCw.jpg",
-   "hw": 1.358
+   "hw": 1.358,
+   "why": "Sickert paints a stale, airless room: an old man smoking at a table and a woman turned away, two people bored together among crowding objects."
   },
   {
    "id": "gwen-john",
@@ -1624,7 +1737,8 @@
    "tate": "N05366",
    "page": "https://www.tate.org.uk/art/artworks/john-self-portrait-n05366",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pM2a32v.jpg",
-   "hw": 1.293
+   "hw": 1.293,
+   "why": "Trained at the Slade and under Whistler, she paints herself in closely related, subdued tones and transparent glazes, quiet where others reached for bold colour or gold."
   },
   {
    "id": "pelagos",
@@ -1638,7 +1752,8 @@
    "page": "https://www.tate.org.uk/art/artworks/hepworth-pelagos-t00699",
    "hook": "Hepworth carved it in St Ives; the strings echo the sea and sky of Cornwall.",
    "img": "https://media.tate.org.uk/art/images/work/T/T00/T00699_10.jpg",
-   "hw": 0.749
+   "hw": 0.749,
+   "why": "A carved sculpture, not a painting: a nut-like elm form whose hollow is painted a cool light blue and crossed by taut strings."
   },
   {
    "id": "recumbent",
@@ -1651,13 +1766,14 @@
    "tate": "N05387",
    "page": "https://www.tate.org.uk/art/artworks/moore-recumbent-figure-n05387",
    "img": "https://media.tate.org.uk/art/images/work/N/N05/N05387_10.jpg",
-   "hw": 0.725
+   "hw": 0.725,
+   "why": "Carved from Green Hornton stone for an architect's Sussex garden, this reclining woman gazes out across the Downs, her body pierced by holes you can see through."
   },
   {
    "id": "white-dog",
    "artist": "Lucian Freud",
    "title": "Girl with a White Dog",
-   "year": 1950,
+   "year": 1951,
    "medium": "Oil paint on canvas",
    "place": "Tate, London",
    "topic": "modern-british",
@@ -1665,7 +1781,9 @@
    "page": "https://www.tate.org.uk/art/artworks/freud-girl-with-a-white-dog-n06039",
    "hook": "Freud's first wife, Kitty Garman, painted with intense detail.",
    "img": "https://media.tate.org.uk/art/images/work/N/N06/N06039_10.jpg",
-   "hw": 0.753
+   "hw": 0.753,
+   "why": "Freud painted his wife Kitty in tight, precise brushwork, a transitional work between his fine early style and the looser, thicker manner to come.",
+   "yearLabel": "1951–52"
   },
   {
    "id": "three-studies",
@@ -1679,7 +1797,8 @@
    "page": "https://www.tate.org.uk/art/artworks/bacon-three-studies-for-figures-at-the-base-of-a-crucifixion-n06171",
    "hook": "Shown in London in April 1945. It caused a sensation.",
    "img": "https://media.tate.org.uk/art/images/work/N/N06/N06171_10.jpg",
-   "hw": 0.424
+   "hw": 0.424,
+   "why": "Three writhing creatures based on the Furies of Greek tragedy, in oil and pastel on cheap fibreboard against a harsh burnt orange."
   },
   {
    "id": "riley-fall",
@@ -1693,7 +1812,8 @@
    "page": "https://www.tate.org.uk/art/artworks/riley-fall-t00616",
    "hook": "Op Art: one black line, repeated, that seems to move.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_Nv8p6RL.jpg",
-   "hw": 1.003
+   "hw": 1.003,
+   "why": "Riley hand-drew one curve, made a template from it, then painted black household paint over white so the waves tighten towards the bottom and seem to throb."
   },
   {
    "id": "lowry-school",
@@ -1706,7 +1826,8 @@
    "tate": "N05912",
    "page": "https://www.tate.org.uk/art/artworks/lowry-coming-out-of-school-n05912",
    "img": "https://media.tate.org.uk/art/images/work/N/N05/N05912_10.jpg",
-   "hw": 0.639
+   "hw": 0.639,
+   "why": "Lowry's small 'matchstick' figures, casting no shadows, spill out of school into the industrial streets of North West England."
   },
   {
    "id": "rego-dance",
@@ -1719,7 +1840,8 @@
    "tate": "T05534",
    "page": "https://www.tate.org.uk/art/artworks/rego-the-dance-t05534",
    "img": "https://media.tate.org.uk/art/images/work/T/T05/T05534_10.jpg",
-   "hw": 0.774
+   "hw": 0.774,
+   "why": "Eight figures dance on a moonlit beach, including Rego herself with her husband Victor Willing, who died while she was painting it."
   },
   {
    "id": "pharmacy",
@@ -1733,7 +1855,8 @@
    "page": "https://www.tate.org.uk/art/artworks/hirst-pharmacy-t07187",
    "hook": "Hirst also opened a real restaurant called Pharmacy in Notting Hill.",
    "img": "https://media.tate.org.uk/art/images/work/T/T07/T07187_10.jpg",
-   "hw": 0.794
+   "hw": 0.794,
+   "why": "Shelves of empty drug packaging, honey bowls and a buzzing insect-o-cutor turn a whole room into a chemist's, questioning the faith we place in medicine."
   },
   {
    "id": "studland",
@@ -1747,7 +1870,8 @@
    "page": "https://www.tate.org.uk/art/artworks/bell-studland-beach-verso-group-of-male-nudes-by-duncan-grant-t02080",
    "hook": "Painted on a Dorset beach. Bell simplifies figures into flat blocks of colour.",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02080_10.jpg",
-   "hw": 0.779
+   "hw": 0.779,
+   "why": "Bell borrowed the bright colours and bold forms of the Post-Impressionists shown in Roger Fry's exhibitions, and soon co-founded the Omega Workshops with him."
   },
   {
    "id": "bathing",
@@ -1761,7 +1885,8 @@
    "page": "https://www.tate.org.uk/art/artworks/grant-bathing-n04567",
    "hook": "Made for a Borough Polytechnic decoration scheme in 1911.",
    "img": "https://media.tate.org.uk/art/images/work/N/N04/N04567_10.jpg",
-   "hw": 0.745
+   "hw": 0.745,
+   "why": "Male swimmers at the Serpentine in Hyde Park, then a men-only bathing spot, are stretched into athletic, almost scandalously suggestive poses."
   },
   {
    "id": "toor-bar-13th",
@@ -1774,7 +1899,8 @@
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
    "place": "Museum of Contemporary Art Chicago",
-   "hw": 0.751
+   "hw": 0.751,
+   "why": "Toor paints from memory and imagination, placing young queer South Asian men in a New York bar bathed in his characteristic emotional green."
   },
   {
    "id": "toor-bar-boy",
@@ -1787,7 +1913,8 @@
    "hook": "One of the 2019 paintings Toor calls his 'coming out pictures'.",
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
-   "hw": 0.803
+   "hw": 0.803,
+   "why": "Toor's intimate scenes of young, brown, queer men in New York, washed in his signature green, borrow from Old Masters such as Watteau and Van Dyck."
   },
   {
    "id": "toor-cab",
@@ -1799,7 +1926,8 @@
    "hook": "You sit in the back seat with three friends on a night out.",
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
-   "hw": 0.752
+   "hw": 0.752,
+   "why": "Toor paints recognisable people in intimate scenes, exploring queer and immigrant lives lived between cultures: storytelling, not pure shape and colour."
   },
   {
    "id": "toor-ghost-ball",
@@ -1812,7 +1940,8 @@
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
    "place": "Pinault Collection",
-   "hw": 0.588
+   "hw": 0.588,
+   "why": "Dancers swirl against a poisonous green, each absorbed in their own moment yet moving as one, a scene inspired by an Indian miniature painting."
   },
   {
    "id": "van-eyck-van-der-paele",
@@ -1824,7 +1953,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg/1280px-Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Madonna_met_kanunnik_Joris_van_der_Paele,_1436,_Groeningemuseum,_0040090000.jpg",
    "hook": "Painted in Bruges for Joris van der Paele, a canon of the city's church of St Donatian.",
-   "hw": 0.866
+   "hw": 0.866,
+   "why": "Van Eyck renders the ailing canon's stubble and veins, the weave of an oriental carpet and even his own reflection in St George's shield in meticulous oil."
   },
   {
    "id": "zoffany-academicians",
@@ -1837,7 +1967,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg/960px-Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Johan_Joseph_Zoffany_(Frankfurt_1733-London_1810)_-_The_Academicians_of_the_Royal_Academy_-_RCIN_400747_-_Royal_Collection.jpg",
    "hook": "Reynolds, the Academy's first President, stands left of centre holding his ear trumpet.",
-   "hw": 0.682
+   "hw": 0.682,
+   "why": "Set in the life room at Old Somerset House with nude male models; the two women Academicians appear only as portraits hung on the wall."
   },
   {
    "id": "ramsay-george-iii",
@@ -1850,7 +1981,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg/960px-Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Allan_Ramsay_(1713-84)_-_George_III_(1738-1820)_-_RCIN_405307_-_Royal_Collection.jpg",
    "hook": "George III founded the Royal Academy by personal act on 10 December 1768.",
-   "hw": 1.526
+   "hw": 1.526,
+   "why": "Painted from the very robes worn at the coronation, it became the official royal image, with copies sent to ambassadors and colonial governors."
   },
   {
    "id": "millais-isabella",
@@ -1863,7 +1995,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg/1280px-John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:John_Everett_Millais_-_Isabella_-_Google_Art_Project.jpg",
    "hook": "The letters PRB are carved on Isabella's bench, a secret sign of the new Brotherhood.",
-   "hw": 0.71
+   "hw": 0.71,
+   "why": "Taken from Keats's poem, it almost eliminates shadow and intensifies clashing colours, while one brother violently kicks a frightened greyhound."
   },
   {
    "id": "sargent-monet-painting",
@@ -1903,7 +2036,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg/960px-Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Utamaro_(1793)_Three_Beauties_of_the_Present_Time,_MFAB_21.6382.jpg",
    "hook": "The sitters were celebrities of Edo: a geisha and two teahouse waitresses.",
-   "hw": 1.468
+   "hw": 1.468,
+   "why": "A full-colour woodblock print with a background dusted with glittering mica; each woman wears a family crest that identifies her."
   },
   {
    "id": "secession-building",
@@ -1924,7 +2058,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg/1280px-Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg",
    "hook": "Schiele died in the 1918 flu pandemic, aged 28, only months after Klimt.",
-   "hw": 0.81
+   "hw": 0.81,
+   "why": "Sharp lines and bright red lantern fruits against dark tones make Schiele look fragile yet confident, painted as a pair with his portrait of Wally Neuzil."
   },
   {
    "id": "kirchner-potsdamer-platz",
@@ -1936,7 +2071,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg/960px-Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Potsdamer_Platz,_1914,_NG_799.jpg",
    "hook": "Kirchner's Berlin street scenes turned the city's nightlife sharp-edged and anxious.",
-   "hw": 1.358
+   "hw": 1.358,
+   "why": "Two prostitutes, one disguised in a war widow's black veil, stand on a steep traffic island under the station clock at midnight, in unreal pinks and glowing greens."
   },
   {
    "id": "kirchner-soldier",
@@ -1948,7 +2084,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg/960px-Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Self_Portrait_as_a_Soldier_(1915).jpg",
    "hook": "Kirchner painted himself with a severed hand, though he never lost one: an image of his fear that war would end his art.",
-   "hw": 1.156
+   "hw": 1.156,
+   "why": "Dark, cold colours, a sallow, angular face and a glassy-eyed nude model behind him: raw anxiety rather than Viennese ornament or Cubist analysis."
   },
   {
    "id": "kirchner-street-dresden",
@@ -1960,7 +2097,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg/960px-Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Kirchner_-_Street,_Dresden,_1908,_12.1951.jpg",
    "hook": "Kirchner co-founded Die Brücke in Dresden in 1905; he reworked this picture in 1919.",
-   "hw": 0.754
+   "hw": 0.754,
+   "why": "Mask-like faces with vacant eyes crowd Dresden's fashionable Königstrasse in heightened colours, capturing how Kirchner felt 'carried along' by the city crowd."
   },
   {
    "id": "marc-blue-horse",
@@ -1972,7 +2110,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg/1280px-Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Franz_Marc_-_Blaues_Pferd_I_-_G_13324_-_Lenbachhaus.jpg",
    "hook": "For Marc, blue stood for the spiritual.",
-   "hw": 1.338
+   "hw": 1.338,
+   "why": "A young blue foal tilts its head towards us in a landscape of clashing complementary colours such as vermilion and light green, colour chosen for feeling, not nature."
   },
   {
    "id": "gris-breakfast",
@@ -1984,7 +2123,8 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/1914_Gris_Le_Petit_D%C3%A9jeuner.jpg/960px-1914_Gris_Le_Petit_D%C3%A9jeuner.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:1914_Gris_Le_Petit_D%C3%A9jeuner.jpg",
    "hook": "Gris pasted printed papers into this still life, the papier collé technique Braque introduced in 1912.",
-   "hw": 1.364
+   "hw": 1.364,
+   "why": "Real wallpaper stands in for the wall, and a newspaper clipping reading 'GRIS' doubles as his signature among cups and a coffeepot seen from several angles."
   },
   {
    "id": "slodki-cabaret-voltaire-poster",
@@ -2152,7 +2292,8 @@
    "hook": "Painted in Arles in January 1889, about a week after he left hospital. Behind him hangs a Japanese print.",
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/",
-   "hw": 1.216
+   "hw": 1.216,
+   "why": "Thick impasto strokes give energy to a raw image: van Gogh in a blue fur cap and green coat, a canvas waiting on the easel beside him."
   },
   {
    "id": "vg-bedroom",
@@ -2165,7 +2306,8 @@
    "hook": "His own room in the Yellow House in Arles. He later painted two more versions.",
    "credit": "Van Gogh Museum",
    "page": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
-   "hw": 0.792
+   "hw": 0.792,
+   "why": "Van Gogh painted his room in 'flat, plain tints like Japanese prints', removing shadows so that looking at it would 'rest the mind'."
   },
   {
    "id": "vg-yellow-house",
@@ -2178,7 +2320,8 @@
    "hook": "The house on Place Lamartine in Arles where he rented rooms in 1888.",
    "credit": "Van Gogh Museum",
    "page": "https://vangoghmuseum.nl/en/collection/s0032V1962",
-   "hw": 0.783
+   "hw": 0.783,
+   "why": "Van Gogh wanted 'a sulphur sun' and 'a pure cobalt sky', and included the restaurant where he dined every day and a passing train."
   },
   {
    "id": "vg-almond",
@@ -2191,7 +2334,8 @@
    "hook": "A gift for Theo and Jo when their son, named Vincent after him, was born.",
    "credit": "Van Gogh Museum",
    "page": "https://vangoghmuseum.nl/en/collection/s0176V1962",
-   "hw": 0.788
+   "hw": 0.788,
+   "why": "Flowering branches, for van Gogh a symbol of awakening and hope, are flattened into bold pattern, reflecting his love of Japanese woodcuts."
   },
   {
    "id": "vg-wheatfield",
@@ -2204,7 +2348,8 @@
    "hook": "Painted at Saint-Rémy in September 1889, a studio version of a view he first painted outdoors that summer.",
    "credit": "The National Gallery",
    "page": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses",
-   "hw": 0.795
+   "hw": 0.795,
+   "why": "Signature swirling brushstrokes animate the wheat, cypresses, clouds and even the blue Alpilles, binding the whole landscape together in restless movement."
   },
   {
    "id": "aw-st-ives",
@@ -2220,7 +2365,8 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-st-ives-t00881",
    "hook": "Given to Tate by Ben Nicholson in 1966.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_MoFADn6.jpg",
-   "hw": 0.778
+   "hw": 0.778,
+   "why": "Wallis was self-taught, never had an art lesson, and took up painting around 70 after his wife's death, painting from memory."
   },
   {
    "id": "aw-blue-ship",
@@ -2236,7 +2382,8 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-the-blue-ship-t00291",
    "hook": "Painted from memory, like all his ships.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_tvf3G0h.jpg",
-   "hw": 0.787
+   "hw": 0.787,
+   "why": "Self-taught Wallis ignored perspective, sized things by importance and painted with ship's paint on scraps of packing-box cardboard, so his scenes resemble early maps."
   },
   {
    "id": "aw-schooner",
@@ -2252,7 +2399,8 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-schooner-under-the-moon-t00219",
    "hook": "A schooner, the kind of sailing ship he crewed as a young man.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_jk8yx9p.jpg",
-   "hw": 1.07
+   "hw": 1.07,
+   "why": "Self-taught, Wallis began painting at around seventy, using ship's paint on scraps of cardboard and sizing things by importance rather than perspective."
   },
   {
    "id": "aw-houses",
@@ -2268,7 +2416,8 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-houses-at-st-ives-cornwall-t00239",
    "hook": "His own town, painted on cardboard without perspective.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_LoNJiwd.jpg",
-   "hw": 0.868
+   "hw": 0.868,
+   "why": "Wallis used ship paint and sized things by importance rather than distance, so his town reads almost like an early map."
   },
   {
    "id": "aw-voyage",
@@ -2284,7 +2433,8 @@
    "page": "https://www.tate.org.uk/art/artworks/wallis-voyage-to-labrador-t00220",
    "hook": "A memory of his Atlantic crossings as a young sailor.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_LqYfJxK.jpg",
-   "hw": 0.937
+   "hw": 0.937,
+   "why": "Wallis began painting around seventy after his wife died, using a limited palette and simple flat shapes, a naive directness championed by Ben Nicholson and Christopher Wood."
   },
   {
    "id": "derain-pool-of-london",
@@ -2297,7 +2447,8 @@
    "page": "https://www.tate.org.uk/art/artworks/derain-the-pool-of-london-n06030",
    "hook": "Sent to London to paint the Thames, Derain turned it into blazing colour.",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg/1280px-Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg",
-   "hw": 0.67
+   "hw": 0.67,
+   "why": "Commissioned by the dealer Ambroise Vollard, these Thames views burst with riotous colour, radically unlike earlier views of the city by Whistler or Monet."
   },
   {
    "id": "whiteread-stairs",
