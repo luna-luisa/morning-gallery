@@ -672,3 +672,9 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .tl.big{margin-top:30px} .tl.big .band{overflow:visible;background:rgba(31,63,209,.14)} .tl.big .band b{position:absolute;left:0;right:0;top:-19px;line-height:14px}
 .tllegend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:2px}
 .tllegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+/* answer minis: rings drawn inside the picture so nothing around them can clip them */
+.minis .mini.right,.minis .mini.wrong,.minis .mini.missed{outline-offset:-3px}
+/* small timeline: movement name sits above its band, clear of the dots */
+.tl:not(.big){margin-top:24px}
+.tl:not(.big) .band{overflow:visible}
+.tl:not(.big) .band b{position:absolute;left:0;right:0;top:-16px;line-height:13px;font-size:10px}
