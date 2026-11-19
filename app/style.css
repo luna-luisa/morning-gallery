@@ -685,3 +685,12 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .tl .band.two{top:auto;bottom:auto;top:46px;height:8px;background:rgba(163,39,29,.22)}
 .tl:not(.big) .band.two b{top:9px;color:var(--bad);font-size:9px;text-align:left;padding-left:2px}
 .tl:not(.big):has(.band.two) .tk{top:36px}
+
+/* desktop: hover an answer picture to see what it is */
+@media (hover:hover) and (pointer:fine){
+  .minis .mini[data-tip]:hover{z-index:5}
+  .minis .mini[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);width:max-content;max-width:220px;background:var(--ink);color:#fff;font-size:12px;line-height:1.35;padding:7px 10px;border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,.2);pointer-events:none;white-space:normal;text-align:left}
+  .minis .mini[data-tip]:first-child:hover::after{left:0;transform:none}
+  .minis .mini[data-tip]:last-child:hover::after{left:auto;right:0;transform:none}
+}
+@media (hover:hover) and (pointer:fine){ .minis .mini.dim:hover{opacity:1} }
