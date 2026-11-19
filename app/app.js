@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 08:10"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 10:10"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -235,15 +235,28 @@ function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]
 /* the movement or period a work belongs to, for answer panels */
 const eraOf = w => { const t = w && TOPICS[w.topic]; return t ? t.era || (t.kind === "movement" ? t.name : "") : ""; };
 /* why a picture you picked isn't the one asked for: when it was painted, what its own movement is known for */
-function pickWhy(x, p){
+function pickWhy(x, p, shown){
   const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return "";
   if (p.topic === x.topic) return `That one is ${esc(eraOf(p) || asked.name)}.`;
   if (asked.kind === "artist") return mine.look ? `${esc(eraOf(p))} is known for ${esc(mine.look)}.` : "";
   if (p.why) return esc(p.why);
   const out = [];
-  if (asked.from && p.year && (p.year < asked.from || (asked.to < 2025 && p.year > asked.to))) out.push(`It was painted ${p.year < asked.from ? "before" : "after"} ${esc((asked.era || asked.name).replace(/^The /, "the "))}'s heyday (about ${asked.from}${asked.to >= 2025 ? " onwards" : " to " + asked.to}).`);
+  if (!shown && asked.from && p.year && (p.year < asked.from || (asked.to < 2025 && p.year > asked.to))) out.push(`It was painted ${p.year < asked.from ? "before" : "after"} ${esc((asked.era || asked.name).replace(/^The /, "the "))}'s heyday (about ${asked.from}${asked.to >= 2025 ? " onwards" : " to " + asked.to}).`);
   if (mine.look && eraOf(p) !== (asked.era || asked.name)) out.push(`${esc(eraOf(p))} is known for ${esc(mine.look)}.`);
   return out.join(" ");
+}
+/* a timeline strip: the asked movement as a band, pictures as dots (red = your pick, green = the answer) */
+const tlFor = t => t && t.from && t.kind !== "artist";
+function timeline(t, pts, big){
+  const ys = pts.map(p => p.year).filter(Boolean), to = Math.min(t.to, 2025);
+  let lo = Math.min(t.from, ...ys), hi = Math.max(to, ...ys); const pad = Math.max(20, (hi - lo) * 0.08);
+  lo = Math.floor((lo - pad) / 50) * 50; hi = Math.ceil((hi + pad) / 50) * 50;
+  const step = [50, 100, 200, 500].find(s => (hi - lo) / s <= (big ? 6 : 4)) || 500, X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
+  const ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
+  const name = esc(t.era || t.name);
+  return `<div class="tl ${big ? "big" : ""}"><span class="tlline"></span><span class="band" style="left:${X(t.from)};width:calc(${X(to)} - ${X(t.from)})"><b>${name}</b></span>
+    ${pts.map((p, i) => big ? `<button class="d ${p.kind}" style="left:${X(p.year)}" data-tl="${i}" aria-label="${esc(p.title || "")}"></button>` : `<span class="d ${p.kind}" style="left:${X(p.year)}"></span><span class="dl ${p.kind} ${p.year <= Math.min(...ys) && pts.length > 1 ? "l" : "r"}" style="left:${X(p.year)}">${esc(p.label)}</span>`).join("")}
+    ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
 const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
@@ -703,7 +716,7 @@ function answered(x, ok){
   const note = x.news ? "" : srs(x, ok);
   if (x.news) state.seenNews[x.key.slice(2)] = true;
   state.stats.answered++; if (ok) state.stats.correct++;
-  S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up}); S.ans = S.i;
+  S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up, art: x.art, wrong: x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => x.images[i]) : []}); S.ans = S.i;
   save(); keepRound();
   const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
@@ -716,7 +729,7 @@ function answered(x, ok){
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
-      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}${pickWhy(x, p) ? `<p class="small">${pickWhy(x, p)}</p>` : ""}</div></div>`).join("") : ""}
+      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<div class="pickwrap"><div class="pickcard"><span class="pthumb" data-src="${esc(p.img)}" style="background-image:url('${esc(tsrc(p.img))}')"></span><div class="ptext"><span class="eyebrow bad">Your pick</span><b><i>${esc(p.title)}</i></b><span class="small">${esc(p.artist)}, ${esc(yearText(p))}</span>${eraOf(p) ? `<span>${eraTag(p).trim()}</span>` : ""}</div></div>${tlFor(TOPICS[x.topic]) && p.year && rw && rw.year ? timeline(TOPICS[x.topic], [{year: p.year, kind: "bad", label: "your pick"}, {year: rw.year, kind: "good", label: "answer"}]) : ""}${pickWhy(x, p, tlFor(TOPICS[x.topic])) ? `<p class="small pwhy">${pickWhy(x, p, tlFor(TOPICS[x.topic]))}</p>` : ""}</div>`).join("") : ""}
       ${x.type === "pick" && !ok && !x.unsure && rw && rw.img ? `<span class="eyebrow good anshead">The answer</span>` : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
@@ -821,6 +834,16 @@ async function requestMore(topic, kind, message, item){
   const p = profiles[pid] || {};
   return store.feedback({kind, profile_name: p.name || "", topic: topic || "", item: item || "", message: String(message || "").slice(0, 1500)});
 }
+let TLP = [];
+function roundTimeline(tid){
+  const t = TOPICS[tid]; TLP = []; if (!tlFor(t)) return "";
+  const seen = new Set(), add = (id, kind) => { const w = W[id]; if (!w || !w.year || seen.has(id + kind)) return; seen.add(id + kind); TLP.push({year: w.year, kind, w, title: w.title}); };
+  S.results.filter(r => r.topic === tid).forEach(r => { (r.wrong || []).forEach(id => add(id, "bad")); if (r.art) add(r.art, r.ok ? "good" : "miss"); });
+  if (TLP.length < 2) return "";
+  return `<div class="tlcard"><span class="tltitle">Your round <span class="serif">in time</span></span>${timeline(t, TLP, true)}
+    <div class="tllegend">${TLP.some(p => p.kind === "good") ? `<span><i style="background:var(--good)"></i>Right</span>` : ""}${TLP.some(p => p.kind === "miss") ? `<span><i style="border:2px solid var(--good);box-sizing:border-box"></i>Missed</span>` : ""}${TLP.some(p => p.kind === "bad") ? `<span><i style="background:var(--bad)"></i>Your mix-ups</span>` : ""}</div>
+    <div class="tlcap" id="tlcap"><span class="small">Tap a dot to see the picture.</span></div></div>`;
+}
 function finish(){
   dropRound(); inRound(false);
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); }
@@ -832,10 +855,12 @@ function finish(){
     <div class="line"><i style="width:100%"></i></div>
     <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
       <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
+    ${roundTimeline(tid)}
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</button>
     <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : ""}<button class="btn ${S.mode === "topic" ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button><button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
+  $$("[data-tl]").forEach(b => b.onclick = () => { const p = TLP[+b.dataset.tl]; $$("[data-tl]").forEach(o => o.classList.toggle("on", o === b)); $("#tlcap").innerHTML = `<span class="pthumb" style="background-image:url('${esc(tsrc(p.w.img))}')"></span><span><b><i>${esc(p.w.title)}</i></b><br><span class="small">${esc(p.w.artist)}, ${esc(yearText(p.w))}</span> ${eraTag(p.w)}</span>`; });
   $("#tcard").onclick = () => go("topic", tid);
   $("#keep").onclick = quickFireIntro;
   if ($("#again")) $("#again").onclick = () => startTopic(tid);

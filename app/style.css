@@ -644,3 +644,31 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .pickcard .era{margin-left:0}
 .eyebrow.bad{color:var(--bad)} .eyebrow.good{color:var(--good)}
 .anshead{display:block;margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)}
+
+/* timelines */
+.pickwrap{background:rgba(180,40,30,.06);border-radius:12px;padding:12px;margin:14px 0 4px}
+.pickwrap .pickcard{background:none;padding:0;margin:0}
+.pwhy{margin:6px 0 0;color:var(--muted);line-height:1.4}
+.tl{position:relative;height:50px;margin:12px 4px 0}
+.tl .tlline{position:absolute;left:0;right:0;top:11px;height:1px;background:var(--line)}
+.tl .band{position:absolute;top:4px;height:15px;border-radius:4px;background:rgba(31,63,209,.16);overflow:hidden}
+.tl .band b{display:block;font-size:9px;line-height:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--klein);text-align:center;white-space:nowrap}
+.tl .d{position:absolute;top:5px;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;border:2px solid #fff;padding:0;background:var(--muted)}
+.tl .d.bad{background:var(--bad)} .tl .d.good{background:var(--good)} .tl .d.miss{background:#fff;border:2px solid var(--good)}
+.tl .dl{position:absolute;top:21px;font-size:10px;font-weight:700;white-space:nowrap;transform:translateX(-50%)}
+.tl .dl.bad{color:var(--bad)} .tl .dl.good{color:var(--good)}
+.tl .tk{position:absolute;top:36px;font-size:9px;color:var(--muted);transform:translateX(-50%)}
+.tl.big{height:64px;margin:16px 6px 4px}
+.tl.big .band{height:22px;top:0} .tl.big .band b{line-height:22px;font-size:10px}
+.tl.big .tlline{top:11px;height:2px;background:var(--ink)}
+.tl.big .d{width:18px;height:18px;margin-left:-9px;top:2px;box-shadow:0 0 0 7px transparent;cursor:pointer}
+.tl.big .d.on{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink)}
+.tl.big .tk{top:34px;font-size:10px}
+.tlcard{background:var(--paper);border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(40,30,15,.08)}
+.tltitle{font-size:18px;font-weight:800}
+.tlcap{display:flex;gap:10px;align-items:center;min-height:52px;margin-top:6px}
+.tlcap .pthumb{flex:none;width:48px;height:48px;border-radius:8px;background:center/cover no-repeat #ddd}
+.tl .dl.l{transform:translateX(calc(-100% + 8px))} .tl .dl.r{transform:translateX(-8px)}
+.tl.big{margin-top:30px} .tl.big .band{overflow:visible;background:rgba(31,63,209,.14)} .tl.big .band b{position:absolute;left:0;right:0;top:-19px;line-height:14px}
+.tllegend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:2px}
+.tllegend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
