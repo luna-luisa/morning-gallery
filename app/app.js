@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 07:54"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 08:05"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -233,8 +233,18 @@ const byWho = t => t.name.replace(/^.*: /, "").replace(/ & /g, " or ");
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 /* a short note about the answer you picked, when it was wrong */
 /* the movement or period a work belongs to, for answer panels */
-const ERA = {"van-eyck": "Early Netherlandish painting", "van-gogh": "Post-Impressionism", "alfred-wallis": "Modern British art", "salman-toor": "Contemporary art", "bloomsbury": "The Bloomsbury Group", "vienna-1900": "Vienna 1900", "renaissance": "Renaissance"};
-const eraOf = w => { const t = w && TOPICS[w.topic]; if (!t) return ""; return ERA[w.topic] || (t.kind === "movement" ? t.name : ""); };
+const eraOf = w => { const t = w && TOPICS[w.topic]; return t ? t.era || (t.kind === "movement" ? t.name : "") : ""; };
+/* why a picture you picked isn't the one asked for: when it was painted, what its own movement is known for */
+function pickWhy(x, p){
+  const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return "";
+  if (p.topic === x.topic) return `That one is ${esc(eraOf(p) || asked.name)}.`;
+  if (asked.kind === "artist") return mine.look ? `${esc(eraOf(p))} is known for ${esc(mine.look)}.` : "";
+  if (p.why) return esc(p.why);
+  const out = [];
+  if (asked.from && p.year && (p.year < asked.from || (asked.to < 2025 && p.year > asked.to))) out.push(`It was painted ${p.year < asked.from ? "before" : "after"} ${esc((asked.era || asked.name).replace(/^The /, "the "))}'s heyday (about ${asked.from}${asked.to >= 2025 ? " onwards" : " to " + asked.to}).`);
+  if (mine.look && eraOf(p) !== (asked.era || asked.name)) out.push(`${esc(eraOf(p))} is known for ${esc(mine.look)}.`);
+  return out.join(" ");
+}
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
 const workLine = w => `<i>${esc(w.title)}</i> (${esc(yearText(w))})`;
 function wrongNote(x, pickIdx){
@@ -706,7 +716,7 @@ function answered(x, ok){
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
       ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div>` : ""}
-      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<p class="wrongnote">You picked ${esc(p.artist)}'s ${workLine(p)}.${eraTag(p)}</p>`).join("") : ""}
+      ${x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => W[x.images[i]]).filter(Boolean).map(p => `<p class="wrongnote">You picked ${esc(p.artist)}'s ${workLine(p)}.${eraTag(p)}${pickWhy(x, p) ? `<br>${pickWhy(x, p)}` : ""}</p>`).join("") : ""}
       ${rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${fact || x.source ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
       ${up ? `<div class="levelup">${dots(up)}<span>You're now ${an(LEVELS[up-1])} <b>${LEVELS[up-1]}</b> in ${esc(tName(x.topic))}.</span></div>` : ""}

@@ -194,7 +194,11 @@
       "art": "arnolfini"
      }
     ]
-   }
+   },
+   "era": "The Renaissance",
+   "from": 1400,
+   "to": 1600,
+   "look": "calm, balanced pictures with convincing perspective and anatomy, inspired by ancient Greece and Rome"
   },
   "van-eyck": {
    "name": "Jan van Eyck",
@@ -354,7 +358,11 @@
      "explain": "The panel in place today is a copy, painted in the 1940s.",
      "reveal": "ghent"
     }
-   ]
+   ],
+   "era": "Early Netherlandish painting",
+   "from": 1420,
+   "to": 1550,
+   "look": "minutely detailed oil paintings with glowing colour"
   },
   "baroque": {
    "name": "Baroque",
@@ -565,7 +573,11 @@
       "art": "las-meninas"
      }
     ]
-   }
+   },
+   "era": "Baroque",
+   "from": 1600,
+   "to": 1750,
+   "look": "drama, movement and strong contrasts of light and dark"
   },
   "rococo": {
    "name": "Rococo",
@@ -675,7 +687,11 @@
      "art": "boucher-venus"
     }
    ],
-   "as": "Rococo"
+   "as": "Rococo",
+   "era": "Rococo",
+   "from": 1715,
+   "to": 1780,
+   "look": "light, playful scenes in soft pastel colours, full of love and leisure"
   },
   "british18c": {
    "name": "Georgian Britain",
@@ -799,7 +815,11 @@
      "art": "air-pump"
     }
    ],
-   "as": "Georgian British art"
+   "as": "Georgian British art",
+   "era": "Georgian Britain",
+   "from": 1714,
+   "to": 1830,
+   "look": "elegant portraits of the gentry, conversation pieces and satire"
   },
   "romanticism": {
    "name": "Romanticism",
@@ -962,7 +982,11 @@
      "art": "medusa"
     }
    ],
-   "as": "Romantic"
+   "as": "Romantic",
+   "era": "Romanticism",
+   "from": 1780,
+   "to": 1850,
+   "look": "strong emotion, wild nature and the power of the sublime"
   },
   "preraphaelites": {
    "name": "Pre-Raphaelites",
@@ -1137,7 +1161,11 @@
      "explain": "The poems came out in 1870."
     }
    ],
-   "as": "Pre-Raphaelite"
+   "as": "Pre-Raphaelite",
+   "era": "Pre-Raphaelites",
+   "from": 1848,
+   "to": 1900,
+   "look": "bright, highly detailed colour and medieval or literary subjects"
   },
   "realism": {
    "name": "Realism",
@@ -1248,7 +1276,11 @@
      "art": "stone-breakers"
     }
    ],
-   "as": "Realist"
+   "as": "Realist",
+   "era": "Realism",
+   "from": 1840,
+   "to": 1880,
+   "look": "ordinary people and everyday life, shown without idealising them"
   },
   "impressionism": {
    "name": "Impressionism",
@@ -1472,7 +1504,11 @@
       "art": "moulin-galette"
      }
     ]
-   }
+   },
+   "era": "Impressionism",
+   "from": 1860,
+   "to": 1900,
+   "look": "quick, visible brushstrokes that catch light and modern life"
   },
   "postimpressionism": {
    "name": "Post-Impressionism",
@@ -1669,7 +1705,11 @@
       "art": "sainte-victoire"
      }
     ]
-   }
+   },
+   "era": "Post-Impressionism",
+   "from": 1885,
+   "to": 1905,
+   "look": "bold colour and simplified forms, with each artist going their own way"
   },
   "edo-japan": {
    "name": "Edo Japan",
@@ -1780,7 +1820,11 @@
      "art": "plum-park"
     }
    ],
-   "as": "Edo-period Japanese art"
+   "as": "Edo-period Japanese art",
+   "era": "Edo Japan",
+   "from": 1603,
+   "to": 1868,
+   "look": "woodblock prints of actors, beauties and landscapes, with flat colour and strong outlines"
   },
   "vienna-1900": {
    "name": "Vienna 1900: Klimt",
@@ -1877,7 +1921,11 @@
      "reveal": "schiele-physalis"
     }
    ],
-   "as": "from Vienna 1900"
+   "as": "from Vienna 1900",
+   "era": "Vienna 1900",
+   "from": 1897,
+   "to": 1918,
+   "look": "gold, ornament and psychological intensity, from Klimt to Schiele"
   },
   "fauvism": {
    "name": "Fauvism",
@@ -2000,7 +2048,11 @@
      "explain": "Derain painted the Thames, its bridges and Westminster in blazing colour."
     }
    ],
-   "as": "Fauvist"
+   "as": "Fauvist",
+   "era": "Fauvism",
+   "from": 1905,
+   "to": 1910,
+   "look": "wild, unnatural colour used for its own sake"
   },
   "expressionism": {
    "name": "Expressionism",
@@ -2124,7 +2176,11 @@
      "art": "scream"
     }
    ],
-   "as": "Expressionist"
+   "as": "Expressionist",
+   "era": "Expressionism",
+   "from": 1905,
+   "to": 1925,
+   "look": "distorted forms and harsh colour that express inner feelings"
   },
   "cubism": {
    "name": "Cubism",
@@ -2266,7 +2322,11 @@
       "art": "demoiselles"
      }
     ]
-   }
+   },
+   "era": "Cubism",
+   "from": 1907,
+   "to": 1920,
+   "look": "objects broken into facets, as if seen from several angles at once"
   },
   "abstraction": {
    "name": "Abstract art",
@@ -2390,7 +2450,11 @@
      "reveal": "mondrian-rby"
     }
    ],
-   "as": "abstract art"
+   "as": "abstract art",
+   "era": "Abstract art",
+   "from": 1910,
+   "to": 2030,
+   "look": "pictures with no recognisable subject, just colour, line and shape"
   },
   "dada": {
    "name": "Dada",
@@ -2539,7 +2603,11 @@
      "explain": "Tzara read it in Zurich. It argued for doubt, nonsense and spontaneity."
     }
    ],
-   "as": "Dada"
+   "as": "Dada",
+   "era": "Dada",
+   "from": 1916,
+   "to": 1924,
+   "look": "anti-art provocation, chance and absurdity"
   },
   "surrealism": {
    "name": "Surrealism",
@@ -2692,7 +2760,11 @@
       "art": "lobster-phone"
      }
     ]
-   }
+   },
+   "era": "Surrealism",
+   "from": 1924,
+   "to": 1950,
+   "look": "dreamlike scenes and strange combinations drawn from the unconscious"
   },
   "abexp": {
    "name": "Abstract Expressionism",
@@ -2790,7 +2862,11 @@
      "art": "black-maroon"
     }
    ],
-   "as": "Abstract Expressionist"
+   "as": "Abstract Expressionist",
+   "era": "Abstract Expressionism",
+   "from": 1943,
+   "to": 1965,
+   "look": "huge abstract canvases of energetic brushwork or fields of colour, made in New York"
   },
   "popart": {
    "name": "Pop Art",
@@ -2933,7 +3009,11 @@
       "art": "marilyn"
      }
     ]
-   }
+   },
+   "era": "Pop Art",
+   "from": 1955,
+   "to": 1970,
+   "look": "bright imagery borrowed from adverts, comics and celebrity"
   },
   "modern-british": {
    "name": "Modern British art",
@@ -3059,7 +3139,9 @@
      "art": "rego-dance"
     }
    ],
-   "as": "modern British art"
+   "as": "modern British art",
+   "era": "Modern British art",
+   "look": "British painting and sculpture of the 20th century, from figurative to abstract"
   },
   "yba": {
    "name": "Young British Artists",
@@ -3157,7 +3239,11 @@
      "art": "pharmacy"
     }
    ],
-   "as": "by a Young British Artist"
+   "as": "by a Young British Artist",
+   "era": "Young British Artists",
+   "from": 1988,
+   "to": 2000,
+   "look": "shock, wit and everyday materials, from 1990s London"
   },
   "bloomsbury": {
    "name": "Bloomsbury: Bell & Grant",
@@ -3280,7 +3366,11 @@
      "explain": "In 1912, simplifying figures into blocks of colour.",
      "art": "studland"
     }
-   ]
+   ],
+   "era": "The Bloomsbury Group",
+   "from": 1905,
+   "to": 1940,
+   "look": "bold colour and pattern, influenced by Post-Impressionism"
   },
   "guggenheim": {
    "name": "Peggy Guggenheim",
@@ -4086,7 +4176,8 @@
      "explain": "A retelling of a legend from the Sundarbans, the mangrove forests of India and Bangladesh.",
      "reveal": "sundarbans-mangroves"
     }
-   ]
+   ],
+   "era": "Contemporary art"
   },
   "van-gogh": {
    "name": "Vincent van Gogh",
@@ -4307,7 +4398,11 @@
       "art": "starry-night"
      }
     ]
-   }
+   },
+   "era": "Post-Impressionism",
+   "from": 1885,
+   "to": 1905,
+   "look": "bold colour and simplified forms, with each artist going their own way"
   },
   "alfred-wallis": {
    "name": "Alfred Wallis",
@@ -4507,7 +4602,9 @@
      "explain": "He told Ben Nicholson so after his wife's death. His pictures sold for only a few shillings.",
      "reveal": "aw-blue-ship"
     }
-   ]
+   ],
+   "era": "Modern British art",
+   "look": "British painting and sculpture of the 20th century, from figurative to abstract"
   }
  }
 }
