@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "17 Nov, 11:23"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 07:00"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -345,7 +345,9 @@ function extraPicks(){
   const newsFresh = fresh.filter(t => featured().includes(t));
   const deep = all.filter(t => studied(t) && notToday(t) && lvlOf(t) < 5);
   const deepWeek = deep.filter(t => daysSince(lastDay(t)) >= 7);
-  return {fresh: pickBy(newsFresh.length ? newsFresh : fresh, salt), deep: pickBy(deepWeek.length ? deepWeek : deep, salt)};
+  const f = pickBy(newsFresh.length ? newsFresh : fresh, salt), dp = pickBy(deepWeek.length ? deepWeek : deep, salt);
+  /* nothing studied to go deeper in yet (new players): offer a second new topic instead, so everyone sees two choices */
+  return dp ? {fresh: f, deep: dp} : {fresh: f, fresh2: pickBy(fresh.filter(t => t !== f), salt + "2")};
 }
 function markPlayed(tid){ (state.played || (state.played = {}))[tid] = today(); }
 function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, () => startTopic(tid), "Start the questions"); }
@@ -835,7 +837,7 @@ function renderToday(){
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}</div>
-    ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}</div>`
+    ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">Start</button>`}
     <button class="btn ghost" id="endless">Free play</button>
@@ -845,9 +847,10 @@ function renderToday(){
   if ($("#go")){ $("#go").onclick = startRound; $("#tod").onclick = () => go("topic", td.topic); }
   if ($("#pnew")) $("#pnew").onclick = () => playTopic(ex.fresh);
   if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
+  if ($("#pnew2")) $("#pnew2").onclick = () => playTopic(ex.fresh2);
 }
 const isAdmin = () => !!(profiles[pid] && profiles[pid].admin);
-/* ---------- topics page (trial for the admin): search + sections by kind ---------- */
+/* ---------- topics page: search + sections by kind (Swipe inside it is admin-only) ---------- */
 const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Museums"], ["market", "Art market"]];
 const START = ["renaissance", "impressionism", "van-gogh", "national-gallery"];
 const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -890,7 +893,7 @@ function whatsOnHTML(){
 }
 
 function renderTopicsNew(){
-  const pics = swipeDeck(3), played = Object.keys(TOPICS).filter(t => T(t).n > 0);
+  const pics = isAdmin() ? swipeDeck(3) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
   const recent = [...played].sort((a, b) => String((state.played || {})[b] || "").localeCompare(String((state.played || {})[a] || ""))).slice(0, 4);
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1></div>
     <label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">
@@ -918,8 +921,8 @@ function renderTopicsNew(){
     const open = state.open || {};
     const sec = (k, title, body) => `<details class="tsec" data-k="${k}" ${open[k] ? "open" : ""}><summary><span class="tsech">${title}</span><span class="chev" aria-hidden="true"></span></summary>${body}</details>`;
     list.innerHTML = `
-      <button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">Find the artists that speak to you.</span></span></button>
-      ${(state.taste || []).length ? `<button class="btn link" id="taste">Your taste · ${state.taste.length} ${state.taste.length === 1 ? "work" : "works"}</button>` : ""}
+      ${isAdmin() ? `<button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">Find the artists that speak to you.</span></span></button>
+      ${(state.taste || []).length ? `<button class="btn link" id="taste">Your taste · ${state.taste.length} ${state.taste.length === 1 ? "work" : "works"}</button>` : ""}` : ""}
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
       ${whatsOnHTML()}
       ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
@@ -1054,7 +1057,7 @@ function renderTaste(){
   $("#more").onclick = startSwipe;
 }
 function renderTopics(){
-  if (isAdmin()) return renderTopicsNew();
+  return renderTopicsNew(); /* everyone gets the new Topics page; Swipe stays admin-only while it is a trial */
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1><p class="muted">Every topic has five levels, from Visitor to Curator. Keep playing and you'll climb.</p></div>
     ${GROUPS.filter(([g]) => Object.values(TOPICS).some(t => t.group === g)).map(([g, label]) => `<div><span class="eyebrow">${label}</span>${Object.keys(TOPICS).filter(t => TOPICS[t].group === g).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0)).map(t => `<button class="trow" data-t="${t}"><span class="tname">${esc(TOPICS[t].name)}${featured().includes(t) ? ' <span class="eyebrow gold">in the news</span>' : ""}</span><span class="lv">${dots(lvlOf(t))} ${LEVELS[lvlOf(t)-1]}</span></button>`).join("")}</div>`).join("")}`;
   $$(".trow").forEach(b => b.onclick = () => go("topic", b.dataset.t));
