@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:01"; // shown as a small footnote on the Me page
+const BUILD_AT = "19 Nov, 12:07"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -274,7 +274,6 @@ function timeline(t, pts, big, t2){
 /* wrong picture picks: three tiles — your pick(s) with why, the timeline, the answer(s) */
 function whyParts(x, p){
   const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return {};
-  if (p.why) return {custom: esc(p.why)};
   if (x.odd || p.topic === x.topic) return {custom: `That one is ${esc(eraOf(p) || asked.name)}.`};
   const era = eraOf(p), look = mine.look ? esc(mine.look) : "";
   if (asked.kind === "artist") return {era: esc(era), rel: `by ${esc(p.artist)}`, look};
@@ -284,6 +283,7 @@ function whyParts(x, p){
     const to = Math.min(asked.to, 2025), d = p.year < asked.from ? asked.from - p.year : p.year > to ? p.year - to : 0, side = p.year < asked.from ? "before" : "after";
     rel = esc(!d ? `from the same years as ${the}` : d >= 150 ? `centuries ${side} ${the}` : d >= 70 ? `about a century ${side} ${the}` : d >= 25 ? `decades ${side} ${the}` : `just ${side} ${the}`);
   }
+  if (p.why) return {custom: `${esc(era)}${rel ? ", " + rel : ""}. ${esc(p.why)}`}; /* hand-written note: movement and timing, then the note */
   return {era: esc(era), rel, look};
 }
 const cap = t => t ? t[0].toUpperCase() + t.slice(1) : t;
