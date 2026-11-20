@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "19 Nov, 12:29"; // shown as a small footnote on the Me page
+const BUILD_AT = "20 Nov, 18:19"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -385,7 +385,8 @@ function allQuestions(tid){
   return qcache[tid] = keys.map(fromKey).filter(Boolean);
 }
 const newsItems = () => (NEWS && Array.isArray(NEWS.items)) ? NEWS.items.filter(i => i && i.id && Array.isArray(i.options) && i.options.length > 1) : [];
-const featured = () => ((NEWS && NEWS.featuredTopics) || []).filter(t => TOPICS[t]);
+/* "in the news" only while the news really covers the topic: listed by the daily task AND a story on it from the last 10 days */
+const featured = () => ((NEWS && NEWS.featuredTopics) || []).filter(t => TOPICS[t] && ((NEWS && NEWS.items) || []).some(n => n.topic === t && n.date && (Date.now() - new Date(n.date + "T12:00:00").getTime()) / 864e5 <= 10));
 
 /* questions for a topic: mostly at your level, one look back, one stretch */
 function topicSet(tid, n = 6, exclude = new Set()){
