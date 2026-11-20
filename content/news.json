@@ -1,14 +1,36 @@
 {
  "week": "w/c 16 Nov 2026",
- "updated": "2026-11-19",
+ "updated": "2026-11-20",
  "featuredTopics": [
   "auctions",
   "van-gogh",
   "art-fairs",
   "van-eyck",
-  "bloomsbury"
+  "guggenheim"
  ],
  "items": [
+  {
+   "id": "2026-11-kusama-record",
+   "date": "2026-11-16",
+   "topic": "auctions",
+   "level": 2,
+   "headline": "Yayoi Kusama sets a $15m auction record",
+   "summary": "Her 1960 Infinity Net painting No. 3P.B. sold for about $15m with fees at Sotheby's New York on 16 November, three months after her death.",
+   "question": "Whose 1960 Infinity Net painting just set a $15m auction record?",
+   "options": [
+    "Yayoi Kusama",
+    "Yoshitomo Nara",
+    "Takashi Murakami",
+    "Kazuo Shiraga"
+   ],
+   "answer": 0,
+   "explain": "Kusama, who died in August aged 97, made it soon after moving to New York, and it was shown in the Whitney Museum of American Art's 1961 annual exhibition there.",
+   "notes": {
+    "Yoshitomo Nara": "Nara is known for his big-eyed child figures, not net paintings.",
+    "Takashi Murakami": "Murakami is famous for his bright 'Superflat' flowers and cartoon characters."
+   },
+   "source": "https://www.sothebys.com/en/buy/auction/2026/the-now-contemporary-evening-auction-2/yayoi-kusama-no-3-p-b"
+  },
   {
    "id": "2026-11-kandinsky-record",
    "date": "2026-11-17",
@@ -104,7 +126,7 @@
    "level": 3,
    "headline": "Frieze opens its first Middle East fair",
    "summary": "Frieze Abu Dhabi runs 19 to 22 November at Manarat Al Saadiyat, taking over from the long-running Abu Dhabi Art fair.",
-   "question": "In which city does Frieze open its first Middle East fair on 19 November?",
+   "question": "In which city did Frieze open its first Middle East fair on 19 November?",
    "options": [
     "Abu Dhabi",
     "Dubai",
@@ -114,34 +136,6 @@
    "answer": 0,
    "explain": "The fair is a partnership with Abu Dhabi's Department of Culture and Tourism and replaces Abu Dhabi Art, which began in 2007 as ArtParis Abu Dhabi.",
    "source": "https://www.frieze.com/article/frieze-abu-dhabi-reveals-global-line-shaped-region-its-inaugural-edition"
-  },
-  {
-   "id": "2026-11-botticelli-oxford",
-   "date": "2026-11-12",
-   "topic": "renaissance",
-   "level": 2,
-   "headline": "A Botticelli saved for Britain goes on show",
-   "summary": "Botticelli's Virgin and Child Enthroned, barred from export in 2025, is now on a three-year loan to the Ashmolean Museum in Oxford.",
-   "question": "Whose Virgin and Child Enthroned is now on show at the Ashmolean Museum in Oxford?",
-   "options": [
-    "Sandro Botticelli",
-    "Caravaggio",
-    "Johannes Vermeer",
-    "Peter Paul Rubens"
-   ],
-   "answer": 0,
-   "explain": "Painted in the 1470s, it was bought by the London-based Klesch Collection after the UK placed a temporary export bar on it.",
-   "source": "https://www.ashmolean.org/press/major-loan-press-release",
-   "reveal": {
-    "img": "https://www.finestresullarte.info/rivista/immagini/2026/fn/sandro-botticelli-madonna-col-bambino-klesch-1-1.jpg",
-    "artist": "Sandro Botticelli",
-    "title": "Virgin and Child Enthroned",
-    "year": 1470,
-    "approx": true,
-    "place": "Klesch Collection, on loan to the Ashmolean Museum, Oxford",
-    "credit": "Ashmolean Museum",
-    "page": "https://www.ashmolean.org/botticelli-the-virgin-and-child-enthroned"
-   }
   },
   {
    "id": "2026-11-alfred-wallis",
@@ -179,25 +173,6 @@
    "explain": "The first exhibition devoted to Jan van Eyck's portraits, built around the gallery's own Arnolfini Portrait.",
    "source": "https://www.nationalgallery.org.uk/about-us/press-and-media/press-releases-archive/van-eyck-the-portraits",
    "reveal": "red-turban"
-  },
-  {
-   "id": "2026-11-bloomsbury",
-   "date": "2026-11-12",
-   "topic": "bloomsbury",
-   "level": 3,
-   "headline": "Inside Bloomsbury now open at Tate Britain",
-   "summary": "A major show on Vanessa Bell and Duncan Grant, 12 November 2026 to 11 April 2027.",
-   "question": "A new show at Tate Britain in London focuses on which pair of artists?",
-   "options": [
-    "Vanessa Bell and Duncan Grant",
-    "Ben Nicholson and Barbara Hepworth",
-    "Gilbert and George",
-    "Dora Carrington and Mark Gertler"
-   ],
-   "answer": 0,
-   "explain": "'Vanessa Bell & Duncan Grant: Inside Bloomsbury' opened on 12 November.",
-   "source": "https://www.tate.org.uk/press/press-releases/vanessa-bell--duncan-grant-inside-bloomsbury-open",
-   "reveal": "studland"
   },
   {
    "id": "2026-11-guggenheim-ra",
