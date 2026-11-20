@@ -3738,8 +3738,9 @@
     },
     {
      "title": "On now",
-     "text": "Painting the French Riviera runs until 31 January 2027. Peggy Guggenheim in London opens on 21 November 2026.",
-     "art": "burlington"
+     "text": "Painting the French Riviera runs until 31 January 2027, and Peggy Guggenheim in London until 14 March 2027.",
+     "art": "burlington",
+     "until": "2027-03-14"
     }
    ],
    "questions": [

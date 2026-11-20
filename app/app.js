@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "20 Nov, 18:19"; // shown as a small footnote on the Me page
+const BUILD_AT = "20 Nov, 18:21"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -622,7 +622,7 @@ function label(w){
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
 function showIntro(tid, done, finishLabel, lessonLevel){
-  const t = TOPICS[tid], cards = lessonLevel ? lessonFor(tid, lessonLevel) : t.intro.filter(c => c.title !== "In the news" || featured().includes(tid)); let i = 0; inRound(true);
+  const t = TOPICS[tid], cards = lessonLevel ? lessonFor(tid, lessonLevel) : t.intro.filter(c => (c.title !== "In the news" || featured().includes(tid)) && !(c.until && c.until < today())); let i = 0; inRound(true);
   const what = lessonLevel ? `${LEVELS[lessonLevel-1]} lesson` : "introduction";
   const draw = () => {
     const c = cards[i], w = W[c.art];
