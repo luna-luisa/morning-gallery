@@ -4619,6 +4619,2690 @@
    "era": "Modern British art",
    "look": "British painting and sculpture of the 20th century, from figurative to abstract",
    "region": "Britain"
+  },
+  "capitalist-realism": {
+   "name": "Capitalist Realism",
+   "kind": "movement",
+   "group": "now",
+   "era": "Capitalist Realism",
+   "from": 1963,
+   "to": 1966,
+   "fade": false,
+   "look": "blurry paintings copied from newspaper photos and adverts, Germany's sceptical answer to pop art",
+   "region": "Germany",
+   "span": "from 1963",
+   "year": 1963,
+   "timeline": true,
+   "as": "by a Capitalist Realist",
+   "related": [
+    "popart",
+    "abstraction",
+    "gerhard-richter"
+   ],
+   "intro": [
+    {
+     "title": "Düsseldorf, 1963",
+     "text": "Young painters in West Germany, including Gerhard Richter, Sigmar Polke and Konrad Lueg, launched a movement to challenge the dominance of American pop art.",
+     "art": "richter-mouth"
+    },
+    {
+     "title": "A jokey name",
+     "text": "The label mocks Socialist Realism, the official art of the Soviet bloc, while also poking at Western consumer culture. Cold War Germany sat right between the two.",
+     "art": "richter-hunting-party"
+    },
+    {
+     "title": "Look for",
+     "text": "Everyday images borrowed from magazines, snapshots and adverts, often in grey, and often blurred so they look like a photo slightly out of focus.",
+     "art": "richter-woman-staircase"
+    }
+   ],
+   "questions": [
+    {
+     "id": "capitalist-realism-1",
+     "level": 1,
+     "q": "Which art did Capitalist Realism set out to challenge?",
+     "options": [
+      "American pop art",
+      "Italian Renaissance art",
+      "French Impressionism",
+      "Japanese woodblock prints"
+     ],
+     "explain": "Tate describes it as a German response to the dominance of American pop art in the West.",
+     "reveal": "richter-mouth"
+    },
+    {
+     "id": "capitalist-realism-2",
+     "level": 2,
+     "q": "Which official Soviet style does the name Capitalist Realism mock?",
+     "options": [
+      "Socialist Realism",
+      "Surrealism",
+      "Cubism",
+      "Constructivism"
+     ],
+     "explain": "Socialist Realism was the state-approved art of the Soviet Union, so the name is a Cold War joke.",
+     "reveal": "richter-hunting-party"
+    },
+    {
+     "id": "capitalist-realism-3",
+     "level": 2,
+     "q": "Where did Richter and Konrad Lueg stage Living with Pop in 1963?",
+     "options": [
+      "A furniture shop",
+      "A football stadium",
+      "A railway station",
+      "A church"
+     ],
+     "explain": "The event, subtitled A Demonstration for Capitalist Realism, took place in the Berges furniture store.",
+     "reveal": "richter-candle"
+    },
+    {
+     "id": "capitalist-realism-4",
+     "level": 3,
+     "q": "Which painter was a founding Capitalist Realist alongside Richter?",
+     "options": [
+      "Sigmar Polke",
+      "Anselm Kiefer",
+      "Georg Baselitz",
+      "Joseph Beuys"
+     ],
+     "explain": "Polke and Richter were fellow students at the Düsseldorf Art Academy, and first showed together in 1963.",
+     "reveal": "richter-woman-staircase"
+    }
+   ],
+   "preview": true
+  },
+  "black-figuration": {
+   "name": "Black figuration",
+   "kind": "movement",
+   "group": "now",
+   "era": "Black figuration",
+   "from": 1980,
+   "to": 2025,
+   "fade": true,
+   "look": "Black figures painted at the centre of the grand traditions of Western painting",
+   "span": "from the 1980s",
+   "year": 2016,
+   "timeline": true,
+   "as": "by a painter of Black figuration",
+   "related": [
+    "salman-toor",
+    "kerry-james-marshall",
+    "lynette-yiadom-boakye"
+   ],
+   "intro": [
+    {
+     "title": "Who gets painted?",
+     "text": "For centuries Western painting mostly showed white people. Black figuration puts Black people at the heart of the picture, as heroes, lovers, painters and dreamers.",
+     "art": "marshall-many-mansions"
+    },
+    {
+     "title": "A new generation",
+     "text": "Kerry James Marshall has painted Black figures since 1980. Younger painters such as Lynette Yiadom-Boakye, Amy Sherald and Kehinde Wiley are part of the same wave.",
+     "art": "lyb-10pm-saturday"
+    },
+    {
+     "title": "Look for",
+     "text": "Black figures at full size, in poses borrowed from Old Master portraits, history paintings and Rococo scenes, but painted on their own terms.",
+     "art": "marshall-vignette-2"
+    }
+   ],
+   "questions": [
+    {
+     "id": "black-figuration-1",
+     "level": 1,
+     "q": "What do Black figuration painters put at the centre of their pictures?",
+     "options": [
+      "Black people",
+      "Landscapes",
+      "Fruit and flowers",
+      "Machines"
+     ],
+     "explain": "They paint Black people in formats long dominated by white sitters and white artists.",
+     "reveal": "lyb-black-watchful"
+    },
+    {
+     "id": "black-figuration-2",
+     "level": 2,
+     "q": "Which painter made his first painting of a Black figure in 1980?",
+     "options": [
+      "Kerry James Marshall",
+      "Gerhard Richter",
+      "David Hockney",
+      "Mark Rothko"
+     ],
+     "explain": "It was Portrait of the Artist as a Shadow of His Former Self, a small egg tempera painting.",
+     "reveal": "marshall-many-mansions"
+    },
+    {
+     "id": "black-figuration-3",
+     "level": 2,
+     "q": "Lynette Yiadom-Boakye is known for painting…",
+     "options": [
+      "Imaginary people",
+      "Royal portraits",
+      "Celebrity photos",
+      "Abstract grids"
+     ],
+     "explain": "Her figures are invented, drawn from scrapbooks, memory and imagination rather than real sitters.",
+     "reveal": "lyb-razorbill"
+    },
+    {
+     "id": "black-figuration-4",
+     "level": 3,
+     "q": "Which older style does Marshall borrow in his Vignette paintings?",
+     "options": [
+      "Rococo",
+      "Cubism",
+      "Pop Art",
+      "Gothic"
+     ],
+     "explain": "He used the airy, romantic look of 18th-century French Rococo to paint Black love.",
+     "art": "marshall-vignette-2"
+    }
+   ],
+   "preview": true
+  },
+  "british-black-arts": {
+   "name": "British Black Arts Movement",
+   "kind": "movement",
+   "group": "now",
+   "era": "British Black Arts Movement",
+   "from": 1982,
+   "to": 1990,
+   "fade": false,
+   "look": "bold, political art by young Black British artists about race, gender and history",
+   "region": "Britain",
+   "span": "from 1982",
+   "year": 1982,
+   "timeline": true,
+   "as": "by a British Black Arts artist",
+   "related": [
+    "modern-british",
+    "yba",
+    "lubaina-himid"
+   ],
+   "intro": [
+    {
+     "title": "Wolverhampton, 1982",
+     "text": "The movement began with the First National Black Art Convention, organised by the Blk Art Group at Wolverhampton Polytechnic.",
+     "art": "himid-freedom-and-change"
+    },
+    {
+     "title": "Why it mattered",
+     "text": "Young Black and Asian artists in Britain were largely shut out of galleries. Inspired by thinkers like Stuart Hall, they used art to question race, gender and Britain's imperial past.",
+     "art": "himid-carrot-piece"
+    },
+    {
+     "title": "Look for",
+     "text": "Strong colour, cut-outs, collage, film and text. Black people shown as the main characters of history, not on its edges.",
+     "art": "himid-between-the-two"
+    }
+   ],
+   "questions": [
+    {
+     "id": "british-black-arts-1",
+     "level": 1,
+     "q": "In which city did the 1982 First National Black Art Convention happen?",
+     "options": [
+      "Wolverhampton",
+      "Edinburgh",
+      "Bristol",
+      "Cardiff"
+     ],
+     "explain": "It was organised by the Blk Art Group at Wolverhampton Polytechnic.",
+     "reveal": "himid-freedom-and-change"
+    },
+    {
+     "id": "british-black-arts-2",
+     "level": 2,
+     "q": "Which 1989 Hayward Gallery show brought these artists to wide attention?",
+     "options": [
+      "The Other Story",
+      "Sensation",
+      "Freeze",
+      "Brilliant!"
+     ],
+     "explain": "Curated by Rasheed Araeen, it showed artists of African, Caribbean and Asian descent working in Britain.",
+     "reveal": "himid-carrot-piece"
+    },
+    {
+     "id": "british-black-arts-3",
+     "level": 2,
+     "q": "Which thinker inspired and championed the movement?",
+     "options": [
+      "Stuart Hall",
+      "John Ruskin",
+      "Karl Marx",
+      "Sigmund Freud"
+     ],
+     "explain": "The cultural theorist wrote about race and how the media represent people.",
+     "reveal": "himid-ankledeep"
+    },
+    {
+     "id": "british-black-arts-4",
+     "level": 3,
+     "q": "Which artist organised Five Black Women at London's Africa Centre in 1983?",
+     "options": [
+      "Lubaina Himid",
+      "Chris Ofili",
+      "Tracey Emin",
+      "Bridget Riley"
+     ],
+     "explain": "Himid curated several shows in the 1980s to challenge the invisibility of Black women artists.",
+     "art": "himid-freedom-and-change"
+    }
+   ],
+   "preview": true
+  },
+  "installation-art": {
+   "name": "Installation art",
+   "kind": "movement",
+   "era": "Installation art",
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "span": "from the 1960s",
+   "year": 2000,
+   "intro": [
+    {
+     "title": "Step inside",
+     "text": "Instead of a picture on a wall, the artwork is a whole space you walk into. It grew from 'environments' of the late 1950s and became a major strand of art from the 1960s.",
+     "art": "kusama-brilliance-of-life"
+    },
+    {
+     "title": "The Turbine Hall",
+     "text": "Tate Modern's vast Turbine Hall hosts a big new commission most years. A glowing sun, a crack in the floor, a sea of porcelain seeds and a fountain have all appeared there.",
+     "art": "eliasson-weather-project"
+    },
+    {
+     "title": "Look for",
+     "text": "Rooms of mirrors and light, mist and sound, or piles of everyday things: seeds, shoes, furniture, bottle tops. Often made for one place, and sometimes only for a few months.",
+     "art": "salcedo-shibboleth"
+    }
+   ],
+   "questions": [
+    {
+     "id": "installation-art-1",
+     "level": 1,
+     "q": "What does installation art usually invite you to do?",
+     "options": [
+      "Walk into it and experience the space",
+      "Look at it in a gold frame",
+      "Hold it in your hands",
+      "Hear it only on headphones"
+     ],
+     "explain": "Installations often fill a whole room, and the viewer's experience is a central part of the work.",
+     "reveal": "kusama-brilliance-of-life"
+    },
+    {
+     "id": "installation-art-2",
+     "level": 1,
+     "q": "Which London space hosts a huge new installation most years?",
+     "options": [
+      "The Turbine Hall, Tate Modern",
+      "The Great Court, British Museum",
+      "The Sainsbury Wing, National Gallery",
+      "The Royal Albert Hall"
+     ],
+     "explain": "Its commissions have included Eliasson's sun, Salcedo's crack, Ai Weiwei's seeds and Kara Walker's fountain.",
+     "reveal": "eliasson-weather-project"
+    },
+    {
+     "id": "installation-art-3",
+     "level": 2,
+     "q": "From which decade did installation art become a major strand of art?",
+     "options": [
+      "The 1960s",
+      "The 1880s",
+      "The 1900s",
+      "The 1920s"
+     ],
+     "explain": "It grew even more prominent in the early 1990s.",
+     "reveal": "ai-sunflower-seeds"
+    },
+    {
+     "id": "installation-art-4",
+     "level": 3,
+     "q": "Which American artist began making walk-in 'environments' around 1957?",
+     "options": [
+      "Allan Kaprow",
+      "Jackson Pollock",
+      "Andy Warhol",
+      "Edward Hopper"
+     ],
+     "explain": "Tate traces installation art back to Kaprow's environments, with Kurt Schwitters's Merzbau as an earlier forerunner.",
+     "reveal": "salcedo-shibboleth"
+    }
+   ],
+   "group": "now",
+   "as": "by an installation artist",
+   "timeline": true,
+   "related": [
+    "dada",
+    "popart",
+    "tate"
+   ],
+   "preview": true
+  },
+  "afrofuturism": {
+   "name": "Afrofuturism",
+   "kind": "movement",
+   "group": "now",
+   "era": "Afrofuturism",
+   "as": "by an Afrofuturist artist",
+   "from": 1993,
+   "to": 2025,
+   "fade": true,
+   "look": "science fiction, history and myth imagining new Black futures",
+   "span": "from the 1990s",
+   "year": 2019,
+   "timeline": true,
+   "related": [
+    "surrealism",
+    "popart"
+   ],
+   "intro": [
+    {
+     "title": "Past meets future",
+     "text": "Afrofuturism mixes science fiction, history and fantasy to explore Black experience and reconnect the African diaspora with lost ancestry.",
+     "art": "mutu-seated-iii"
+    },
+    {
+     "title": "Where the name came from",
+     "text": "Critic Mark Dery coined the term in a 1993 essay. Musicians like Sun Ra and writers like Octavia Butler had already been imagining Black futures.",
+     "art": "mutu-me-carry"
+    },
+    {
+     "title": "Look for",
+     "text": "Hybrid bodies, cosmic or mythic beings, African symbols placed in sci-fi worlds, and imagined futures in place of painful histories.",
+     "art": "mutu-always-on-my-mind"
+    }
+   ],
+   "questions": [
+    {
+     "id": "afrofuturism-1",
+     "level": 1,
+     "q": "Which genre does Afrofuturism blend with history and fantasy?",
+     "options": [
+      "Science fiction",
+      "Romance",
+      "Westerns",
+      "Detective stories"
+     ],
+     "explain": "Tate describes it as a mix of science fiction, history and fantasy.",
+     "reveal": "mutu-seated-iii"
+    },
+    {
+     "id": "afrofuturism-2",
+     "level": 2,
+     "q": "Who coined the word Afrofuturism in 1993?",
+     "options": [
+      "Critic Mark Dery",
+      "Jazz musician Sun Ra",
+      "Painter Kerry James Marshall",
+      "Writer Toni Morrison"
+     ],
+     "explain": "Dery used it in his 1993 essay 'Black to the Future'.",
+     "reveal": "mutu-me-carry"
+    },
+    {
+     "id": "afrofuturism-3",
+     "level": 2,
+     "q": "Which jazz musician built a cosmic, Egyptian-inspired persona?",
+     "options": [
+      "Sun Ra",
+      "Miles Davis",
+      "Duke Ellington",
+      "Louis Armstrong"
+     ],
+     "explain": "Tate names him as a key Afrofuturist figure.",
+     "reveal": "mutu-always-on-my-mind"
+    },
+    {
+     "id": "afrofuturism-4",
+     "level": 3,
+     "q": "Which Afrofuturist sculptures were the first contemporary works on the Met's facade?",
+     "options": [
+      "Wangechi Mutu's The Seated",
+      "Kehinde Wiley's Rumors of War",
+      "Simone Leigh's Brick House",
+      "Kara Walker's A Subtlety"
+     ],
+     "explain": "Mutu's four bronzes filled the empty niches in 2019.",
+     "art": "mutu-seated-iii"
+    }
+   ],
+   "preview": true
+  },
+  "pictures-generation": {
+   "name": "The Pictures Generation",
+   "kind": "movement",
+   "group": "now",
+   "era": "The Pictures Generation",
+   "as": "by a Pictures Generation artist",
+   "from": 1974,
+   "to": 1984,
+   "look": "borrowed images from films, ads and magazines, restaged and questioned",
+   "region": "USA",
+   "span": "from 1974",
+   "year": 1977,
+   "timeline": true,
+   "related": [
+    "popart",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Pictures, 1977",
+     "text": "The name comes from 'Pictures', a 1977 show at Artists Space in New York, curated by critic Douglas Crimp. Recognisable images were back.",
+     "art": "sherman-film-still-48"
+    },
+    {
+     "title": "Raised on TV",
+     "text": "These young New York artists grew up on movies, adverts and magazines. They borrowed those images to ask how pictures shape who we think we are.",
+     "art": "sherman-film-still-21"
+    },
+    {
+     "title": "Look for",
+     "text": "Rephotographed ads, staged scenes that look like film stills, and copies of famous images. Mostly photography, but also painting, film and performance.",
+     "art": "sherman-untitled-1982"
+    }
+   ],
+   "questions": [
+    {
+     "id": "pictures-generation-1",
+     "level": 1,
+     "q": "Which city was home to the Pictures Generation?",
+     "options": [
+      "New York",
+      "Los Angeles",
+      "London",
+      "Paris"
+     ],
+     "explain": "Its artists gathered in New York in the 1970s, and the Met's 2009 survey covered 1974 to 1984.",
+     "reveal": "sherman-film-still-21"
+    },
+    {
+     "id": "pictures-generation-2",
+     "level": 2,
+     "q": "Which 1977 show gave the Pictures Generation its name?",
+     "options": [
+      "Pictures, at Artists Space",
+      "Freeze, in Docklands",
+      "Sensation, at the Royal Academy",
+      "Superflat, in Tokyo"
+     ],
+     "explain": "Douglas Crimp curated it at Artists Space, a non-profit venue in New York.",
+     "reveal": "sherman-film-still-48"
+    },
+    {
+     "id": "pictures-generation-3",
+     "level": 2,
+     "q": "What did these artists mainly borrow from?",
+     "options": [
+      "Films, adverts and magazines",
+      "Old Master paintings",
+      "Medieval manuscripts",
+      "Botanical drawings"
+     ],
+     "explain": "They appropriated images from mass media to question them.",
+     "reveal": "sherman-untitled-1982"
+    },
+    {
+     "id": "pictures-generation-4",
+     "level": 3,
+     "q": "Which art style were they reacting against?",
+     "options": [
+      "Minimal and Conceptual Art",
+      "Impressionism",
+      "Baroque",
+      "Pre-Raphaelites"
+     ],
+     "explain": "The Met says they turned back to recognisable images after Minimal and Conceptual Art.",
+     "reveal": "sherman-untitled-97"
+    }
+   ],
+   "preview": true
+  },
+  "performance-art": {
+   "name": "Performance art",
+   "kind": "movement",
+   "group": "now",
+   "era": "Performance art",
+   "as": "by a performance artist",
+   "from": 1970,
+   "to": 2025,
+   "fade": true,
+   "look": "live actions where the artist's own body is the material",
+   "span": "from the 1970s",
+   "year": 1974,
+   "timeline": true,
+   "related": [
+    "dada",
+    "abexp"
+   ],
+   "intro": [
+    {
+     "title": "Art as action",
+     "text": "Performance art is made through actions by the artist or others, live or recorded. Often the artist's own body is the medium.",
+     "art": "abramovic-rhythm-0"
+    },
+    {
+     "title": "Roots and rise",
+     "text": "Its roots go back to Futurist shows and Dada cabarets of the 1910s, but the term 'performance art' caught on in the 1970s.",
+     "art": "abramovic-rhythm-5"
+    },
+    {
+     "title": "Look for",
+     "text": "Since the live moment passes, museums keep photographs, videos, objects and texts. Look for endurance, risk, repetition and the audience taking part.",
+     "art": "abramovic-cleaning-mirror"
+    }
+   ],
+   "questions": [
+    {
+     "id": "performance-art-1",
+     "level": 1,
+     "q": "In performance art, what is often the artist's main material?",
+     "options": [
+      "Their own body",
+      "Oil paint",
+      "Marble",
+      "Stained glass"
+     ],
+     "explain": "Tate describes performance art as using the artist's own body as the medium.",
+     "reveal": "abramovic-rhythm-0"
+    },
+    {
+     "id": "performance-art-2",
+     "level": 2,
+     "q": "In which decade did 'performance art' become a widely used term?",
+     "options": [
+      "The 1970s",
+      "The 1920s",
+      "The 1890s",
+      "The 2010s"
+     ],
+     "explain": "Tate notes the term spread in the 1970s, though its roots go back to the 1910s.",
+     "reveal": "abramovic-rhythm-10"
+    },
+    {
+     "id": "performance-art-3",
+     "level": 2,
+     "q": "Which early movement held wild cabaret evenings in Zurich?",
+     "options": [
+      "Dada",
+      "Impressionism",
+      "Cubism",
+      "Rococo"
+     ],
+     "explain": "Dada cabarets of the 1910s are often seen as forerunners of performance.",
+     "reveal": "abramovic-rhythm-5"
+    },
+    {
+     "id": "performance-art-4",
+     "level": 3,
+     "q": "How do museums usually collect a live performance?",
+     "options": [
+      "Through photos, video, objects and texts",
+      "By freezing the performer",
+      "They never collect it",
+      "Only as oil paintings of the event"
+     ],
+     "explain": "Tate's Abramović works are sets of photographs and a five-screen video.",
+     "art": "abramovic-cleaning-mirror"
+    }
+   ],
+   "preview": true
+  },
+  "video-art": {
+   "name": "Video art",
+   "kind": "movement",
+   "group": "now",
+   "era": "Video art",
+   "as": "by a video artist",
+   "from": 1965,
+   "to": 2025,
+   "fade": true,
+   "look": "moving images on screens and projections, made for the gallery",
+   "span": "from the 1960s",
+   "year": 1995,
+   "timeline": true,
+   "related": [
+    "popart",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Moving pictures",
+     "text": "Video art relies on moving images and sound. It arrived in the 1960s, when cheap video cameras let artists record work outside the gallery.",
+     "art": "mcqueen-bear"
+    },
+    {
+     "title": "From TV sets to big screens",
+     "text": "Nam June Paik built sculptures from TV sets. Later artists projected work onto whole walls, often on several screens at once.",
+     "art": "kentridge-horse-not-mine"
+    },
+    {
+     "title": "Look for",
+     "text": "Projections in dark rooms, monitors and multiple screens. Many works loop with no beginning or end, so you can walk in at any time.",
+     "art": "mcqueen-caribs-leap"
+    }
+   ],
+   "questions": [
+    {
+     "id": "video-art-1",
+     "level": 1,
+     "q": "In which decade did video art begin?",
+     "options": [
+      "The 1960s",
+      "The 1920s",
+      "The 1880s",
+      "The 2000s"
+     ],
+     "explain": "Tate says video's arrival in the 1960s changed the course of art.",
+     "reveal": "mcqueen-bear"
+    },
+    {
+     "id": "video-art-2",
+     "level": 2,
+     "q": "Which artist made sculptures out of TV sets?",
+     "options": [
+      "Nam June Paik",
+      "Claude Monet",
+      "Henry Moore",
+      "Jackson Pollock"
+     ],
+     "explain": "Britannica credits Paik with early multi-TV installations.",
+     "reveal": "kentridge-horse-not-mine"
+    },
+    {
+     "id": "video-art-3",
+     "level": 2,
+     "q": "Why did cheap video appeal to 1960s artists?",
+     "options": [
+      "They could record work outside the gallery",
+      "It was the only way to sell art",
+      "Paint was banned",
+      "It lasted longer than stone"
+     ],
+     "explain": "Tate notes video freed artists from relying on the gallery.",
+     "reveal": "mcqueen-end-credits"
+    },
+    {
+     "id": "video-art-4",
+     "level": 3,
+     "q": "How is much video art shown today?",
+     "options": [
+      "Projected, often across several screens",
+      "Printed in newspapers",
+      "Only on mobile phones",
+      "As framed oil paintings"
+     ],
+     "explain": "Projection allowed large, multi-screen installations, as with Bill Viola.",
+     "art": "mcqueen-caribs-leap"
+    }
+   ],
+   "preview": true
+  },
+  "superflat": {
+   "name": "Superflat",
+   "kind": "movement",
+   "group": "now",
+   "era": "Superflat",
+   "as": "by a Superflat artist",
+   "from": 2000,
+   "to": 2025,
+   "fade": true,
+   "look": "flat colour, bold outlines and cute anime-style characters",
+   "region": "Japan",
+   "span": "from 2000",
+   "year": 2000,
+   "timeline": true,
+   "related": [
+    "edo-japan",
+    "popart"
+   ],
+   "intro": [
+    {
+     "title": "Murakami's idea",
+     "text": "Takashi Murakami named Superflat in 2000. He linked the flatness of old Japanese painting to the anime and manga of postwar Japan.",
+     "art": "murakami-land-of-dead"
+    },
+    {
+     "title": "Flat in two ways",
+     "text": "'Flat' means no depth in the picture, but also the shallowness of consumer culture. Superflat blurs high art, cartoons and merchandise.",
+     "art": "murakami-dob"
+    },
+    {
+     "title": "Look for",
+     "text": "Bright flat colour, strong outlines, no perspective, and cute (kawaii) characters, sometimes hiding darker themes like war and the atomic bomb.",
+     "art": "murakami-flower-matango"
+    }
+   ],
+   "questions": [
+    {
+     "id": "superflat-1",
+     "level": 1,
+     "q": "Which artist named and led Superflat?",
+     "options": [
+      "Takashi Murakami",
+      "Yayoi Kusama",
+      "Hokusai",
+      "Yoko Ono"
+     ],
+     "explain": "He set out his theory in a 2000 essay and show.",
+     "reveal": "murakami-dob"
+    },
+    {
+     "id": "superflat-2",
+     "level": 1,
+     "q": "Which popular art forms shaped Superflat?",
+     "options": [
+      "Anime and manga",
+      "Opera and ballet",
+      "Mosaics and frescoes",
+      "Jazz and blues"
+     ],
+     "explain": "Murakami tied Superflat to postwar Japanese animation and comics.",
+     "reveal": "murakami-flower-matango"
+    },
+    {
+     "id": "superflat-3",
+     "level": 2,
+     "q": "Which older Japanese art also has a 'flat' look?",
+     "options": [
+      "Edo-period painting and prints",
+      "Roman mosaics",
+      "Renaissance frescoes",
+      "Dutch still lifes"
+     ],
+     "explain": "Murakami traced Superflat back to Edo artists such as Ito Jakuchu and Soga Shohaku: bold outlines, flat colour, little perspective.",
+     "reveal": "murakami-land-of-dead"
+    },
+    {
+     "id": "superflat-4",
+     "level": 3,
+     "q": "Which US museum showed Superflat in 2001?",
+     "options": [
+      "MOCA, Los Angeles",
+      "MoMA, New York",
+      "Art Institute of Chicago",
+      "Guggenheim, New York"
+     ],
+     "explain": "It opened at MOCA Pacific Design Center, then toured to Minneapolis and Seattle.",
+     "reveal": "murakami-warp"
+    }
+   ],
+   "preview": true
+  },
+  "gerhard-richter": {
+   "name": "Gerhard Richter",
+   "kind": "artist",
+   "group": "now",
+   "movement": "capitalist-realism",
+   "era": "Capitalist Realism",
+   "year": 1965,
+   "span": "born 1932",
+   "timeline": false,
+   "related": [
+    "popart",
+    "abstraction",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Dresden in 1932, he fled East Germany in 1961, just before the Berlin Wall went up. He has lived in Cologne since 1983. His paintings have set auction records.",
+     "art": "richter-woman-staircase"
+    },
+    {
+     "title": "Part of Capitalist Realism",
+     "text": "In 1963 he and fellow Düsseldorf students coined this tongue-in-cheek label: a German answer to American pop art, made in a country split by the Cold War.",
+     "art": "richter-mouth"
+    },
+    {
+     "title": "Look for",
+     "text": "Grey, blurred paintings copied from snapshots and magazines, as if out of focus. Later, huge colourful abstracts scraped with a squeegee.",
+     "art": "richter-candle"
+    }
+   ],
+   "questions": [
+    {
+     "id": "gerhard-richter-1",
+     "level": 1,
+     "q": "In which city was Gerhard Richter born?",
+     "options": [
+      "Dresden",
+      "Vienna",
+      "Munich",
+      "Zurich"
+     ],
+     "explain": "Born in 1932, he trained at the Dresden Academy before fleeing to the West in 1961.",
+     "reveal": "richter-woman-staircase"
+    },
+    {
+     "id": "gerhard-richter-2",
+     "level": 1,
+     "q": "What tool does Richter drag across his abstract paintings?",
+     "options": [
+      "A squeegee",
+      "A garden rake",
+      "A paint roller",
+      "A feather duster"
+     ],
+     "explain": "From the mid-1980s he used a homemade squeegee to smear and scrape bands of paint.",
+     "reveal": "richter-candle"
+    },
+    {
+     "id": "gerhard-richter-3",
+     "level": 2,
+     "q": "How does Richter blur his photo paintings?",
+     "options": [
+      "He drags a dry brush through wet paint",
+      "He paints through frosted glass",
+      "He sprays them with water",
+      "He shakes the canvas"
+     ],
+     "explain": "Dragging a dry brush through the wet pigment softens every edge.",
+     "art": "richter-woman-staircase"
+    },
+    {
+     "id": "gerhard-richter-4",
+     "level": 2,
+     "q": "Richter's Mouth (1963) is based on a photo of which actress?",
+     "options": [
+      "Brigitte Bardot",
+      "Marilyn Monroe",
+      "Sophia Loren",
+      "Audrey Hepburn"
+     ],
+     "explain": "It is one of his earliest surviving canvases.",
+     "art": "richter-mouth"
+    },
+    {
+     "id": "gerhard-richter-5",
+     "level": 3,
+     "q": "Which cathedral has a huge stained-glass window designed by Richter?",
+     "options": [
+      "Cologne Cathedral",
+      "Notre-Dame, Paris",
+      "St Paul's, London",
+      "Milan Cathedral"
+     ],
+     "explain": "Unveiled in 2007 in the south transept, it is made of 11,263 squares of coloured glass."
+    }
+   ],
+   "from": 1963,
+   "to": 1970,
+   "fade": false,
+   "region": "Germany",
+   "look": "blurry paintings copied from newspaper photos and adverts, Germany's sceptical answer to pop art",
+   "preview": true
+  },
+  "kerry-james-marshall": {
+   "name": "Kerry James Marshall",
+   "kind": "artist",
+   "group": "now",
+   "movement": "black-figuration",
+   "era": "Black figuration",
+   "year": 2016,
+   "span": "born 1955",
+   "timeline": false,
+   "related": [
+    "royal-academy",
+    "salman-toor",
+    "rococo"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Birmingham, Alabama, in 1955, he grew up in Los Angeles near the Black Panthers' headquarters and built his career in Chicago. His 2016 retrospective, Mastry, travelled to the Met Breuer in New York.",
+     "art": "marshall-many-mansions"
+    },
+    {
+     "title": "Part of Black figuration",
+     "text": "Marshall set out to put Black people into the grand story of Western painting, from which they had long been missing. His first Black figure came in 1980.",
+     "art": "marshall-studio"
+    },
+    {
+     "title": "Look for",
+     "text": "Figures painted a deep, pure black, in busy, colourful scenes of gardens, homes and studios. Banners, words and symbols float in the air.",
+     "art": "marshall-vignette-2"
+    }
+   ],
+   "questions": [
+    {
+     "id": "kerry-james-marshall-1",
+     "level": 1,
+     "q": "What colour does Marshall paint his figures' skin?",
+     "options": [
+      "A deep, pure black",
+      "Pale grey",
+      "Bright blue",
+      "Gold leaf"
+     ],
+     "explain": "The extremely dark skin is his signature, a way of making Blackness impossible to overlook.",
+     "reveal": "marshall-many-mansions"
+    },
+    {
+     "id": "kerry-james-marshall-2",
+     "level": 1,
+     "q": "In which US city has Marshall spent much of his career?",
+     "options": [
+      "Chicago",
+      "Miami",
+      "Seattle",
+      "Boston"
+     ],
+     "explain": "He taught at the University of Illinois in Chicago from 1993 to 2006.",
+     "reveal": "marshall-vignette-2"
+    },
+    {
+     "id": "kerry-james-marshall-3",
+     "level": 2,
+     "q": "What kind of place does Many Mansions show?",
+     "options": [
+      "A Chicago public housing project",
+      "A royal palace",
+      "A Hollywood film set",
+      "A seaside resort"
+     ],
+     "explain": "It shows Stateway Gardens, a housing project whose cheerful name hid a hard reality.",
+     "art": "marshall-many-mansions"
+    },
+    {
+     "id": "kerry-james-marshall-4",
+     "level": 2,
+     "q": "Which painter mentored the young Marshall?",
+     "options": [
+      "Charles White",
+      "Andy Warhol",
+      "Jackson Pollock",
+      "Roy Lichtenstein"
+     ],
+     "explain": "Marshall first saw a real artist's studio when he visited White's as a schoolboy.",
+     "art": "marshall-studio"
+    },
+    {
+     "id": "kerry-james-marshall-5",
+     "level": 3,
+     "q": "Which London venue held The Histories, his big 2025 survey?",
+     "options": [
+      "Royal Academy of Arts",
+      "Tate Modern",
+      "National Gallery",
+      "Hayward Gallery"
+     ],
+     "explain": "Running from September 2025 to January 2026, it was his largest show ever in Europe.",
+     "reveal": "marshall-africa-restored"
+    }
+   ],
+   "from": 1980,
+   "to": 2025,
+   "fade": true,
+   "look": "Black figures painted at the centre of the grand traditions of Western painting",
+   "preview": true
+  },
+  "julie-mehretu": {
+   "name": "Julie Mehretu",
+   "kind": "artist",
+   "group": "now",
+   "movement": "abstraction",
+   "era": "Abstract art",
+   "year": 2012,
+   "span": "born 1970",
+   "timeline": false,
+   "related": [
+    "abstraction",
+    "abexp",
+    "tate"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Addis Ababa, Ethiopia, in 1970, she moved to Michigan aged six when her family fled turmoil. She lives in Harlem, New York. In 2021 the Whitney gave her a retrospective.",
+     "art": "mehretu-mogamma-3"
+    },
+    {
+     "title": "Part of Abstract art",
+     "text": "Her huge canvases have no clear subject, yet they grow from real places: city plans, stadiums and squares where history was made, buried under storms of marks.",
+     "art": "mehretu-stadia-2"
+    },
+    {
+     "title": "Look for",
+     "text": "Fine architectural lines and maps in layers, crossed by swarms of inky dashes, swirls and blurred shapes, often on canvases several metres wide.",
+     "art": "mehretu-black-city"
+    }
+   ],
+   "questions": [
+    {
+     "id": "julie-mehretu-1",
+     "level": 1,
+     "q": "In which city was Julie Mehretu born?",
+     "options": [
+      "Addis Ababa, Ethiopia",
+      "Nairobi, Kenya",
+      "Cairo, Egypt",
+      "Lagos, Nigeria"
+     ],
+     "explain": "Her family left for Michigan in 1977, where her father taught geography.",
+     "reveal": "mehretu-mogamma-2"
+    },
+    {
+     "id": "julie-mehretu-2",
+     "level": 1,
+     "q": "What does Mehretu layer beneath her swirling marks?",
+     "options": [
+      "Architectural drawings and maps",
+      "Pressed flowers",
+      "Comic strips",
+      "Knitting patterns"
+     ],
+     "explain": "City grids, building plans and charts give her abstract storms a hidden structure.",
+     "reveal": "mehretu-retopistics"
+    },
+    {
+     "id": "julie-mehretu-3",
+     "level": 2,
+     "q": "Mogamma is named after a building on which square?",
+     "options": [
+      "Tahrir Square, Cairo",
+      "Red Square, Moscow",
+      "Tiananmen Square, Beijing",
+      "Trafalgar Square, London"
+     ],
+     "explain": "The square was the heart of Egypt's 2011 uprising.",
+     "art": "mehretu-mogamma-3"
+    },
+    {
+     "id": "julie-mehretu-4",
+     "level": 2,
+     "q": "Her Goldman Sachs lobby painting, commissioned in 2007, is roughly the size of…",
+     "options": [
+      "A tennis court",
+      "A postcard",
+      "A front door",
+      "A double bed"
+     ],
+     "explain": "The bank paid $5 million for the commission, simply called Mural."
+    },
+    {
+     "id": "julie-mehretu-5",
+     "level": 3,
+     "q": "Besides stadium outlines, what fills Stadia II?",
+     "options": [
+      "Flags from around the world",
+      "Football scores",
+      "Players' portraits",
+      "Ticket stubs"
+     ],
+     "explain": "The series looks at stadiums as places of spectacle, made as the US drummed up support for the Iraq War.",
+     "art": "mehretu-stadia-2"
+    }
+   ],
+   "from": 1910,
+   "to": 2025,
+   "fade": true,
+   "look": "pictures with no recognisable subject, just colour, line and shape",
+   "preview": true
+  },
+  "lynette-yiadom-boakye": {
+   "name": "Lynette Yiadom-Boakye",
+   "kind": "artist",
+   "group": "now",
+   "movement": "black-figuration",
+   "era": "Black figuration",
+   "year": 2020,
+   "span": "born 1977",
+   "timeline": false,
+   "related": [
+    "salman-toor",
+    "tate",
+    "modern-british"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in London in 1977 to Ghanaian parents who worked as NHS nurses, she still lives and works in London. She was shortlisted for the Turner Prize in 2013.",
+     "art": "lyb-10pm-saturday"
+    },
+    {
+     "title": "Part of Black figuration",
+     "text": "Her paintings helped bring about a revival in painting the Black figure. Tate Britain gave her a major survey, Fly In League With The Night, in 2020.",
+     "art": "lyb-black-watchful"
+    },
+    {
+     "title": "Look for",
+     "text": "Relaxed figures reading, resting or lounging against dark, muted backgrounds with no clear time or place. Loose, quick brushwork, and almost never any shoes.",
+     "art": "lyb-razorbill"
+    }
+   ],
+   "questions": [
+    {
+     "id": "lynette-yiadom-boakye-1",
+     "level": 1,
+     "q": "Who are the people in Yiadom-Boakye's paintings?",
+     "options": [
+      "Imaginary people she invents",
+      "Her own family",
+      "Famous musicians",
+      "Kings and queens"
+     ],
+     "explain": "She builds them from scrapbooks, found images and imagination, never live sitters.",
+     "reveal": "lyb-10pm-saturday"
+    },
+    {
+     "id": "lynette-yiadom-boakye-2",
+     "level": 1,
+     "q": "How long does she usually take to paint one picture?",
+     "options": [
+      "About a day",
+      "About a month",
+      "About a year",
+      "About ten minutes"
+     ],
+     "explain": "Finishing in one session gives her paintings their fresh, spontaneous feel.",
+     "reveal": "lyb-black-watchful"
+    },
+    {
+     "id": "lynette-yiadom-boakye-3",
+     "level": 2,
+     "q": "What does she usually leave out to keep figures timeless?",
+     "options": [
+      "Shoes",
+      "Eyes",
+      "Hands",
+      "Hair"
+     ],
+     "explain": "Footwear dates a picture quickly, so her people stay outside any decade.",
+     "art": "lyb-10pm-saturday"
+    },
+    {
+     "id": "lynette-yiadom-boakye-4",
+     "level": 2,
+     "q": "What else does Yiadom-Boakye create besides paintings?",
+     "options": [
+      "Poems and stories",
+      "Film scripts",
+      "Cookbooks",
+      "Pop songs"
+     ],
+     "explain": "She says she writes the things she doesn't paint, and paints the things she doesn't write.",
+     "reveal": "lyb-generosity"
+    },
+    {
+     "id": "lynette-yiadom-boakye-5",
+     "level": 3,
+     "q": "Which award did she win at the 2018 Carnegie International?",
+     "options": [
+      "The Carnegie Prize",
+      "The Turner Prize",
+      "The Golden Lion",
+      "The Hugo Boss Prize"
+     ],
+     "explain": "She made 13 new paintings for the Pittsburgh show.",
+     "reveal": "lyb-razorbill"
+    }
+   ],
+   "from": 1980,
+   "to": 2025,
+   "fade": true,
+   "look": "Black figures painted at the centre of the grand traditions of Western painting",
+   "preview": true
+  },
+  "chris-ofili": {
+   "name": "Chris Ofili",
+   "kind": "artist",
+   "group": "now",
+   "movement": "yba",
+   "era": "Young British Artists",
+   "year": 1998,
+   "span": "born 1968",
+   "timeline": false,
+   "related": [
+    "yba",
+    "tate",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Manchester in 1968 to Nigerian parents, he studied in London and has lived in Trinidad since 2005. He won the Turner Prize in 1998.",
+     "art": "ofili-no-woman-no-cry"
+    },
+    {
+     "title": "Part of the YBAs",
+     "text": "Charles Saatchi's Sensation show in 1997 launched him with the Young British Artists. His painting of a Black Madonna caused uproar when it toured to New York.",
+     "art": "ofili-captain-shit"
+    },
+    {
+     "title": "Look for",
+     "text": "Glittering layers of resin, map pins, collage and dots. Many 1990s canvases lean on two lumps of varnished elephant dung instead of hanging on the wall.",
+     "art": "ofili-upper-room"
+    }
+   ],
+   "questions": [
+    {
+     "id": "chris-ofili-1",
+     "level": 1,
+     "q": "Which unusual material made Ofili's 1990s paintings famous?",
+     "options": [
+      "Elephant dung",
+      "Chewing gum",
+      "Seaweed",
+      "Bubble wrap"
+     ],
+     "explain": "He began using it after a 1992 trip to Zimbabwe.",
+     "reveal": "ofili-no-woman-no-cry"
+    },
+    {
+     "id": "chris-ofili-2",
+     "level": 1,
+     "q": "Which prize did Ofili win in 1998?",
+     "options": [
+      "The Turner Prize",
+      "The Booker Prize",
+      "The Archibald Prize",
+      "The Pritzker Prize"
+     ],
+     "explain": "He was the first painter to win it since Howard Hodgkin in 1985.",
+     "reveal": "ofili-captain-shit"
+    },
+    {
+     "id": "chris-ofili-3",
+     "level": 2,
+     "q": "No Woman, No Cry is a tribute to which murdered young man?",
+     "options": [
+      "Stephen Lawrence",
+      "Damilola Taylor",
+      "Emmett Till",
+      "Trayvon Martin"
+     ],
+     "explain": "It shows his mother Doreen weeping, with tiny pictures of Stephen inside her tears.",
+     "art": "ofili-no-woman-no-cry"
+    },
+    {
+     "id": "chris-ofili-4",
+     "level": 2,
+     "q": "How many monkey paintings line Ofili's The Upper Room?",
+     "options": [
+      "13",
+      "7",
+      "24",
+      "50"
+     ],
+     "explain": "Thirteen, like Jesus and the disciples at the Last Supper.",
+     "art": "ofili-upper-room"
+    },
+    {
+     "id": "chris-ofili-5",
+     "level": 3,
+     "q": "Which New York mayor attacked Ofili's The Holy Virgin Mary in 1999?",
+     "options": [
+      "Rudy Giuliani",
+      "Michael Bloomberg",
+      "Ed Koch",
+      "Bill de Blasio"
+     ],
+     "explain": "He fought the Brooklyn Museum over the Sensation show. The painting now belongs to MoMA."
+    }
+   ],
+   "from": 1988,
+   "to": 2000,
+   "region": "Britain",
+   "look": "shock, wit and everyday materials, from 1990s London",
+   "preview": true
+  },
+  "lubaina-himid": {
+   "name": "Lubaina Himid",
+   "kind": "artist",
+   "group": "now",
+   "movement": "british-black-arts",
+   "era": "British Black Arts Movement",
+   "year": 2017,
+   "span": "born 1954",
+   "timeline": false,
+   "related": [
+    "tate",
+    "royal-academy",
+    "modern-british"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Zanzibar in 1954, she came to Britain as a baby and teaches at the University of Central Lancashire. In 2017 she became the first Black woman to win the Turner Prize.",
+     "art": "himid-between-the-two"
+    },
+    {
+     "title": "Part of the British Black Arts Movement",
+     "text": "In the 1980s she was one of its first artists, organising shows of Black women artists at a time when galleries ignored them. In 2026 she represented Britain in Venice.",
+     "art": "himid-freedom-and-change"
+    },
+    {
+     "title": "Look for",
+     "text": "Flat, bright colour and bold pattern, Black figures as the heroes, and paint on cut-out wood, drawers and found objects. Boats, the sea and women together recur.",
+     "art": "himid-ankledeep"
+    }
+   ],
+   "questions": [
+    {
+     "id": "lubaina-himid-1",
+     "level": 1,
+     "q": "Where was Lubaina Himid born?",
+     "options": [
+      "Zanzibar",
+      "Jamaica",
+      "Ghana",
+      "Barbados"
+     ],
+     "explain": "Zanzibar is now part of Tanzania. She moved to Britain with her mother, a textile designer.",
+     "reveal": "himid-between-the-two"
+    },
+    {
+     "id": "lubaina-himid-2",
+     "level": 1,
+     "q": "In 2017 Himid became the first Black woman to win…",
+     "options": [
+      "The Turner Prize",
+      "The Booker Prize",
+      "The Nobel Prize",
+      "The Archibald Prize"
+     ],
+     "explain": "She was also the oldest nominee since an age limit was dropped.",
+     "reveal": "himid-ankledeep"
+    },
+    {
+     "id": "lubaina-himid-3",
+     "level": 2,
+     "q": "Which country's pavilion did Himid fill at the 2026 Venice Biennale?",
+     "options": [
+      "Great Britain",
+      "Tanzania",
+      "Ghana",
+      "France"
+     ],
+     "explain": "Her show there was called Predicting History: Testing Translation.",
+     "reveal": "himid-freedom-and-change"
+    },
+    {
+     "id": "lubaina-himid-4",
+     "level": 2,
+     "q": "What did Himid study at Wimbledon College of Arts?",
+     "options": [
+      "Theatre design",
+      "Fashion",
+      "Architecture",
+      "Photography"
+     ],
+     "explain": "That stage training still shapes her shows, which unfold like scenes in a play.",
+     "reveal": "himid-shirt-drawer"
+    },
+    {
+     "id": "lubaina-himid-5",
+     "level": 3,
+     "q": "In Between the Two my Heart is Balanced, what do the women discard?",
+     "options": [
+      "Maps and charts",
+      "Love letters",
+      "Banknotes",
+      "Flowers"
+     ],
+     "explain": "Himid imagined Black women undoing the colonial charts that carved up the world.",
+     "art": "himid-between-the-two"
+    }
+   ],
+   "from": 1982,
+   "to": 1990,
+   "fade": false,
+   "region": "Britain",
+   "look": "bold, political art by young Black British artists about race, gender and history",
+   "preview": true
+  },
+  "el-anatsui": {
+   "name": "El Anatsui",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 2007,
+   "span": "born 1944",
+   "timeline": false,
+   "related": [
+    "tate",
+    "vienna-1900",
+    "abstraction"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Anyako, Ghana, in 1944, he taught sculpture for decades at the University of Nigeria, Nsukka, and kept his studio there. Huge metal 'cloths' shown in Venice in 2007 made his name.",
+     "art": "anatsui-dusasa-ii"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "His hangings take a new shape each time they are hung. In 2023 he filled Tate Modern's Turbine Hall with Behind the Red Moon, a sail-like work about the Atlantic slave trade.",
+     "art": "anatsui-another-place"
+    },
+    {
+     "title": "Look for",
+     "text": "Thousands of flattened liquor bottle tops joined with copper wire, rippling like gold kente cloth. His earlier works are carved and painted wood.",
+     "art": "anatsui-between-earth-heaven"
+    }
+   ],
+   "questions": [
+    {
+     "id": "el-anatsui-1",
+     "level": 1,
+     "q": "What does El Anatsui stitch together to make his shimmering hangings?",
+     "options": [
+      "Liquor bottle tops",
+      "Drinks cans",
+      "Plastic bags",
+      "Old coins"
+     ],
+     "explain": "Discarded aluminium caps and seals, mostly from Nigerian distilleries.",
+     "art": "anatsui-dusasa-ii"
+    },
+    {
+     "id": "el-anatsui-2",
+     "level": 1,
+     "q": "In which country was El Anatsui born?",
+     "options": [
+      "Ghana",
+      "Kenya",
+      "South Africa",
+      "Senegal"
+     ],
+     "explain": "He was born in Anyako in 1944, then worked for decades in Nigeria.",
+     "reveal": "anatsui-another-place"
+    },
+    {
+     "id": "el-anatsui-3",
+     "level": 2,
+     "q": "Which West African textile do his metal hangings echo?",
+     "options": [
+      "Kente cloth",
+      "Harris tweed",
+      "Paisley shawls",
+      "Toile de Jouy"
+     ],
+     "explain": "Kente is a strip-woven Ghanaian cloth with royal roots; his gold, red and black metal recalls it.",
+     "art": "anatsui-between-earth-heaven"
+    },
+    {
+     "id": "el-anatsui-4",
+     "level": 2,
+     "q": "What joins the thousands of metal pieces together?",
+     "options": [
+      "Copper wire",
+      "Glue",
+      "Nails",
+      "Welding"
+     ],
+     "explain": "The pliable wire lets each work be folded and hung in a new way every time.",
+     "reveal": "anatsui-ink-splash"
+    },
+    {
+     "id": "el-anatsui-5",
+     "level": 3,
+     "q": "What did the Venice Biennale award him in 2015?",
+     "options": [
+      "The Golden Lion for Lifetime Achievement",
+      "The Turner Prize",
+      "The Pritzker Prize",
+      "The Nobel Prize"
+     ],
+     "explain": "Venice had first made him famous worldwide when his works were shown there in 2007.",
+     "reveal": "anatsui-dusasa-ii"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "yayoi-kusama": {
+   "name": "Yayoi Kusama",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 1965,
+   "span": "1929–2026",
+   "timeline": false,
+   "related": [
+    "popart",
+    "tate",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Who was she?",
+     "text": "Born in Matsumoto, Japan, in 1929, she made her name in New York's avant-garde in the 1960s, then worked in Tokyo until her death in August 2026, aged 97.",
+     "art": "kusama-no-iz"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "From 1965 she built Infinity Mirror Rooms: mirrored spaces you step into, where lights or dots repeat forever. Tate Modern's show of them drew almost a million visitors.",
+     "art": "kusama-brilliance-of-life"
+    },
+    {
+     "title": "Look for",
+     "text": "Polka dots, nets of tiny repeated loops, pumpkins, and mirrors that multiply lights and your own reflection into infinity.",
+     "art": "kusama-passing-winter"
+    }
+   ],
+   "questions": [
+    {
+     "id": "yayoi-kusama-1",
+     "level": 1,
+     "q": "Which pattern is Yayoi Kusama most famous for?",
+     "options": [
+      "Polka dots",
+      "Tartan checks",
+      "Stripes",
+      "Zigzags"
+     ],
+     "explain": "Her dots appear on paintings, pumpkins and as points of light in her mirror rooms.",
+     "reveal": "kusama-brilliance-of-life"
+    },
+    {
+     "id": "yayoi-kusama-2",
+     "level": 1,
+     "q": "In which Japanese town was Kusama born in 1929?",
+     "options": [
+      "Matsumoto",
+      "Kyoto",
+      "Hiroshima",
+      "Osaka"
+     ],
+     "explain": "Her family there grew plant seeds; she later studied painting in Kyoto.",
+     "reveal": "kusama-no-iz"
+    },
+    {
+     "id": "yayoi-kusama-3",
+     "level": 2,
+     "q": "To which city did Kusama move in the late 1950s?",
+     "options": [
+      "New York",
+      "Paris",
+      "London",
+      "Berlin"
+     ],
+     "explain": "She soon stood out in its avant-garde with net paintings, soft sculptures and happenings.",
+     "art": "kusama-no-iz"
+    },
+    {
+     "id": "yayoi-kusama-4",
+     "level": 2,
+     "q": "Which of her works drew almost a million visitors to Tate Modern?",
+     "options": [
+      "Her Infinity Mirror Rooms",
+      "Her pumpkin sculptures",
+      "Her fashion designs",
+      "Her anti-war collages"
+     ],
+     "explain": "The show ran from 2021 to 2024, making it Tate's most visited ever.",
+     "art": "kusama-chandelier-of-grief"
+    },
+    {
+     "id": "yayoi-kusama-5",
+     "level": 3,
+     "q": "Where did Kusama choose to live from 1977 onwards?",
+     "options": [
+      "A psychiatric hospital in Tokyo",
+      "A farmhouse in Matsumoto",
+      "A loft in New York",
+      "A temple in Kyoto"
+     ],
+     "explain": "She was driven each day to her studio nearby and kept working into her nineties.",
+     "reveal": "kusama-passing-winter"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "ai-weiwei": {
+   "name": "Ai Weiwei",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 2010,
+   "span": "born 1957",
+   "timeline": false,
+   "related": [
+    "tate",
+    "royal-academy",
+    "dada"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Beijing in 1957, son of the poet Ai Qing, he grew up in exile and later spent years in New York. Bold art and outspoken activism made his name.",
+     "art": "ai-tree"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "In 2010 he covered the floor of Tate Modern's Turbine Hall with about 100 million porcelain sunflower seeds, each sculpted and painted by hand in Jingdezhen.",
+     "art": "ai-sunflower-seeds"
+    },
+    {
+     "title": "Look for",
+     "text": "Old Chinese things remade: Qing dynasty furniture and temple beams, dead trees bolted together, ancient urns. Tradition, mass labour and power are his themes.",
+     "art": "ai-table-and-pillar"
+    }
+   ],
+   "questions": [
+    {
+     "id": "ai-weiwei-1",
+     "level": 1,
+     "q": "In which city was Ai Weiwei born?",
+     "options": [
+      "Beijing",
+      "Shanghai",
+      "Hong Kong",
+      "Taipei"
+     ],
+     "explain": "He was born there in 1957; his family was sent into exile soon after.",
+     "reveal": "ai-tree"
+    },
+    {
+     "id": "ai-weiwei-2",
+     "level": 1,
+     "q": "What were the 100 million 'Sunflower Seeds' made of?",
+     "options": [
+      "Porcelain",
+      "Plastic",
+      "Real sunflower seeds",
+      "Glass"
+     ],
+     "explain": "Hundreds of skilled workers in Jingdezhen, China, sculpted and painted each one by hand.",
+     "art": "ai-sunflower-seeds"
+    },
+    {
+     "id": "ai-weiwei-3",
+     "level": 2,
+     "q": "Which Beijing Olympic building did he help design?",
+     "options": [
+      "The Bird's Nest stadium",
+      "The Water Cube",
+      "The Forbidden City",
+      "The CCTV Tower"
+     ],
+     "explain": "He advised the architects Herzog & de Meuron, then refused to attend the 2008 Games.",
+     "reveal": "ai-table-and-pillar"
+    },
+    {
+     "id": "ai-weiwei-4",
+     "level": 2,
+     "q": "In 1995 he photographed himself dropping what?",
+     "options": [
+      "A Han dynasty urn",
+      "A smartphone",
+      "A bronze bell",
+      "A bag of seeds"
+     ],
+     "explain": "The ancient urn smashed: a challenge to ideas of value and authenticity.",
+     "reveal": "ai-table-and-pillar"
+    },
+    {
+     "id": "ai-weiwei-5",
+     "level": 3,
+     "q": "In 2011, for how long was Ai Weiwei secretly detained?",
+     "options": [
+      "81 days",
+      "8 days",
+      "18 months",
+      "5 years"
+     ],
+     "explain": "He was held without charge, then released on bail, with officials accusing him of tax evasion.",
+     "reveal": "ai-tree"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "doris-salcedo": {
+   "name": "Doris Salcedo",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 2007,
+   "span": "born 1958",
+   "timeline": false,
+   "related": [
+    "tate",
+    "yba",
+    "abstraction"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Bogotá, Colombia, in 1958, she studied there and in New York and still works in Bogotá. Sculptures that mourn victims of Colombia's violence made her name.",
+     "art": "salcedo-untitled-1998"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "In 2007 she split the floor of Tate Modern's Turbine Hall with Shibboleth, a 167-metre crack about racism, exclusion and the experience of migrants.",
+     "art": "salcedo-shibboleth"
+    },
+    {
+     "title": "Look for",
+     "text": "Everyday things made silent: furniture filled with cement, shoes sealed behind cow bladder, shirts stiffened with plaster. The missing person is felt, never shown.",
+     "art": "salcedo-untitled-2013"
+    }
+   ],
+   "questions": [
+    {
+     "id": "doris-salcedo-1",
+     "level": 1,
+     "q": "Which country's violence does Salcedo's work mourn?",
+     "options": [
+      "Colombia",
+      "Mexico",
+      "Chile",
+      "Spain"
+     ],
+     "explain": "She was born in Bogotá and still lives and works there.",
+     "reveal": "salcedo-untitled-1998"
+    },
+    {
+     "id": "doris-salcedo-2",
+     "level": 1,
+     "q": "What did Shibboleth (2007) put into Tate Modern's floor?",
+     "options": [
+      "A long crack",
+      "A pool of water",
+      "A giant sun",
+      "A field of grass"
+     ],
+     "explain": "It ran the length of the Turbine Hall; filled in later, it left a visible line.",
+     "art": "salcedo-shibboleth"
+    },
+    {
+     "id": "doris-salcedo-3",
+     "level": 2,
+     "q": "What fills the old furniture in many of her sculptures?",
+     "options": [
+      "Cement",
+      "Sand",
+      "Water",
+      "Feathers"
+     ],
+     "explain": "Made useless, the furniture becomes a quiet monument to lost owners.",
+     "art": "salcedo-untitled-1998"
+    },
+    {
+     "id": "doris-salcedo-4",
+     "level": 2,
+     "q": "In Atrabiliarios, whose shoes sit behind stitched cow bladder?",
+     "options": [
+      "People who disappeared, mostly women",
+      "Famous dancers",
+      "Soldiers on parade",
+      "Museum visitors"
+     ],
+     "explain": "The worn shoes stand for the missing and their families' unresolved grief.",
+     "art": "salcedo-atrabiliarios"
+    },
+    {
+     "id": "doris-salcedo-5",
+     "level": 3,
+     "q": "In 2016 she became the first winner of which sculpture prize?",
+     "options": [
+      "The Nasher Prize",
+      "The Turner Prize",
+      "The Golden Lion",
+      "The Archibald Prize"
+     ],
+     "explain": "She had also won the Hiroshima Art Prize in 2014.",
+     "reveal": "salcedo-untitled-2013"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "olafur-eliasson": {
+   "name": "Olafur Eliasson",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 2003,
+   "span": "born 1967",
+   "timeline": false,
+   "related": [
+    "tate",
+    "impressionism",
+    "abstraction"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Copenhagen in 1967 to Icelandic parents, he set up his studio in Berlin in 1995. The Weather Project at Tate Modern in 2003 made his name.",
+     "art": "eliasson-stardust-particle"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "For The Weather Project he hung a glowing half-sun under a mirrored ceiling, in fine mist. About two million people came, many lying on the floor to wave at their reflections.",
+     "art": "eliasson-weather-project"
+    },
+    {
+     "title": "Look for",
+     "text": "Light, colour, water, mist and ice used as materials. Mirrors and coloured glass make you notice your own seeing. Climate is a recurring theme.",
+     "art": "eliasson-double-lighthouse"
+    }
+   ],
+   "questions": [
+    {
+     "id": "olafur-eliasson-1",
+     "level": 1,
+     "q": "What did The Weather Project seem to bring indoors?",
+     "options": [
+      "A glowing sun",
+      "A snowstorm",
+      "A tornado",
+      "A starry night sky"
+     ],
+     "explain": "A half-circle of lamps, doubled by a mirrored ceiling, looked like a full sun in the mist.",
+     "art": "eliasson-weather-project"
+    },
+    {
+     "id": "olafur-eliasson-2",
+     "level": 1,
+     "q": "In which city is Eliasson's studio?",
+     "options": [
+      "Berlin",
+      "Reykjavík",
+      "Oslo",
+      "Copenhagen"
+     ],
+     "explain": "He founded Studio Olafur Eliasson there in 1995.",
+     "reveal": "eliasson-stardust-particle"
+    },
+    {
+     "id": "olafur-eliasson-3",
+     "level": 2,
+     "q": "What did his Ice Watch put in city streets?",
+     "options": [
+      "Blocks of Greenland ice",
+      "Ice sculptures of animals",
+      "Frozen fountains",
+      "Snow machines"
+     ],
+     "explain": "Shown in Copenhagen, Paris and London, the melting blocks drew attention to climate change.",
+     "reveal": "eliasson-weather-project"
+    },
+    {
+     "id": "olafur-eliasson-4",
+     "level": 2,
+     "q": "What is his Little Sun (2012)?",
+     "options": [
+      "A solar-powered lamp",
+      "A children's book",
+      "A weather app",
+      "A neon sign"
+     ],
+     "explain": "He launched the solar LED lamp with engineer Frederik Ottesen.",
+     "art": "eliasson-little-sun"
+    },
+    {
+     "id": "olafur-eliasson-5",
+     "level": 3,
+     "q": "In which city was Eliasson born to Icelandic parents?",
+     "options": [
+      "Copenhagen",
+      "Reykjavík",
+      "Stockholm",
+      "Helsinki"
+     ],
+     "explain": "His parents had moved there from Iceland in 1966, the year before.",
+     "reveal": "eliasson-double-lighthouse"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "kara-walker": {
+   "name": "Kara Walker",
+   "kind": "artist",
+   "group": "now",
+   "movement": "installation-art",
+   "era": "Installation art",
+   "year": 2019,
+   "span": "born 1969",
+   "timeline": false,
+   "related": [
+    "tate",
+    "british18c",
+    "realism"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Stockton, California, in 1969, she grew up in Georgia and works in New York. Huge cut-paper silhouette scenes, starting with Gone in 1994, made her name.",
+     "art": "walker-vanishing-act"
+    },
+    {
+     "title": "Part of installation art",
+     "text": "Her silhouettes wrap around whole rooms like old panoramas. In 2019 she built Fons Americanus, a 13-metre fountain in Tate Modern's Turbine Hall about the Atlantic slave trade.",
+     "art": "walker-fons-americanus"
+    },
+    {
+     "title": "Look for",
+     "text": "Black silhouettes on white: a polite 19th-century craft for portraits, turned to tell brutal stories of slavery, race and power.",
+     "art": "walker-keys-to-the-coop"
+    }
+   ],
+   "questions": [
+    {
+     "id": "kara-walker-1",
+     "level": 1,
+     "q": "Which old craft is Kara Walker best known for using?",
+     "options": [
+      "Cut-paper silhouettes",
+      "Stained glass",
+      "Embroidery",
+      "Mosaic"
+     ],
+     "explain": "Once a genteel form for family portraits, she uses it to show the violence of slavery.",
+     "art": "walker-keys-to-the-coop"
+    },
+    {
+     "id": "kara-walker-2",
+     "level": 1,
+     "q": "Which history does Walker's work most often confront?",
+     "options": [
+      "Slavery and racism in America",
+      "The French Revolution",
+      "Ancient Egypt",
+      "The space race"
+     ],
+     "explain": "Her scenes revisit the American South before the Civil War.",
+     "reveal": "walker-grub-for-sharks"
+    },
+    {
+     "id": "kara-walker-3",
+     "level": 2,
+     "q": "Which London monument inspired her fountain Fons Americanus?",
+     "options": [
+      "The Victoria Memorial",
+      "Nelson's Column",
+      "The Albert Memorial",
+      "Marble Arch"
+     ],
+     "explain": "She borrowed its form, outside Buckingham Palace, to question how empires remember.",
+     "art": "walker-fons-americanus"
+    },
+    {
+     "id": "kara-walker-4",
+     "level": 2,
+     "q": "Which award did Walker win in 1997, aged 28?",
+     "options": [
+      "A MacArthur 'genius' grant",
+      "The Turner Prize",
+      "A Pulitzer Prize",
+      "An Oscar"
+     ],
+     "explain": "She was one of the youngest people ever to receive it.",
+     "reveal": "walker-vanishing-act"
+    },
+    {
+     "id": "kara-walker-5",
+     "level": 3,
+     "q": "Her 2014 giant sphinx, A Subtlety, was coated in what?",
+     "options": [
+      "Sugar",
+      "Chocolate",
+      "Salt",
+      "Butter"
+     ],
+     "explain": "It stood in Brooklyn's old Domino Sugar Refinery before both were demolished.",
+     "reveal": "walker-fable-of-belonging"
+    }
+   ],
+   "from": 1960,
+   "to": 2025,
+   "fade": true,
+   "look": "known for whole rooms you walk into, made of light, mirrors, sound and everyday things",
+   "preview": true
+  },
+  "wangechi-mutu": {
+   "name": "Wangechi Mutu",
+   "kind": "artist",
+   "group": "now",
+   "movement": "afrofuturism",
+   "era": "Afrofuturism",
+   "year": 2019,
+   "span": "born 1972",
+   "timeline": false,
+   "related": [
+    "surrealism",
+    "dada",
+    "popart"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Nairobi, Kenya, in 1972, she studied in New York and at Yale, and works between studios in Brooklyn and Nairobi. Big collages of hybrid women made her name.",
+     "art": "mutu-me-carry"
+    },
+    {
+     "title": "Part of Afrofuturism",
+     "text": "Her mythic, part-human beings mix African tradition with science fiction to imagine new futures. Critics call her work Afrofuturist.",
+     "art": "mutu-seated-iii"
+    },
+    {
+     "title": "Look for",
+     "text": "Female figures pieced together from magazine cut-outs, medical illustrations, paint, glitter and pearls. Later sculptures use bronze, soil and found materials.",
+     "art": "mutu-always-on-my-mind"
+    }
+   ],
+   "questions": [
+    {
+     "id": "wangechi-mutu-1",
+     "level": 1,
+     "q": "In which city was Wangechi Mutu born?",
+     "options": [
+      "Nairobi",
+      "Lagos",
+      "Johannesburg",
+      "Accra"
+     ],
+     "explain": "In 1972. She now works between Nairobi and Brooklyn.",
+     "reveal": "mutu-me-carry"
+    },
+    {
+     "id": "wangechi-mutu-2",
+     "level": 1,
+     "q": "Which technique made Mutu's name?",
+     "options": [
+      "Collage",
+      "Fresco",
+      "Mosaic",
+      "Watercolour landscapes"
+     ],
+     "explain": "She builds figures from magazine pictures, medical illustrations and paint.",
+     "art": "mutu-always-on-my-mind"
+    },
+    {
+     "id": "wangechi-mutu-3",
+     "level": 2,
+     "q": "Where did Mutu's four bronze sculptures appear in 2019?",
+     "options": [
+      "On the Met's Fifth Avenue facade",
+      "On Trafalgar Square's fourth plinth",
+      "Outside Tate Modern",
+      "In Central Park Zoo"
+     ],
+     "explain": "They filled niches that had stood empty since 1902.",
+     "art": "mutu-seated-iii"
+    },
+    {
+     "id": "wangechi-mutu-4",
+     "level": 2,
+     "q": "Which ancient figure did The Seated sculptures reimagine?",
+     "options": [
+      "The caryatid",
+      "The sphinx",
+      "The gargoyle",
+      "The centaur"
+     ],
+     "explain": "Caryatids are female figures that hold up buildings. Mutu freed hers from that load.",
+     "reveal": "mutu-seated-iii"
+    },
+    {
+     "id": "wangechi-mutu-5",
+     "level": 3,
+     "q": "Which New York museum gave Mutu the 2023 survey 'Intertwined'?",
+     "options": [
+      "New Museum",
+      "Whitney Museum",
+      "Guggenheim",
+      "Brooklyn Museum"
+     ],
+     "explain": "It showed more than 100 works from about 25 years.",
+     "reveal": "mutu-chorus-line"
+    }
+   ],
+   "from": 1993,
+   "to": 2025,
+   "fade": true,
+   "look": "science fiction, history and myth imagining new Black futures",
+   "preview": true
+  },
+  "cindy-sherman": {
+   "name": "Cindy Sherman",
+   "kind": "artist",
+   "group": "now",
+   "movement": "pictures-generation",
+   "era": "The Pictures Generation",
+   "year": 1977,
+   "span": "born 1954",
+   "timeline": false,
+   "related": [
+    "popart",
+    "surrealism"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in 1954 in Glen Ridge, New Jersey, she studied in Buffalo and lives in New York. Her black and white Untitled Film Stills (1977–80) made her name.",
+     "art": "sherman-film-still-21"
+    },
+    {
+     "title": "Part of the Pictures Generation",
+     "text": "Like other young New York artists raised on movies and TV, she borrowed the look of mass media to question how images shape identity.",
+     "art": "sherman-film-still-48"
+    },
+    {
+     "title": "Look for",
+     "text": "Sherman herself in every role, transformed by wigs, make-up and costume. She is model, photographer and director. Colour arrives in the early 1980s.",
+     "art": "sherman-untitled-97"
+    }
+   ],
+   "questions": [
+    {
+     "id": "cindy-sherman-1",
+     "level": 1,
+     "q": "Who is the model in almost all of Sherman's photos?",
+     "options": [
+      "Sherman herself",
+      "Her sister",
+      "Hired actresses",
+      "Shop mannequins"
+     ],
+     "explain": "She is model, photographer and director, changing her look with make-up and costumes.",
+     "reveal": "sherman-untitled-97"
+    },
+    {
+     "id": "cindy-sherman-2",
+     "level": 1,
+     "q": "What does each Untitled Film Still look like?",
+     "options": [
+      "A scene from an old movie",
+      "A holiday snap",
+      "A passport photo",
+      "An abstract painting"
+     ],
+     "explain": "They evoke mid-century Hollywood and film noir, but the films never existed.",
+     "art": "sherman-film-still-21"
+    },
+    {
+     "id": "cindy-sherman-3",
+     "level": 2,
+     "q": "Which magazine commissioned her Centerfolds, then never ran them?",
+     "options": [
+      "Artforum",
+      "Vogue",
+      "Life",
+      "Playboy"
+     ],
+     "explain": "Commissioned in 1981, the editor feared they would be misunderstood.",
+     "reveal": "sherman-untitled-1982"
+    },
+    {
+     "id": "cindy-sherman-4",
+     "level": 2,
+     "q": "Which star does Sherman play in this 1982 photograph?",
+     "options": [
+      "Marilyn Monroe",
+      "Audrey Hepburn",
+      "Elizabeth Taylor",
+      "Grace Kelly"
+     ],
+     "explain": "The Met says she appears as Marilyn, or Norma Jean, out of her famous role.",
+     "art": "sherman-untitled-1982"
+    },
+    {
+     "id": "cindy-sherman-5",
+     "level": 3,
+     "q": "Which fellowship did Sherman receive in 1995?",
+     "options": [
+      "MacArthur Fellowship",
+      "Turner Prize",
+      "Pulitzer Prize",
+      "Nobel Prize"
+     ],
+     "explain": "She also won the Hasselblad Award in 1999.",
+     "reveal": "sherman-film-still-48"
+    }
+   ],
+   "from": 1974,
+   "to": 1984,
+   "region": "USA",
+   "look": "borrowed images from films, ads and magazines, restaged and questioned",
+   "preview": true
+  },
+  "marina-abramovic": {
+   "name": "Marina Abramović",
+   "kind": "artist",
+   "group": "now",
+   "movement": "performance-art",
+   "era": "Performance art",
+   "year": 1974,
+   "span": "born 1946",
+   "timeline": false,
+   "related": [
+    "dada",
+    "yba"
+   ],
+   "intro": [
+    {
+     "title": "Who is she?",
+     "text": "Born in Belgrade in 1946, she helped make performance a serious art form in the early 1970s. The Artist Is Present (MoMA, 2010) made her world famous.",
+     "art": "abramovic-rhythm-0"
+    },
+    {
+     "title": "Part of performance art",
+     "text": "She uses her body as subject and material, testing physical and mental limits. From 1976 to 1988 she worked with her partner Ulay.",
+     "art": "abramovic-rhythm-5"
+    },
+    {
+     "title": "Look for",
+     "text": "Endurance, danger and stillness. Her live works survive as photos, videos and objects, and are sometimes re-performed by younger artists she trains.",
+     "art": "abramovic-cleaning-mirror"
+    }
+   ],
+   "questions": [
+    {
+     "id": "marina-abramovic-1",
+     "level": 1,
+     "q": "In which city was Marina Abramović born?",
+     "options": [
+      "Belgrade",
+      "Moscow",
+      "Prague",
+      "Vienna"
+     ],
+     "explain": "In 1946, in the former Yugoslavia.",
+     "reveal": "abramovic-rhythm-5"
+    },
+    {
+     "id": "marina-abramovic-2",
+     "level": 1,
+     "q": "What did visitors do in The Artist Is Present (2010)?",
+     "options": [
+      "Sat silently facing her",
+      "Painted her portrait",
+      "Danced with her",
+      "Interviewed her on stage"
+     ],
+     "explain": "For about three months at MoMA, she sat across from strangers, one at a time.",
+     "reveal": "abramovic-the-hero"
+    },
+    {
+     "id": "marina-abramovic-3",
+     "level": 2,
+     "q": "In Rhythm 0, how many objects could visitors use on her?",
+     "options": [
+      "72",
+      "7",
+      "12",
+      "500"
+     ],
+     "explain": "For six hours in Naples in 1974, including a loaded gun.",
+     "art": "abramovic-rhythm-0"
+    },
+    {
+     "id": "marina-abramovic-4",
+     "level": 2,
+     "q": "What is she scrubbing in Cleaning the Mirror?",
+     "options": [
+      "A skeleton",
+      "A car",
+      "A marble floor",
+      "A statue"
+     ],
+     "explain": "She made it in 1995 for a show in Oxford with the Pitt Rivers Museum.",
+     "art": "abramovic-cleaning-mirror"
+    },
+    {
+     "id": "marina-abramovic-5",
+     "level": 3,
+     "q": "Which London institution gave her a major show in 2023?",
+     "options": [
+      "Royal Academy of Arts",
+      "Tate Modern",
+      "National Gallery",
+      "British Museum"
+     ],
+     "explain": "The RA says she was the first woman to have a major solo show in its Main Galleries.",
+     "reveal": "abramovic-rhythm-10"
+    }
+   ],
+   "from": 1970,
+   "to": 2025,
+   "fade": true,
+   "look": "live actions where the artist's own body is the material",
+   "preview": true
+  },
+  "william-kentridge": {
+   "name": "William Kentridge",
+   "kind": "artist",
+   "group": "now",
+   "movement": "video-art",
+   "era": "Video art",
+   "year": 1989,
+   "span": "born 1955",
+   "timeline": false,
+   "related": [
+    "expressionism",
+    "dada"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Johannesburg in 1955 to anti-apartheid lawyers, he still lives and works there. Short animated films made from charcoal drawings made his name.",
+     "art": "kentridge-felix-in-exile"
+    },
+    {
+     "title": "Part of video art",
+     "text": "Since 1989 his films have been shown as projections in galleries, later across many screens. They deal with apartheid, colonialism and their lasting effects.",
+     "art": "kentridge-horse-not-mine"
+    },
+    {
+     "title": "Look for",
+     "text": "Grey charcoal smudges and ghostly traces of rubbed-out lines. He draws, films, erases and redraws a single sheet, which he calls 'stone-age filmmaking'.",
+     "art": "kentridge-main-complaint"
+    }
+   ],
+   "questions": [
+    {
+     "id": "william-kentridge-1",
+     "level": 1,
+     "q": "In which city does William Kentridge live and work?",
+     "options": [
+      "Johannesburg",
+      "Cape Town",
+      "London",
+      "Nairobi"
+     ],
+     "explain": "He was born there in 1955 and still works there.",
+     "reveal": "kentridge-felix-in-exile"
+    },
+    {
+     "id": "william-kentridge-2",
+     "level": 1,
+     "q": "Which drawing material does he use for his animations?",
+     "options": [
+      "Charcoal",
+      "Crayon",
+      "Oil pastel",
+      "Biro"
+     ],
+     "explain": "He draws in charcoal, films, erases and redraws, frame by frame.",
+     "art": "kentridge-main-complaint"
+    },
+    {
+     "id": "william-kentridge-3",
+     "level": 2,
+     "q": "Who is Soho Eckstein in Kentridge's films?",
+     "options": [
+      "A greedy businessman",
+      "A singing dog",
+      "A Roman emperor",
+      "A space explorer"
+     ],
+     "explain": "Soho and the dreamy Felix Teitlebaum, often seen as Kentridge's alter ego, recur through the series.",
+     "reveal": "kentridge-main-complaint"
+    },
+    {
+     "id": "william-kentridge-4",
+     "level": 2,
+     "q": "What were the Casspirs in this print's title?",
+     "options": [
+      "Armoured police vehicles",
+      "Garden sheds",
+      "Cargo ships",
+      "Wine barrels"
+     ],
+     "explain": "They patrolled Black townships under apartheid.",
+     "art": "kentridge-casspirs"
+    },
+    {
+     "id": "william-kentridge-5",
+     "level": 3,
+     "q": "Where at Tate Modern were eight of his films shown in 2012?",
+     "options": [
+      "The Tanks",
+      "Turbine Hall",
+      "Blavatnik roof terrace",
+      "Members' Room"
+     ],
+     "explain": "'I am not me, the horse is not mine' was its first UK showing.",
+     "art": "kentridge-horse-not-mine"
+    }
+   ],
+   "from": 1965,
+   "to": 2025,
+   "fade": true,
+   "look": "moving images on screens and projections, made for the gallery",
+   "preview": true
+  },
+  "steve-mcqueen": {
+   "name": "Steve McQueen",
+   "kind": "artist",
+   "group": "now",
+   "movement": "video-art",
+   "era": "Video art",
+   "year": 1999,
+   "span": "born 1969",
+   "timeline": false,
+   "related": [
+    "yba",
+    "modern-british"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in London in 1969 and raised in Ealing, he studied at Chelsea and Goldsmiths. Gallery films won him the 1999 Turner Prize, long before his Oscar.",
+     "art": "mcqueen-bear"
+    },
+    {
+     "title": "Part of video art",
+     "text": "He makes films for gallery walls rather than cinemas, alongside photos and sculpture. His feature 12 Years a Slave later won the Oscar for best picture.",
+     "art": "mcqueen-caribs-leap"
+    },
+    {
+     "title": "Look for",
+     "text": "Big projections in dark rooms, often silent, close-up and slow. London, history and Black experience return again and again.",
+     "art": "mcqueen-end-credits"
+    }
+   ],
+   "questions": [
+    {
+     "id": "steve-mcqueen-1",
+     "level": 1,
+     "q": "Which prize did Steve McQueen win in 1999?",
+     "options": [
+      "The Turner Prize",
+      "The Booker Prize",
+      "The Nobel Prize",
+      "The Stirling Prize"
+     ],
+     "explain": "He was shortlisted for films including Deadpan and Drumroll.",
+     "reveal": "mcqueen-bear"
+    },
+    {
+     "id": "steve-mcqueen-2",
+     "level": 1,
+     "q": "Which McQueen film won the Oscar for best picture?",
+     "options": [
+      "12 Years a Slave",
+      "Hunger",
+      "Shame",
+      "Blitz"
+     ],
+     "explain": "Released in 2013, it won best picture at the 2014 Oscars.",
+     "reveal": "mcqueen-end-credits"
+    },
+    {
+     "id": "steve-mcqueen-3",
+     "level": 2,
+     "q": "What did McQueen's Year 3 show at Tate Britain in 2019?",
+     "options": [
+      "Class photos of London's Year 3 pupils",
+      "Portraits of the royal family",
+      "Footballers in action",
+      "Empty classrooms at night"
+     ],
+     "explain": "Tens of thousands of seven-year-olds, also shown on over 600 London billboards.",
+     "reveal": "mcqueen-escapologist"
+    },
+    {
+     "id": "steve-mcqueen-4",
+     "level": 2,
+     "q": "Who is honoured in Queen and Country's stamp sheets?",
+     "options": [
+      "UK service personnel killed in Iraq",
+      "Famous British poets",
+      "Olympic champions",
+      "Past prime ministers"
+     ],
+     "explain": "Families chose each portrait. He hoped the stamps would go into real circulation.",
+     "art": "mcqueen-queen-and-country"
+    },
+    {
+     "id": "steve-mcqueen-5",
+     "level": 3,
+     "q": "Which London tragedy is the subject of his film first shown in 2023?",
+     "options": [
+      "The Grenfell Tower fire",
+      "The Great Fire of 1666",
+      "The Blitz",
+      "The 1953 floods"
+     ],
+     "explain": "A single aerial shot circles the tower. Copies went to Tate and London Museum.",
+     "reveal": "mcqueen-caribs-leap"
+    }
+   ],
+   "from": 1965,
+   "to": 2025,
+   "fade": true,
+   "look": "moving images on screens and projections, made for the gallery",
+   "preview": true
+  },
+  "takashi-murakami": {
+   "name": "Takashi Murakami",
+   "kind": "artist",
+   "group": "now",
+   "movement": "superflat",
+   "era": "Superflat",
+   "year": 2000,
+   "span": "born 1962",
+   "timeline": false,
+   "related": [
+    "edo-japan",
+    "popart"
+   ],
+   "intro": [
+    {
+     "title": "Who is he?",
+     "text": "Born in Tokyo in 1962, he earned a PhD in traditional Japanese painting in 1993. Cute, colourful characters and the Superflat idea made his name.",
+     "art": "murakami-dob"
+    },
+    {
+     "title": "Part of Superflat",
+     "text": "He named the movement in 2000, linking old Japanese art to anime and otaku culture. Often compared to Warhol, he blurs art and commerce.",
+     "art": "murakami-land-of-dead"
+    },
+    {
+     "title": "Look for",
+     "text": "Smiling flowers, wide-eyed characters, mushrooms and skulls in flat, bright colour with crisp outlines. Gold leaf nods to old Japanese screens.",
+     "art": "murakami-flower-matango"
+    }
+   ],
+   "questions": [
+    {
+     "id": "takashi-murakami-1",
+     "level": 1,
+     "q": "In which city was Takashi Murakami born?",
+     "options": [
+      "Tokyo",
+      "Osaka",
+      "Kyoto",
+      "Seoul"
+     ],
+     "explain": "In 1962. He later studied traditional Japanese painting there.",
+     "reveal": "murakami-dob"
+    },
+    {
+     "id": "takashi-murakami-2",
+     "level": 1,
+     "q": "Which fashion house did Murakami work with from the early 2000s?",
+     "options": [
+      "Louis Vuitton",
+      "Chanel",
+      "Burberry",
+      "Gucci"
+     ],
+     "explain": "He collaborated with designer Marc Jacobs on accessories.",
+     "reveal": "murakami-flower-matango"
+    },
+    {
+     "id": "takashi-murakami-3",
+     "level": 2,
+     "q": "Who is Mr DOB?",
+     "options": [
+      "Murakami's cartoon alter ego",
+      "His dog",
+      "A Japanese emperor",
+      "A manga villain he dislikes"
+     ],
+     "explain": "The bow-tied character looks a little like Mickey Mouse, and like Murakami.",
+     "art": "murakami-dob"
+    },
+    {
+     "id": "takashi-murakami-4",
+     "level": 2,
+     "q": "Which rapper's 2007 album cover did Murakami design?",
+     "options": [
+      "Kanye West's Graduation",
+      "Jay-Z's The Blueprint",
+      "Drake's Views",
+      "Eminem's Encore"
+     ],
+     "explain": "He created the cover illustration for the album.",
+     "reveal": "murakami-warp"
+    },
+    {
+     "id": "takashi-murakami-5",
+     "level": 3,
+     "q": "What do the mushrooms in Murakami's work often refer to?",
+     "options": [
+      "The atomic bomb",
+      "Healthy eating",
+      "Fairy tales only",
+      "His garden"
+     ],
+     "explain": "His mother saw the blast from afar, and its imagery shaped his childhood.",
+     "art": "murakami-dob"
+    }
+   ],
+   "from": 2000,
+   "to": 2025,
+   "fade": true,
+   "region": "Japan",
+   "look": "flat colour, bold outlines and cute anime-style characters",
+   "preview": true
   }
  }
 }
