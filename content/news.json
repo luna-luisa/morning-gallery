@@ -1,6 +1,6 @@
 {
  "week": "w/c 16 Nov 2026",
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "featuredTopics": [
   "auctions",
   "van-gogh",
@@ -143,7 +143,7 @@
    "topic": "modern-british",
    "level": 2,
    "headline": "Alfred Wallis, the fisherman who inspired St Ives",
-   "summary": "Pallant House Gallery in Chichester opens 'Alfred Wallis: an Artists' Artist' on 21 November, showing his influence on British modernists.",
+   "summary": "Pallant House Gallery in Chichester opened 'Alfred Wallis: An Artists' Artist' on 21 November, showing his influence on British modernists.",
    "question": "Before taking up painting in his seventies, Alfred Wallis worked as what?",
    "options": [
     "A fisherman",
@@ -152,8 +152,7 @@
     "A schoolteacher"
    ],
    "answer": 0,
-   "explain": "Self-taught, he painted boats on scraps of cardboard, and Ben Nicholson and Christopher Wood befriended him in St Ives in 1928.",
-   "source": "https://pallant.org.uk/whats-on/alfred-wallis-an-artists-artist/"
+   "explain": "Self-taught, he painted boats on scraps of cardboard, and Ben Nicholson and Christopher Wood befriended him in St Ives in 1928."
   },
   {
    "id": "2026-11-van-eyck",
@@ -161,7 +160,7 @@
    "topic": "van-eyck",
    "level": 2,
    "headline": "Van Eyck's portraits reunited in London",
-   "summary": "The National Gallery's 'Van Eyck: The Portraits' opens 21 November and runs to 11 April 2027.",
+   "summary": "'Van Eyck: The Portraits' opened at the National Gallery in London on 21 November and runs until 11 April 2027.",
    "question": "Whose portraits fill the National Gallery in London from 21 November?",
    "options": [
     "Jan van Eyck",
@@ -170,8 +169,8 @@
     "Johannes Vermeer"
    ],
    "answer": 0,
-   "explain": "The first exhibition devoted to Jan van Eyck's portraits, built around the gallery's own Arnolfini Portrait.",
-   "source": "https://www.nationalgallery.org.uk/about-us/press-and-media/press-releases-archive/van-eyck-the-portraits",
+   "explain": "The first exhibition devoted to Jan van Eyck's portraits, including the gallery's own Arnolfini Portrait.",
+   "source": "https://www.nationalgallery.org.uk/exhibitions/van-eyck-the-portraits",
    "reveal": "red-turban"
   },
   {
@@ -180,7 +179,7 @@
    "topic": "guggenheim",
    "level": 3,
    "headline": "Peggy Guggenheim's London years at the RA",
-   "summary": "From 21 November the Royal Academy looks at her Cork Street gallery, Guggenheim Jeune (1938–39).",
+   "summary": "From 21 November the Royal Academy in London looks at her Cork Street gallery, Guggenheim Jeune (1938–39).",
    "question": "Peggy Guggenheim's London gallery gave the first UK solo show to which artist?",
    "options": [
     "Wassily Kandinsky",
