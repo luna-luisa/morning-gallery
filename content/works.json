@@ -3053,7 +3053,7 @@
    "img": "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAMSTU_E_2017_29242/full/600%2C/0/default.jpg",
    "credit": "Princeton University Art Museum",
    "page": "https://artmuseum.princeton.edu/collections/objects/109394",
-   "hw": 0.995,
+   "hw": 1.33,
    "hook": "The copper wire stays bendy, so the work takes a new form at every showing.",
    "why": "Bottle caps joined with pliable copper wire: a metal 'cloth' that takes a new shape each time it is hung."
   },
@@ -3377,7 +3377,7 @@
    "img": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/830456/1915363/restricted",
    "credit": "The Metropolitan Museum of Art",
    "page": "https://www.metmuseum.org/art/collection/search/830456",
-   "hw": 2.463,
+   "hw": 1.4,
    "hook": "One of four bronzes that filled the Met's empty facade niches, which had waited since 1902.",
    "why": "Part celestial being, part African queen: an Afrofuturist update of the ancient caryatid."
   },
@@ -3447,7 +3447,7 @@
    "img": "https://collectionapi.metmuseum.org/api/collection/v1/iiif/263609/616924/restricted",
    "credit": "The Metropolitan Museum of Art",
    "page": "https://www.metmuseum.org/art/collection/search/263609",
-   "hw": 2.166,
+   "hw": 1.73,
    "hook": "Here Sherman becomes Marilyn Monroe, or rather Norma Jean, out of her famous sex-kitten role.",
    "why": "A star's familiar image restaged by the artist herself: the Pictures Generation questioning celebrity pictures."
   },
@@ -3671,7 +3671,7 @@
    "img": "https://static-assets.artlogic.net/w_780,c_limit,f_auto,fl_lossy/artlogicstorage/thomasdane/images/view/fd16ad62c62cc8d092b16c079a5ac1d4j.jpg",
    "credit": "Thomas Dane Gallery",
    "page": "https://www.thomasdanegallery.com/artists/45-steve-mcqueen/works/16079/",
-   "hw": 1.857,
+   "hw": 0.67,
    "hook": "Families chose the portraits for stamp sheets honouring UK service personnel killed in Iraq.",
    "why": "An oak cabinet of stamp sheets you pull out one by one: a memorial you handle, made by an artist of moving images."
   },
@@ -3685,7 +3685,7 @@
    "img": "https://www.thebroad.org/sites/default/files/styles/webp_convert_only/public/art/murakami_dob.jpg.webp?itok=UjfU7mUN",
    "credit": "The Broad",
    "page": "https://thebroad.org/art/takashi-murakami/dob-strange-forest-blue-dob",
-   "hw": 0.395,
+   "hw": 0.65,
    "hook": "The ring of colourful mushrooms refers to the atomic bomb.",
    "why": "A cute cartoon character with bold outlines and flat colour, turned into 3D: Superflat's anime look."
   },

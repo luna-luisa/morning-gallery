@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "21 Nov, 10:44"; // shown as a small footnote on the Me page
+const BUILD_AT = "21 Nov, 10:46"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1176,7 +1176,10 @@ function startSwipeNow(){
       <div class="swbtns"><button class="swb no" id="no"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span><span class="lab">Not for me</span></button><button class="swb yes" id="yes"><span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="lab">Speaks to me</span></button></div>`;
     const card = $("#card"), im = card.querySelector("img");
     const place = () => { card.style.setProperty("--st", (im.offsetTop + 16) + "px"); card.style.setProperty("--sl", (im.offsetLeft + 14) + "px"); card.style.setProperty("--sr", (card.clientWidth - im.offsetLeft - im.offsetWidth + 14) + "px"); };
-    if (im.complete) place(); else im.onload = place;
+    if (im.complete && im.naturalWidth) place(); else im.onload = place;
+    /* a picture that won't load is skipped quietly rather than shown as a broken card */
+    im.onerror = () => { deck.splice(i, 1); draw(); };
+    if (im.complete && !im.naturalWidth) return im.onerror();
     /* while you drag, the button on that side grows and fills, so you can see which way you're choosing */
     const lean = (y, n) => { view.style.setProperty("--yes", y); view.style.setProperty("--no", n); };
     const decide = like => {
