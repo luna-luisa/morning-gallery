@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "21 Nov, 10:46"; // shown as a small footnote on the Me page
+const BUILD_AT = "21 Nov, 10:51"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -189,7 +189,7 @@ function revealFor(tid, x){
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
 const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["van-gogh","postimpressionism"],["van-gogh","expressionism"],["alfred-wallis","modern-british"],["impressionism","postimpressionism"],["impressionism","van-gogh"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
 // a work counts for its own topic and for the movement its artist topic belongs to
-const inT = (w, tid) => w.topic === tid || !!(TOPICS[w.topic] && TOPICS[w.topic].movement === tid);
+const inT = (w, tid) => w.topic === tid || (!w.solo && !!(TOPICS[w.topic] && TOPICS[w.topic].movement === tid));
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
@@ -247,7 +247,7 @@ const byWho = t => t.name.replace(/^.*: /, "").replace(/ & /g, " or ");
 function fromKey(k){ if (HIDDEN.has(k)) return null; try { const b = BUILD[k[0]]; return b ? b(k) : null; } catch(e){ return null; } }
 /* a short note about the answer you picked, when it was wrong */
 /* the movement or period a work belongs to, for answer panels */
-const eraOf = w => { const t = w && TOPICS[w.topic]; return t ? t.era || (t.kind === "movement" ? t.name : "") : ""; };
+const eraOf = w => { const t = w && TOPICS[w.topic]; return w && w.era ? w.era : t ? t.era || (t.kind === "movement" ? t.name : "") : ""; };
 /* why a picture you picked isn't the one asked for: when it was painted, what its own movement is known for */
 function pickWhy(x, p, shown){
   const asked = TOPICS[x.topic], mine = TOPICS[p.topic]; if (!asked || !mine) return "";

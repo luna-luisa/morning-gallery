@@ -4643,17 +4643,17 @@
     {
      "title": "Düsseldorf, 1963",
      "text": "Young painters in West Germany, including Gerhard Richter, Sigmar Polke and Konrad Lueg, launched a movement to challenge the dominance of American pop art.",
-     "art": "richter-mouth"
+     "art": "richter-elizabeth-i"
     },
     {
      "title": "A jokey name",
      "text": "The label mocks Socialist Realism, the official art of the Soviet bloc, while also poking at Western consumer culture. Cold War Germany sat right between the two.",
-     "art": "richter-hunting-party"
+     "art": "richter-st-john"
     },
     {
      "title": "Look for",
      "text": "Everyday images borrowed from magazines, snapshots and adverts, often in grey, and often blurred so they look like a photo slightly out of focus.",
-     "art": "richter-woman-staircase"
+     "art": "richter-brigid-polk"
     }
    ],
    "questions": [
@@ -4668,7 +4668,7 @@
       "Japanese woodblock prints"
      ],
      "explain": "Tate describes it as a German response to the dominance of American pop art in the West.",
-     "reveal": "richter-mouth"
+     "reveal": "richter-elizabeth-i"
     },
     {
      "id": "capitalist-realism-2",
@@ -4681,7 +4681,7 @@
       "Constructivism"
      ],
      "explain": "Socialist Realism was the state-approved art of the Soviet Union, so the name is a Cold War joke.",
-     "reveal": "richter-hunting-party"
+     "reveal": "richter-brigid-polk"
     },
     {
      "id": "capitalist-realism-3",
@@ -4694,7 +4694,7 @@
       "A church"
      ],
      "explain": "The event, subtitled A Demonstration for Capitalist Realism, took place in the Berges furniture store.",
-     "reveal": "richter-candle"
+     "reveal": "richter-elizabeth-i"
     },
     {
      "id": "capitalist-realism-4",
@@ -4707,7 +4707,7 @@
       "Joseph Beuys"
      ],
      "explain": "Polke and Richter were fellow students at the Düsseldorf Art Academy, and first showed together in 1963.",
-     "reveal": "richter-woman-staircase"
+     "reveal": "richter-st-john"
     }
    ],
    "preview": true
@@ -4734,7 +4734,7 @@
     {
      "title": "Who gets painted?",
      "text": "For centuries Western painting mostly showed white people. Black figuration puts Black people at the heart of the picture, as heroes, lovers, painters and dreamers.",
-     "art": "marshall-many-mansions"
+     "art": "marshall-london-bridge"
     },
     {
      "title": "A new generation",
@@ -4744,7 +4744,7 @@
     {
      "title": "Look for",
      "text": "Black figures at full size, in poses borrowed from Old Master portraits, history paintings and Rococo scenes, but painted on their own terms.",
-     "art": "marshall-vignette-2"
+     "art": "marshall-studio"
     }
    ],
    "questions": [
@@ -4772,7 +4772,7 @@
       "Mark Rothko"
      ],
      "explain": "It was Portrait of the Artist as a Shadow of His Former Self, a small egg tempera painting.",
-     "reveal": "marshall-many-mansions"
+     "reveal": "marshall-london-bridge"
     },
     {
      "id": "black-figuration-3",
@@ -4797,8 +4797,7 @@
       "Pop Art",
       "Gothic"
      ],
-     "explain": "He used the airy, romantic look of 18th-century French Rococo to paint Black love.",
-     "art": "marshall-vignette-2"
+     "explain": "He used the airy, romantic look of 18th-century French Rococo to paint Black love."
     }
    ],
    "preview": true
@@ -5455,17 +5454,17 @@
     {
      "title": "Who is he?",
      "text": "Born in Dresden in 1932, he fled East Germany in 1961, just before the Berlin Wall went up. He has lived in Cologne since 1983. His paintings have set auction records.",
-     "art": "richter-woman-staircase"
+     "art": "richter-abstract-grey"
     },
     {
      "title": "Part of Capitalist Realism",
      "text": "In 1963 he and fellow Düsseldorf students coined this tongue-in-cheek label: a German answer to American pop art, made in a country split by the Cold War.",
-     "art": "richter-mouth"
+     "art": "richter-elizabeth-i"
     },
     {
      "title": "Look for",
      "text": "Grey, blurred paintings copied from snapshots and magazines, as if out of focus. Later, huge colourful abstracts scraped with a squeegee.",
-     "art": "richter-candle"
+     "art": "richter-brigid-polk"
     }
    ],
    "questions": [
@@ -5480,7 +5479,7 @@
       "Zurich"
      ],
      "explain": "Born in 1932, he trained at the Dresden Academy before fleeing to the West in 1961.",
-     "reveal": "richter-woman-staircase"
+     "reveal": "richter-abstract-726"
     },
     {
      "id": "gerhard-richter-2",
@@ -5493,7 +5492,7 @@
       "A feather duster"
      ],
      "explain": "From the mid-1980s he used a homemade squeegee to smear and scrape bands of paint.",
-     "reveal": "richter-candle"
+     "reveal": "richter-st-john"
     },
     {
      "id": "gerhard-richter-3",
@@ -5506,7 +5505,7 @@
       "He shakes the canvas"
      ],
      "explain": "Dragging a dry brush through the wet pigment softens every edge.",
-     "art": "richter-woman-staircase"
+     "art": "richter-brigid-polk"
     },
     {
      "id": "gerhard-richter-4",
@@ -5518,8 +5517,7 @@
       "Sophia Loren",
       "Audrey Hepburn"
      ],
-     "explain": "It is one of his earliest surviving canvases.",
-     "art": "richter-mouth"
+     "explain": "It is one of his earliest surviving canvases."
     },
     {
      "id": "gerhard-richter-5",
@@ -5559,17 +5557,17 @@
     {
      "title": "Who is he?",
      "text": "Born in Birmingham, Alabama, in 1955, he grew up in Los Angeles near the Black Panthers' headquarters and built his career in Chicago. His 2016 retrospective, Mastry, travelled to the Met Breuer in New York.",
-     "art": "marshall-many-mansions"
+     "art": "marshall-london-bridge"
     },
     {
      "title": "Part of Black figuration",
      "text": "Marshall set out to put Black people into the grand story of Western painting, from which they had long been missing. His first Black figure came in 1980.",
-     "art": "marshall-studio"
+     "art": "lyb-10pm-saturday"
     },
     {
      "title": "Look for",
      "text": "Figures painted a deep, pure black, in busy, colourful scenes of gardens, homes and studios. Banners, words and symbols float in the air.",
-     "art": "marshall-vignette-2"
+     "art": "marshall-studio"
     }
    ],
    "questions": [
@@ -5584,7 +5582,7 @@
       "Gold leaf"
      ],
      "explain": "The extremely dark skin is his signature, a way of making Blackness impossible to overlook.",
-     "reveal": "marshall-many-mansions"
+     "reveal": "marshall-london-bridge"
     },
     {
      "id": "kerry-james-marshall-2",
@@ -5597,7 +5595,7 @@
       "Boston"
      ],
      "explain": "He taught at the University of Illinois in Chicago from 1993 to 2006.",
-     "reveal": "marshall-vignette-2"
+     "reveal": "marshall-studio"
     },
     {
      "id": "kerry-james-marshall-3",
@@ -5609,8 +5607,7 @@
       "A Hollywood film set",
       "A seaside resort"
      ],
-     "explain": "It shows Stateway Gardens, a housing project whose cheerful name hid a hard reality.",
-     "art": "marshall-many-mansions"
+     "explain": "It shows Stateway Gardens, a housing project whose cheerful name hid a hard reality."
     },
     {
      "id": "kerry-james-marshall-4",
@@ -5636,7 +5633,7 @@
       "Hayward Gallery"
      ],
      "explain": "Running from September 2025 to January 2026, it was his largest show ever in Europe.",
-     "reveal": "marshall-africa-restored"
+     "reveal": "marshall-london-bridge"
     }
    ],
    "from": 1975,
@@ -6183,7 +6180,7 @@
     {
      "title": "Who was she?",
      "text": "Born in Matsumoto, Japan, in 1929, she made her name in New York's avant-garde in the 1960s, then worked in Tokyo until her death in August 2026, aged 97.",
-     "art": "kusama-no-iz"
+     "art": "kusama-chandelier-of-grief"
     },
     {
      "title": "Part of installation art",
@@ -6221,7 +6218,7 @@
       "Osaka"
      ],
      "explain": "Her family there grew plant seeds; she later studied painting in Kyoto.",
-     "reveal": "kusama-no-iz"
+     "reveal": "kusama-chandelier-of-grief"
     },
     {
      "id": "yayoi-kusama-3",
@@ -6234,7 +6231,7 @@
       "Berlin"
      ],
      "explain": "She soon stood out in its avant-garde with net paintings, soft sculptures and happenings.",
-     "art": "kusama-no-iz"
+     "art": "kusama-chandelier-of-grief"
     },
     {
      "id": "yayoi-kusama-4",
@@ -6558,8 +6555,7 @@
       "A weather app",
       "A neon sign"
      ],
-     "explain": "He launched the solar LED lamp with engineer Frederik Ottesen.",
-     "art": "eliasson-little-sun"
+     "explain": "He launched the solar LED lamp with engineer Frederik Ottesen."
     },
     {
      "id": "olafur-eliasson-5",
@@ -6599,7 +6595,7 @@
     {
      "title": "Who is she?",
      "text": "Born in Stockton, California, in 1969, she grew up in Georgia and works in New York. Huge cut-paper silhouette scenes, starting with Gone in 1994, made her name.",
-     "art": "walker-vanishing-act"
+     "art": "walker-grub-for-sharks"
     },
     {
      "title": "Part of installation art",
@@ -6663,7 +6659,7 @@
       "An Oscar"
      ],
      "explain": "She was one of the youngest people ever to receive it.",
-     "reveal": "walker-vanishing-act"
+     "reveal": "walker-grub-for-sharks"
     },
     {
      "id": "kara-walker-5",
@@ -6676,7 +6672,7 @@
       "Butter"
      ],
      "explain": "It stood in Brooklyn's old Domino Sugar Refinery before both were demolished.",
-     "reveal": "walker-fable-of-belonging"
+     "reveal": "walker-fons-americanus"
     }
    ],
    "from": 1990,
