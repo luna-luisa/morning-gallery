@@ -1,0 +1,8 @@
+{
+ "id": "2026-11-21",
+ "items": [
+  {"icon": "art", "title": "18 artists of today", "text": "Kusama, Ai Weiwei, Kara Walker and more, in nine new movements.", "needs": "yayoi-kusama"},
+  {"icon": "time", "title": "Answers on a timeline", "text": "Picked the wrong one? See where it sits in time, and why."},
+  {"icon": "pin", "title": "Shows near you", "text": "Add your town or city on the Me page to see what's on nearby."}
+ ]
+}

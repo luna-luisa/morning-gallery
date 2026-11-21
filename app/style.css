@@ -745,3 +745,29 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 /* loose labels with no hard end: the band fades out */
 .th .gband.fade{background:linear-gradient(90deg,rgba(29,107,63,.40) 0 55%,rgba(29,107,63,0) 100%);border-radius:12px 0 0 12px}
 .th .fband.fade{background:linear-gradient(90deg,rgba(163,39,29,.10) 0 55%,rgba(163,39,29,0) 100%);border-radius:6px 0 0 6px}
+
+/* what's new */
+.btn.link.wnline{align-self:flex-start;color:var(--pink-ink);font-size:14px;min-height:32px}
+.who .dot{position:relative}
+.who .dot.wn::after{content:"";position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--pink);border:2px solid var(--wall)}
+.wnwrap{position:fixed;inset:0;z-index:60;pointer-events:none}
+.wnwrap.on{pointer-events:auto}
+.wnback{position:absolute;inset:0;background:rgba(20,20,30,.42);opacity:0;transition:opacity .28s ease}
+.wnwrap.on .wnback{opacity:1}
+.wnsheet{position:absolute;left:0;right:0;bottom:0;margin:0 auto;max-width:560px;max-height:88svh;overflow:auto;box-sizing:border-box;background:var(--paper);border-radius:20px 20px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding:12px 24px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:22px;transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.wnwrap.on .wnsheet{transform:none}
+.wnsheet .handle{align-self:center;width:40px;height:4px;border-radius:2px;background:var(--line)}
+.wnhead{display:flex;justify-content:space-between;align-items:flex-start}
+.wnhead>div{display:flex;flex-direction:column;gap:6px}
+.wnhead h2{margin:0;font-size:34px;line-height:1;font-weight:800;letter-spacing:-.01em}
+.wnhead h2 .serif{color:var(--klein)}
+.wnx{width:44px;height:44px;margin:-6px -10px 0 0;border:0;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.wnx svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.wnlist{display:flex;flex-direction:column;gap:18px}
+.wnitem{display:flex;gap:14px;align-items:flex-start}
+.wnitem>div{display:flex;flex-direction:column;gap:3px}
+.wnitem b{font-size:17px;line-height:1.25}
+.wnitem .small{line-height:1.4}
+.wnicon{flex:none;width:44px;height:44px;border-radius:50%;background:#e6eafb;color:var(--klein);display:flex;align-items:center;justify-content:center}
+.wnicon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){.wnsheet,.wnback{transition:none}}

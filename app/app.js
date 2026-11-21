@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "21 Nov, 08:54"; // shown as a small footnote on the Me page
+const BUILD_AT = "21 Nov, 10:44"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -40,7 +40,8 @@ async function getJSON(name){
   const r = await fetch("content/" + name + "?d=" + today()); return r.json();
 }
 async function loadContent(){
-  const [w, t, n, c, pl] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null)]);
+  const [w, t, n, c, pl, wn] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null), getJSON("whatsnew.json").catch(() => null)]);
+  WN = wn;
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
   ALL = {works: WORKS, topics: TOPICS};
@@ -324,7 +325,8 @@ function groupedWhy(x, wrongs){
 function timeH(asked, rights, wrongs){
   /* a loose label with no set years (e.g. Modern British art) gets no green band, just the dots */
   const band = !!asked.from, to = band ? Math.min(asked.to, 2025) : null, faint = [];
-  wrongs.forEach(w => { const t = TOPICS[w.topic]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
+  const lab = asked.kind === "artist" ? asked.name : asked.era || asked.name;
+  wrongs.forEach(w => { let t = TOPICS[w.topic]; if (t && t.movement && TOPICS[t.movement]) t = TOPICS[t.movement]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
   let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
@@ -332,7 +334,7 @@ function timeH(asked, rights, wrongs){
   lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const many = wrongs.length > 1;
-  return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(asked.era || asked.name)}</b>` : ""}<span class="tlline"></span>
+  return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(lab)}</b>` : ""}<span class="tlline"></span>
     ${faint.map(f => `<span class="fband ${f.t.fade ? "fade" : ""}" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
     ${band ? `<span class="gband ${asked.fade ? "fade" : ""}" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
     ${rights.filter(w => w.year).map(w => `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>`).join("")}
@@ -347,7 +349,7 @@ function reviewTiles(x, wrongIds, fact){
   const row = (w, inner, n) => `<div class="rrow">${n ? `<span class="n">${n}</span>` : ""}<span class="pthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><div class="rvtext"><b><i>${esc(w.title)}</i></b><span class="small">${esc(w.artist)}, ${esc(yearText(w))}</span>${inner}</div></div>`;
   const g = groupedWhy(x, wrongs);
   return `<div class="rtile bad"><span class="eyebrow bad">${many ? "Your mix-ups" : "Your pick"}</span>${wrongs.map((w, i) => row(w, g.rows[i] ? `<span class="why">${g.rows[i]}</span>` : "", many ? i + 1 : 0)).join("")}${g.shared.map(t => `<p class="why shared">${t}</p>`).join("")}</div>
-    ${asked && asked.kind !== "artist" && !x.odd && [...rights, ...wrongs].some(w => w.year) ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
+    ${asked && (asked.kind !== "artist" || (asked.movement && asked.from)) && !x.odd && [...rights, ...wrongs].some(w => w.year) ? `<div class="rtile time"><span class="eyebrow muted">In time</span>${timeH(asked, rights, wrongs)}</div>` : ""}
     <div class="rtile good"><span class="eyebrow good">${rights.length > 1 ? "The answers" : "The answer"}</span>${rights.map(w => row(w, x.multi ? `<span class="rstat">${w.missed ? "Missed" : "You got this one"}</span>` : "")).join("")}${fact && !x.multi ? `<p>${esc(fact)}</p>` : ""}</div>`;
 }
 const eraTag = w => eraOf(w) ? ` <span class="era">${esc(eraOf(w))}</span>` : "";
@@ -975,7 +977,8 @@ function renderToday(){
   view.innerHTML = `
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
-      ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}</div>
+      ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}
+      ${wnState() !== "none" ? `<button class="btn link wnline" id="wnline">${wnItems().length === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][wnItems().length] || wnItems().length} new things`} in the gallery</button>` : ""}</div>
     ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">Start</button>`}
@@ -987,8 +990,55 @@ function renderToday(){
   if ($("#pnew")) $("#pnew").onclick = () => playTopic(ex.fresh);
   if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
   if ($("#pnew2")) $("#pnew2").onclick = () => playTopic(ex.fresh2);
+  if ($("#wnline")) $("#wnline").onclick = () => openWhatsNew(true);
+  wnMark();
+  if (wnState() === "new") wnSoon();
+}
+/* wait until the opening picture has gone, then show what's new once */
+function wnSoon(){
+  const t0 = Date.now(), tick = () => {
+    if (!$("#wnline") || $("#wnsheet")) return;
+    if (document.querySelector(".splash, .welcome") && Date.now() - t0 < 15000) return setTimeout(tick, 400);
+    setTimeout(() => { if ($("#wnline") && !$("#wnsheet") && wnState() === "new") openWhatsNew(false); }, 700);
+  };
+  tick();
 }
 const isAdmin = () => !!(profiles[pid] && profiles[pid].admin);
+/* ---------- what's new: opens once after an update; then a dot on your name and a quiet line on Today for a week ---------- */
+let WN = null;
+const WN_ICONS = {
+  art: '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.6"/>',
+  time: '<path d="M2 14h20"/><rect x="7" y="11" width="8" height="6" rx="1" fill="currentColor" stroke="none" opacity=".25"/><circle cx="11" cy="14" r="2" fill="currentColor"/><circle cx="18" cy="14" r="2"/>',
+  pin: '<path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
+  star: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'
+};
+const wnItems = () => ((WN && WN.items) || []).filter(i => !i.needs || TOPICS[i.needs]);
+const wnKey = () => WN && WN.id ? WN.id + ":" + wnItems().map(i => i.title).join("|") : "";
+function wnState(){
+  const k = wnKey(), s = local.get("wn:" + pid) || {};
+  if (!k || !wnItems().length) return "none";
+  if (s.key !== k) return "new";
+  return s.reopened || Date.now() - s.at > 7 * 864e5 ? "none" : "chip";
+}
+function wnMark(){ $("#whoDot") && $("#whoDot").classList.toggle("wn", wnState() === "chip"); }
+function openWhatsNew(reopen){
+  const k = wnKey(), s = local.get("wn:" + pid) || {};
+  local.set("wn:" + pid, s.key === k ? Object.assign(s, reopen ? {reopened: true} : {}) : {key: k, at: Date.now()});
+  let el = $("#wnsheet");
+  if (!el){ el = document.createElement("div"); el.id = "wnsheet"; el.className = "wnwrap"; document.body.appendChild(el); }
+  el.innerHTML = `<div class="wnback"></div><div class="wnsheet" role="dialog" aria-modal="true" aria-labelledby="wntitle">
+    <span class="handle" aria-hidden="true"></span>
+    <div class="wnhead"><div><span class="eyebrow gold">Since your last visit</span><h2 id="wntitle">What's <span class="serif">new</span></h2></div>
+      <button class="wnx" id="wnx" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+    <div class="wnlist">${wnItems().map(i => `<div class="wnitem"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span><div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`).join("")}</div>
+    <button class="btn" id="wngo">Let's go</button></div>`;
+  const close = () => { el.classList.remove("on"); setTimeout(() => { el.remove(); if ($("#wnline")) renderToday(); else wnMark(); }, 300); };
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("on")));
+  $("#wnx").onclick = close; $("#wngo").onclick = close; el.querySelector(".wnback").onclick = close;
+  let y0 = null; const sh = el.querySelector(".wnsheet");
+  sh.addEventListener("touchstart", e => { y0 = e.touches[0].clientY; }, {passive: true});
+  sh.addEventListener("touchend", e => { if (y0 !== null && e.changedTouches[0].clientY - y0 > 60) close(); y0 = null; });
+}
 /* ---------- topics page: search + sections by kind (Swipe inside it is admin-only) ---------- */
 const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Museums"], ["market", "Art market"]];
 const START = ["renaissance", "impressionism", "van-gogh", "national-gallery"];
