@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "20 Nov, 18:21"; // shown as a small footnote on the Me page
+const BUILD_AT = "21 Nov, 08:54"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -43,6 +43,17 @@ async function loadContent(){
   const [w, t, n, c, pl] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null)]);
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
+  ALL = {works: WORKS, topics: TOPICS};
+  scopeContent();
+}
+let ALL = null;
+// Topics marked "preview" are visible to admins only until released.
+function scopeContent(){
+  if (!ALL) return;
+  const adm = typeof isAdmin === "function" && pid && isAdmin();
+  TOPICS = adm ? ALL.topics : Object.fromEntries(Object.entries(ALL.topics).filter(([, t]) => !t.preview));
+  WORKS = ALL.works.filter(x => !x.topic || TOPICS[x.topic] || !ALL.topics[x.topic]);
+  Object.keys(qcache).forEach(k => delete qcache[k]);
   W = Object.fromEntries(WORKS.map(x => [x.id, x]));
   ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic] && x.quiz !== false);
 }
@@ -176,6 +187,8 @@ function revealFor(tid, x){
 }
 function mc(o){ const opts = shuffle(o.options); return Object.assign({}, o, {type:"mc", options:opts, answer:opts.indexOf(o.options[0])}); }
 const CONFUSE = [["romanticism","british18c"],["rococo","british18c"],["rococo","baroque"],["realism","impressionism"],["popart","modern-british"],["yba","modern-british"],["bloomsbury","modern-british"],["abstraction","cubism"],["abstraction","expressionism"],["expressionism","vienna-1900"],["surrealism","dada"],["renaissance","van-eyck"],["van-gogh","postimpressionism"],["van-gogh","expressionism"],["alfred-wallis","modern-british"],["impressionism","postimpressionism"],["impressionism","van-gogh"],["expressionism","postimpressionism"],["modern-british","expressionism"],["modern-british","abstraction"]];
+// a work counts for its own topic and for the movement its artist topic belongs to
+const inT = (w, tid) => w.topic === tid || !!(TOPICS[w.topic] && TOPICS[w.topic].movement === tid);
 const clash = (a, b) => a === b || CONFUSE.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
 const qName = t => t.as || "from " + t.name.replace(/:.*$/, "").replace(/^The /, "the ");
 const BUILD = {
@@ -186,22 +199,22 @@ const BUILD = {
   P(key){ // which of these is <topic>
     const [, tid, wid] = key.split(":"), t = TOPICS[tid], right = W[wid]; if (!t || !right) return null;
     const r = rng(key);
-    const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
+    const others = ART.filter(w => !clash(w.topic, tid) && !inT(w, tid) && !(t.kind === "artist" && w.artist === right.artist)).sort((a, b) => Math.abs(a.year - right.year) - Math.abs(b.year - right.year)).slice(0, 16);
     const chosen = shuffle(others, r).slice(0, 3), set = shuffle([right, ...chosen]);
     return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is ${t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook, spare:others.filter(o => !chosen.includes(o)).map(w => w.id)};
   },
   I(key){ // which one isn't
     const [, tid, odd] = key.split(":"), t = TOPICS[tid], oddW = W[odd]; if (!t || !oddW) return null;
-    const r = rng(key), pool = shuffle(ART.filter(w => w.topic === tid), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
+    const r = rng(key), pool = shuffle(ART.filter(w => inT(w, tid)), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
     const set = shuffle([oddW, ...mine]);
     return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
   },
   M(){ return null; }, // retired: "which movement is this?" gave itself away, because the topic name is always on screen
   A(key){ // which of these are <topic>: four pictures, two or three right
     const [, tid, n] = key.split(":"), t = TOPICS[tid]; if (!t) return null;
-    const r = rng(key), mine = shuffle(ART.filter(w => w.topic === tid), r), k = r() < .5 ? 2 : 3; if (mine.length < k + 1) return null;
+    const r = rng(key), mine = shuffle(ART.filter(w => inT(w, tid)), r), k = r() < .5 ? 2 : 3; if (mine.length < k + 1) return null;
     const right = mine.slice(0, k), yr = right.reduce((s, w) => s + w.year, 0) / k;
-    const others = ART.filter(w => !clash(w.topic, tid) && !(t.kind === "artist" && right.some(x => x.artist === w.artist))).sort((a, b) => Math.abs(a.year - yr) - Math.abs(b.year - yr)).slice(0, 16);
+    const others = ART.filter(w => !clash(w.topic, tid) && !inT(w, tid) && !(t.kind === "artist" && right.some(x => x.artist === w.artist))).sort((a, b) => Math.abs(a.year - yr) - Math.abs(b.year - yr)).slice(0, 16);
     const wrong = shuffle(others, r).slice(0, 4 - k), set = shuffle([...right, ...wrong], r);
     const what = t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*";
     const names = set.filter(w => right.includes(w)).map(w => `${w.artist}'s ${w.title}`); // in the order they appear on screen
@@ -363,16 +376,17 @@ function allQuestions(tid){
   if (qcache[tid]) return qcache[tid];
   const t = TOPICS[tid], keys = [];
   t.questions.forEach((_, i) => keys.push(`Q:${tid}:${i}`));
-  const mine = ART.filter(w => w.topic === tid);
+  const mine = ART.filter(w => inT(w, tid));
   mine.forEach(w => {
     if (t.kind === "movement" || t.kind === "artist") keys.push(`P:${tid}:${w.id}`);
+    if (w.topic !== tid) return; // works by artists filed under this movement: picture questions only
     if (t.kind === "movement") keys.push(`W:${w.id}`);
     if (t.kind === "artist") keys.push(`T:${w.id}`);
     if (w.place && !/Tate|Private|Destroyed/.test(w.place)) keys.push(`H:${w.id}`);
   });
   if (mine.length >= 3 && (t.kind === "movement" || t.kind === "artist")){
     const r = rng("odd" + tid);
-    shuffle(ART.filter(w => !clash(w.topic, tid)), r).slice(0, Math.min(6, mine.length)).forEach(o => keys.push(`I:${tid}:${o.id}`));
+    shuffle(ART.filter(w => !clash(w.topic, tid) && !inT(w, tid)), r).slice(0, Math.min(6, mine.length)).forEach(o => keys.push(`I:${tid}:${o.id}`));
     for (let n = 0; n < Math.min(4, mine.length - 1); n++) keys.push(`A:${tid}:${n}`);
   }
   if (t.kind === "movement" && t.timeline){
@@ -1329,7 +1343,7 @@ function backToMe(){ $("#who").classList.remove("hidden"); $("#tabs").classList.
 function setWho(){ const p = profiles[pid]; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
 async function use(id){
   if (pid && state){ clearTimeout(saveTimer); await flush(); }
-  pid = id; local.set("last", id);
+  pid = id; local.set("last", id); scopeContent();
   view.innerHTML = `<p class="muted">Opening the doors…</p>`;
   const old = await store.get("progress:" + id);
   state = old && old.v === 3 ? Object.assign(fresh(), old) : fresh(old);
