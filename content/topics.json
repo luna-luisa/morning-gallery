@@ -1,5 +1,5 @@
 {
- "version": "2026-11-15",
+ "version": "2026-11-22",
  "topics": {
   "renaissance": {
    "name": "The Renaissance",
@@ -2305,6 +2305,18 @@
      ],
      "explain": "One critic called it 'an explosion in a shingle factory'.",
      "art": "nude-staircase"
+    },
+    {
+     "id": "cubism-8",
+     "level": 5,
+     "q": "The critic who wrote in 1908 that Braque reduced everything to cubes had named which movement in 1905?",
+     "options": [
+      "Fauvism",
+      "Impressionism",
+      "Romanticism",
+      "Futurism"
+     ],
+     "explain": "Louis Vauxcelles called Matisse's circle 'les fauves', wild beasts, in 1905."
     }
    ],
    "as": "Cubist",
@@ -2342,7 +2354,8 @@
    "related": [
     "cubism",
     "expressionism",
-    "abexp"
+    "abexp",
+    "hilma-af-klint"
    ],
    "intro": [
     {
@@ -2452,6 +2465,19 @@
      ],
      "explain": "Founded in 1917 by Theo van Doesburg, with Mondrian as its star.",
      "reveal": "mondrian-rby"
+    },
+    {
+     "id": "abstraction-8",
+     "level": 5,
+     "q": "Malevich showed Black Square in 1915 at an exhibition in Petrograd (St Petersburg) called…",
+     "options": [
+      "0,10",
+      "The Blue Rider",
+      "The Armory Show",
+      "Salon des Refusés"
+     ],
+     "explain": "Said 'zero-ten'. The zero is often read as starting painting again from nothing.",
+     "reveal": "black-square"
     }
    ],
    "as": "abstract art",
@@ -3809,7 +3835,8 @@
     "art-fairs",
     "impressionism",
     "vienna-1900",
-    "van-gogh"
+    "van-gogh",
+    "hilma-af-klint"
    ],
    "intro": [
     {
@@ -7301,6 +7328,238 @@
    "region": "Japan",
    "look": "smiling flowers, cartoon characters and flat, bright colour",
    "preview": true
+  },
+  "hilma-af-klint": {
+   "name": "Hilma af Klint",
+   "kind": "artist",
+   "group": "now",
+   "movement": "abstraction",
+   "era": "Abstract art",
+   "year": 1907,
+   "span": "1862–1944",
+   "timeline": false,
+   "related": [
+    "abstraction",
+    "auctions",
+    "guggenheim"
+   ],
+   "intro": [
+    {
+     "title": "Who was she?",
+     "text": "A Swedish painter (1862–1944), trained at the Royal Academy in Stockholm, who earned her living with landscapes and portraits. In private, guided by séances, she began painting huge, colourful abstract pictures in 1906. They are now seen as some of the first major abstract works in Western art.",
+     "art": "klint-primordial-chaos"
+    },
+    {
+     "title": "In the news",
+     "text": "On 19 November 2026 her 1920 painting Ser III No. 5 sold at Bukowskis in Stockholm for about $12.7m. Bukowskis says no artwork has fetched more at auction in the Nordic countries.",
+     "art": "klint-swan-17"
+    },
+    {
+     "title": "Look for",
+     "text": "Circles, spirals, petals and letters in soft pinks, blues and yellows, often in pairs of opposites: light and dark, male and female.",
+     "art": "klint-altarpiece-2"
+    }
+   ],
+   "questions": [
+    {
+     "id": "hilma-af-klint-1",
+     "level": 1,
+     "q": "Which country was Hilma af Klint from?",
+     "options": [
+      "Sweden",
+      "Norway",
+      "Denmark",
+      "Finland"
+     ],
+     "explain": "Born just outside Stockholm in 1862, she died near the city in 1944.",
+     "reveal": "klint-late-summer"
+    },
+    {
+     "id": "hilma-af-klint-2",
+     "level": 1,
+     "q": "What kind of painting is she now famous for?",
+     "options": [
+      "Abstract paintings",
+      "Seascapes",
+      "Battle scenes",
+      "Street scenes"
+     ],
+     "explain": "Shapes and colours standing for spiritual ideas, started years before most abstract pioneers.",
+     "reveal": "klint-swan-9"
+    },
+    {
+     "id": "hilma-af-klint-3",
+     "level": 1,
+     "q": "What did she ask for her abstract paintings after her death?",
+     "options": [
+      "Keep them unseen for 20 years",
+      "Burn them all",
+      "Sell them to pay debts",
+      "Give them to the king"
+     ],
+     "explain": "She felt the world was not ready for them. She left them to her nephew.",
+     "reveal": "klint-dove-1"
+    },
+    {
+     "id": "hilma-af-klint-4",
+     "level": 1,
+     "q": "In 2026 one of her paintings sold for about $12.7m. In which city?",
+     "options": [
+      "Stockholm",
+      "Oslo",
+      "Copenhagen",
+      "Helsinki"
+     ],
+     "explain": "At the auction house Bukowskis, which says it is a Nordic record."
+    },
+    {
+     "id": "hilma-af-klint-5",
+     "level": 1,
+     "q": "Her circle of women artists who held séances was called…",
+     "options": [
+      "The Five",
+      "The Blue Rider",
+      "The Eight",
+      "The Sisters"
+     ],
+     "explain": "They believed spirits they called the High Masters guided their work."
+    },
+    {
+     "id": "hilma-af-klint-6",
+     "level": 1,
+     "q": "Before her abstract work, she earned her living painting…",
+     "options": [
+      "Landscapes and portraits",
+      "Theatre scenery",
+      "Shop signs",
+      "Book covers"
+     ],
+     "explain": "She trained at the Royal Academy in Stockholm from 1882 to 1887.",
+     "art": "klint-late-summer"
+    },
+    {
+     "id": "hilma-af-klint-7",
+     "level": 2,
+     "q": "In which year did she paint her first abstract series?",
+     "options": [
+      "1906",
+      "1886",
+      "1926",
+      "1946"
+     ],
+     "explain": "Primordial Chaos, begun in 1906, when she was 44.",
+     "reveal": "klint-primordial-chaos"
+    },
+    {
+     "id": "hilma-af-klint-8",
+     "level": 2,
+     "q": "Her huge series The Ten Largest (1907) shows…",
+     "options": [
+      "The stages of human life",
+      "The months of the year",
+      "Ten Swedish cities",
+      "The Ten Commandments"
+     ],
+     "explain": "From early childhood to old age, each canvas about 3.2 metres on its long side."
+    },
+    {
+     "id": "hilma-af-klint-9",
+     "level": 3,
+     "q": "In 1908 she met which spiritual teacher, then visiting Stockholm?",
+     "options": [
+      "Rudolf Steiner",
+      "Carl Jung",
+      "Sigmund Freud",
+      "Leo Tolstoy"
+     ],
+     "explain": "The founder of Anthroposophy. She later spent long stays at his centre in Dornach, Switzerland."
+    },
+    {
+     "id": "hilma-af-klint-10",
+     "level": 3,
+     "q": "Which museum's 2018–19 Hilma af Klint show became its most visited ever?",
+     "options": [
+      "Guggenheim Museum, New York",
+      "Museum of Modern Art, New York",
+      "Tate Modern",
+      "Centre Pompidou, Paris"
+     ],
+     "explain": "Over 600,000 people came to 'Paintings for the Future'.",
+     "reveal": "klint-swan-17"
+    },
+    {
+     "id": "hilma-af-klint-11",
+     "level": 3,
+     "q": "Which four of these are series from her Paintings for the Temple?",
+     "options": [
+      "Primordial Chaos",
+      "The Ten Largest",
+      "The Swan",
+      "The Altarpieces",
+      "The Water Lilies",
+      "The Sunflowers"
+     ],
+     "correct": 4,
+     "explain": "All four belong to the Temple paintings (1906–15). Water Lilies are Monet's, Sunflowers Van Gogh's.",
+     "reveal": "klint-altarpiece-2"
+    },
+    {
+     "id": "hilma-af-klint-12",
+     "level": 4,
+     "q": "In the Temple paintings, what did blue stand for?",
+     "options": [
+      "The female spirit",
+      "The male spirit",
+      "Physical love",
+      "Death"
+     ],
+     "explain": "Yellow stood for the male spirit, and pink and red for love.",
+     "reveal": "klint-swan-9"
+    },
+    {
+     "id": "hilma-af-klint-13",
+     "level": 4,
+     "q": "Tate Modern in London showed her in 2023 alongside which Dutch painter?",
+     "options": [
+      "Piet Mondrian",
+      "Rembrandt",
+      "Johannes Vermeer",
+      "Frans Hals"
+     ],
+     "explain": "'Forms of Life' set her beside another painter whose work moved from nature to abstraction.",
+     "reveal": "mondrian-rby"
+    },
+    {
+     "id": "hilma-af-klint-14",
+     "level": 5,
+     "q": "In 1928 she took some of her abstract paintings abroad to a spiritual conference. Where?",
+     "options": [
+      "London",
+      "Paris",
+      "New York",
+      "Berlin"
+     ],
+     "explain": "She sailed there with some of her large paintings, probably from the Temple series, according to art historian Julia Voss."
+    },
+    {
+     "id": "hilma-af-klint-15",
+     "level": 5,
+     "q": "Which group of her Temple paintings did Rudolf Steiner single out for praise?",
+     "options": [
+      "Primordial Chaos",
+      "The Ten Largest",
+      "The Swan",
+      "The Altarpieces"
+     ],
+     "explain": "Among the paintings she showed him, he picked these as the best in their symbolism.",
+     "reveal": "klint-primordial-chaos"
+    }
+   ],
+   "from": 1906,
+   "to": 1944,
+   "fade": false,
+   "region": "Sweden",
+   "look": "glowing circles, spirals and petal shapes in soft pinks, blues and yellows"
   }
  }
 }

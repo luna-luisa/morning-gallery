@@ -3362,7 +3362,7 @@
    "img": "https://lh3.googleusercontent.com/ci/AL18g_RRF9Wgf1QpV2cjZwZ8-spRmWvTkf_4Fmik1Nn_JAL7PVeOlhSqb2qF7qBsXlmxkLgpST1H3Q",
    "credit": "Google Arts & Culture",
    "page": "https://artsandculture.google.com/asset/the-hero-marina-abramovi%C4%87/VAFI_In9Zu0tcg",
-   "hw": 1.0,
+   "hw": 1,
    "hook": "Made just after her father, a wartime partisan hero, died. She sits still on a white horse.",
    "why": "The artist herself, motionless with a white flag: stillness and presence, the heart of her performance art."
   },
@@ -3652,6 +3652,79 @@
    "hw": 0.7,
    "hook": "A crowded, sunny scene around a bridge, every figure painted in Marshall's deep black.",
    "why": "Figures painted a deep, pure black in a bright, busy scene: Marshall's signature."
+  },
+  {
+   "id": "klint-primordial-chaos",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "Primordial Chaos, No. 16",
+   "year": 1906,
+   "yearLabel": "1906–07",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Hilma_af_Klint%2C_1906-07%2C_Primordial_Chaos_-_No_16.jpg/1280px-Hilma_af_Klint%2C_1906-07%2C_Primordial_Chaos_-_No_16.jpg",
+   "hw": 1.384,
+   "hook": "From her very first abstract series, begun in 1906.",
+   "note": "Part of the Paintings for the Temple, which she made between 1906 and 1915.",
+   "why": "Loops and spirals float on deep blue with nothing recognisable: an early step into pure abstraction."
+  },
+  {
+   "id": "klint-swan-17",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "The Swan, No. 17",
+   "year": 1915,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Hilma_af_Klint%2C_1915%2C_Svanen%2C_No._17.jpg/1280px-Hilma_af_Klint%2C_1915%2C_Svanen%2C_No._17.jpg",
+   "hw": 0.993,
+   "hook": "Never shown in her lifetime.",
+   "note": "In the Swan series, birds slowly turn into pure geometric shapes.",
+   "why": "A circle split into black, white, yellow and blue on flat red: shape and colour alone carry the meaning."
+  },
+  {
+   "id": "klint-altarpiece-2",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "Group X, No. 2, Altarpiece",
+   "year": 1915,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Hilma_af_Klint_-_Altarpiece_No._2_%2813916%29.jpg/1280px-Hilma_af_Klint_-_Altarpiece_No._2_%2813916%29.jpg",
+   "hw": 1.33,
+   "hook": "One of the Altarpieces in her Paintings for the Temple.",
+   "note": "A gold disc sits above a dark triangle, painted for a temple she never saw built.",
+   "why": "A gold disc above a striped triangle, with no figures at all: geometry used as a spiritual symbol."
+  },
+  {
+   "id": "klint-dove-1",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "The Dove, No. 1",
+   "year": 1915,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Hilma_af_Klint_-_Group_IX_UW_No._25%2C_The_Dove%2C_No._1_%2813912%29.jpg/1280px-Hilma_af_Klint_-_Group_IX_UW_No._25%2C_The_Dove%2C_No._1_%2813912%29.jpg",
+   "hw": 1.313,
+   "hook": "The dove stood for love in her private symbolism.",
+   "note": "Part of the Paintings for the Temple.",
+   "why": "A pale circle with a heart shape and a band of rainbow colours: symbols, not things you could see."
+  },
+  {
+   "id": "klint-swan-9",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "The Swan, No. 9",
+   "year": 1915,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Group_IX_SUW%2C_The_Swan_No._9_by_Hilma_af_Klint_%2813939%29.jpg/1280px-Group_IX_SUW%2C_The_Swan_No._9_by_Hilma_af_Klint_%2813939%29.jpg",
+   "hw": 1,
+   "hook": "Pairs of opposites, light and dark, meet in the middle.",
+   "note": "The swan stood for transcendence in her private symbolism.",
+   "why": "Two curving forms, one dark and one light, meet on flat red: abstract shapes standing for opposites."
+  },
+  {
+   "id": "klint-late-summer",
+   "topic": "hilma-af-klint",
+   "artist": "Hilma af Klint",
+   "title": "Late Summer (Eftersommar)",
+   "year": 1903,
+   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Eftersommar_Hilma_af_Klint_1903.jpeg/1280px-Eftersommar_Hilma_af_Klint_1903.jpeg",
+   "hw": 0.422,
+   "solo": true,
+   "hook": "The kind of landscape she showed in public while keeping her abstract work private.",
+   "note": "Painted three years before her first abstract series."
   }
  ]
 }
