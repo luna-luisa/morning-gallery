@@ -1,12 +1,12 @@
 {
  "week": "w/c 16 Nov 2026",
- "updated": "2026-11-21",
+ "updated": "2026-11-22",
  "featuredTopics": [
   "auctions",
   "van-gogh",
-  "art-fairs",
+  "abstraction",
   "van-eyck",
-  "guggenheim"
+  "alfred-wallis"
  ],
  "items": [
   {
@@ -108,7 +108,6 @@
    ],
    "answer": 0,
    "explain": "Samuel and Hedwig Fischer owned the painting from 1909, and their heirs say its 1936 sale happened under Nazi persecution; the terms of the deal were not disclosed.",
-   "source": "https://hyperallergic.com/a-marquee-week-of-indulgence/",
    "reveal": {
     "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
     "artist": "Vincent van Gogh",
@@ -120,27 +119,9 @@
    }
   },
   {
-   "id": "2026-11-frieze-abu-dhabi",
-   "date": "2026-11-13",
-   "topic": "art-fairs",
-   "level": 3,
-   "headline": "Frieze opens its first Middle East fair",
-   "summary": "Frieze Abu Dhabi runs 19 to 22 November at Manarat Al Saadiyat, taking over from the long-running Abu Dhabi Art fair.",
-   "question": "In which city did Frieze open its first Middle East fair on 19 November?",
-   "options": [
-    "Abu Dhabi",
-    "Dubai",
-    "Doha",
-    "Riyadh"
-   ],
-   "answer": 0,
-   "explain": "The fair is a partnership with Abu Dhabi's Department of Culture and Tourism and replaces Abu Dhabi Art, which began in 2007 as ArtParis Abu Dhabi.",
-   "source": "https://www.frieze.com/article/frieze-abu-dhabi-reveals-global-line-shaped-region-its-inaugural-edition"
-  },
-  {
    "id": "2026-11-alfred-wallis",
    "date": "2026-11-13",
-   "topic": "modern-british",
+   "topic": "alfred-wallis",
    "level": 2,
    "headline": "Alfred Wallis, the fisherman who inspired St Ives",
    "summary": "Pallant House Gallery in Chichester opened 'Alfred Wallis: An Artists' Artist' on 21 November, showing his influence on British modernists.",
@@ -232,6 +213,28 @@
    "answer": 0,
    "explain": "The jury resigned on 30 April, so the May ceremony was dropped. Instead visitors vote for two 'Visitors' Lions', announced on 22 November.",
    "source": "https://www.labiennale.org/en/node/19732"
+  },
+  {
+   "id": "2026-11-af-klint-record",
+   "date": "2026-11-19",
+   "topic": "abstraction",
+   "level": 2,
+   "headline": "Hilma af Klint painting sets a Nordic auction record",
+   "summary": "Her 1920 abstract painting Ser III No. 5 sold for 128.9m Swedish kronor (about $12.7m) at Bukowskis in Stockholm on 19 November.",
+   "question": "Which Swedish artist’s 1920 abstract painting just sold for about $12.7m?",
+   "options": [
+    "Hilma af Klint",
+    "Carl Larsson",
+    "Anders Zorn",
+    "Prince Eugen"
+   ],
+   "answer": 0,
+   "explain": "Hilma af Klint painted it in January 1920, and it made more than 16 times its top estimate; Bukowskis says no artwork has sold for more at auction in the Nordic countries.",
+   "notes": {
+    "Carl Larsson": "Larsson is loved for his cosy watercolours of Swedish family life, not abstract paintings.",
+    "Anders Zorn": "Zorn was a Swedish portrait painter famous for his bathers and society portraits."
+   },
+   "source": "https://via.tt.se/pressmeddelande/4649293/bukowskis-klubbar-hilma-af-klint-for-1289-miljoner-sek-det-dyraste-konstverket-som-nagonsin-salts-i-norden?publisherId=3236798"
   }
  ]
 }
