@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 18:14"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 18:28"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1038,6 +1038,9 @@ function finish(){
 }
 
 const SRC = {"news.artnet.com": "Artnet", "artnet.com": "Artnet", "theguardian.com": "the Guardian", "bbc.co.uk": "the BBC", "bbc.com": "the BBC", "hyperallergic.com": "Hyperallergic", "sothebys.com": "Sotheby's", "christies.com": "Christie's", "nationalgallery.org.uk": "the National Gallery", "tate.org.uk": "Tate", "royalacademy.org.uk": "the Royal Academy", "vam.ac.uk": "the V&A", "britishmuseum.org": "the British Museum"};
+/* never linked: paywalled, spammy or not ours to send people to (Luna's link rules) */
+const NOLINK = /theartnewspaper|artnews\.com|finestresullarte|thenationalnews|ft\.com|nytimes|thetimes|telegraph|substack|blogspot|wordpress|medium\.com|via\.tt\.se/i;
+const okSrc = u => !!u && /^https:\/\//.test(u) && !NOLINK.test(u);
 /* the organisation's name, not its web address */
 const srcName = u => { try { const h = new URL(u).hostname.replace(/^www\./, ""); if (SRC[h]) return SRC[h]; const b = h.split(".")[0]; return b.charAt(0).toUpperCase() + b.slice(1); } catch(e){ return "the source"; } };
 function renderToday(){
@@ -1053,7 +1056,7 @@ function renderToday(){
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
     ${NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
-    ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>`).join("")}</div></section>`
+    ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => okSrc(n.source) ? `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>` : `<div class="newsitem link"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></section>`
       : `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>`) : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;
   $("#endless").onclick = startEndless;
@@ -1287,16 +1290,23 @@ async function loadDisc(){
   DISCMAP = Object.fromEntries(DISC.map(w => [w.id, w])); return DISC;
 }
 const WD = id => W[id] || DISCMAP[id];
+/* everyone gets the same three rounds each week, so the picks gather around the same artists:
+   the week's date chooses them from the deck. Thumbnails elsewhere (peek) can be any works */
 function swipeDeck(n = 10, peek = false){
-  const seen = state.swiped || {}, ok = w => (!seen[w.id] || peek) && !(PICS.broken && PICS.broken[w.id]);
-  const disc = shuffle((DISC || []).filter(ok)), mine = shuffle(swipePool().filter(ok));
-  /* mostly new artists, a few from the app; half from 1880 on, one work per artist per round */
-  const pick = [], per = {};
-  const take = (list, want, test = () => true) => { let got = 0; for (const w of list){ if (got >= want || pick.length >= n) return; const a = plainArtist(w.artist); if (per[a] || pick.includes(w) || !test(w)) continue; pick.push(w); per[a] = 1; got++; } };
-  const nd = disc.length ? Math.round(n * 0.75) : 0;
-  take(disc, Math.ceil(nd / 2), w => w.year >= 1880); take(disc, nd - pick.length, w => w.year < 1880); take(disc, nd - pick.length);
-  take(mine, n - pick.length); take(disc, n - pick.length);
-  return shuffle(pick);
+  const ok = w => !(PICS.broken && PICS.broken[w.id]);
+  if (peek) return shuffle((DISC && DISC.length ? DISC : swipePool()).filter(ok)).slice(0, n);
+  const k = weekKey(), per = new Set(), week = [];
+  const disc = shuffle((DISC || []).filter(ok), rng("swipe:" + k)), mine = shuffle(swipePool().filter(ok), rng("swipe-app:" + k));
+  const nd = disc.length ? Math.round(n * 0.75) : 0, nm = n - nd;
+  const take = (list, want, test = () => true) => { const out = []; for (const w of list){ if (out.length >= want) break; const a = plainArtist(w.artist); if (per.has(a) || !test(w)) continue; per.add(a); out.push(w); } return out; };
+  for (let r = 0; r < SW_WEEKLY; r++){
+    /* about half from 1880 on in every round, one work per artist across the whole week */
+    const modern = take(disc, Math.ceil(nd / 2), w => w.year >= 1880), older = take(disc, nd - modern.length, w => w.year < 1880);
+    const more = take(disc, nd - modern.length - older.length), app = take(mine, nm);
+    week.push(shuffle(modern.concat(older, more, app), rng(`swipe:${k}:${r}`)));
+  }
+  const used = SW_WEEKLY - swRoundsLeft();
+  return week[Math.min(used, SW_WEEKLY - 1)] || [];
 }
 function swipeIntro(done){
   const el = document.createElement("div"); el.id = "welcome"; el.className = "welcome"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Swipe to discover");
