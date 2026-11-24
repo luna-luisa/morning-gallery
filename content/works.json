@@ -137,7 +137,9 @@
    "place": "Prado, Madrid",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/The_Garden_of_earthly_delights.jpg/1280px-The_Garden_of_earthly_delights.jpg",
    "hook": "Paradise on the left, a strange garden of pleasure in the middle, hell on the right.",
-   "hw": 0.57
+   "hw": 0.57,
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "arnolfini",
@@ -189,7 +191,9 @@
    "hook": "Begun with his brother Hubert. It's one of the most stolen artworks in history.",
    "hw": 0.738,
    "note": "Its meadows are painted plant by plant with almost scientific accuracy in glowing oil, a northern obsession with detail rather than Italian classical proportion.",
-   "why": "Meadow flowers painted plant by plant and jewelled robes glowing in oil: Netherlandish devotion to minute, luminous detail."
+   "why": "Meadow flowers painted plant by plant and jewelled robes glowing in oil: Netherlandish devotion to minute, luminous detail.",
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "rolin",
@@ -834,7 +838,9 @@
    "yearLabel": "1884–86",
    "hw": 0.666,
    "note": "Seurat applied the colour theories of scientists like Chevreul and Rood, planning his Parisians through numerous drawings and oil sketches rather than catching a passing moment.",
-   "why": "Thousands of tiny dots of colour build stiff, carefully planned figures: Seurat's scientific Post-Impressionist method."
+   "why": "Thousands of tiny dots of colour build stiff, carefully planned figures: Seurat's scientific Post-Impressionist method.",
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "asnieres",
@@ -927,7 +933,9 @@
    "hook": "Rain as fine diagonal lines. Van Gogh copied this one too.",
    "hw": 1.46,
    "note": "From Hiroshige's woodblock series One Hundred Famous Views of Edo: figures under hats, umbrellas and straw capes hurry across while a raftsman punts below.",
-   "why": "Rain carved as fine parallel lines over areas of flat colour: woodblock printmaking at its most graphic."
+   "why": "Rain carved as fine parallel lines over areas of flat colour: woodblock printmaking at its most graphic.",
+   "zoom": 1.08,
+   "focus": "50% 50%"
   },
   {
    "id": "hoitsu",
@@ -1134,7 +1142,9 @@
    "hook": "Only black lines, white, and the three primary colours.",
    "hw": 1.014,
    "note": "Mondrian balances asymmetric flat planes against thick black bars as a harmony of opposites, with no objects, dreams or hidden figures to decode.",
-   "why": "A big red square, small blue and yellow blocks and black lines: pure colour and shape, depicting nothing."
+   "why": "A big red square, small blue and yellow blocks and black lines: pure colour and shape, depicting nothing.",
+   "zoom": 1.04,
+   "focus": "50% 50%"
   },
   {
    "id": "mondrian-1913",
@@ -1159,7 +1169,9 @@
    "hook": "A cheap Mona Lisa postcard with a moustache added. The letters make a rude pun in French.",
    "hw": 1.292,
    "note": "No painting skill on show: Duchamp simply pencilled onto a found reproduction, a 'rectified readymade' mocking reverence for great art.",
-   "why": "A cheap Mona Lisa postcard with a pencilled moustache and beard: Dada's mocking jab at reverence for great art."
+   "why": "A cheap Mona Lisa postcard with a pencilled moustache and beard: Dada's mocking jab at reverence for great art.",
+   "zoom": 1.25,
+   "focus": "50% 42%"
   },
   {
    "id": "interchange",
@@ -1172,7 +1184,9 @@
    "hook": "Reportedly sold privately in 2015 for about $300m.",
    "hw": 1.132,
    "note": "De Kooning's quick, gestural marks, learned from Franz Kline, almost swallow a fleshy pink seated woman as his work shifts towards abstract urban landscapes.",
-   "why": "Slashing, energetic brushstrokes collide across a large canvas: the gestural energy of 1950s New York painting."
+   "why": "Slashing, energetic brushstrokes collide across a large canvas: the gestural energy of 1950s New York painting.",
+   "zoom": 1.08,
+   "focus": "50% 50%"
   },
   {
    "id": "soup-cans",
@@ -1386,7 +1400,9 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_K2dZGSl.jpg",
    "hw": 0.807,
    "note": "A working river observed closely: one boy unhitches the tow-rope from a barge while another sits astride the tow-horse, near Constable's Suffolk village.",
-   "why": "A sunlit Suffolk river with towering trees and broad sky, closely observed: the Romantic attachment to native landscape."
+   "why": "A sunlit Suffolk river with towering trees and broad sky, closely observed: the Romantic attachment to native landscape.",
+   "zoom": 1.04,
+   "focus": "50% 50%"
   },
   {
    "id": "newton",
@@ -1559,7 +1575,9 @@
    "hook": "Analytic Cubism: objects split into facets in a narrow palette of browns and greys.",
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02318_10.jpg",
    "hw": 1.337,
-   "note": "In 1911, when Braque's and Picasso's canvases became almost impossible to tell apart, Braque showed a clarinet on a mantelpiece from several viewpoints at once."
+   "note": "In 1911, when Braque's and Picasso's canvases became almost impossible to tell apart, Braque showed a clarinet on a mantelpiece from several viewpoints at once.",
+   "zoom": 1.1,
+   "focus": "50% 50%"
   },
   {
    "id": "dyn-suprematism",
@@ -1607,7 +1625,9 @@
    "yearLabel": "1937–42",
    "hw": 1.041,
    "note": "Nothing dreamlike or hidden here: Mondrian restricted himself to red, blue and yellow with straight black lines, an art of pure balance he called Neoplasticism.",
-   "why": "Straight black lines and blocks of primary colour on white: pure balance, with nothing taken from nature."
+   "why": "Straight black lines and blocks of primary colour on white: pure balance, with nothing taken from nature.",
+   "zoom": 1.14,
+   "focus": "50% 50%"
   },
   {
    "id": "fountain",
@@ -1671,7 +1691,9 @@
    "hook": "Magritte's dream objects: everyday things placed where they don't belong.",
    "img": "https://media.tate.org.uk/art/images/work/T/T01/T01122_10.jpg",
    "hw": 1.438,
-   "note": "Painted with precise, almost illustrative realism, a bird, a mirror, a lit candle and an apple sit sunk into a slab beneath a sleeping man."
+   "note": "Painted with precise, almost illustrative realism, a bird, a mirror, a lit candle and an apple sit sunk into a slab beneath a sleeping man.",
+   "zoom": 1.06,
+   "focus": "50% 50%"
   },
   {
    "id": "celebes",
@@ -1687,7 +1709,9 @@
    "img": "https://media.tate.org.uk/art/images/work/T/T01/T01988_10.jpg",
    "hw": 1.162,
    "note": "Painted in Cologne, it pairs a hulking machine-beast with a headless nude wearing a surgical glove, realistic painting used to create a hallucinatory dream.",
-   "why": "A hulking elephant-like machine beside a headless nude: the strange, dreamlike pairings at Surrealism's heart."
+   "why": "A hulking elephant-like machine beside a headless nude: the strange, dreamlike pairings at Surrealism's heart.",
+   "zoom": 1.06,
+   "focus": "50% 50%"
   },
   {
    "id": "black-maroon",
@@ -1735,7 +1759,9 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_JJlQj5T.jpg",
    "hw": 0.707,
    "note": "Warhol silkscreened fifty copies of a single publicity still from the film Niagara, turning a real woman into a repeated, mass-produced image.",
-   "why": "One publicity photo of Marilyn silkscreened again and again, half in garish colour: celebrity as mass-produced Pop imagery."
+   "why": "One publicity photo of Marilyn silkscreened again and again, half in garish colour: celebrity as mass-produced Pop imagery.",
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "whaam",
@@ -1751,7 +1777,9 @@
    "img": "https://media.tate.org.uk/art/images/work/T/T00/T00897_10.jpg",
    "hw": 0.43,
    "note": "Lichtenstein based it mainly on one comic panel by Irv Novick, enlarged into a four-metre two-panel canvas separating the firing plane from the explosion.",
-   "why": "Ben-Day dots, bold black outlines and a 'WHAAM!' sound effect: a comic-book panel blown up into painting."
+   "why": "Ben-Day dots, bold black outlines and a 'WHAAM!' sound effect: a comic-book panel blown up into painting.",
+   "zoom": 1.03,
+   "focus": "50% 50%"
   },
   {
    "id": "bigger-splash",
@@ -1989,7 +2017,9 @@
    "img": "https://media.tate.org.uk/art/images/work/T/T02/T02080_10.jpg",
    "hw": 0.779,
    "note": "Bell borrowed the bright colours and bold forms of the Post-Impressionists shown in Roger Fry's exhibitions, and soon co-founded the Omega Workshops with him.",
-   "why": "Figures seen only from behind, built from broad planes of colour facing the sea: bold, simplified Bloomsbury design."
+   "why": "Figures seen only from behind, built from broad planes of colour facing the sea: bold, simplified Bloomsbury design.",
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "bathing",
@@ -2048,7 +2078,9 @@
    "credit": "The Courtauld",
    "page": "https://courtauld.ac.uk/whats-on/exh-salman-toor-someone-like-you/",
    "hw": 0.752,
-   "note": "Toor paints recognisable people in intimate scenes, exploring queer and immigrant lives lived between cultures: storytelling, not pure shape and colour."
+   "note": "Toor paints recognisable people in intimate scenes, exploring queer and immigrant lives lived between cultures: storytelling, not pure shape and colour.",
+   "zoom": 1.25,
+   "focus": "50% 50%"
   },
   {
    "id": "toor-ghost-ball",
@@ -2077,7 +2109,9 @@
    "hook": "Painted in Bruges for Joris van der Paele, a canon of the city's church of St Donatian.",
    "hw": 0.866,
    "note": "Van Eyck renders the ailing canon's stubble and veins, the weave of an oriental carpet and even his own reflection in St George's shield in meticulous oil.",
-   "why": "The canon's stubble and veins, a carpet's weave, a reflection in a shield: Netherlandish oil detail at its finest."
+   "why": "The canon's stubble and veins, a carpet's weave, a reflection in a shield: Netherlandish oil detail at its finest.",
+   "zoom": 1.2,
+   "focus": "50% 45%"
   },
   {
    "id": "zoffany-academicians",
@@ -2164,7 +2198,9 @@
    "hook": "The sitters were celebrities of Edo: a geisha and two teahouse waitresses.",
    "hw": 1.468,
    "note": "A full-colour woodblock print with a background dusted with glittering mica; each woman wears a family crest that identifies her.",
-   "why": "Three women's faces in fine black outlines on a glittering mica ground: an Edo woodblock print of beauties."
+   "why": "Three women's faces in fine black outlines on a glittering mica ground: an Edo woodblock print of beauties.",
+   "zoom": 1.08,
+   "focus": "50% 35%"
   },
   {
    "id": "secession-building",
@@ -2504,7 +2540,9 @@
    "hook": "Given to Tate by Ben Nicholson in 1966.",
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_MoFADn6.jpg",
    "hw": 0.778,
-   "note": "Wallis was self-taught, never had an art lesson, and took up painting around 70 after his wife's death, painting from memory."
+   "note": "Wallis was self-taught, never had an art lesson, and took up painting around 70 after his wife's death, painting from memory.",
+   "zoom": 1.08,
+   "focus": "50% 50%"
   },
   {
    "id": "aw-blue-ship",
@@ -2540,7 +2578,9 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_jk8yx9p.jpg",
    "hw": 1.07,
    "note": "Self-taught, Wallis began painting at around seventy, using ship's paint on scraps of cardboard and sizing things by importance rather than perspective.",
-   "why": "A ship and moon on scrap card, sized by importance rather than perspective: the naive vision British modernists championed."
+   "why": "A ship and moon on scrap card, sized by importance rather than perspective: the naive vision British modernists championed.",
+   "zoom": 1.1,
+   "focus": "50% 50%"
   },
   {
    "id": "aw-houses",
@@ -2590,7 +2630,9 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg/1280px-Le_Bassin_de_Londres%2C_par_Andr%C3%A9_Derain.jpg",
    "hw": 0.67,
    "note": "Commissioned by the dealer Ambroise Vollard, these Thames views burst with riotous colour, radically unlike earlier views of the city by Whistler or Monet.",
-   "why": "Boats, water and sky in bold, clashing colours laid on freely: colour used for its own sake, not copying nature."
+   "why": "Boats, water and sky in bold, clashing colours laid on freely: colour used for its own sake, not copying nature.",
+   "zoom": 1.04,
+   "focus": "50% 50%"
   },
   {
    "id": "whiteread-stairs",
@@ -2858,7 +2900,9 @@
    "hw": 1.225,
    "hook": "Painted inside an old wooden drawer, brass handles and all.",
    "why": "A Black man's portrait painted on found furniture: the movement's urge to recover people history forgot.",
-   "yearLabel": "2017–18"
+   "yearLabel": "2017–18",
+   "zoom": 1.3,
+   "focus": "50% 45%"
   },
   {
    "id": "himid-carrot-piece",
@@ -2872,7 +2916,9 @@
    "page": "https://www.tate.org.uk/art/artworks/himid-the-carrot-piece-t14192",
    "hw": 1.107,
    "hook": "A white man dangles a carrot. The Black woman ignores him and walks off.",
-   "why": "Painted cut-out figures with a sharp political joke about the art world: classic 1980s Black Arts Movement satire."
+   "why": "Painted cut-out figures with a sharp political joke about the art world: classic 1980s Black Arts Movement satire.",
+   "zoom": 1.15,
+   "focus": "50% 40%"
   },
   {
    "id": "himid-freedom-and-change",
@@ -2914,7 +2960,9 @@
    "page": "https://www.metmuseum.org/art/collection/search/495553",
    "hw": 0.816,
    "hook": "The title means a patchwork made together by townspeople, like his team of assistants.",
-   "why": "Thousands of bottle tops wired into one sheet over seven metres wide: a hanging that reshapes the wall and room around it."
+   "why": "Thousands of bottle tops wired into one sheet over seven metres wide: a hanging that reshapes the wall and room around it.",
+   "zoom": 1.5,
+   "focus": "50% 50%"
   },
   {
    "id": "anatsui-between-earth-heaven",
@@ -2942,7 +2990,9 @@
    "page": "https://artmuseum.princeton.edu/collections/objects/109394",
    "hw": 1.33,
    "hook": "The copper wire stays bendy, so the work takes a new form at every showing.",
-   "why": "Bottle caps joined with pliable copper wire: a metal 'cloth' that takes a new shape each time it is hung."
+   "why": "Bottle caps joined with pliable copper wire: a metal 'cloth' that takes a new shape each time it is hung.",
+   "zoom": 1.6,
+   "focus": "50% 42%"
   },
   {
    "id": "anatsui-solemn-crowd",
@@ -2956,7 +3006,9 @@
    "page": "https://www.tate.org.uk/art/artworks/anatsui-solemn-crowd-at-dawn-t16522",
    "hw": 0.467,
    "hook": "Before bottle tops, he carved and painted wood: this crowd dates from 1989.",
-   "why": "Carved and painted wood standing in for a crowd: the wood-based work he made before his metal hangings."
+   "why": "Carved and painted wood standing in for a crowd: the wood-based work he made before his metal hangings.",
+   "zoom": 1.12,
+   "focus": "50% 50%"
   },
   {
    "id": "kusama-brilliance-of-life",
@@ -3000,7 +3052,9 @@
    "page": "https://www.tate.org.uk/art/artworks/kusama-the-passing-winter-t12821",
    "hw": 1.333,
    "hook": "Peer through round holes in this mirrored cube to see reflections without end.",
-   "why": "Mirrored glass inside a small box: the endless, repeating space behind her Infinity Mirror Rooms."
+   "why": "Mirrored glass inside a small box: the endless, repeating space behind her Infinity Mirror Rooms.",
+   "zoom": 1.35,
+   "focus": "50% 30%"
   },
   {
    "id": "ai-tree",
@@ -3098,7 +3152,9 @@
    "page": "https://www.tate.org.uk/art/artworks/salcedo-atrabiliarios-t16121",
    "hw": 0.585,
    "hook": "Worn shoes, mostly of disappeared women, sealed into the wall behind cow bladder stitched with surgical thread.",
-   "why": "Niches cut into the gallery wall hold personal objects: the room becomes a memorial."
+   "why": "Niches cut into the gallery wall hold personal objects: the room becomes a memorial.",
+   "zoom": 1.8,
+   "focus": "50% 50%"
   },
   {
    "id": "eliasson-weather-project",
@@ -3126,7 +3182,9 @@
    "page": "https://www.tate.org.uk/art/artworks/eliasson-stardust-particle-t15131",
    "hw": 1.333,
    "hook": "A motor turns this steel and glass ball while a spotlight scatters light around the room.",
-   "why": "Light, reflection and movement are the real materials, filling the space around the object."
+   "why": "Light, reflection and movement are the real materials, filling the space around the object.",
+   "zoom": 1.15,
+   "focus": "50% 40%"
   },
   {
    "id": "eliasson-double-lighthouse",
@@ -3182,7 +3240,9 @@
    "page": "https://tate.org.uk/art/artworks/walker-grub-for-sharks-a-concession-to-the-negro-populace-t12906",
    "hw": 0.58,
    "hook": "Made of cut paper, the old craft of portrait silhouettes she turned to darker stories.",
-   "why": "Black cut-paper figures spread wide across a white wall, like a panorama to walk along."
+   "why": "Black cut-paper figures spread wide across a white wall, like a panorama to walk along.",
+   "zoom": 1.3,
+   "focus": "50% 50%"
   },
   {
    "id": "mutu-me-carry",
@@ -3224,7 +3284,9 @@
    "page": "https://www.tate.org.uk/art/artworks/mutu-you-were-always-on-my-mind-t12627",
    "hw": 1.576,
    "hook": "Plastic pearls and glittering particles sit alongside ink and paint on clear plastic film.",
-   "why": "Glossy magazine scraps and pearls fuse into one strange body: Afrofuturist collage imagining new kinds of being."
+   "why": "Glossy magazine scraps and pearls fuse into one strange body: Afrofuturist collage imagining new kinds of being.",
+   "zoom": 1.2,
+   "focus": "50% 50%"
   },
   {
    "id": "mutu-chorus-line",
@@ -3238,7 +3300,9 @@
    "page": "https://artmuseum.princeton.edu/art/collections/objects/55557",
    "hw": 0.596,
    "hook": "Eight collages of distorted, full-bodied women hang together like a chorus line of dancers.",
-   "why": "Watercolour and collage figures repeat in a row, each one a patched-together hybrid from another world."
+   "why": "Watercolour and collage figures repeat in a row, each one a patched-together hybrid from another world.",
+   "zoom": 1.1,
+   "focus": "50% 50%"
   },
   {
    "id": "sherman-film-still-21",
@@ -3266,7 +3330,9 @@
    "page": "https://www.tate.org.uk/art/artworks/sherman-untitled-film-still-48-p11518",
    "hw": 0.753,
    "hook": "Shot in 1979, this print was made from the negative in 1998.",
-   "why": "Grainy black and white and a lonely figure: a film noir moment staged for the camera, Pictures Generation style."
+   "why": "Grainy black and white and a lonely figure: a film noir moment staged for the camera, Pictures Generation style.",
+   "zoom": 1.05,
+   "focus": "50% 50%"
   },
   {
    "id": "sherman-untitled-1982",
@@ -3280,7 +3346,9 @@
    "page": "https://www.metmuseum.org/art/collection/search/263609",
    "hw": 1.73,
    "hook": "Here Sherman becomes Marilyn Monroe, or rather Norma Jean, out of her famous sex-kitten role.",
-   "why": "A star's familiar image restaged by the artist herself: the Pictures Generation questioning celebrity pictures."
+   "why": "A star's familiar image restaged by the artist herself: the Pictures Generation questioning celebrity pictures.",
+   "zoom": 1.1,
+   "focus": "50% 25%"
   },
   {
    "id": "sherman-untitled-97",
@@ -3308,7 +3376,9 @@
    "page": "https://www.tate.org.uk/art/artworks/abramovic-rhythm-0-p82847",
    "hw": 0.748,
    "hook": "For six hours in Naples, visitors could use any of 72 objects on her, including a loaded gun.",
-   "why": "Only photos remain of a live action: performance art, where the artist's body is the material."
+   "why": "Only photos remain of a live action: performance art, where the artist's body is the material.",
+   "zoom": 1.5,
+   "focus": "50% 50%"
   },
   {
    "id": "abramovic-rhythm-5",
@@ -3322,7 +3392,9 @@
    "page": "https://www.tate.org.uk/art/artworks/abramovic-rhythm-5-p82844",
    "hw": 0.713,
    "hook": "She lay inside a burning star, passed out as the fire ate the oxygen, and was pulled out.",
-   "why": "Black and white photos record a risky live event: performance art testing the limits of the body."
+   "why": "Black and white photos record a risky live event: performance art testing the limits of the body.",
+   "zoom": 1.5,
+   "focus": "50% 50%"
   },
   {
    "id": "abramovic-rhythm-10",
@@ -3336,7 +3408,9 @@
    "page": "https://www.tate.org.uk/art/artworks/abramovic-rhythm-10-p82843",
    "hw": 0.502,
    "hook": "She stabbed between her spread fingers with a row of knives, then tried to repeat her own cuts.",
-   "why": "A sequence of photos documents a ritual done with her own hand: endurance as performance art."
+   "why": "A sequence of photos documents a ritual done with her own hand: endurance as performance art.",
+   "zoom": 1.5,
+   "focus": "50% 50%"
   },
   {
    "id": "abramovic-cleaning-mirror",
@@ -3378,7 +3452,9 @@
    "page": "https://www.metmuseum.org/art/collection/search/492349",
    "hw": 1.707,
    "hook": "The title plays on Casspirs, armoured police vehicles used to patrol Black townships under apartheid.",
-   "why": "Heads stacked in boxes, scratched in drypoint: the same urgent hand drawing that powers his animated films."
+   "why": "Heads stacked in boxes, scratched in drypoint: the same urgent hand drawing that powers his animated films.",
+   "zoom": 1.12,
+   "focus": "50% 50%"
   },
   {
    "id": "kentridge-woman-telephone",
@@ -3392,7 +3468,9 @@
    "page": "https://www.tate.org.uk/art/artworks/kentridge-untitled-woman-turning-into-a-telephone-p78569",
    "hw": 1.867,
    "hook": "A linocut caught mid-change, like one frame from one of his transforming animations.",
-   "why": "One shape morphing into another: the logic of his animated films, frozen into a single print."
+   "why": "One shape morphing into another: the logic of his animated films, frozen into a single print.",
+   "zoom": 1.15,
+   "focus": "50% 50%"
   },
   {
    "id": "kentridge-felix-in-exile",
@@ -3406,7 +3484,9 @@
    "page": "https://www.tate.org.uk/art/artworks/kentridge-felix-in-exile-t07479",
    "hw": 0.858,
    "hook": "Made by drawing in charcoal, filming, rubbing out and redrawing, frame after frame.",
-   "why": "Smudged charcoal and ghostly erasures on screen: hand-drawn animation shown as projected video art."
+   "why": "Smudged charcoal and ghostly erasures on screen: hand-drawn animation shown as projected video art.",
+   "zoom": 1.12,
+   "focus": "50% 50%"
   },
   {
    "id": "kentridge-main-complaint",
@@ -3420,7 +3500,9 @@
    "page": "https://www.tate.org.uk/art/artworks/kentridge-history-of-the-main-complaint-t07480",
    "hw": 0.875,
    "hook": "Stars Soho Eckstein, the greedy businessman who returns again and again in his films.",
-   "why": "Black and white charcoal animation projected in the gallery: drawing turned into moving-image art."
+   "why": "Black and white charcoal animation projected in the gallery: drawing turned into moving-image art.",
+   "zoom": 1.06,
+   "focus": "50% 50%"
   },
   {
    "id": "kentridge-horse-not-mine",
@@ -3504,7 +3586,9 @@
    "page": "https://www.thomasdanegallery.com/artists/45-steve-mcqueen/works/16079/",
    "hw": 0.67,
    "hook": "Families chose the portraits for stamp sheets honouring UK service personnel killed in Iraq.",
-   "why": "An oak cabinet of stamp sheets you pull out one by one: a memorial you handle, made by an artist of moving images."
+   "why": "An oak cabinet of stamp sheets you pull out one by one: a memorial you handle, made by an artist of moving images.",
+   "zoom": 1.25,
+   "focus": "50% 45%"
   },
   {
    "id": "murakami-dob",
@@ -3589,7 +3673,9 @@
    "page": "https://www.tate.org.uk/art/artworks/richter-elizabeth-i-p77207",
    "hw": 1.165,
    "hook": "A grey, blurred image of a smiling face that looks like a newspaper photo.",
-   "why": "A grey, photo-like, blurred image: the borrowed pictures of Capitalist Realism."
+   "why": "A grey, photo-like, blurred image: the borrowed pictures of Capitalist Realism.",
+   "zoom": 1.12,
+   "focus": "50% 50%"
   },
   {
    "id": "richter-st-john",
@@ -3637,7 +3723,9 @@
    "hook": "Oil on aluminium: grey paint dragged across the surface in thin vertical streaks.",
    "why": "Scraped, layered grey: Richter's abstract paintings, far from his early photo works.",
    "solo": true,
-   "era": "Abstract art"
+   "era": "Abstract art",
+   "zoom": 1.2,
+   "focus": "50% 50%"
   },
   {
    "id": "marshall-london-bridge",
@@ -3700,7 +3788,9 @@
    "hw": 1.313,
    "hook": "The dove stood for love in her private symbolism.",
    "note": "Part of the Paintings for the Temple.",
-   "why": "A pale circle with a heart shape and a band of rainbow colours: symbols, not things you could see."
+   "why": "A pale circle with a heart shape and a band of rainbow colours: symbols, not things you could see.",
+   "zoom": 1.08,
+   "focus": "50% 50%"
   },
   {
    "id": "klint-swan-9",
