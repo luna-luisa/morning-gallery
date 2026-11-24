@@ -841,3 +841,55 @@ body[data-screen="sw"] .swstage{background:radial-gradient(ellipse 62% 55% at 50
 .plist .trow{border-top:1px solid #ebe6dc}
 @keyframes swheart{0%,54%,82%,100%{fill:#e0457f}64%,72%{fill:#fff}}
 .swbtns2.nudge .yes .sh{animation:swheart 3.4s ease-in-out .6s 2}
+/* ---- the tidier look (Nov 2026), Luna's profile first: body.newlook ---- */
+body.newlook #who{display:none!important}
+.hsearch{display:none;align-self:flex-start;width:44px;height:44px;margin:-10px -10px 0 auto;border:0;background:none;cursor:pointer;align-items:center;justify-content:center}
+.hsearch svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+body.newlook[data-tab="topics"]:not(.inround) .hsearch{display:flex}
+.medot{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;color:#fff;margin-right:7px;vertical-align:-5px;letter-spacing:0}
+nav.tabs button:not(.on) .medot{opacity:.75}
+.btn.link.freeplay{margin-top:-6px;min-height:44px;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-transform:none;letter-spacing:0}
+.weekart{margin:18px -24px 0;padding:36px 24px 8px;background:var(--paper);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.weekart h2{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:0 0 6px}
+.weekart h2 .serif{color:var(--brass-ink)}
+.newsitem.link{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.newsitem.link .src{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--klein);margin-top:2px}
+.newsitem.link .src svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.tqrow{display:flex;gap:10px;align-items:center}
+.tqrow.hidden{display:none}
+.tqrow .btn.link{width:auto;flex:none;min-height:44px}
+body.newlook .tqrow input{border:1.5px solid var(--ink)}
+.mesec{display:flex;flex-direction:column;gap:12px}
+.week{display:flex;justify-content:space-between}
+.week span{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.week i{width:30px;height:30px;border-radius:50%;box-sizing:border-box;border:2px solid var(--line);display:flex;align-items:center;justify-content:center}
+.week .on i{background:var(--klein);border-color:var(--klein)}
+.week .now{color:var(--ink)}
+.week svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.lvbars{display:flex;flex-direction:column;gap:8px}
+.lvbars div{display:grid;grid-template-columns:96px 1fr 24px;align-items:center;gap:10px}
+.lvbars span{font-size:13px;font-weight:600}
+.lvbars i{height:12px;background:#ebe6dc;border-radius:2px;overflow:hidden;display:block}
+.lvbars b{display:block;height:12px;background:var(--klein);border-radius:2px}
+.lvbars em{font-style:normal;font-size:14px;font-weight:800;text-align:right}
+.fixed{display:flex;align-items:center;gap:14px;padding:16px;background:var(--paper);border-radius:6px;font-size:14px;line-height:1.4;color:var(--muted)}
+.fixed b{font-size:38px;font-weight:800;letter-spacing:-.02em;color:var(--klein);flex:none}
+.fixed strong{color:var(--ink)}
+.board{display:flex;flex-direction:column}
+.board > div{display:flex;align-items:center;gap:12px;padding:9px 12px;margin:0 -12px;border-radius:6px}
+.board > div.me{background:#e6eafb}
+.board .rk{width:18px;font-weight:800;color:var(--muted)}
+.board .dot{width:30px;height:30px;font-size:13px}
+.board .nm{flex:1;font-weight:600}
+.board .me .nm{font-weight:800}
+.merows{border-bottom:1px solid var(--line)}
+.merow{display:block;border-top:1px solid var(--line)}
+.merow > summary,.merow.btnrow{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:56px;padding:0 2px;list-style:none;cursor:pointer;font:inherit;font-size:16px;font-weight:600;color:var(--ink);background:none;border:0;border-top:1px solid var(--line);text-align:left;-webkit-tap-highlight-color:transparent}
+.merow > summary::-webkit-details-marker{display:none}
+details.merow{border-top:0}
+.merow .val{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:400;color:var(--muted)}
+.merow .val svg{width:14px;height:14px;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;transition:transform .15s ease}
+details.merow[open] .val svg{transform:rotate(90deg)}
+.mebody{display:flex;flex-direction:column;gap:12px;padding:2px 2px 18px}
+nav.tabs button[data-tab="me"]{display:inline-flex;align-items:center;justify-content:center}
+nav.tabs button[data-tab="me"] .medot{vertical-align:0}

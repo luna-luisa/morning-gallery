@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 17:32"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 18:14"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -487,7 +487,7 @@ function extraPicks(){
   /* nothing studied to go deeper in yet (new players): offer a second new topic instead, so everyone sees two choices */
   return dp ? {fresh: f, deep: dp} : {fresh: f, fresh2: pickBy(fresh.filter(t => t !== f), salt + "2")};
 }
-function markPlayed(tid){ (state.played || (state.played = {}))[tid] = today(); }
+function markPlayed(tid){ (state.played || (state.played = {}))[tid] = today(); (state.days || (state.days = {}))[today()] = 1; }
 function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, () => startTopic(tid), "Start the questions"); }
 
 /* ---------------- images: check before showing, swap failures ---------------- */
@@ -641,7 +641,9 @@ async function next(delta){
 }
 
 /* ---------------- rendering ---------------- */
-function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); }
+/* the tidier look (Nov 2026): Luna's profile first */
+const NEW = () => typeof isAdmin === "function" && pid && isAdmin();
+function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); document.body.dataset.tab = t; document.body.classList.toggle("newlook", !!NEW()); }
 $$("nav.tabs button").forEach(b => b.onclick = () => { S = null; go(b.dataset.tab); });
 function go(t, a){ inRound(false); setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
 function figure(w, cls = ""){ const u = /thumb/.test(cls) ? tsrc(w && w.img) : w && w.img; return w ? `<figure class="spot ${cls}" data-src="${esc(w.img)}"><img src="${esc(u)}" decoding="async" alt="${w.photo ? esc(w.title) : "The artwork for this question"}" referrerpolicy="no-referrer" onerror="const f=this.closest('figure');if(this.src!==f.dataset.src){this.src=f.dataset.src}else{f.classList.add('gone')}"></figure>` : ""; }
@@ -1035,6 +1037,9 @@ function finish(){
   S = null; scrollTo(0, 0);
 }
 
+const SRC = {"news.artnet.com": "Artnet", "artnet.com": "Artnet", "theguardian.com": "the Guardian", "bbc.co.uk": "the BBC", "bbc.com": "the BBC", "hyperallergic.com": "Hyperallergic", "sothebys.com": "Sotheby's", "christies.com": "Christie's", "nationalgallery.org.uk": "the National Gallery", "tate.org.uk": "Tate", "royalacademy.org.uk": "the Royal Academy", "vam.ac.uk": "the V&A", "britishmuseum.org": "the British Museum"};
+/* the organisation's name, not its web address */
+const srcName = u => { try { const h = new URL(u).hostname.replace(/^www\./, ""); if (SRC[h]) return SRC[h]; const b = h.split(".")[0]; return b.charAt(0).toUpperCase() + b.slice(1); } catch(e){ return "the source"; } };
 function renderToday(){
   const td = topicOfDay(), t = TOPICS[td.topic], L = lvlOf(td.topic);
   const w = W[(t.intro[0] || {}).art], played = state.stats.lastRound === today(), items = newsItems();
@@ -1045,10 +1050,11 @@ function renderToday(){
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
     ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
-      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
+      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
-    <button class="btn ghost" id="endless">Free play</button>
-    ${items.length ? `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>` : ""}
+    ${NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
+    ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>`).join("")}</div></section>`
+      : `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>`) : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;
   $("#endless").onclick = startEndless;
   if ($("#go")){ $("#go").onclick = startRound; $("#tod").onclick = () => go("topic", td.topic); }
@@ -1108,6 +1114,66 @@ function openWhatsNew(reopen){
 const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Museums"], ["market", "Art market"]];
 const START = ["renaissance", "impressionism", "van-gogh", "national-gallery"];
 const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+/* the Me page, tidier and more visual (Luna's profile first) */
+function renderMeNew(focus){
+  const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
+  const played = Object.keys(TOPICS).filter(t => T(t).n > 0), per = [1, 2, 3, 4, 5].map(L => played.filter(t => lvlOf(t) === L).length), mx = Math.max(1, ...per);
+  /* the week, Monday to Sunday: a filled circle for each day you played */
+  const days = new Set(Object.values(state.played || {}).map(String).concat(Object.keys(state.days || {}), s.lastRound ? [s.lastRound] : []));
+  const mon = new Date(); mon.setDate(mon.getDate() - ((mon.getDay() + 6) % 7));
+  const week = [...Array(7)].map((_, i) => { const d = new Date(mon); d.setDate(mon.getDate() + i); const k = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; return {l: "MTWTFSS"[i], on: days.has(k), now: k === today()}; });
+  const row = (id, label, val) => `<details class="merow" id="${id}"><summary><span>${label}</span><span class="val">${val || ""}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></summary><div class="mebody"></div></details>`;
+  view.innerHTML = `
+    <div class="row mehead"><span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span><div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
+    <div id="editbox"></div>
+    <div class="mesec"><span class="eyebrow">This week</span><div class="week">${week.map(d => `<span class="${d.on ? "on" : ""}${d.now ? " now" : ""}"><i>${d.on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</i>${d.l}</span>`).join("")}</div></div>
+    ${played.length ? `<div class="mesec"><span class="eyebrow">Your topics by level</span><div class="lvbars">${LEVELS.map((name, i) => `<div><span>${name}</span><i><b style="width:${per[i] ? Math.max(6, Math.round(100 * per[i] / mx)) : 0}%;opacity:${.35 + i * .16}"></b></i><em>${per[i]}</em></div>`).join("")}</div></div>` : ""}
+    ${s.learned ? `<div class="fixed"><b>${s.learned}</b><span><strong>Mistakes fixed for good.</strong> Questions you once got wrong and now always get right.</span></div>` : ""}
+    ${p.admin ? `<div class="mesec" id="board"><span class="eyebrow">Top visitors <span class="tag">Only you see this</span></span><div class="small muted">Loading…</div></div>` : ""}
+    <div class="merows">
+      ${row("rnear", "Near you", esc(p.area || "Add your town"))}
+      ${row("rfb", "Feedback", "")}
+      ${WN && wnItems().length ? `<button class="merow btnrow" id="rwn"><span>What's new</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>` : ""}
+      <button class="merow btnrow" id="rsw"><span>Switch profile</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      <button class="merow btnrow" id="rpin"><span>${p.pin ? "Change PIN" : "Set a PIN"}</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      ${row("rhome", "Add to Home Screen", "")}
+    </div>
+    ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
+    <button class="btn link center" id="howto">How Morning Gallery works</button>
+    <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p>`;
+  $("#rnear .mebody").innerHTML = `<p class="small muted">Your town or city, so Topics can show what's on near you.</p><div class="row"><label class="sr" for="area">Town or city</label><input type="text" id="area" value="${esc(p.area || "")}" placeholder="For example, London" autocomplete="address-level2"><button class="btn ghost" id="areasave">Save</button></div>`;
+  $("#rfb .mebody").innerHTML = `<p class="small muted">Ideas, problems or topics you'd like to learn about. We read everything.</p>
+      <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${!i}">${l}</button>`).join("")}</div>
+      <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
+      <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span>`;
+  $("#rhome .mebody").innerHTML = `<p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p>`;
+  $("#howto").onclick = () => showWelcome(() => go("me"));
+  if ($("#rwn")) $("#rwn").onclick = () => openWhatsNew(true);
+  $("#rsw").onclick = renderProfiles;
+  $("#rpin").onclick = () => askPin(pid, "set");
+  $("#edit").onclick = () => editProfile(focus);
+  let kind = "idea";
+  $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
+  const ta = $("#fbtext"), send = $("#send");
+  ta.oninput = () => send.disabled = !ta.value.trim() || !store.online;
+  send.onclick = async () => { send.disabled = true; try { await requestMore("", kind, ta.value.trim(), ""); ta.value = ""; $("#sent").textContent = "Thank you, we've got it."; } catch(e){ send.disabled = false; $("#sent").textContent = "Couldn't send. Please try again."; } };
+  $("#areasave").onclick = async () => {
+    const v = $("#area").value.trim().slice(0, 60), had = p.area; p.area = v; local.set("profiles", profiles);
+    $("#rnear .val").firstChild.textContent = v || "Add your town"; $("#rnear").open = false;
+    try { await store.put("profile:" + pid, p); } catch(e){}
+    if (v && v !== had && store.online && (await whatsOn(), !areaOf(v))) requestMore("", "content", `Lives in ${v}: please add what's on there`, "area:" + v).catch(() => {});
+  };
+  if (focus === "feedback"){ $("#rfb").open = true; $("#rfb").scrollIntoView(); }
+  if (p.admin) leaderboard();
+}
+/* a first try at a leaderboard, on the admin profile only for now */
+async function leaderboard(){
+  const ids = Object.keys(profiles).filter(id => !profiles[id].removed), rows = [];
+  for (const id of ids){ let pr = id === pid ? state : null; try { if (!pr) pr = await store.get("progress:" + id); } catch(e){} if (pr && pr.stats) rows.push({id, n: pr.stats.rounds || 0, l: pr.stats.learned || 0}); }
+  rows.sort((a, b) => b.n - a.n || b.l - a.l);
+  const el = $("#board"); if (!el) return;
+  el.querySelector("div").outerHTML = `<div class="board">${rows.slice(0, 5).map((r, i) => `<div class="${r.id === pid ? "me" : ""}"><span class="rk">${i + 1}</span><span class="dot" style="${dotStyle(profiles[r.id])}">${esc(profiles[r.id].name[0])}</span><span class="nm">${esc(profiles[r.id].name)}</span><span class="small muted">${r.n} ${r.n === 1 ? "round" : "rounds"}</span></div>`).join("")}</div>`;
+}
 function topicHits(q){
   const f = fold(q).trim(); if (!f) return null;
   const out = {};
@@ -1153,12 +1219,13 @@ function swBoxHTML(pics){
     : ps.length ? `${ps.length === 1 ? "Your pick is" : `Your ${ps.length} picks are`} coming soon` : loves ? "Everything you loved" : "";
   return `<div class="swbox"><button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">${left ? `${left === SW_WEEKLY ? "3 fresh rounds" : left === 1 ? "1 round left" : left + " rounds left"} this week` : "New rounds on Monday"}</span></span></button>${line ? `<button class="swline" id="picks"><span>${line}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>`;
 }
+function openSearch(){ const r = $(".tqrow"); if (!r) return; r.classList.remove("hidden"); const q = $("#tq"); q.focus(); scrollTo(0, 0); }
 function renderTopicsNew(){
   if (isAdmin() && !DISC) loadDisc().then(() => { if (document.body.dataset.tab === "topics" || $("#swipe")) { const b = $("#swipe .swthumbs"); if (b) b.innerHTML = swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join(""); } });
   const pics = isAdmin() ? swipeDeck(3, true) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
   const recent = [...played].sort((a, b) => String((state.played || {})[b] || "").localeCompare(String((state.played || {})[a] || ""))).slice(0, 4);
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1></div>
-    <label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">
+    <div class="tqrow${NEW() ? " hidden" : ""}"><label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">${NEW() ? `<button class="btn link" id="tqx">Cancel</button>` : ""}</div>
     <div id="tlist"></div>`;
   const list = $("#tlist"), q = $("#tq");
   const wire = () => {
@@ -1172,8 +1239,10 @@ function renderTopicsNew(){
     const hits = topicHits(q.value), term = q.value.trim();
     if (hits){ // searching: one plain list
       const ids = Object.keys(hits);
-      const done = state.asked["want:" + fold(term)];
-      list.innerHTML = `<div>${ids.map(t => trowHTML(t, hits[t])).join("")}</div>` + (term.length >= 3 && store.online ? `<div class="askrow"><span class="small muted">${ids.length ? "Not what you're after?" : `Nothing on “${esc(term)}” yet.`}</span><button class="btn ghost" id="want" ${done ? "disabled" : ""}>${done ? "Thanks, we'll look into it" : `Ask for “${esc(term)}”`}</button></div>` : "");
+      /* picks and requests still being made show too, greyed, so nobody asks twice */
+      const soon = livePicks().filter(p => !pickTopic(p) && fold(p.a).includes(fold(term)));
+      const done = state.asked["want:" + fold(term)] || soon.length;
+      list.innerHTML = `<div>${ids.map(t => trowHTML(t, hits[t])).join("")}${soon.map(p => { const w = WD(p.id); return `<div class="trow tpicrow wait"><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : "")}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">Coming soon</span></span></div>`; }).join("")}</div>` + (term.length >= 3 && !soon.length && store.online ? `<div class="askrow"><span class="small muted">${ids.length ? "Not what you're after?" : `Nothing on “${esc(term)}” yet.`}</span><button class="btn ghost" id="want" ${done ? "disabled" : ""}>${done ? "Thanks, we'll look into it" : `Ask for “${esc(term)}”`}</button></div>` : "");
       if ($("#want") && !done) $("#want").onclick = async () => {
         const b = $("#want"); b.disabled = true; b.textContent = "Sending…";
         try { await requestMore("", "content", `Searched the topics for "${term}" and would like to learn about it`, "search:" + term); state.asked["want:" + fold(term)] = today(); save(); b.textContent = "Thanks, we'll look into it"; }
@@ -1191,10 +1260,11 @@ function renderTopicsNew(){
       ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
         return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}
       <p class="tgrow">New topics every week, shaped by what you play. <button class="btn link" id="askt">Ask for one</button></p>`;
-    if ($("#askt")) $("#askt").onclick = () => { q.focus(); q.placeholder = "Type an artist, movement or museum"; q.scrollIntoView({block: "center", behavior: "smooth"}); };
+    if ($("#askt")) $("#askt").onclick = () => { openSearch(); q.focus(); q.placeholder = "Type an artist, movement or museum"; q.scrollIntoView({block: "center", behavior: "smooth"}); };
     wire();
   };
   q.oninput = draw; draw();
+  if ($("#tqx")) $("#tqx").onclick = () => { q.value = ""; $(".tqrow").classList.add("hidden"); draw(); };
   if (!WHATSON) whatsOn().then(() => { if (!q.value) draw(); });
 }
 
@@ -1422,6 +1492,7 @@ function renderTopic(tid){
   if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Got it, more questions on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }
 function renderMe(focus){
+  if (NEW()) return renderMeNew(focus);
   const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
   const levels = Object.keys(TOPICS).map(lvlOf), best = Math.max(...levels);
   view.innerHTML = `
@@ -1542,7 +1613,10 @@ function editProfile(){
   sv.onclick = async () => { sv.disabled = true; p.name = en.value.trim(); p.color = color; await store.put("profile:" + pid, p); local.set("profiles", profiles); setWho(); renderMe(); };
 }
 function backToMe(){ $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden"); go("me"); }
-function setWho(){ const p = profiles[pid]; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
+(function(){ const b = document.createElement("button"); b.id = "hsearch"; b.className = "hsearch"; b.setAttribute("aria-label", "Search topics");
+  b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+  b.onclick = () => { if (document.body.dataset.tab !== "topics") go("topics"); openSearch(); }; document.querySelector(".top").appendChild(b); })();
+function setWho(){ const p = profiles[pid]; const me = document.querySelector('nav.tabs [data-tab="me"]'); if (me) me.innerHTML = NEW() ? `<span class="medot" style="${dotStyle(p)}">${esc(p.name[0])}</span>Me` : "Me"; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
 async function use(id){
   if (pid && state){ clearTimeout(saveTimer); await flush(); }
   pid = id; local.set("last", id); scopeContent();
