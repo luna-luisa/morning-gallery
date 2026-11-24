@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 18:28"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 18:42"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -468,11 +468,25 @@ function pickMorning(){
   const best = Math.min(...pool.map(morningTier));
   return pickBy(pool.filter(t => morningTier(t) === best), seed);
 }
+/* one topic of the day for everyone, so it's something people can talk about: the day's date ranks
+   the topics the same way on every phone (news first), and each person gets the first one they
+   haven't started. Nothing repeats unannounced: only when everything has been started does it bring
+   back an older topic, and then it says so ("pick up where you left off") */
+function sharedMorning(){
+  const d = today(), all = Object.keys(TOPICS).sort();
+  const rank = t => (featured().includes(t) ? 0 : 1) * 1e10 + hash("day:" + d + ":" + t);
+  const order = all.slice().sort((a, b) => rank(a) - rank(b));
+  const fresh = order.find(t => !studied(t));
+  if (fresh) return {topic: fresh};
+  const back = all.filter(t => lvlOf(t) < 5 && daysSince(lastDay(t)) >= 7).sort((a, b) => String(lastDay(a)).localeCompare(String(lastDay(b))));
+  return {topic: back[0] || pickMorning(), back: true};
+}
 function topicOfDay(){
   const d = today(), cur = state.today;
-  const keep = cur && cur.date === d && TOPICS[cur.topic] && (cur.v === 2 || state.stats.lastRound === d);
+  const v = NEW() ? 3 : 2;
+  const keep = cur && cur.date === d && TOPICS[cur.topic] && (cur.v === v || state.stats.lastRound === d);
   if (keep) return cur;
-  state.today = {date: d, topic: pickMorning(), v: 2}; save();
+  state.today = NEW() ? Object.assign({date: d, v}, sharedMorning()) : {date: d, topic: pickMorning(), v}; save();
   return state.today;
 }
 /* after the morning round: one new topic and one to go deeper in, both fixed for the day */
@@ -1053,7 +1067,7 @@ function renderToday(){
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
     ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
-      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
+      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${td.back ? "Pick up where you left off" : featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${td.back && lastDay(td.topic) ? `<span class="small muted">You started this on ${new Date(lastDay(td.topic) + "T12:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "long"})}.</span>` : ""}${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
     ${NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
     ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => okSrc(n.source) ? `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>` : `<div class="newsitem link"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></section>`
