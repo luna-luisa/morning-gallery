@@ -946,3 +946,14 @@ body.newlook[data-tab="me"] .hsearch{display:none}
 .frm .sw{width:40px;height:48px;background:var(--paper)}
 .frm.on{color:var(--ink)}
 .frm.on .sw{outline:2px solid var(--ink);outline-offset:9px}
+/* the profile picture top right is round, like profile pictures in other apps; on the wall pictures stay upright, like hung pictures */
+.wpic.acc{width:38px;height:38px;border-radius:50%;box-shadow:0 0 0 2px var(--wall),0 0 0 3.5px var(--ink)}
+.wpic.acc.none{box-shadow:0 0 0 2px var(--wall),0 0 0 3.5px var(--ink)}
+/* picks: swipe left to remove */
+.pkrow{position:relative;overflow:hidden;border-top:1px solid #ebe6dc}
+.pkrow .trow{position:relative;z-index:1;background:var(--wall);border-top:0!important;width:100%;touch-action:pan-y}
+.pkrow .trow.wait{opacity:1}.pkrow .trow.wait .tbody{opacity:.55}
+.prm{position:absolute;right:0;top:0;bottom:0;width:96px;border:0;background:#b4285f;color:#fff;font:inherit;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+.pkrow{display:block}
+.pkrow > .trow{display:flex!important;width:100%!important;box-sizing:border-box;margin:0;padding:12px 0;border-radius:0;box-shadow:none;background:var(--wall)!important;transform:translateX(0)}
+.pkrow .tbody{flex:1;min-width:0}

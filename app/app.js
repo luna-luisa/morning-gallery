@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 19:48"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 20:05"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1232,7 +1232,7 @@ async function leaderboard(){
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
   const lastTop = rows.filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
   const el = $("#board"); if (!el) return;
-  const me = rows.findIndex(r => r.id === pid), mine = rows[me], above = me > 0 ? rows[me - 1] : null;
+  const me = rows.findIndex(r => r.id === pid), mine = rows[me], above = me > 0 ? rows.slice(0, me).reverse().find(r => r.n > mine.n) || null : null;
   const PLACES = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
   const wonTop3 = lastTop.slice(0, 3).some(r => r.id === pid) && state.picWeek !== weekKey();
   const more = Math.max(0, 100 - ((state.ptsAll || 0) - (state.picAt || 0)));
@@ -1243,7 +1243,9 @@ async function leaderboard(){
     <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
     <div class="wme">${mypic ? picHTML(state, profiles[pid], "big" + frameOf({id: pid, st: state})) : `<button class="wpic empty big" id="firstpic" aria-label="Choose your picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>`}
       <div class="wmeinfo">${mypic ? `<span class="small muted">Your picture<br><b>${esc(mypic.title)}</b>, ${esc(plainArtist(mypic.artist))}</span>` : `<span class="small"><b>Choose your picture.</b> <span class="muted">Swipe a free round and pick a work you love. It stands for you on the wall.</span></span>`}<span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
-    ${above ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>` : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>` : ""}
+    ${above && above.n > mine.n ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>`
+      : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>`
+      : `<div class="wgap"><b>Everyone's on 0 so far.</b> One coffee round (10 points) puts you at the top.</div>`}
     <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], frameOf(r).trim())}<span class="nm">${esc(profiles[r.id].name)}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
     <p class="small muted">The top 3 each week can choose a new picture. Last week's winner wears a frame until someone else wins it.${mypic && !canChange ? ` Get ${more} more points to change your picture.` : ""}${profiles[pid].admin ? " <b>Trial:</b> you can change things any time." : ""}</p>
     ${!mypic ? `<button class="btn" id="choosepic">Choose your picture</button>` : `<div class="row two">${canChange ? `<button class="btn ghost" id="choosepic">New picture</button>` : ""}${champ === pid || profiles[pid].admin ? `<button class="btn ghost" id="frame">Your frame</button>` : ""}</div>`}`;
@@ -1266,7 +1268,8 @@ function starterEnd(loved){
   view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">Close</button></div>
     <div class="stack"><h1>Pick your <span class="serif">picture</span></h1><p class="muted">Choose carefully: you can change it after a week in the top 3, or 100 more points. We'll add the artist to your picks too.</p></div>
     <div class="swpicks${loved.length <= 6 ? " big" : ""}">${loved.map(w => `<button class="swpick" data-id="${w.id}" aria-pressed="false"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
-    <div class="swfoot"><button class="btn" id="ok" disabled>This one</button></div>`;
+    <div class="swfoot"><button class="btn" id="ok" disabled>This one</button>${loved.length < 4 ? `<button class="btn link center" id="more">Show me more first</button>` : ""}</div>`;
+  if ($("#more")) $("#more").onclick = () => startSwipeNow({starter: true, keep: loved});
   $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); $("#ok").disabled = false; });
   $("#ok").onclick = () => {
     const w = WD(pick); state.pic = pick; state.picAt = state.ptsAll || 0;
@@ -1424,7 +1427,8 @@ function swipeDeck(n = 10, peek = false){
   const ok = w => !(PICS.broken && PICS.broken[w.id]);
   if (peek) return shuffle((DISC && DISC.length ? DISC : swipePool()).filter(ok)).slice(0, n);
   const k = weekKey(), per = new Set(), week = [];
-  const disc = shuffle((DISC || []).filter(ok), rng("swipe:" + k)), mine = shuffle(swipePool().filter(ok), rng("swipe-app:" + k));
+  /* upright pictures fill the phone and look best, so they come first; squarer ones only if the deck runs short */
+  const up = (DISC || []).filter(w => ok(w) && realHW(w) >= 1.1), disc = shuffle(up.length >= 60 ? up : (DISC || []).filter(ok), rng("swipe:" + k)), mine = shuffle(swipePool().filter(ok), rng("swipe-app:" + k));
   const nd = disc.length ? Math.round(n * 0.75) : 0, nm = n - nd;
   const take = (list, want, test = () => true) => { const out = []; for (const w of list){ if (out.length >= want) break; const a = plainArtist(w.artist); if (per.has(a) || !test(w)) continue; per.add(a); out.push(w); } return out; };
   for (let r = 0; r < SW_WEEKLY; r++){
@@ -1482,7 +1486,7 @@ const SWX = '<svg viewBox="0 0 24 24" aria-hidden="true" class="sx"><path d="M6 
 const SWH = '<svg viewBox="0 0 24 24" aria-hidden="true" class="sh"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
 function startSwipeNow(opts = {}){
   const starter = !!opts.starter, seenA = new Set();
-  const deck = starter ? shuffle((DISC || []).filter(w => !(PICS.broken && PICS.broken[w.id]))).filter(w => { const a = plainArtist(w.artist); if (seenA.has(a)) return false; seenA.add(a); return true; }).slice(0, SW_ROUND) : swipeDeck(SW_ROUND), loved = []; let i = 0;
+  const deck = starter ? shuffle((DISC || []).filter(w => !(PICS.broken && PICS.broken[w.id]) && realHW(w) >= 1.1)).filter(w => { const a = plainArtist(w.artist); if (seenA.has(a)) return false; seenA.add(a); return true; }).slice(0, 25) : swipeDeck(SW_ROUND), loved = []; let i = 0;
   if (!deck.length){ inRound(true); view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div><div class="stack"><h1>You've seen <span class="serif">them all</span></h1><p class="muted">New artworks arrive with each update.</p></div><div class="stack"><button class="btn" id="t">Back to Topics</button></div>`; $("#x").onclick = $("#t").onclick = () => go("topics"); return; }
   deck.slice(0, 3).forEach(w => loadImg(w.img));
   /* a nudge on the first card of your first three visits, or after three weeks away */
@@ -1492,7 +1496,7 @@ function startSwipeNow(opts = {}){
   state.swLast = today(); save();
   inRound(true); document.body.dataset.screen = "sw"; scrollTo(0, 0);
   const draw = () => {
-    if (i >= deck.length) return starter ? starterEnd(loved) : swipeEnd(deck, loved);
+    if (i >= deck.length) return starter ? starterEnd((opts.keep || []).concat(loved)) : swipeEnd(deck, loved);
     const w = deck[i]; if (deck[i + 3]) loadImg(deck[i + 3].img);
     view.innerHTML = `
       <div class="qhead"><span class="eyebrow swey">${starter ? "Your picture" : "Discover"} · ${i + 1} of ${deck.length}</span><button class="btn link" id="x">Close</button></div>
@@ -1566,11 +1570,21 @@ function renderPicks(){
   const ps = livePicks().sort((a, b) => !!pickTopic(b) - !!pickTopic(a));
   view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
     <div class="stack"><h1>Your <span class="serif">picks</span></h1><p class="muted">${ps.length ? "Play one and it moves into your collection." : "Pick favourites at the end of a Swipe round and they'll wait here."}</p></div>
-    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = WD(p.id); return `<button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : "disabled"}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">${t ? "Ready to play" : "Coming soon"}</span></span></button>`; }).join("")}</div>
+    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = WD(p.id); return `<div class="pkrow" data-a="${esc(p.a)}"><button class="prm">Remove</button><button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : ""}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">${t ? "Ready to play" : "Coming soon"}</span></span></button></div>`; }).join("")}</div>
+    ${ps.length ? `<p class="small muted center">Swipe a pick to the left to remove it.</p>` : ""}
     ${(state.taste || []).length ? `<div class="stack"><button class="btn link" id="taste">Everything you loved</button></div>` : ""}`;
   $$("[data-play]").forEach(b => b.onclick = () => playTopic(b.dataset.play));
   $("#x").onclick = () => go("topics");
   if ($("#taste")) $("#taste").onclick = renderTaste;
+  /* swipe a pick to the left to reveal Remove */
+  $$(".plist .pkrow").forEach(row => {
+    const card = row.querySelector(".trow"); let x0 = null, dx = 0;
+    row.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.style.transition = "none"; });
+    row.addEventListener("pointermove", e => { if (x0 === null) return; dx = Math.min(0, e.clientX - x0); if (dx < -6) card.style.transform = `translateX(${Math.max(dx, -110)}px)`; });
+    const up = () => { if (x0 === null) return; x0 = null; card.style.transition = "transform .2s ease"; card.style.transform = dx < -50 ? "translateX(-96px)" : ""; row.classList.toggle("open", dx < -50); };
+    row.addEventListener("pointerup", up); row.addEventListener("pointercancel", up);
+    row.querySelector(".prm").onclick = () => { state.picks = (state.picks || []).filter(p => p.a !== row.dataset.a); save(); renderPicks(); };
+  });
 }
 /* one card per artist you loved: what you picked, and where to learn more */
 function artistCard(name, works, removable){
