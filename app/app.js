@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:59"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 22:05"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1262,7 +1262,17 @@ function openProfile(focus){
    Last week's winner's picture wears the frame until someone else wins it. Admin profile only for now. */
 const picOf = st => st && st.pic && WD(st.pic);
 const FRAMES = [["ink", "Black"], ["gilt", "Gold"], ["white", "White"], ["klein", "Blue"], ["pink", "Pink"]];
-const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" ><i style="background-image:url('${esc(tsrc(w.img))}')${focusPos(w, true)}"></i></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
+/* place the art's own box (found by the nightly picture check) in the middle of a 4:5 picture box,
+   so paper margins, mounts and pencil notes fall outside it */
+const cropPos = w => {
+  const c = w.crop, hw = w.hw || 1.25, R = 1.25;
+  if (!c) return focusPos(w, true);
+  const cw = c[2] - c[0], ch = c[3] - c[1], k = Math.max(1 / cw, R / (ch * hw)), H = k * hw / R;
+  const cl = (v, lo) => Math.min(0, Math.max(lo, v));
+  const L = cl(0.5 - (c[0] + cw / 2) * k, 1 - k), T = cl(0.5 - (c[1] + ch / 2) * H, 1 - H);
+  return `;width:${(k * 100).toFixed(2)}%;height:${(H * 100).toFixed(2)}%;left:${(L * 100).toFixed(2)}%;top:${(T * 100).toFixed(2)}%;right:auto;bottom:auto;background-size:100% 100%`;
+};
+const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" ><i style="background-image:url('${esc(tsrc(w.img))}')${cropPos(w)}"></i></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
 /* this week's wall: everyone shown by a picture they love (their initial until they choose one).
    Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
    Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,
@@ -1856,7 +1866,7 @@ async function use(id){
   if (profiles[id] && profiles[id].admin && state.swRefill !== "2026-11-24"){ delete state.swWeek; state.swRefill = "2026-11-24"; save(); }
   if (profiles[id] && profiles[id].admin && state.launch !== "2026-11-24"){ ["pic", "frame", "picAt", "picWeek", "pts", "ptsPrev", "ptsAll", "ptsS"].forEach(k => delete state[k]); state.launch = "2026-11-24"; save(); }
   const p = profiles[id];
-  setWho();
+  setWho(); if (state.pic && !DISC) loadDisc().then(() => { if (pid === id) setWho(); }); // a Swipe picture needs the deck before it can show
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
   if (!resumeRound()) go("today");
 }
