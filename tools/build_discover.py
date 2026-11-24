@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw
 
 UA = {"User-Agent": "MorningGalleryDeck/1.0 (https://github.com/luna-luisa/morning-gallery)",
       "AIC-User-Agent": "MorningGalleryDeck (https://github.com/luna-luisa/morning-gallery)"}
-TARGET, PER_ARTIST = 1200, 2
+TARGET, PER_ARTIST = 1400, 2
 random.seed(int(datetime.date.today().strftime("%Y%W")))
 
 def fold(s):
@@ -105,7 +105,50 @@ def cleveland():
             add("Cleveland Museum of Art", x["id"], cr[0].get("description") if cr else None, x.get("title"),
                 x.get("creation_date_latest"), [web] if web else [], x.get("url"))
 
-for f in (aic, met, cleveland):
+
+# ---- Tate: contemporary art (artists born from 1925, works from 1955) whose pictures Tate shows on its own pages
+def tate():
+    import csv
+    base = "https://raw.githubusercontent.com/tategallery/collection/master/"
+    a = get(base + "artist_data.csv"); w = get(base + "artwork_data.csv")
+    if not a or not w: print("tate: no data"); return
+    born = {}
+    for r in csv.DictReader(io.StringIO(a.content.decode("utf-8-sig"))):
+        try: born[r["id"]] = int(r["yearOfBirth"])
+        except Exception: pass
+    skip = re.compile(r"print|etching|lithograph|intaglio|woodcut|aquatint|engraving|graphite|pencil|ink on paper|book|letterpress|offset", re.I)
+    rows = []
+    for r in csv.DictReader(io.StringIO(w.content.decode("utf-8-sig"))):
+        try: yr = int(r["year"])
+        except Exception: continue
+        if born.get(r["artistId"], 0) < 1925 or yr < 1955 or not r["thumbnailUrl"] or skip.search(r["medium"] or ""): continue
+        if r["artistRole"] != "artist": continue
+        last, _, first = (r["artist"] or "").partition(", ")
+        name = f"{first} {last}".strip()
+        if fold(name) in known: continue
+        rows.append((name, r, yr))
+    random.shuffle(rows)
+    per, chosen = {}, []
+    for name, r, yr in rows:
+        if per.get(fold(name), 0) >= PER_ARTIST: continue
+        per[fold(name)] = per.get(fold(name), 0) + 1; chosen.append((name, r, yr))
+        if len(chosen) >= 700: break
+    def page(item):
+        name, r, yr = item
+        url = r["url"].replace("http://", "https://")
+        p = get(url)
+        if not p: return None
+        m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', p.text) or re.search(r'content="([^"]+)"[^>]+property="og:image"', p.text)
+        return (name, r, yr, url, m.group(1)) if m else None
+    n = 0
+    with cf.ThreadPoolExecutor(6) as ex:
+        for res in ex.map(page, chosen):
+            if not res: continue
+            name, r, yr, url, img = res
+            add("Tate", r["accession_number"], name, r["title"], yr, [img], url); n += 1
+    print("tate:", len(chosen), "pages tried,", n, "with pictures")
+
+for f in (aic, met, cleveland, tate):
     try: f()
     except Exception as e: print("source failed:", f.__name__, e)
 print(len(cands), "candidates")
@@ -159,5 +202,5 @@ for n in range(0, len(thumbs), 36):
 
 m = sum(1 for i in items if i["year"] >= 1880)
 print(f"{len(items)} works by {len({fold(i['artist']) for i in items})} artists, {m} from 1880 on")
-for mu in ("Art Institute of Chicago", "The Met", "Cleveland Museum of Art"):
+for mu in ("Art Institute of Chicago", "The Met", "Cleveland Museum of Art", "Tate"):
     print(" ", mu, sum(1 for i in items if i["museum"] == mu))
