@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 08:44"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 14:27"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -40,8 +40,8 @@ async function getJSON(name){
   const r = await fetch("content/" + name + "?d=" + today()); return r.json();
 }
 async function loadContent(){
-  const [w, t, n, c, pl, wn, cm] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null), getJSON("whatsnew.json").catch(() => null), getJSON("compare.json").catch(() => null)]);
-  WN = wn; CMP_ALL = (cm && cm.items) || [];
+  const [w, t, n, c, pl, wn, cm, ic] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null), getJSON("whatsnew.json").catch(() => null), getJSON("compare.json").catch(() => null), getJSON("imagecheck.json").catch(() => null)]);
+  WN = wn; CMP_ALL = (cm && cm.items) || []; PICS = ic || {broken: {}, hw: {}};
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
   ALL = {works: WORKS, topics: TOPICS};
@@ -676,6 +676,8 @@ function showIntro(tid, done, finishLabel, lessonLevel){
 
 /* ---------- spot the difference: short comparisons between topics people mix up ---------- */
 let CMP_ALL = [];
+/* the daily picture check: which pictures fail to load, and each picture's measured height ÷ width */
+let PICS = {broken: {}, hw: {}};
 const cmps = () => CMP_ALL.filter(c => c.topics.every(t => TOPICS[t]) && c.cards.every(k => (k.pair || [k.art]).every(id => W[id])));
 const cmpById = id => cmps().find(c => c.id === id);
 const cmpFor = tid => cmps().filter(c => c.topics.includes(tid));
@@ -1196,7 +1198,8 @@ function artistTopic(name){
 }
 const artistTopics = name => { const n = plainArtist(name); return [...new Set(WORKS.filter(w => plainArtist(w.artist) === n && TOPICS[w.topic]).map(w => w.topic))]; };
 /* upright works fill the phone without cropping; modern pieces may be a little squarer so they get a fair share */
-const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img) && w.hw >= 1.2);
+const realHW = w => (PICS.hw && PICS.hw[w.id]) || w.hw;
+const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img) && !(PICS.broken && PICS.broken[w.id]) && realHW(w) >= 1.2);
 function swipeDeck(n = 10, peek = false){
   const seen = state.swiped || {}, fresh = shuffle(swipePool().filter(w => !seen[w.id] || peek));
   const modern = fresh.filter(w => w.year >= 1900), older = fresh.filter(w => w.year < 1900), pick = [], per = {};
