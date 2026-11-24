@@ -34,7 +34,13 @@
    "approx": true,
    "place": "Czartoryski Museum, Kraków",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg/1280px-Lady_with_an_Ermine_-_Leonardo_da_Vinci_%28adjusted_levels%29.jpg",
-   "hw": 1.344
+   "hw": 1.344,
+   "crop": [
+    0.189,
+    0.109,
+    0.839,
+    1
+   ]
   },
   {
    "id": "birth-venus",
@@ -247,7 +253,13 @@
    "hook": "Not a portrait but a 'tronie': a study of a character or expression.",
    "hw": 1.184,
    "note": "Vermeer modelled her face and exotic turban in oil paint with natural ultramarine, letting her glow out of a dark background of green glaze over black.",
-   "why": "Her face glows out of a dark, plain background: the Baroque love of light emerging from shadow."
+   "why": "Her face glows out of a dark, plain background: the Baroque love of light emerging from shadow.",
+   "crop": [
+    0.293,
+    0.105,
+    0.968,
+    1
+   ]
   },
   {
    "id": "milkmaid",
@@ -314,7 +326,13 @@
    "hook": "A beam of light follows Christ's pointing hand into a gloomy tax office.",
    "hw": 0.944,
    "note": "For his first major church commission, Caravaggio turned a Gospel story into a sudden, real-life moment of conversion, staged in stark contrasts of light and dark.",
-   "why": "A single shaft of light cuts across a dim room towards Matthew: Baroque drama through stark light and dark."
+   "why": "A single shaft of light cuts across a dim room towards Matthew: Baroque drama through stark light and dark.",
+   "crop": [
+    0.138,
+    0.041,
+    1,
+    0.858
+   ]
   },
   {
    "id": "emmaus",
@@ -325,7 +343,13 @@
    "place": "National Gallery, London",
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/1602-3_Caravaggio%2CSupper_at_Emmaus_National_Gallery%2C_London.jpg/1280px-1602-3_Caravaggio%2CSupper_at_Emmaus_National_Gallery%2C_London.jpg",
    "hook": "The fruit basket teeters off the table edge, right into your space.",
-   "hw": 0.71
+   "hw": 0.71,
+   "crop": [
+    0,
+    0.064,
+    1,
+    0.948
+   ]
   },
   {
    "id": "judith",
@@ -405,7 +429,13 @@
    "hook": "Scene one of six: a money-for-title marriage that ends in disaster.",
    "hw": 0.76,
    "note": "Made to be engraved as prints, it mocks English snobbery: a gouty, bankrupt earl points proudly at a family tree reaching back to William the Conqueror.",
-   "why": "A gouty earl points to his family tree while a merchant studies the contract: Georgian satire of marrying for money."
+   "why": "A gouty earl points to his family tree while a merchant studies the contract: Georgian satire of marrying for money.",
+   "crop": [
+    0,
+    0.252,
+    0.924,
+    1
+   ]
   },
   {
    "id": "andrews",
@@ -432,7 +462,13 @@
    "img": "https://upload.wikimedia.org/wikipedia/commons/b/b6/The_Blue_Boy.jpg",
    "hook": "Sold to an American collector in 1921. Huge crowds came to say goodbye.",
    "hw": 1.478,
-   "why": "Gainsborough dressed the boy in 17th-century clothes as a tribute to the Baroque painter Van Dyck, but he painted it in 1770."
+   "why": "Gainsborough dressed the boy in 17th-century clothes as a tribute to the Baroque painter Van Dyck, but he painted it in 1770.",
+   "crop": [
+    0.118,
+    0.092,
+    1,
+    0.97
+   ]
   },
   {
    "id": "whistlejacket",
@@ -446,7 +482,13 @@
    "hook": "Life-size, on a blank background. Stubbs knew horse anatomy from dissection.",
    "hw": 1.2,
    "note": "Commissioned by the Marquess of Rockingham, this prized English racehorse rears up in oils with no rider, no landscape and no decorative frills.",
-   "why": "A life-size prize racehorse rearing against a plain background: the gentry's pride in its bloodstock, painted as portrait."
+   "why": "A life-size prize racehorse rearing against a plain background: the gentry's pride in its bloodstock, painted as portrait.",
+   "crop": [
+    0,
+    0.242,
+    0.922,
+    0.945
+   ]
   },
   {
    "id": "air-pump",
@@ -459,7 +501,13 @@
    "hook": "Science as drama, lit by a single candle. Will the bird survive?",
    "hw": 0.75,
    "note": "Wright treats a natural philosopher's experiment with the reverence once reserved for religious and historical scenes, capturing Britain's Enlightenment and Industrial Revolution.",
-   "why": "Well-dressed onlookers gather by candlelight round a scientific demonstration: Georgian polite society absorbed in Enlightenment science."
+   "why": "Well-dressed onlookers gather by candlelight round a scientific demonstration: Georgian polite society absorbed in Enlightenment science.",
+   "crop": [
+    0.109,
+    0.194,
+    0.791,
+    0.784
+   ]
   },
   {
    "id": "hay-wain",
@@ -641,7 +689,13 @@
    "hook": "The painting that gave the movement its name, the harbour of Le Havre.",
    "hw": 0.776,
    "note": "Painted from his window, loose strokes only suggest the scene: those misty shapes are steamship smokestacks and cranes melting into the haze.",
-   "why": "Loose, quick strokes blur harbour, boats and sun into hazy morning light: catching one fleeting moment rather than every detail."
+   "why": "Loose, quick strokes blur harbour, boats and sun into hazy morning light: catching one fleeting moment rather than every detail.",
+   "crop": [
+    0,
+    0.015,
+    0.537,
+    0.878
+   ]
   },
   {
    "id": "parasol",
@@ -782,7 +836,13 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg/1280px-De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg",
    "hook": "His dark early Dutch period, before Paris turned his palette bright.",
    "quiz": false,
-   "hw": 0.708
+   "hw": 0.708,
+   "crop": [
+    0.025,
+    0.135,
+    1,
+    0.859
+   ]
   },
   {
    "id": "cafe-terrace",
@@ -1014,7 +1074,13 @@
    "hook": "Munch made several versions. He described sensing 'an infinite scream passing through nature'.",
    "hw": 1.242,
    "note": "Munch's diary recalls the clouds over the Oslofjord turning 'blood red'; he painted that feeling, not the view, in oil, tempera and pastel on cardboard.",
-   "why": "An agonised, skull-like face under a blood-red sky: inner anxiety distorting the whole landscape around it."
+   "why": "An agonised, skull-like face under a blood-red sky: inner anxiety distorting the whole landscape around it.",
+   "crop": [
+    0,
+    0.084,
+    1,
+    1
+   ]
   },
   {
    "id": "saturn",
@@ -1028,7 +1094,13 @@
    "hook": "One of the 'Black Paintings' Goya painted straight onto the walls of his house.",
    "hw": 1.836,
    "note": "Goya painted it for no patron and gave it no title or explanation: a private vision of horror drawn from the myth of Saturn eating his children.",
-   "why": "A wild-eyed giant biting into a headless body, in dark, rough paint: Romantic horror and raw emotion."
+   "why": "A wild-eyed giant biting into a headless body, in dark, rough paint: Romantic horror and raw emotion.",
+   "crop": [
+    0.08,
+    0.113,
+    1,
+    0.92
+   ]
   },
   {
    "id": "demoiselles",
@@ -1054,7 +1126,13 @@
    "hook": "Mocked at New York's 1913 Armory Show as 'an explosion in a shingle factory'.",
    "hw": 1.65,
    "note": "Inspired by Marey's motion photography, Duchamp stacked fractured, overlapping figures in browns and ochres to show a body moving step by step.",
-   "why": "A body broken into overlapping ochre planes, repeated step by step: Cubist fragmentation set in motion."
+   "why": "A body broken into overlapping ochre planes, repeated step by step: Cubist fragmentation set in motion.",
+   "crop": [
+    0.063,
+    0,
+    0.971,
+    1
+   ]
   },
   {
    "id": "udnie",
@@ -1104,7 +1182,13 @@
    "hook": "At its first showing it hung high across a corner, where a Russian home places an icon.",
    "hw": 1,
    "note": "Malevich called it the 'zero point of painting': no object at all, only form, in his bid to free art from 'the ballast of the objective world'.",
-   "why": "A single black square on white, depicting nothing at all: pure shape with no recognisable subject."
+   "why": "A single black square on white, depicting nothing at all: pure shape with no recognisable subject.",
+   "crop": [
+    0.126,
+    0.13,
+    0.875,
+    0.887
+   ]
   },
   {
    "id": "white-on-white",
@@ -1322,7 +1406,13 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_AqgWlGK.jpg",
    "hw": 2.21,
    "note": "Rossetti painted at least eight versions of this one myth between 1871 and 1882, a poetic legend lovingly reworked rather than modern Paris life.",
-   "why": "A mythical queen in a blue gown holds a bitten pomegranate: Pre-Raphaelite rich colour and literary subject."
+   "why": "A mythical queen in a blue gown holds a bitten pomegranate: Pre-Raphaelite rich colour and literary subject.",
+   "crop": [
+    0.08,
+    0.017,
+    0.975,
+    0.866
+   ]
   },
   {
    "id": "beata-beatrix",
@@ -1339,7 +1429,13 @@
    "yearLabel": "c.1864–70",
    "hw": 1.294,
    "note": "A red dove, messenger of love, brings a white poppy, symbol of the laudanum that killed Siddal, as Beatrice sits in a trance of 'spiritual transfiguration'.",
-   "why": "A medieval heroine from Dante, with a symbolic dove and poppy: the Pre-Raphaelite love of literary subjects."
+   "why": "A medieval heroine from Dante, with a symbolic dove and poppy: the Pre-Raphaelite love of literary subjects.",
+   "crop": [
+    0.08,
+    0,
+    1,
+    0.899
+   ]
   },
   {
    "id": "norham",
@@ -1451,7 +1547,13 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_uexYlTC.jpg",
    "hw": 1.301,
    "note": "Look at the palette: it shows Hogarth's serpentine 'Line of Beauty', his own theory of art, set beside books the pug ignores.",
-   "why": "A cheeky pug sits beside the painter's own oval portrait: the down-to-earth wit of Georgian Britain."
+   "why": "A cheeky pug sits beside the painter's own oval portrait: the down-to-earth wit of Georgian Britain.",
+   "crop": [
+    0.276,
+    0.159,
+    0.979,
+    0.991
+   ]
   },
   {
    "id": "roast-beef",
@@ -1529,7 +1631,13 @@
    "img": "https://media.tate.org.uk/art/images/work/N/N06/N06076_10.jpg",
    "hw": 1.295,
    "note": "Her model was Marie van Goethem, a Paris Opera Ballet student, shown mid-exercise rather than angelic, and some viewers thought her a deliberate image of ugliness.",
-   "why": "A young ballet student in a real fabric tutu and ribbon: Impressionism's eye for everyday modern Paris life."
+   "why": "A young ballet student in a real fabric tutu and ribbon: Impressionism's eye for everyday modern Paris life.",
+   "crop": [
+    0,
+    0,
+    0.931,
+    1
+   ]
   },
   {
    "id": "vallier",
@@ -1644,7 +1752,13 @@
    "yearLabel": "1917 (replica 1964)",
    "hw": 0.874,
    "note": "Duchamp chose a factory-made porcelain urinal, turned it on its back and called it art: the artist's choice alone made it a sculpture.",
-   "why": "An ordinary factory urinal, turned on its back and signed 'R. Mutt': Dada's anti-art provocation in its purest form."
+   "why": "An ordinary factory urinal, turned on its back and signed 'R. Mutt': Dada's anti-art provocation in its purest form.",
+   "crop": [
+    0.101,
+    0.069,
+    0.904,
+    0.955
+   ]
   },
   {
    "id": "narcissus",
@@ -1676,7 +1790,13 @@
    "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_eDjXBEf.jpg",
    "hw": 0.658,
    "note": "Dalí fused two ordinary objects because lobsters and telephones both had strong sexual connotations for him, a classic Surrealist object rather than a pure abstract form.",
-   "why": "A plaster lobster laid on a working telephone: two unrelated objects joined to stir the unconscious."
+   "why": "A plaster lobster laid on a working telephone: two unrelated objects joined to stir the unconscious.",
+   "crop": [
+    0.042,
+    0.216,
+    0.887,
+    0.93
+   ]
   },
   {
    "id": "reckless-sleeper",
@@ -1795,7 +1915,13 @@
    "img": "https://media.tate.org.uk/art/images/work/T/T03/T03254_10.jpg",
    "hw": 0.991,
    "note": "Based on a photo in a book of swimming pools, rolled flat with acrylic and framed by an unpainted border like a Polaroid.",
-   "why": "Flat, bright colour and crisp, clean shapes of a Californian pool: Pop's cool, advert-like look at modern life."
+   "why": "Flat, bright colour and crisp, clean shapes of a Californian pool: Pop's cool, advert-like look at modern life.",
+   "crop": [
+    0.08,
+    0.072,
+    0.924,
+    0.932
+   ]
   },
   {
    "id": "clarks-percy",
@@ -1892,7 +2018,13 @@
    "img": "https://media.tate.org.uk/art/images/work/T/T00/T00699_10.jpg",
    "hw": 0.749,
    "note": "A carved sculpture, not a painting: a nut-like elm form whose hollow is painted a cool light blue and crossed by taut strings.",
-   "why": "Carved elm curling round a pale blue hollow strung with taut strings: modern British sculpture inspired by the Cornish sea."
+   "why": "Carved elm curling round a pale blue hollow strung with taut strings: modern British sculpture inspired by the Cornish sea.",
+   "crop": [
+    0.121,
+    0.077,
+    0.875,
+    0.951
+   ]
   },
   {
    "id": "recumbent",
@@ -1907,7 +2039,13 @@
    "img": "https://media.tate.org.uk/art/images/work/N/N05/N05387_10.jpg",
    "hw": 0.725,
    "note": "Carved from Green Hornton stone for an architect's Sussex garden, this reclining woman gazes out across the Downs, her body pierced by holes you can see through.",
-   "why": "A reclining woman pierced by holes you can see through: modern British sculpture reshaping the human figure."
+   "why": "A reclining woman pierced by holes you can see through: modern British sculpture reshaping the human figure.",
+   "crop": [
+    0.025,
+    0.034,
+    0.975,
+    0.926
+   ]
   },
   {
    "id": "white-dog",
@@ -2342,7 +2480,13 @@
    "title": "Plaque to Sir Henry Tate, sugar magnate and founder of the Tate Gallery",
    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg/960px-Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Sir_Henry_Tate_1819-1899_Sugar_magnate_and_founder_of_the_Tate_Gallery_traded_here_1851-1861.jpg",
-   "hook": "Tate's sugar fortune paid for the gallery at Millbank, opened in 1897."
+   "hook": "Tate's sugar fortune paid for the gallery at Millbank, opened in 1897.",
+   "crop": [
+    0.027,
+    0.155,
+    0.973,
+    0.862
+   ]
   },
   {
    "id": "lawrence-angerstein",
@@ -2479,7 +2623,13 @@
    "page": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
    "hw": 0.792,
    "note": "Van Gogh painted his room in 'flat, plain tints like Japanese prints', removing shadows so that looking at it would 'rest the mind'.",
-   "why": "Flat, plain tints and no shadows, like Japanese prints: colour and form simplified to express a feeling of rest."
+   "why": "Flat, plain tints and no shadows, like Japanese prints: colour and form simplified to express a feeling of rest.",
+   "crop": [
+    0,
+    0,
+    0.929,
+    0.865
+   ]
   },
   {
    "id": "vg-yellow-house",
@@ -2773,7 +2923,13 @@
    "page": "https://www.agsa.sa.gov.au/collection-publications/collection/works/_/64814/",
    "hw": 1.333,
    "hook": "Two metres tall and, like most of her canvases, painted in a single day.",
-   "why": "A two-metre canvas of an invented Black figure: Old Master scale given to a Black subject."
+   "why": "A two-metre canvas of an invented Black figure: Old Master scale given to a Black subject.",
+   "crop": [
+    0,
+    0.167,
+    0.64,
+    0.899
+   ]
   },
   {
    "id": "lyb-razorbill",
@@ -2815,7 +2971,13 @@
    "page": "https://www.tate.org.uk/art/artworks/ofili-no-woman-no-cry-t07502",
    "hw": 1.334,
    "hook": "Glow-in-the-dark paint hides the words 'R.I.P. Stephen Lawrence', visible only when the lights go down.",
-   "why": "Resin, glitter, map pins and elephant dung on one canvas: the YBA appetite for daring materials."
+   "why": "Resin, glitter, map pins and elephant dung on one canvas: the YBA appetite for daring materials.",
+   "crop": [
+    0.071,
+    0.067,
+    0.929,
+    1
+   ]
   },
   {
    "id": "ofili-captain-shit",
@@ -2829,7 +2991,13 @@
    "page": "https://www.tate.org.uk/art/artworks/ofili-double-captain-shit-and-the-legend-of-the-black-stars-t07345",
    "hw": 1.333,
    "hook": "Captain Shit is Ofili's own Black superhero, a playful send-up of 1970s comic heroes like Luke Cage.",
-   "why": "A cheeky comic-book hero in glitter and dung: YBA wit poking at pop culture and stereotypes."
+   "why": "A cheeky comic-book hero in glitter and dung: YBA wit poking at pop culture and stereotypes.",
+   "crop": [
+    0.032,
+    0.03,
+    0.984,
+    0.995
+   ]
   },
   {
    "id": "ofili-blue-devils",
@@ -2977,7 +3145,13 @@
    "page": "https://www.metmuseum.org/art/collection/search/319872",
    "hw": 0.678,
    "hook": "Gold, red and black metal imitates fine woven silk, inspired by Ghanaian kente cloth.",
-   "why": "Thousands of crushed metal pieces ripple like fabric: found materials remade on a huge scale."
+   "why": "Thousands of crushed metal pieces ripple like fabric: found materials remade on a huge scale.",
+   "crop": [
+    0.03,
+    0.039,
+    0.97,
+    0.967
+   ]
   },
   {
    "id": "anatsui-another-place",
@@ -3213,7 +3387,13 @@
    "page": "https://www.tate.org.uk/art/artworks/walker-fons-americanus-l04877",
    "hw": 1.332,
    "hook": "Her 13-metre 2019 Turbine Hall fountain reworked London's Victoria Memorial to tell of slavery.",
-   "why": "A full-size public fountain built indoors: a monument you walk around and question."
+   "why": "A full-size public fountain built indoors: a monument you walk around and question.",
+   "crop": [
+    0.071,
+    0.159,
+    0.884,
+    0.937
+   ]
   },
   {
    "id": "walker-keys-to-the-coop",
@@ -3227,7 +3407,13 @@
    "page": "https://www.tate.org.uk/art/artworks/walker-the-keys-to-the-coop-p78211",
    "hw": 0.755,
    "hook": "A linocut: a black silhouette of a girl chasing a chicken, cut out of the white page.",
-   "why": "A genteel silhouette style turned to a disturbing scene: polite craft, brutal story."
+   "why": "A genteel silhouette style turned to a disturbing scene: polite craft, brutal story.",
+   "crop": [
+    0.08,
+    0.242,
+    0.924,
+    0.935
+   ]
   },
   {
    "id": "walker-grub-for-sharks",
@@ -3517,7 +3703,13 @@
    "page": "https://www.tate.org.uk/art/artworks/kentridge-i-am-not-me-the-horse-is-not-mine-t14213",
    "hw": 0.648,
    "hook": "Eight films play at once across the walls, drawing on 1920s and 1930s Russian avant-garde.",
-   "why": "Several projections surround the viewer at once: video art grown into an immersive multi-screen space."
+   "why": "Several projections surround the viewer at once: video art grown into an immersive multi-screen space.",
+   "crop": [
+    0,
+    0.052,
+    0.979,
+    1
+   ]
   },
   {
    "id": "mcqueen-bear",
@@ -3765,7 +3957,13 @@
    "hw": 0.993,
    "hook": "Never shown in her lifetime.",
    "note": "In the Swan series, birds slowly turn into pure geometric shapes.",
-   "why": "A circle split into black, white, yellow and blue on flat red: shape and colour alone carry the meaning."
+   "why": "A circle split into black, white, yellow and blue on flat red: shape and colour alone carry the meaning.",
+   "crop": [
+    0.221,
+    0.219,
+    0.77,
+    0.785
+   ]
   },
   {
    "id": "klint-altarpiece-2",
@@ -3841,7 +4039,13 @@
    "credit": "Wikimedia Commons",
    "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg",
    "hook": "The anatomist Dr Tulp shows the muscles of an arm to a group of onlookers.",
-   "hw": 0.753
+   "hw": 0.753,
+   "crop": [
+    0,
+    0.054,
+    0.908,
+    1
+   ]
   },
   {
    "id": "rem-jewish-bride",
@@ -3856,7 +4060,13 @@
    "credit": "Wikimedia Commons",
    "page": "https://commons.wikimedia.org/wiki/File:Rembrandt_Harmensz._van_Rijn_-_Portret_van_een_paar_als_oudtestamentische_figuren,_genaamd_'Het_Joodse_bruidje'_-_Google_Art_Project.jpg",
    "hook": "A tender couple in thick, glowing paint. Van Gogh is said to have adored it.",
-   "hw": 0.729
+   "hw": 0.729,
+   "crop": [
+    0.146,
+    0.085,
+    0.737,
+    0.961
+   ]
   },
   {
    "id": "rem-prodigal",
@@ -3935,7 +4145,13 @@
    "credit": "Wikimedia Commons",
    "page": "https://commons.wikimedia.org/wiki/File:Mary_Stevenson_Cassatt_-_In_the_Loge_-_Google_Art_Project.jpg",
    "hook": "She looks through her opera glasses while a man in the background looks at her.",
-   "hw": 1.243
+   "hw": 1.243,
+   "crop": [
+    0,
+    0,
+    0.939,
+    1
+   ]
   },
   {
    "id": "cassatt-letter",
@@ -4023,7 +4239,13 @@
    "credit": "Wikimedia Commons",
    "page": "https://commons.wikimedia.org/wiki/File:Gwen_John_-_Dorelia_in_a_Black_Dress,_c.1903–4,_N05910.jpg",
    "hook": "Her friend Dorelia McNeill stands quietly in a dark room, hands folded.",
-   "hw": 1.506
+   "hw": 1.506,
+   "crop": [
+    0.328,
+    0.084,
+    1,
+    1
+   ]
   },
   {
    "id": "kand-comp-8",
@@ -4051,7 +4273,13 @@
    "credit": "Wikimedia Commons",
    "page": "https://commons.wikimedia.org/wiki/File:Vassily_Kandinsky,_1926_-_Several_Circles,_Gugg_0910_25.jpg",
    "hook": "Glowing, overlapping circles float on a dark ground.",
-   "hw": 1.019
+   "hw": 1.019,
+   "crop": [
+    0.064,
+    0.117,
+    0.948,
+    0.854
+   ]
   },
   {
    "id": "kand-accent-pink",
