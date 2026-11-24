@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "21 Nov, 10:51"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 06:57"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -977,8 +977,7 @@ function renderToday(){
   view.innerHTML = `
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
-      ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}
-      ${wnState() !== "none" ? `<button class="btn link wnline" id="wnline">${wnItems().length === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][wnItems().length] || wnItems().length} new things`} in the gallery</button>` : ""}</div>
+      ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
     ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span></button>
     <button class="btn" id="go">Start</button>`}
@@ -990,16 +989,14 @@ function renderToday(){
   if ($("#pnew")) $("#pnew").onclick = () => playTopic(ex.fresh);
   if ($("#pdeep")) $("#pdeep").onclick = () => playTopic(ex.deep);
   if ($("#pnew2")) $("#pnew2").onclick = () => playTopic(ex.fresh2);
-  if ($("#wnline")) $("#wnline").onclick = () => openWhatsNew(true);
-  wnMark();
   if (wnState() === "new") wnSoon();
 }
 /* wait until the opening picture has gone, then show what's new once */
 function wnSoon(){
   const t0 = Date.now(), tick = () => {
-    if (!$("#wnline") || $("#wnsheet")) return;
+    if (!$("#wntoday") || $("#wnsheet")) return;
     if (document.querySelector(".splash, .welcome") && Date.now() - t0 < 15000) return setTimeout(tick, 400);
-    setTimeout(() => { if ($("#wnline") && !$("#wnsheet") && wnState() === "new") openWhatsNew(false); }, 700);
+    setTimeout(() => { if ($("#wntoday") && !$("#wnsheet") && wnState() === "new") openWhatsNew(false); }, 700);
   };
   tick();
 }
@@ -1013,17 +1010,18 @@ const WN_ICONS = {
   star: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'
 };
 const wnItems = () => ((WN && WN.items) || []).filter(i => !i.needs || TOPICS[i.needs]);
-const wnKey = () => WN && WN.id ? WN.id + ":" + wnItems().map(i => i.title).join("|") : "";
+const wnKey = () => WN && WN.id ? WN.id : "";
+const wnSame = (a, k) => !!a && (a === k || a.startsWith(k + ":")); // older saves added the item titles
 function wnState(){
   const k = wnKey(), s = local.get("wn:" + pid) || {};
   if (!k || !wnItems().length) return "none";
-  if (s.key !== k) return "new";
+  if (!wnSame(s.key, k)) return "new";
   return s.reopened || Date.now() - s.at > 7 * 864e5 ? "none" : "chip";
 }
-function wnMark(){ $("#whoDot") && $("#whoDot").classList.toggle("wn", wnState() === "chip"); }
+const wnCount = () => { const n = wnItems().length; return n === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][n] || n} new things`; };
 function openWhatsNew(reopen){
   const k = wnKey(), s = local.get("wn:" + pid) || {};
-  local.set("wn:" + pid, s.key === k ? Object.assign(s, reopen ? {reopened: true} : {}) : {key: k, at: Date.now()});
+  local.set("wn:" + pid, wnSame(s.key, k) ? Object.assign(s, reopen ? {reopened: true} : {}) : {key: k, at: Date.now()});
   let el = $("#wnsheet");
   if (!el){ el = document.createElement("div"); el.id = "wnsheet"; el.className = "wnwrap"; document.body.appendChild(el); }
   el.innerHTML = `<div class="wnback"></div><div class="wnsheet" role="dialog" aria-modal="true" aria-labelledby="wntitle">
@@ -1032,7 +1030,7 @@ function openWhatsNew(reopen){
       <button class="wnx" id="wnx" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
     <div class="wnlist">${wnItems().map(i => `<div class="wnitem"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span><div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`).join("")}</div>
     <button class="btn" id="wngo">Let's go</button></div>`;
-  const close = () => { el.classList.remove("on"); setTimeout(() => { el.remove(); if ($("#wnline")) renderToday(); else wnMark(); }, 300); };
+  const close = () => { el.classList.remove("on"); setTimeout(() => { el.remove(); if ($("#wnme")) renderMe(); }, 300); };
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("on")));
   $("#wnx").onclick = close; $("#wngo").onclick = close; el.querySelector(".wnback").onclick = close;
   let y0 = null; const sh = el.querySelector(".wnsheet");
@@ -1279,6 +1277,7 @@ function renderMe(focus){
   const levels = Object.keys(TOPICS).map(lvlOf), best = Math.max(...levels);
   view.innerHTML = `
     <div class="row mehead"><span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span><div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
+    ${wnState() === "chip" ? `<button class="wnme" id="wnme"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS.star}</svg></span><span class="grow"><b>What's new</b><span class="small muted">${wnCount()} in the gallery</span></span><svg class="wnchev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}
     <div id="editbox"></div>
     <div class="stats"><div class="stat"><b>${levels.filter(l => l >= 2).length}</b><span>topics beyond Visitor</span></div><div class="stat"><b class="word">${LEVELS[best-1]}</b><span>highest level</span></div><div class="stat"><b>${s.learned}</b><span>learned for good</span></div></div>
     <div class="stack" id="areabox"><span class="eyebrow">Where do you live?</span>
@@ -1296,6 +1295,7 @@ function renderMe(focus){
     <button class="btn link center" id="howto">How Morning Gallery works</button>
     <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p>`;
   $("#howto").onclick = () => showWelcome(() => go("me"));
+  if ($("#wnme")) $("#wnme").onclick = () => openWhatsNew(true);
   let kind = "idea";
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");

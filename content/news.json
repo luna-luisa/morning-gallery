@@ -1,6 +1,6 @@
 {
- "week": "w/c 16 Nov 2026",
- "updated": "2026-11-22",
+ "week": "w/c 23 Nov 2026",
+ "updated": "2026-11-24",
  "featuredTopics": [
   "auctions",
   "van-gogh",
@@ -9,28 +9,6 @@
   "alfred-wallis"
  ],
  "items": [
-  {
-   "id": "2026-11-kusama-record",
-   "date": "2026-11-16",
-   "topic": "auctions",
-   "level": 2,
-   "headline": "Yayoi Kusama sets a $15m auction record",
-   "summary": "Her 1960 Infinity Net painting No. 3P.B. sold for about $15m with fees at Sotheby's New York on 16 November, three months after her death.",
-   "question": "Whose 1960 Infinity Net painting just set a $15m auction record?",
-   "options": [
-    "Yayoi Kusama",
-    "Yoshitomo Nara",
-    "Takashi Murakami",
-    "Kazuo Shiraga"
-   ],
-   "answer": 0,
-   "explain": "Kusama, who died in August aged 97, made it soon after moving to New York, and it was shown in the Whitney Museum of American Art's 1961 annual exhibition there.",
-   "notes": {
-    "Yoshitomo Nara": "Nara is known for his big-eyed child figures, not net paintings.",
-    "Takashi Murakami": "Murakami is famous for his bright 'Superflat' flowers and cartoon characters."
-   },
-   "source": "https://www.sothebys.com/en/buy/auction/2026/the-now-contemporary-evening-auction-2/yayoi-kusama-no-3-p-b"
-  },
   {
    "id": "2026-11-kandinsky-record",
    "date": "2026-11-17",
@@ -74,23 +52,6 @@
    },
    "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et",
    "reveal": "vg-chestnut-trees"
-  },
-  {
-   "id": "2026-11-book-of-miracles",
-   "date": "2026-11-16",
-   "topic": "auctions",
-   "level": 3,
-   "headline": "A 16th-century Book of Miracles heads to auction",
-   "summary": "Christie's in London offers the Augsburg manuscript of 167 watercolours on 10 December, estimated at £700,000 to £1m.",
-   "question": "In which German city was the Book of Miracles made around 1552?",
-   "options": [
-    "Augsburg",
-    "Berlin",
-    "Hamburg",
-    "Dresden"
-   ],
-   "answer": 0,
-   "explain": "Its 167 watercolours of omens, natural wonders and Bible scenes are attributed to Hans Burgkmair the Younger, Heinrich Vogtherr the Younger and their workshops."
   },
   {
    "id": "2026-11-van-gogh-heirs",
@@ -142,7 +103,7 @@
    "level": 2,
    "headline": "Van Eyck's portraits reunited in London",
    "summary": "'Van Eyck: The Portraits' opened at the National Gallery in London on 21 November and runs until 11 April 2027.",
-   "question": "Whose portraits fill the National Gallery in London from 21 November?",
+   "question": "Whose portraits are on show at the National Gallery in London until April?",
    "options": [
     "Jan van Eyck",
     "Hans Holbein",
@@ -160,7 +121,7 @@
    "topic": "guggenheim",
    "level": 3,
    "headline": "Peggy Guggenheim's London years at the RA",
-   "summary": "From 21 November the Royal Academy in London looks at her Cork Street gallery, Guggenheim Jeune (1938–39).",
+   "summary": "Since 21 November the Royal Academy in London has looked at her London gallery, Guggenheim Jeune (1938–39).",
    "question": "Peggy Guggenheim's London gallery gave the first UK solo show to which artist?",
    "options": [
     "Wassily Kandinsky",
@@ -197,24 +158,6 @@
    "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/paul-cezanne-arlequin"
   },
   {
-   "id": "2026-11-venice-awards",
-   "date": "2026-11-12",
-   "topic": "art-fairs",
-   "level": 3,
-   "headline": "Venice Biennale's visitor prizes on its final day",
-   "summary": "The 61st Biennale closes on 22 November, when visitor-voted 'Visitors' Lions' replace the jury prizes after the jury resigned in April.",
-   "question": "When will the 2026 Venice Biennale's visitor-voted 'Visitors' Lions' be announced?",
-   "options": [
-    "22 November, its closing day",
-    "On opening day in May",
-    "At the 2027 edition",
-    "At the Venice Film Festival in September"
-   ],
-   "answer": 0,
-   "explain": "The jury resigned on 30 April, so the May ceremony was dropped. Instead visitors vote for two 'Visitors' Lions', announced on 22 November.",
-   "source": "https://www.labiennale.org/en/node/19732"
-  },
-  {
    "id": "2026-11-af-klint-record",
    "date": "2026-11-19",
    "topic": "abstraction",
@@ -235,6 +178,33 @@
     "Anders Zorn": "Zorn was a Swedish portrait painter famous for his bathers and society portraits."
    },
    "source": "https://via.tt.se/pressmeddelande/4649293/bukowskis-klubbar-hilma-af-klint-for-1289-miljoner-sek-det-dyraste-konstverket-som-nagonsin-salts-i-norden?publisherId=3236798"
+  },
+  {
+   "id": "2026-11-venice-closes",
+   "date": "2026-11-22",
+   "topic": "art-fairs",
+   "level": 3,
+   "headline": "Venice Biennale closes after a record turnout of nations",
+   "summary": "The 61st Venice Biennale, In Minor Keys, closed on 22 November after drawing 714,015 visitors.",
+   "question": "What record did the 2026 Venice Biennale set?",
+   "options": [
+    "Most countries ever taking part",
+    "Most visitors ever",
+    "Longest run ever",
+    "First edition held outside Venice"
+   ],
+   "answer": 0,
+   "explain": "A record 100 countries had their own national exhibitions at this edition.",
+   "notes": {
+    "Longest run ever": "It actually ran about three weeks shorter than earlier editions, from 9 May to 22 November.",
+    "First edition held outside Venice": "This edition was held in Venice, the city that gives the Biennale its name."
+   },
+   "source": "https://www.labiennale.org/en/news/biennale-arte-2026-koyo-kouoh-closes-high-note-714015-visitors",
+   "reveal": {
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cannaregio%2C_30100_Venice%2C_Italy_-_panoramio_%28206%29.jpg/960px-Cannaregio%2C_30100_Venice%2C_Italy_-_panoramio_%28206%29.jpg",
+    "photo": true,
+    "title": "The Giardini in Venice, home of the Biennale national pavilions"
+   }
   }
  ]
 }
