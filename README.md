@@ -49,6 +49,12 @@ An intro card about something current must not go stale. The "In the news" card 
 - New app features and design changes: mock-up on the design canvas first, then Luna's profile only (topic or item flagged "preview", or an isAdmin() check), then everyone once she is happy.
 - New content (topics, questions, comparisons, news): straight to everyone once the fact checks pass and every picture is confirmed to load.
 
+## What's new (Luna, 24 Nov 2026: avoid fatigue)
+- The What's new sheet pops up whenever `content/whatsnew.json` gets a new `id`, so change the id at most once every 7 days, and only for something people would be sorry to miss: a new feature, or new artist topics.
+- One item, two at most. One short line each.
+- Never repeat something already announced. Extra comparisons, What's on, fixes and picture swaps are not announced.
+- When nothing qualifies, leave the file alone.
+
 ## Picture check (GitHub, daily)
 A GitHub job (.github/workflows/check-images.yml, tools/check_images.py) opens every picture in works.json each morning and whenever works.json changes, and writes content/imagecheck.json: "broken" lists works whose picture won't load (with the reason), "hw" gives each picture's real height/width. It costs no Claude credits. Scheduled tasks: read content/imagecheck.json first; replace or remove every work listed under "broken" (repoint any card or question that used it), and correct "hw" in works.json where it differs by more than 0.1. After adding works, the check runs by itself within minutes of the push; look at imagecheck.json again before finishing.
 Contact sheets: the same job puts small labelled thumbnails of every picture in the private repo luna-luisa/morning-gallery-sheets (replaced each run; never in this public repo or on the website). Attach it with add_repo (read access) and clone it, then look at them. For any picture whose square crop would show a frame, mount, wall or border, set "zoom" (for example 1.08 for a thin frame, 1.3 to 1.8 for a wall view) and "focus" (CSS background-position, for example "50% 50%"); for tall portraits whose face is not near the top, set "focus" to where the face is.
