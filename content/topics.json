@@ -4709,8 +4709,7 @@
      "explain": "Polke and Richter were fellow students at the Düsseldorf Art Academy, and first showed together in 1963.",
      "reveal": "richter-st-john"
     }
-   ],
-   "preview": true
+   ]
   },
   "black-figuration": {
    "name": "Black figuration",
@@ -4799,8 +4798,7 @@
      ],
      "explain": "He used the airy, romantic look of 18th-century French Rococo to paint Black love."
     }
-   ],
-   "preview": true
+   ]
   },
   "british-black-arts": {
    "name": "British Black Arts Movement",
@@ -4891,8 +4889,7 @@
      "explain": "Himid curated several shows in the 1980s to challenge the invisibility of Black women artists.",
      "art": "himid-freedom-and-change"
     }
-   ],
-   "preview": true
+   ]
   },
   "installation-art": {
    "name": "Installation art",
@@ -4982,8 +4979,7 @@
     "dada",
     "popart",
     "tate"
-   ],
-   "preview": true
+   ]
   },
   "afrofuturism": {
    "name": "Afrofuturism",
@@ -5072,8 +5068,7 @@
      "explain": "Mutu's four bronzes filled the empty niches in 2019.",
      "art": "mutu-seated-iii"
     }
-   ],
-   "preview": true
+   ]
   },
   "pictures-generation": {
    "name": "The Pictures Generation",
@@ -5162,8 +5157,7 @@
      "explain": "The Met says they turned back to recognisable images after Minimal and Conceptual Art.",
      "reveal": "sherman-untitled-97"
     }
-   ],
-   "preview": true
+   ]
   },
   "performance-art": {
    "name": "Performance art",
@@ -5252,8 +5246,7 @@
      "explain": "Tate's Abramović works are sets of photographs and a five-screen video.",
      "art": "abramovic-cleaning-mirror"
     }
-   ],
-   "preview": true
+   ]
   },
   "video-art": {
    "name": "Video art",
@@ -5342,8 +5335,7 @@
      "explain": "Projection allowed large, multi-screen installations, as with Bill Viola.",
      "art": "mcqueen-caribs-leap"
     }
-   ],
-   "preview": true
+   ]
   },
   "superflat": {
    "name": "Superflat",
@@ -5433,8 +5425,7 @@
      "explain": "It opened at MOCA Pacific Design Center, then toured to Minneapolis and Seattle.",
      "reveal": "murakami-warp"
     }
-   ],
-   "preview": true
+   ]
   },
   "gerhard-richter": {
    "name": "Gerhard Richter",
@@ -5536,8 +5527,7 @@
    "to": 2025,
    "fade": true,
    "region": "Germany",
-   "look": "blurred paintings of photos, and big squeegeed abstracts",
-   "preview": true
+   "look": "blurred paintings of photos, and big squeegeed abstracts"
   },
   "kerry-james-marshall": {
    "name": "Kerry James Marshall",
@@ -5639,8 +5629,7 @@
    "from": 1975,
    "to": 2025,
    "fade": true,
-   "look": "grand scenes of Black everyday life, with figures painted a deep, pure black",
-   "preview": true
+   "look": "grand scenes of Black everyday life, with figures painted a deep, pure black"
   },
   "julie-mehretu": {
    "name": "Julie Mehretu",
@@ -5742,8 +5731,7 @@
    "from": 1990,
    "to": 2025,
    "fade": true,
-   "look": "huge layered canvases of architectural lines and swirling marks",
-   "preview": true
+   "look": "huge layered canvases of architectural lines and swirling marks"
   },
   "lynette-yiadom-boakye": {
    "name": "Lynette Yiadom-Boakye",
@@ -5846,8 +5834,7 @@
    "from": 1995,
    "to": 2025,
    "fade": true,
-   "look": "portraits of imagined Black figures in dark, loosely painted settings",
-   "preview": true
+   "look": "portraits of imagined Black figures in dark, loosely painted settings"
   },
   "chris-ofili": {
    "name": "Chris Ofili",
@@ -5950,7 +5937,6 @@
    "to": 2025,
    "region": "Britain",
    "look": "glittering, layered paintings, some propped on balls of elephant dung",
-   "preview": true,
    "fade": true
   },
   "lubaina-himid": {
@@ -6055,8 +6041,7 @@
    "to": 2025,
    "fade": true,
    "region": "Britain",
-   "look": "bold painted figures, patterns and cut-outs that retell Black history",
-   "preview": true
+   "look": "bold painted figures, patterns and cut-outs that retell Black history"
   },
   "el-anatsui": {
    "name": "El Anatsui",
@@ -6159,8 +6144,7 @@
    "from": 1965,
    "to": 2025,
    "fade": true,
-   "look": "vast shimmering hangings of flattened bottle tops and copper wire",
-   "preview": true
+   "look": "vast shimmering hangings of flattened bottle tops and copper wire"
   },
   "yayoi-kusama": {
    "name": "Yayoi Kusama",
@@ -6263,8 +6247,7 @@
    "from": 1950,
    "to": 2026,
    "fade": false,
-   "look": "polka dots, pumpkins and endless mirrored rooms",
-   "preview": true
+   "look": "polka dots, pumpkins and endless mirrored rooms"
   },
   "ai-weiwei": {
    "name": "Ai Weiwei",
@@ -6367,8 +6350,7 @@
    "from": 1975,
    "to": 2025,
    "fade": true,
-   "look": "antiques and everyday objects remade to question power",
-   "preview": true
+   "look": "antiques and everyday objects remade to question power"
   },
   "doris-salcedo": {
    "name": "Doris Salcedo",
@@ -6471,8 +6453,7 @@
    "from": 1980,
    "to": 2025,
    "fade": true,
-   "look": "furniture, shoes and spaces scarred by violence and loss",
-   "preview": true
+   "look": "furniture, shoes and spaces scarred by violence and loss"
   },
   "olafur-eliasson": {
    "name": "Olafur Eliasson",
@@ -6574,8 +6555,7 @@
    "from": 1985,
    "to": 2025,
    "fade": true,
-   "look": "light, water and weather brought into the gallery",
-   "preview": true
+   "look": "light, water and weather brought into the gallery"
   },
   "kara-walker": {
    "name": "Kara Walker",
@@ -6678,8 +6658,7 @@
    "from": 1990,
    "to": 2025,
    "fade": true,
-   "look": "black cut-paper silhouettes of America's history of slavery",
-   "preview": true
+   "look": "black cut-paper silhouettes of America's history of slavery"
   },
   "wangechi-mutu": {
    "name": "Wangechi Mutu",
@@ -6782,8 +6761,7 @@
    "from": 1990,
    "to": 2025,
    "fade": true,
-   "look": "collaged part-human women made from magazines, paint and myth",
-   "preview": true
+   "look": "collaged part-human women made from magazines, paint and myth"
   },
   "cindy-sherman": {
    "name": "Cindy Sherman",
@@ -6886,7 +6864,6 @@
    "to": 2025,
    "region": "USA",
    "look": "photographs of herself in staged roles and costumes",
-   "preview": true,
    "fade": true
   },
   "marina-abramovic": {
@@ -6989,8 +6966,7 @@
    "from": 1965,
    "to": 2025,
    "fade": true,
-   "look": "live performances that test the limits of her own body",
-   "preview": true
+   "look": "live performances that test the limits of her own body"
   },
   "william-kentridge": {
    "name": "William Kentridge",
@@ -7092,8 +7068,7 @@
    "from": 1975,
    "to": 2025,
    "fade": true,
-   "look": "charcoal drawings animated by redrawing and rubbing out",
-   "preview": true
+   "look": "charcoal drawings animated by redrawing and rubbing out"
   },
   "steve-mcqueen": {
    "name": "Steve McQueen",
@@ -7195,8 +7170,7 @@
    "from": 1990,
    "to": 2025,
    "fade": true,
-   "look": "films shown in the gallery as projections, and later feature films",
-   "preview": true
+   "look": "films shown in the gallery as projections, and later feature films"
   },
   "takashi-murakami": {
    "name": "Takashi Murakami",
@@ -7299,8 +7273,7 @@
    "to": 2025,
    "fade": true,
    "region": "Japan",
-   "look": "smiling flowers, cartoon characters and flat, bright colour",
-   "preview": true
+   "look": "smiling flowers, cartoon characters and flat, bright colour"
   }
  }
 }

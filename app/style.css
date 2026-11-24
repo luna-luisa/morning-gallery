@@ -747,9 +747,11 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .th .fband.fade{background:linear-gradient(90deg,rgba(163,39,29,.10) 0 55%,rgba(163,39,29,0) 100%);border-radius:6px 0 0 6px}
 
 /* what's new */
-.btn.link.wnline{align-self:flex-start;color:var(--pink-ink);font-size:14px;min-height:32px}
-.who .dot{position:relative}
-.who .dot.wn::after{content:"";position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--pink);border:2px solid var(--wall)}
+.wnme{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 14px;border:0;border-radius:14px;background:#fde6ee;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.wnme .grow{display:flex;flex-direction:column;gap:2px}
+.wnme b{font-size:16px}
+.wnme .wnicon{width:40px;height:40px;background:#fff;color:var(--pink-ink)}
+.wnme .wnchev{width:18px;height:18px;fill:none;stroke:var(--pink-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .wnwrap{position:fixed;inset:0;z-index:60;pointer-events:none}
 .wnwrap.on{pointer-events:auto}
 .wnback{position:absolute;inset:0;background:rgba(20,20,30,.42);opacity:0;transition:opacity .28s ease}
