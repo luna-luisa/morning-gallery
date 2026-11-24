@@ -99,7 +99,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1941.597/1941.597_web.jpg",
 "hw": 1.232,
 "link": "https://clevelandart.org/art/1941.597",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.13,
+"focus": "37% 45%"
 },
 {
 "id": "d-cle-150960",
@@ -309,7 +311,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1985.372/1985.372_web.jpg",
 "hw": 1.24,
 "link": "https://clevelandart.org/art/1985.372",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "48% 55%"
 },
 {
 "id": "d-cle-161035",
@@ -319,7 +323,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1999.27/1999.27_web.jpg",
 "hw": 1.561,
 "link": "https://clevelandart.org/art/1999.27",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.27,
+"focus": "45% 47%"
 },
 {
 "id": "d-cle-157428",
@@ -339,7 +345,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1919.1006/1919.1006_web.jpg",
 "hw": 1.249,
 "link": "https://clevelandart.org/art/1919.1006",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.06,
+"focus": "41% 53%"
 },
 {
 "id": "d-tat-T07059",
@@ -399,7 +407,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2002.53/2002.53_web.jpg",
 "hw": 1.353,
 "link": "https://clevelandart.org/art/2002.53",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.08,
+"focus": "64% 50%"
 },
 {
 "id": "d-cle-142287",
@@ -639,7 +649,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1915.696/1915.696_web.jpg",
 "hw": 1.265,
 "link": "https://clevelandart.org/art/1915.696",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.34,
+"focus": "34% 49%"
 },
 {
 "id": "d-tat-T07079",
@@ -799,7 +811,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1918.173/1918.173_web.jpg",
 "hw": 1.313,
 "link": "https://clevelandart.org/art/1918.173",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.15,
+"focus": "57% 59%"
 },
 {
 "id": "d-cle-84371",
@@ -1239,7 +1253,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_9cJf32O.jpg",
 "hw": 1.22,
 "link": "https://www.tate.org.uk/art/artworks/alley-spatial-form-t00655",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.06,
+"focus": "54% 51%"
 },
 {
 "id": "d-cle-111192",
@@ -1259,7 +1275,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2003.392/2003.392_web.jpg",
 "hw": 1.287,
 "link": "https://clevelandart.org/art/2003.392",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.06,
+"focus": "50% 47%"
 },
 {
 "id": "d-cle-132862",
@@ -1269,7 +1287,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1955.321/1955.321_web.jpg",
 "hw": 1.452,
 "link": "https://clevelandart.org/art/1955.321",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.13,
+"focus": "50% 50%"
 },
 {
 "id": "d-tat-T12003",
@@ -1279,7 +1299,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_ZxNEnJH.jpg",
 "hw": 1.33,
 "link": "https://www.tate.org.uk/art/artworks/fabro-clotheshanger-of-the-north-t12003",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.07,
+"focus": "56% 52%"
 },
 {
 "id": "d-cle-145463",
@@ -1329,7 +1351,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2011.11/2011.11_web.jpg",
 "hw": 1.372,
 "link": "https://clevelandart.org/art/2011.11",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.14,
+"focus": "50% 49%"
 },
 {
 "id": "d-tat-T13031",
@@ -1339,7 +1363,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_aAQ0Unl.jpg",
 "hw": 0.967,
 "link": "https://www.tate.org.uk/art/artworks/merz-untitled-t13031",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "52% 52%"
 },
 {
 "id": "d-cle-145419",
@@ -1649,7 +1675,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1979.39/1979.39_web.jpg",
 "hw": 1.242,
 "link": "https://clevelandart.org/art/1979.39",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "56% 52%"
 },
 {
 "id": "d-tat-T13856",
@@ -1759,7 +1787,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_A2WSB7c.jpg",
 "hw": 1.535,
 "link": "https://www.tate.org.uk/art/artworks/wyn-evans-in-girum-imus-nocte-et-consumimur-igni-t12314",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.08,
+"focus": "46% 30%"
 },
 {
 "id": "d-cle-105919",
@@ -1799,7 +1829,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_puI5AQ1.jpg",
 "hw": 1.333,
 "link": "https://www.tate.org.uk/art/artworks/lim-intervals-i-t02001",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.08,
+"focus": "63% 50%"
 },
 {
 "id": "d-cle-139918",
@@ -1919,7 +1951,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.998/1916.998_web.jpg",
 "hw": 1.311,
 "link": "https://clevelandart.org/art/1916.998",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "43% 56%"
 },
 {
 "id": "d-cle-110379",
@@ -2069,7 +2103,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_0FaBWZ0.jpg",
 "hw": 1.208,
 "link": "https://www.tate.org.uk/art/artworks/balka-50-x-60-x-38-t07666",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.12,
+"focus": "49% 51%"
 },
 {
 "id": "d-cle-135705",
@@ -2079,7 +2115,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1959.240/1959.240_web.jpg",
 "hw": 1.16,
 "link": "https://clevelandart.org/art/1959.240",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.08,
+"focus": "49% 50%"
 },
 {
 "id": "d-cle-147522",
@@ -2099,7 +2137,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_KjpWXkz.jpg",
 "hw": 0.883,
 "link": "https://www.tate.org.uk/art/artworks/millares-painting-t02385",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.24,
+"focus": "49% 51%"
 },
 {
 "id": "d-cle-169947",
@@ -2329,7 +2369,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1915.600/1915.600_web.jpg",
 "hw": 1.217,
 "link": "https://clevelandart.org/art/1915.600",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.42,
+"focus": "51% 43%"
 },
 {
 "id": "d-tat-P79180",
@@ -2509,7 +2551,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_IgLR3HM.jpg",
 "hw": 1.245,
 "link": "https://www.tate.org.uk/art/artworks/dijkstra-saskia-harderwijk-netherlands-march-16-1994-p78099",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.23,
+"focus": "68% 57%"
 },
 {
 "id": "d-cle-322427",
@@ -2649,7 +2693,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_JkHgIDO.jpg",
 "hw": 1.502,
 "link": "https://www.tate.org.uk/art/artworks/cruzvillegas-ac-the-museum-of-ac-t13775",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.14,
+"focus": "46% 49%"
 },
 {
 "id": "d-cle-97154",
@@ -2719,7 +2765,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1978.127/1978.127_web.jpg",
 "hw": 1.404,
 "link": "https://clevelandart.org/art/1978.127",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.11,
+"focus": "51% 50%"
 },
 {
 "id": "d-tat-T12312",
@@ -2739,7 +2787,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1955.456/1955.456_web.jpg",
 "hw": 1.26,
 "link": "https://clevelandart.org/art/1955.456",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.17,
+"focus": "50% 43%"
 },
 {
 "id": "d-cle-110279",
@@ -2829,7 +2879,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2018.41/2018.41_web.jpg",
 "hw": 1.148,
 "link": "https://clevelandart.org/art/2018.41",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "48% 62%"
 },
 {
 "id": "d-cle-123160",
@@ -2949,7 +3001,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1998.42.8/1998.42.8_web.jpg",
 "hw": 1.351,
 "link": "https://clevelandart.org/art/1998.42.8",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "30% 30%"
 },
 {
 "id": "d-cle-133687",
@@ -2969,7 +3023,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1954.360/1954.360_web.jpg",
 "hw": 1.237,
 "link": "https://clevelandart.org/art/1954.360",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.43,
+"focus": "60% 49%"
 },
 {
 "id": "d-cle-136297",
@@ -3039,7 +3095,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2022.131/2022.131_web.jpg",
 "hw": 1.205,
 "link": "https://clevelandart.org/art/2022.131",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.11,
+"focus": "48% 45%"
 },
 {
 "id": "d-tat-T03469",
@@ -3159,7 +3217,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1982.247/1982.247_web.jpg",
 "hw": 1.272,
 "link": "https://clevelandart.org/art/1982.247",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.18,
+"focus": "43% 64%"
 },
 {
 "id": "d-tat-T12951",
@@ -3229,7 +3289,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_HPsNDhL.jpg",
 "hw": 1.395,
 "link": "https://www.tate.org.uk/art/artworks/raetz-lisi-t05001",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.34,
+"focus": "47% 52%"
 },
 {
 "id": "d-tat-T12329",
@@ -3309,7 +3371,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_E7RtDn1.jpg",
 "hw": 1.333,
 "link": "https://www.tate.org.uk/art/artworks/graevenitz-5-black-rectangles-on-white-t01822",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.24,
+"focus": "51% 52%"
 },
 {
 "id": "d-cle-118038",
@@ -3469,7 +3533,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1997.42/1997.42_web.jpg",
 "hw": 1.186,
 "link": "https://clevelandart.org/art/1997.42",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.28,
+"focus": "62% 48%"
 },
 {
 "id": "d-tat-T00458",
@@ -3479,7 +3545,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_itpJ5rY.jpg",
 "hw": 1.257,
 "link": "https://www.tate.org.uk/art/artworks/froy-two-figures-summer-61-t00458",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.39,
+"focus": "45% 43%"
 },
 {
 "id": "d-cle-668222",
@@ -3629,7 +3697,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2018.25/2018.25_web.jpg",
 "hw": 1.19,
 "link": "https://clevelandart.org/art/2018.25",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.11,
+"focus": "56% 56%"
 },
 {
 "id": "d-tat-T12187",
@@ -3739,7 +3809,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2012.30/2012.30_web.jpg",
 "hw": 1.258,
 "link": "https://clevelandart.org/art/2012.30",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.08,
+"focus": "55% 54%"
 },
 {
 "id": "d-tat-T03189",
@@ -3889,7 +3961,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_HncKucc.jpg",
 "hw": 1.352,
 "link": "https://www.tate.org.uk/art/artworks/hirst-kyoto-no-4-t01812",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "50% 50%"
 },
 {
 "id": "d-cle-118650",
@@ -3959,7 +4033,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2021.68/2021.68_web.jpg",
 "hw": 1.288,
 "link": "https://clevelandart.org/art/2021.68",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.22,
+"focus": "49% 50%"
 },
 {
 "id": "d-tat-P77957",
@@ -4009,7 +4085,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1926.169/1926.169_web.jpg",
 "hw": 1.387,
 "link": "https://clevelandart.org/art/1926.169",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "45% 58%"
 },
 {
 "id": "d-cle-141725",
@@ -4199,7 +4277,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_SxqtVUk.jpg",
 "hw": 1.252,
 "link": "https://www.tate.org.uk/art/artworks/gallagher-untitled-ar00067",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.25,
+"focus": "55% 39%"
 },
 {
 "id": "d-cle-170049",
@@ -4349,7 +4429,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1941.518/1941.518_web.jpg",
 "hw": 1.627,
 "link": "https://clevelandart.org/art/1941.518",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.14,
+"focus": "35% 45%"
 },
 {
 "id": "d-cle-92965",
@@ -4449,7 +4531,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2022.116/2022.116_web.jpg",
 "hw": 1.393,
 "link": "https://clevelandart.org/art/2022.116",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.53,
+"focus": "50% 46%"
 },
 {
 "id": "d-cle-380084",
@@ -4569,7 +4653,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1961.219/1961.219_web.jpg",
 "hw": 1.289,
 "link": "https://clevelandart.org/art/1961.219",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.1,
+"focus": "55% 58%"
 },
 {
 "id": "d-tat-T07466",
@@ -4789,7 +4875,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1980.292/1980.292_web.jpg",
 "hw": 1.345,
 "link": "https://clevelandart.org/art/1980.292",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.54,
+"focus": "53% 46%"
 },
 {
 "id": "d-cle-329314",
@@ -4809,7 +4897,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pglO9ik.jpg",
 "hw": 1.018,
 "link": "https://www.tate.org.uk/art/artworks/bevan-man-in-check-shirt-p77856",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.23,
+"focus": "50% 53%"
 },
 {
 "id": "d-cle-130553",
@@ -4929,7 +5019,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1946.369/1946.369_web.jpg",
 "hw": 1.382,
 "link": "https://clevelandart.org/art/1946.369",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.26,
+"focus": "49% 50%"
 },
 {
 "id": "d-cle-131991",
@@ -4959,7 +5051,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2019.256.b/2019.256.b_web.jpg",
 "hw": 1.264,
 "link": "https://clevelandart.org/art/2019.256.b",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.11,
+"focus": "51% 54%"
 },
 {
 "id": "d-tat-T01257",
@@ -5169,7 +5263,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_Wt74Yry.jpg",
 "hw": 1.342,
 "link": "https://www.tate.org.uk/art/artworks/fulton-no-darkness-p07382",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.2,
+"focus": "49% 48%"
 },
 {
 "id": "d-cle-152443",
@@ -5319,7 +5415,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1963.233/1963.233_web.jpg",
 "hw": 1.29,
 "link": "https://clevelandart.org/art/1963.233",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.05,
+"focus": "48% 51%"
 },
 {
 "id": "d-cle-139727",
@@ -5439,7 +5537,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2009.530/2009.530_web.jpg",
 "hw": 1.278,
 "link": "https://clevelandart.org/art/2009.530",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.08,
+"focus": "50% 45%"
 },
 {
 "id": "d-tat-T07156",
@@ -5459,7 +5559,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1968.23/1968.23_web.jpg",
 "hw": 1.382,
 "link": "https://clevelandart.org/art/1968.23",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.19,
+"focus": "53% 56%"
 },
 {
 "id": "d-cle-124805",
@@ -5539,7 +5641,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_DaZ7lJk.jpg",
 "hw": 1.297,
 "link": "https://www.tate.org.uk/art/artworks/murphy-the-gathering-anguish-strikes-beneath-t07763",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "68% 30%"
 },
 {
 "id": "d-cle-142086",
@@ -5559,7 +5663,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1927.326/1927.326_web.jpg",
 "hw": 1.347,
 "link": "https://clevelandart.org/art/1927.326",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "50% 49%"
 },
 {
 "id": "d-tat-T12564",
@@ -5779,7 +5885,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_QCyUi3m.jpg",
 "hw": 1.497,
 "link": "https://www.tate.org.uk/art/artworks/cruzvillegas-ac11-t13773",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.37,
+"focus": "51% 55%"
 },
 {
 "id": "d-cle-139807",
@@ -5809,7 +5917,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2021.65/2021.65_web.jpg",
 "hw": 1.21,
 "link": "https://clevelandart.org/art/2021.65",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.53,
+"focus": "50% 50%"
 },
 {
 "id": "d-cle-74539",
@@ -6009,7 +6119,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_6dt8zNX.jpg",
 "hw": 1.165,
 "link": "https://www.tate.org.uk/art/artworks/loker-four-shifts-i-t02267",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.14,
+"focus": "59% 60%"
 },
 {
 "id": "d-cle-142476",
@@ -6319,7 +6431,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1980.279/1980.279_web.jpg",
 "hw": 1.205,
 "link": "https://clevelandart.org/art/1980.279",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.63,
+"focus": "52% 58%"
 },
 {
 "id": "d-tat-P79339",
@@ -6359,7 +6473,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1997.90/1997.90_web.jpg",
 "hw": 1.587,
 "link": "https://clevelandart.org/art/1997.90",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.22,
+"focus": "50% 52%"
 },
 {
 "id": "d-cle-159504",
@@ -6389,7 +6505,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2004.17/2004.17_web.jpg",
 "hw": 1.261,
 "link": "https://clevelandart.org/art/2004.17",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.14,
+"focus": "54% 63%"
 },
 {
 "id": "d-tat-T11808",
@@ -6409,7 +6527,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1977.2/1977.2_web.jpg",
 "hw": 1.24,
 "link": "https://clevelandart.org/art/1977.2",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.66,
+"focus": "41% 55%"
 },
 {
 "id": "d-tat-AR00042",
@@ -6479,7 +6599,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1982.246/1982.246_web.jpg",
 "hw": 1.191,
 "link": "https://clevelandart.org/art/1982.246",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "54% 49%"
 },
 {
 "id": "d-tat-T01493",
@@ -6659,7 +6781,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1917.279/1917.279_web.jpg",
 "hw": 1.208,
 "link": "https://clevelandart.org/art/1917.279",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.24,
+"focus": "58% 60%"
 },
 {
 "id": "d-cle-108019",
@@ -6809,7 +6933,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_ud57wYz.jpg",
 "hw": 1.293,
 "link": "https://www.tate.org.uk/art/artworks/raedecker-overnight-t07515",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.19,
+"focus": "58% 52%"
 },
 {
 "id": "d-cle-86108",
@@ -6819,7 +6945,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2015.512/2015.512_web.jpg",
 "hw": 1.314,
 "link": "https://clevelandart.org/art/2015.512",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "30% 70%"
 },
 {
 "id": "d-cle-159270",
@@ -7079,7 +7207,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1969.109/1969.109_web.jpg",
 "hw": 1.357,
 "link": "https://clevelandart.org/art/1969.109",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.1,
+"focus": "49% 58%"
 },
 {
 "id": "d-tat-T03282",
@@ -7099,7 +7229,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2009.341/2009.341_web.jpg",
 "hw": 1.347,
 "link": "https://clevelandart.org/art/2009.341",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.21,
+"focus": "43% 52%"
 },
 {
 "id": "d-cle-129859",
@@ -7269,7 +7401,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1951.454/1951.454_web.jpg",
 "hw": 1.228,
 "link": "https://clevelandart.org/art/1951.454",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "33% 47%"
 },
 {
 "id": "d-cle-115534",
@@ -7279,7 +7413,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1936.30/1936.30_web.jpg",
 "hw": 1.155,
 "link": "https://clevelandart.org/art/1936.30",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "49% 49%"
 },
 {
 "id": "d-cle-136217",
@@ -7419,7 +7555,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1960.80/1960.80_web.jpg",
 "hw": 1.202,
 "link": "https://clevelandart.org/art/1960.80",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.06,
+"focus": "51% 66%"
 },
 {
 "id": "d-tat-T05755",
@@ -7439,7 +7577,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1980.274/1980.274_web.jpg",
 "hw": 1.247,
 "link": "https://clevelandart.org/art/1980.274",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.36,
+"focus": "61% 55%"
 },
 {
 "id": "d-cle-83635",
@@ -7449,7 +7589,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2020.117/2020.117_web.jpg",
 "hw": 1.211,
 "link": "https://clevelandart.org/art/2020.117",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.2,
+"focus": "60% 46%"
 },
 {
 "id": "d-cle-105657",
@@ -7519,7 +7661,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_5lqRvR7.jpg",
 "hw": 0.697,
 "link": "https://www.tate.org.uk/art/artworks/golding-cv-t01857",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "30% 70%"
 },
 {
 "id": "d-cle-711662",
@@ -7839,7 +7983,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1998.42.3/1998.42.3_web.jpg",
 "hw": 1.351,
 "link": "https://clevelandart.org/art/1998.42.3",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.14,
+"focus": "53% 52%"
 },
 {
 "id": "d-cle-170812",
@@ -7909,7 +8055,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_web.jpg",
 "hw": 1.202,
 "link": "https://clevelandart.org/art/1916.1041",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.1,
+"focus": "56% 52%"
 },
 {
 "id": "d-tat-AR00140",
@@ -7999,7 +8147,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1997.130/1997.130_web.jpg",
 "hw": 1.395,
 "link": "https://clevelandart.org/art/1997.130",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.38,
+"focus": "50% 58%"
 },
 {
 "id": "d-cle-106575",
@@ -8159,7 +8309,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1998.34/1998.34_web.jpg",
 "hw": 1.347,
 "link": "https://clevelandart.org/art/1998.34",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.24,
+"focus": "49% 48%"
 },
 {
 "id": "d-cle-170741",
@@ -8299,7 +8451,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1952.528/1952.528_web.jpg",
 "hw": 1.38,
 "link": "https://clevelandart.org/art/1952.528",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "70% 35%"
 },
 {
 "id": "d-cle-97157",
@@ -8319,7 +8473,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_1StjLaZ.jpg",
 "hw": 1.502,
 "link": "https://www.tate.org.uk/art/artworks/rothschild-knock-knock-t12237",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.14,
+"focus": "44% 70%"
 },
 {
 "id": "d-cle-98251",
@@ -8349,7 +8505,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_7qVUAX7.jpg",
 "hw": 1.333,
 "link": "https://www.tate.org.uk/art/artworks/leckey-made-in-eaven-t12163",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.2,
+"focus": "50% 50%"
 },
 {
 "id": "d-cle-132215",
@@ -8409,7 +8567,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1984.54/1984.54_web.jpg",
 "hw": 1.177,
 "link": "https://clevelandart.org/art/1984.54",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.08,
+"focus": "50% 45%"
 },
 {
 "id": "d-tat-T13499",
@@ -8429,7 +8589,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2020.129/2020.129_web.jpg",
 "hw": 1.19,
 "link": "https://clevelandart.org/art/2020.129",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.21,
+"focus": "38% 59%"
 },
 {
 "id": "d-tat-T06910",
@@ -8619,7 +8781,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2011.46/2011.46_web.jpg",
 "hw": 1.228,
 "link": "https://clevelandart.org/art/2011.46",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.05,
+"focus": "50% 49%"
 },
 {
 "id": "d-tat-T03386",
@@ -8869,7 +9033,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1951.358/1951.358_web.jpg",
 "hw": 1.347,
 "link": "https://clevelandart.org/art/1951.358",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.05,
+"focus": "41% 56%"
 },
 {
 "id": "d-cle-99445",
@@ -8959,7 +9125,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1973.185/1973.185_web.jpg",
 "hw": 1.3,
 "link": "https://clevelandart.org/art/1973.185",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.32,
+"focus": "46% 60%"
 },
 {
 "id": "d-tat-P07524",
@@ -8999,7 +9167,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1994.119/1994.119_web.jpg",
 "hw": 1.258,
 "link": "https://clevelandart.org/art/1994.119",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.19,
+"focus": "36% 58%"
 },
 {
 "id": "d-tat-T01056",
@@ -9129,7 +9299,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1957.496/1957.496_web.jpg",
 "hw": 1.294,
 "link": "https://clevelandart.org/art/1957.496",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "46% 57%"
 },
 {
 "id": "d-tat-T11985",
@@ -9139,7 +9311,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_7kFhYFN.jpg",
 "hw": 1.333,
 "link": "https://www.tate.org.uk/art/artworks/guo-qiang-mr-ye-who-loves-dragon-t11985",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.18,
+"focus": "42% 57%"
 },
 {
 "id": "d-cle-143140",
@@ -9229,7 +9403,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1997.41/1997.41_web.jpg",
 "hw": 1.302,
 "link": "https://clevelandart.org/art/1997.41",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.29,
+"focus": "63% 55%"
 },
 {
 "id": "d-tat-P78097",
@@ -9359,7 +9535,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_1vhaZ0W.jpg",
 "hw": 0.663,
 "link": "https://www.tate.org.uk/art/artworks/chaimowicz-partial-eclipse-t12453",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.07,
+"focus": "45% 46%"
 },
 {
 "id": "d-tat-T11936",
@@ -9639,7 +9817,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1920.3919/1920.3919_web.jpg",
 "hw": 1.217,
 "link": "https://clevelandart.org/art/1920.3919",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.39,
+"focus": "61% 44%"
 },
 {
 "id": "d-cle-151302",
@@ -9789,7 +9969,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_qC2oqQB.jpg",
 "hw": 1.408,
 "link": "https://www.tate.org.uk/art/artworks/brus-no-title-p77004",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.2,
+"focus": "50% 47%"
 },
 {
 "id": "d-cle-147520",
@@ -10339,7 +10521,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_KOVSYzy.jpg",
 "hw": 1.313,
 "link": "https://www.tate.org.uk/art/artworks/perry-my-gods-t07940",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.27,
+"focus": "50% 62%"
 },
 {
 "id": "d-cle-374816",
@@ -10379,7 +10563,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1942.1037/1942.1037_web.jpg",
 "hw": 1.285,
 "link": "https://clevelandart.org/art/1942.1037",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.57,
+"focus": "50% 40%"
 },
 {
 "id": "d-cle-108157",
@@ -10389,7 +10575,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1925.78/1925.78_web.jpg",
 "hw": 1.208,
 "link": "https://clevelandart.org/art/1925.78",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.78,
+"focus": "46% 55%"
 },
 {
 "id": "d-tat-T02025",
@@ -10429,7 +10617,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.997/1916.997_web.jpg",
 "hw": 1.197,
 "link": "https://clevelandart.org/art/1916.997",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.39,
+"focus": "49% 59%"
 },
 {
 "id": "d-tat-T12773",
@@ -10499,7 +10689,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1950.456/1950.456_web.jpg",
 "hw": 0.611,
 "link": "https://clevelandart.org/art/1950.456",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "30% 70%"
 },
 {
 "id": "d-cle-156512",
@@ -10589,7 +10781,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1924.1424/1924.1424_web.jpg",
 "hw": 1.251,
 "link": "https://clevelandart.org/art/1924.1424",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "48% 58%"
 },
 {
 "id": "d-cle-143206",
@@ -10609,7 +10803,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_65JRYWV.jpg",
 "hw": 1.28,
 "link": "https://www.tate.org.uk/art/artworks/bell-untitled-t01695",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.06,
+"focus": "47% 55%"
 },
 {
 "id": "d-cle-150455",
@@ -10639,7 +10835,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_z75Ny4b.jpg",
 "hw": 0.675,
 "link": "https://www.tate.org.uk/art/artworks/chaimowicz-le-desert-t03384",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.2,
+"focus": "70% 49%"
 },
 {
 "id": "d-cle-108009",
@@ -10749,7 +10947,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1954.554/1954.554_web.jpg",
 "hw": 1.345,
 "link": "https://clevelandart.org/art/1954.554",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "48% 48%"
 },
 {
 "id": "d-cle-151807",
@@ -10799,7 +10999,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2022.130/2022.130_web.jpg",
 "hw": 1.205,
 "link": "https://clevelandart.org/art/2022.130",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.1,
+"focus": "56% 46%"
 },
 {
 "id": "d-tat-T12921",
@@ -10879,7 +11081,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_o0yzwBc.jpg",
 "hw": 1.412,
 "link": "https://www.tate.org.uk/art/artworks/horn-cockfeather-mask-t07849",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.06,
+"focus": "53% 46%"
 },
 {
 "id": "d-cle-101355",
@@ -10989,7 +11193,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1933.125/1933.125_web.jpg",
 "hw": 1.353,
 "link": "https://clevelandart.org/art/1933.125",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "48% 40%"
 },
 {
 "id": "d-cle-159404",
@@ -11039,7 +11245,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1980.257/1980.257_web.jpg",
 "hw": 1.175,
 "link": "https://clevelandart.org/art/1980.257",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.25,
+"focus": "43% 63%"
 },
 {
 "id": "d-cle-148976",
@@ -11119,7 +11327,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1920.169/1920.169_web.jpg",
 "hw": 0.712,
 "link": "https://clevelandart.org/art/1920.169",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.34,
+"focus": "59% 64%"
 },
 {
 "id": "d-cle-172581",
@@ -11159,7 +11369,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1948.183/1948.183_web.jpg",
 "hw": 1.245,
 "link": "https://clevelandart.org/art/1948.183",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.34,
+"focus": "38% 52%"
 },
 {
 "id": "d-tat-T13471",
@@ -11269,7 +11481,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_dXn0EE9.jpg",
 "hw": 0.78,
 "link": "https://www.tate.org.uk/art/artworks/hill-relief-construction-t03750",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.08,
+"focus": "66% 70%"
 },
 {
 "id": "d-cle-108555",
@@ -11309,7 +11523,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_JYM6XbP.jpg",
 "hw": 1.48,
 "link": "https://www.tate.org.uk/art/artworks/murphy-an-art-of-exchange-featuring-an-unknown-young-man-from-a-painting-by-albrecht-durer-t03343",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.54,
+"focus": "50% 43%"
 },
 {
 "id": "d-cle-148866",
@@ -11359,7 +11575,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/2010.22/2010.22_web.jpg",
 "hw": 1.183,
 "link": "https://clevelandart.org/art/2010.22",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.23,
+"focus": "38% 56%"
 },
 {
 "id": "d-cle-117466",
@@ -11469,7 +11687,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1915.601/1915.601_web.jpg",
 "hw": 1.281,
 "link": "https://clevelandart.org/art/1915.601",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "53% 38%"
 },
 {
 "id": "d-tat-T07178",
@@ -11509,7 +11729,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_x5TbbKg.jpg",
 "hw": 1.285,
 "link": "https://www.tate.org.uk/art/artworks/neagu-ceramic-skull-t07760",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.08,
+"focus": "43% 52%"
 },
 {
 "id": "d-cle-154852",
@@ -11559,7 +11781,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1942.733/1942.733_web.jpg",
 "hw": 1.413,
 "link": "https://clevelandart.org/art/1942.733",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "50% 49%"
 },
 {
 "id": "d-cle-166357",
@@ -11589,7 +11813,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1941.538/1941.538_web.jpg",
 "hw": 1.29,
 "link": "https://clevelandart.org/art/1941.538",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.18,
+"focus": "45% 54%"
 },
 {
 "id": "d-cle-173665",
@@ -11859,7 +12085,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_pICAP8B.jpg",
 "hw": 0.8,
 "link": "https://www.tate.org.uk/art/artworks/spero-lovers-t07142",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "58% 70%"
 },
 {
 "id": "d-cle-111038",
@@ -11959,7 +12187,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1924.1004/1924.1004_web.jpg",
 "hw": 1.202,
 "link": "https://clevelandart.org/art/1924.1004",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.21,
+"focus": "47% 55%"
 },
 {
 "id": "d-tat-T05487",
@@ -11979,7 +12209,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1965.474/1965.474_web.jpg",
 "hw": 1.272,
 "link": "https://clevelandart.org/art/1965.474",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.23,
+"focus": "33% 41%"
 },
 {
 "id": "d-cle-128355",
@@ -12029,7 +12261,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1955.459/1955.459_web.jpg",
 "hw": 1.4,
 "link": "https://clevelandart.org/art/1955.459",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.59,
+"focus": "50% 46%"
 },
 {
 "id": "d-cle-110123",
@@ -12469,7 +12703,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_wuPgal9.jpg",
 "hw": 1.008,
 "link": "https://www.tate.org.uk/art/artworks/smith-activities-major-and-minor-t03813",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.14,
+"focus": "50% 48%"
 },
 {
 "id": "d-cle-150154",
@@ -12659,7 +12895,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.2062/1916.2062_web.jpg",
 "hw": 1.21,
 "link": "https://clevelandart.org/art/1916.2062",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "45% 33%"
 },
 {
 "id": "d-tat-T13601",
@@ -12819,7 +13057,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1973.175/1973.175_web.jpg",
 "hw": 1.397,
 "link": "https://clevelandart.org/art/1973.175",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.8,
+"focus": "50% 44%"
 },
 {
 "id": "d-cle-172828",
@@ -13159,7 +13399,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.812/1916.812_web.jpg",
 "hw": 1.339,
 "link": "https://clevelandart.org/art/1916.812",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.07,
+"focus": "47% 52%"
 },
 {
 "id": "d-tat-T12031",
@@ -13179,7 +13421,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1984.16/1984.16_web.jpg",
 "hw": 1.183,
 "link": "https://clevelandart.org/art/1984.16",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "47% 47%"
 },
 {
 "id": "d-cle-111470",
@@ -13239,7 +13483,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1991.134.2/1991.134.2_web.jpg",
 "hw": 1.258,
 "link": "https://clevelandart.org/art/1991.134.2",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.49,
+"focus": "33% 50%"
 },
 {
 "id": "d-cle-167564",
@@ -13259,7 +13505,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1961.171/1961.171_web.jpg",
 "hw": 1.245,
 "link": "https://clevelandart.org/art/1961.171",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.24,
+"focus": "41% 52%"
 },
 {
 "id": "d-tat-T07885",
@@ -13339,7 +13587,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1961.86/1961.86_web.jpg",
 "hw": 1.337,
 "link": "https://clevelandart.org/art/1961.86",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.1,
+"focus": "52% 53%"
 },
 {
 "id": "d-cle-151307",
@@ -13439,7 +13689,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_jyvCOQz.jpg",
 "hw": 1.278,
 "link": "https://www.tate.org.uk/art/artworks/turk-cavey-t13208",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.68,
+"focus": "51% 45%"
 },
 {
 "id": "d-cle-136237",
@@ -13449,7 +13701,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1960.133/1960.133_web.jpg",
 "hw": 1.289,
 "link": "https://clevelandart.org/art/1960.133",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "54% 44%"
 },
 {
 "id": "d-tat-T12874",
@@ -13529,7 +13783,9 @@
 "img": "https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-600_p7VSc9U.jpg",
 "hw": 0.715,
 "link": "https://www.tate.org.uk/art/artworks/groth-drawing-untitled-t02244",
-"museum": "Tate"
+"museum": "Tate",
+"zoom": 1.8,
+"focus": "67% 30%"
 },
 {
 "id": "d-cle-151948",
@@ -13589,7 +13845,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1942.247/1942.247_web.jpg",
 "hw": 1.254,
 "link": "https://clevelandart.org/art/1942.247",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.09,
+"focus": "54% 56%"
 },
 {
 "id": "d-cle-457341",
@@ -13679,7 +13937,9 @@
 "img": "https://openaccess-cdn.clevelandart.org/1916.2059/1916.2059_web.jpg",
 "hw": 1.208,
 "link": "https://clevelandart.org/art/1916.2059",
-"museum": "Cleveland Museum of Art"
+"museum": "Cleveland Museum of Art",
+"zoom": 1.24,
+"focus": "44% 51%"
 },
 {
 "id": "d-cle-95195",
