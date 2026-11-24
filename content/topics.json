@@ -3414,7 +3414,8 @@
    "from": 1905,
    "to": 1940,
    "look": "bold colour and pattern, influenced by Post-Impressionism",
-   "region": "Britain"
+   "region": "Britain",
+   "section": "movement"
   },
   "guggenheim": {
    "name": "Peggy Guggenheim",
@@ -3548,7 +3549,8 @@
      "explain": "She bought it in 1949. Only the ground floor was ever built.",
      "reveal": "guggenheim-venice"
     }
-   ]
+   ],
+   "section": "place"
   },
   "tate": {
    "name": "Tate",

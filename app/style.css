@@ -973,3 +973,17 @@ body.newlook .wnx{display:none}
 .psheet .wnitem{display:flex;gap:12px;align-items:flex-start}
 .psheet .wnitem div{display:flex;flex-direction:column;gap:2px}
 .psheet .editcard{padding:4px 0 8px}
+/* calmer pick lists: name, one quiet line, a small action on the right */
+.plist .tbody{flex:1;min-width:0}
+.plist .tname{font-size:17px;font-weight:600}
+.tsub{display:block;font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tact{flex:none;padding:7px 12px;border-radius:999px;background:var(--ink);color:var(--wall);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+.tstat{flex:none;font-size:13px;color:var(--muted)}
+.pkrow .trow.wait .tbody{opacity:1}
+/* your place on the wall */
+.wrank{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.wrank sup{font-size:.45em;letter-spacing:0;margin-left:1px}
+.wrank small{display:block;font-size:14px;font-weight:600;color:var(--muted);letter-spacing:0;margin-top:4px}
+.swpin{display:flex;flex-direction:column;gap:6px;padding:4px 0 12px 44px}
+.swpin .pinput{max-width:200px}
+.tact[data-learn]{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}

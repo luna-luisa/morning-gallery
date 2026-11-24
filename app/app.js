@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 20:45"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:05"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1148,7 +1148,7 @@ function openWhatsNew(reopen){
   sh.addEventListener("touchend", e => { if (y0 !== null && e.changedTouches[0].clientY - y0 > 60) close(); y0 = null; });
 }
 /* ---------- topics page: search + sections by kind (Swipe inside it is admin-only) ---------- */
-const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Museums"], ["market", "Art market"]];
+const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Museums & collectors"], ["market", "Art market"]];
 const START = ["renaissance", "impressionism", "van-gogh", "national-gallery"];
 const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 /* the Me page, tidier and more visual (Luna's profile first) */
@@ -1201,7 +1201,16 @@ function openProfile(focus){
   /* switch profile, in place */
   const others = Object.keys(profiles).filter(id => id !== pid && !profiles[id].removed);
   $("#rsw .mebody").innerHTML = `<div class="swlist">${others.map(id => `<button class="swp" data-id="${id}"><span class="dot" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span>${esc(profiles[id].name)}</button>`).join("")}</div><button class="btn link" id="pnew">New profile</button>`;
-  $$("#rsw .swp").forEach(b => b.onclick = () => { close(); setTimeout(() => askPin(b.dataset.id), 300); });
+  $$("#rsw .swp").forEach(b => b.onclick = async () => {
+    const id = b.dataset.id, q = profiles[id];
+    if (!q.pin){ close(); setTimeout(() => use(id), 300); return; }
+    $$("#rsw .swpin").forEach(x => x.remove());
+    b.insertAdjacentHTML("afterend", `<div class="swpin"><label class="sr" for="sp">${esc(q.name)}'s PIN</label><input type="text" id="sp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autocorrect="off" spellcheck="false" name="mg-pin-${Date.now()}" placeholder="····"><span class="small muted" id="spmsg" aria-live="polite">${esc(q.name)}'s PIN</span></div>`);
+    const sp = $("#sp"); sp.focus(); setTimeout(() => sp.scrollIntoView({block: "center", behavior: "smooth"}), 300);
+    sp.oninput = async () => { sp.value = sp.value.replace(/\D/g, "").slice(0, 4); if (sp.value.length < 4) return;
+      if (await hashPin(id, sp.value) === q.pin){ close(); setTimeout(() => use(id), 300); }
+      else { sp.value = ""; sp.classList.add("shake"); setTimeout(() => sp.classList.remove("shake"), 400); $("#spmsg").textContent = "That's not it. Try again."; } };
+  });
   $("#pnew").onclick = () => { close(); setTimeout(newProfile, 300); };
   /* PIN, in place: four digits, saved without leaving the menu */
   $("#rpin .mebody").innerHTML = `<p class="small muted">Four digits, so nobody plays as you by accident.</p><div class="row"><label class="sr" for="pp2">New PIN</label><input type="text" id="pp2" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autocorrect="off" spellcheck="false" name="mg-pin-${Date.now()}" placeholder="····"><button class="btn ghost" id="pinsave" disabled>Save</button></div><span class="small muted" id="pinmsg" aria-live="polite"></span>`;
@@ -1256,7 +1265,7 @@ async function leaderboard(){
   el.querySelector("div").outerHTML = `
     <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
     <div class="wme">${mypic ? picHTML(state, profiles[pid], "big" + frameOf({id: pid, st: state})) : `<button class="wpic empty big" id="firstpic" aria-label="Choose your picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>`}
-      <div class="wmeinfo">${mypic ? `<span class="small muted">Your picture<br><b>${esc(mypic.title)}</b>, ${esc(plainArtist(mypic.artist))}</span>` : `<span class="small"><b>Choose your picture.</b> <span class="muted">Swipe a free round and pick a work you love. It stands for you on the wall.</span></span>`}<span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
+      <div class="wmeinfo">${mypic ? `<span class="wrank">${mine && mine.n ? `${me + 1}<sup>${["st", "nd", "rd"][me] || "th"}</sup>` : "–"}<small>of ${rows.length} on the wall</small></span>` : `<span class="small"><b>Choose your picture.</b> <span class="muted">Swipe a free round and pick a work you love. It stands for you on the wall.</span></span>`}<span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
     ${above && above.n > mine.n ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>`
       : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>`
       : `<div class="wgap"><b>Everyone's on 0 so far.</b> One coffee round (10 points) puts you at the top.</div>`}
@@ -1408,7 +1417,7 @@ function renderTopicsNew(){
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
       ${cmps().length ? `<div class="tgroup"><span class="eyebrow">Spot the difference</span><div class="cmprow">${[...cmps()].sort((a, b) => cmpNew(b) - cmpNew(a)).map(cmpCardHTML).join("")}</div></div>` : ""}
       ${whatsOnHTML()}
-      ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort(k === "artist" ? (a, b) => surname(TOPICS[a].name).localeCompare(surname(TOPICS[b].name)) : (a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
+      ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => (TOPICS[t].section || TOPICS[t].kind) === k).sort(k === "artist" ? (a, b) => surname(TOPICS[a].name).localeCompare(surname(TOPICS[b].name)) : (a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
         return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}
       <p class="tgrow">New topics every week, shaped by what you play. <button class="btn link" id="askt">Ask for one</button></p>`;
     if ($("#askt")) $("#askt").onclick = () => { openSearch(); q.focus(); q.placeholder = "Type an artist, movement or museum"; q.scrollIntoView({block: "center", behavior: "smooth"}); };
@@ -1586,9 +1595,8 @@ function renderPicks(){
   inRound(true); scrollTo(0, 0);
   const ps = livePicks().sort((a, b) => !!pickTopic(b) - !!pickTopic(a));
   view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
-    <div class="stack"><h1>Your <span class="serif">picks</span></h1><p class="muted">${ps.length ? "Play one and it moves into your collection." : "Pick favourites at the end of a Swipe round and they'll wait here."}</p></div>
-    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = WD(p.id); return `<div class="pkrow" data-a="${esc(p.a)}"><button class="prm">Remove</button><button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : ""}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">${t ? "Ready to play" : "Coming soon"}</span></span></button></div>`; }).join("")}</div>
-    ${ps.length ? `<p class="small muted center">Swipe a pick to the left to remove it.</p>` : ""}
+    <div class="stack"><h1>Your <span class="serif">picks</span></h1>${ps.length ? "" : `<p class="muted">Pick favourites at the end of a Swipe round and they'll wait here.</p>`}</div>
+    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = WD(p.id); return `<div class="pkrow" data-a="${esc(p.a)}"><button class="prm">Remove</button><button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : ""}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="tsub">${w ? esc(w.title) : ""}</span></span>${t ? `<span class="tact">Play</span>` : `<span class="tstat">Coming soon</span>`}</button></div>`; }).join("")}</div>
     ${(state.taste || []).length ? `<div class="stack"><button class="btn link" id="taste">Everything you loved</button></div>` : ""}`;
   $$("[data-play]").forEach(b => b.onclick = () => playTopic(b.dataset.play));
   $("#x").onclick = () => go("topics");
@@ -1628,18 +1636,17 @@ function renderTaste(){
   inRound(true); scrollTo(0, 0);
   const ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
   const status = w => { const a = plainArtist(w.artist), t = artistTopic(a), picked = (state.picks || []).some(p => p.a === a) || state.asked["artist:" + a];
-    return t ? `<span class="small muted">Ready to play</span>` : picked ? `<span class="small muted">Topic on ${esc(a)} coming soon</span>` : `<span class="small"><span class="tlearn" data-learn="${esc(w.id)}">Learn more</span></span>`; };
+    return t ? `<span class="tact">Play</span>` : picked ? `<span class="tstat">Coming soon</span>` : `<span class="tact" data-learn="${esc(w.id)}">Learn more</span>`; };
   view.innerHTML = `
     <div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
-    <div class="stack"><h1>Everything you <span class="serif">loved</span></h1><p class="muted">${ws.length ? `${ws.length} ${ws.length === 1 ? "work" : "works"} that spoke to you.` : "Nothing here yet. Swipe right on what speaks to you."}</p></div>
-    <div class="plist">${ws.map(w => { const t = artistTopic(plainArtist(w.artist)); return `<div class="pkrow" data-id="${w.id}"><button class="prm">Remove</button><div class="trow tpicrow" ${t ? `data-play="${t}"` : ""}><span class="tthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="tbody"><span class="tname">${esc(plainArtist(w.artist))}</span><span class="small muted"><i>${esc(w.title)}</i>${w.year ? ", " + esc(yearText(w)) : ""}</span>${status(w)}</span></div></div>`; }).join("")}</div>
-    ${ws.length ? `<p class="small muted center">Swipe a work to the left to remove it.</p>` : ""}`;
+    <div class="stack"><h1>Everything you <span class="serif">loved</span></h1>${ws.length ? "" : `<p class="muted">Nothing here yet. Swipe right on what speaks to you.</p>`}</div>
+    <div class="plist">${ws.map(w => { const t = artistTopic(plainArtist(w.artist)); return `<div class="pkrow" data-id="${w.id}"><button class="prm">Remove</button><div class="trow tpicrow" ${t ? `data-play="${t}"` : ""}><span class="tthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="tbody"><span class="tname">${esc(plainArtist(w.artist))}</span><span class="tsub">${esc(w.title)}</span></span>${status(w)}</div></div>`; }).join("")}</div>`;
   wireHold(view);
   $$("[data-play]").forEach(b => b.onclick = e => { if (!e.target.closest("[data-src]")) playTopic(b.dataset.play); });
   $$("[data-learn]").forEach(b => b.onclick = e => { e.stopPropagation(); const w = WD(b.dataset.learn), a = plainArtist(w.artist);
     state.picks = (state.picks || []).filter(p => p.a !== a).concat([{a, id: w.id, d: today(), n0: 0}]);
     if (!state.asked["artist:" + a] && store.online){ state.asked["artist:" + a] = today(); requestMore("", "content", `Loved ${a}'s work in Swipe to discover and would like a topic on ${a}`, "artist:" + a).catch(() => {}); }
-    save(); b.parentNode.innerHTML = `<span class="muted">Topic on ${esc(a)} coming soon</span>`; });
+    save(); b.outerHTML = `<span class="tstat">Coming soon</span>`; });
   $$(".plist .pkrow").forEach(row => {
     const card = row.querySelector(".trow"); let x0 = null, dx = 0;
     row.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.style.transition = "none"; });
@@ -1729,7 +1736,7 @@ function wireSwatches(onPick){ $$(".swatch").forEach(b => b.onclick = () => { on
 function adminName(){ const a = Object.values(profiles).find(p => p.admin); return a ? a.name : ""; }
 function renderProfiles(){
   $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden"); inRound(false);
-  setTimeout(() => { if ($("#pback")) $("#pback").onclick = () => { $("#tabs").classList.remove("hidden"); go(NEW() ? "me" : "today"); }; });
+  setTimeout(() => { if ($("#pback")) $("#pback").onclick = () => { $("#tabs").classList.remove("hidden"); if (NEW()){ go("me"); setTimeout(() => openProfile(), 50); } else go("today"); }; });
   const ids = Object.keys(profiles).sort((a, b) => (profiles[a].created || 0) - (profiles[b].created || 0));
   view.innerHTML = `
     ${pid && state ? `<div class="qhead"><span></span><button class="btn link" id="pback">Back</button></div>` : ""}
