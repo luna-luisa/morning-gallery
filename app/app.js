@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 19:27"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 19:48"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1152,7 +1152,14 @@ const KINDS = [["movement", "Movements"], ["artist", "Artists"], ["place", "Muse
 const START = ["renaissance", "impressionism", "van-gogh", "national-gallery"];
 const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 /* the Me page, tidier and more visual (Luna's profile first) */
+/* the Wall tab (Luna's profile first): this week's wall only; everything about you is in the sheet behind your picture, top right */
 function renderMeNew(focus){
+  const p = profiles[pid];
+  view.innerHTML = `<div id="editbox"></div><div class="mesec wall" id="board"><span class="eyebrow">This week's wall · ${["last day", "6 days left", "5 days left", "4 days left", "3 days left", "2 days left", "1 day left"][new Date().getDay()]}</span><div class="small muted">Hanging the pictures…</div></div>`;
+  leaderboard();
+  if (focus === "feedback") openProfile("feedback");
+}
+function openProfile(focus){
   const p = profiles[pid], s = state.stats, acc = s.answered ? Math.round(100 * s.correct / s.answered) : 0;
   const played = Object.keys(TOPICS).filter(t => T(t).n > 0), per = [1, 2, 3, 4, 5].map(L => played.filter(t => lvlOf(t) === L).length), mx = Math.max(1, ...per);
   /* the week, Monday to Sunday: a filled circle for each day you played */
@@ -1160,10 +1167,9 @@ function renderMeNew(focus){
   const mon = new Date(); mon.setDate(mon.getDate() - ((mon.getDay() + 6) % 7));
   const week = [...Array(7)].map((_, i) => { const d = new Date(mon); d.setDate(mon.getDate() + i); const k = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; return {l: "MTWTFSS"[i], on: days.has(k), now: k === today()}; });
   const row = (id, label, val) => `<details class="merow" id="${id}"><summary><span>${label}</span><span class="val">${val || ""}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></summary><div class="mebody"></div></details>`;
-  view.innerHTML = `
+  const el = document.createElement("div"); el.id = "psheet"; el.className = "wnwrap"; document.body.appendChild(el);
+  el.innerHTML = `<div class="wnback"></div><div class="wnsheet psheet" role="dialog" aria-modal="true" aria-label="Your profile"><span class="handle" aria-hidden="true"></span>
     <div class="row mehead">${p.admin && picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
-    <div id="editbox"></div>
-    ${p.admin ? `<div class="mesec wall" id="board"><span class="eyebrow">This week's wall · ${["Sunday", "6 days", "5 days", "4 days", "3 days", "2 days", "1 day"][new Date().getDay()]}${new Date().getDay() ? " left" : ", last day"}</span><div class="small muted">Hanging the pictures…</div></div>` : ""}
     <div class="mesec"><span class="eyebrow">This week</span><div class="week">${week.map(d => `<span class="${d.on ? "on" : ""}${d.now ? " now" : ""}"><i>${d.on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</i>${d.l}</span>`).join("")}</div></div>
     ${played.length ? `<div class="mesec"><span class="eyebrow">Your topics by level</span><div class="lvbars">${LEVELS.map((name, i) => `<div><span>${name}</span><i><b style="width:${per[i] ? Math.max(6, Math.round(100 * per[i] / mx)) : 0}%;opacity:${.35 + i * .16}"></b></i><em>${per[i]}</em></div>`).join("")}</div></div>` : ""}
     ${s.learned ? `<div class="fixed"><b>${s.learned}</b><span><strong>Mistakes fixed for good.</strong> Questions you once got wrong and now always get right.</span></div>` : ""}
@@ -1177,18 +1183,24 @@ function renderMeNew(focus){
     </div>
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
     <button class="btn link center" id="howto">How Morning Gallery works</button>
-    <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p>`;
+    <p class="small muted center version">Morning Gallery · updated ${BUILD_AT}</p></div>`;
+  const close = () => { el.classList.remove("on"); setTimeout(() => el.remove(), 300); };
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("on")));
+  el.querySelector(".wnback").onclick = close;
+  const sh = el.querySelector(".wnsheet"); let y0 = null;
+  sh.addEventListener("touchstart", e => { y0 = sh.scrollTop <= 0 ? e.touches[0].clientY : null; }, {passive: true});
+  sh.addEventListener("touchend", e => { if (y0 !== null && e.changedTouches[0].clientY - y0 > 70) close(); y0 = null; });
   $("#rnear .mebody").innerHTML = `<p class="small muted">Your town or city, so Topics can show what's on near you.</p><div class="row"><label class="sr" for="area">Town or city</label><input type="text" id="area" value="${esc(p.area || "")}" placeholder="For example, London" autocomplete="address-level2"><button class="btn ghost" id="areasave">Save</button></div>`;
   $("#rfb .mebody").innerHTML = `<p class="small muted">Ideas, problems or topics you'd like to learn about. We read everything.</p>
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${!i}">${l}</button>`).join("")}</div>
       <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
       <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span>`;
   $("#rhome .mebody").innerHTML = `<p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p>`;
-  $("#howto").onclick = () => showWelcome(() => go("me"));
-  if ($("#rwn")) $("#rwn").onclick = () => openWhatsNew(true);
-  $("#rsw").onclick = renderProfiles;
+  $("#howto").onclick = () => { close(); showWelcome(() => go("me")); };
+  if ($("#rwn")) $("#rwn").onclick = () => { close(); openWhatsNew(true); };
+  $("#rsw").onclick = () => { close(); renderProfiles(); };
   $("#rpin").onclick = () => askPin(pid, "set");
-  $("#edit").onclick = () => editProfile(focus);
+  $("#edit").onclick = () => { close(); editProfile(focus); };
   let kind = "idea";
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");
@@ -1200,48 +1212,98 @@ function renderMeNew(focus){
     try { await store.put("profile:" + pid, p); } catch(e){}
     if (v && v !== had && store.online && (await whatsOn(), !areaOf(v))) requestMore("", "content", `Lives in ${v}: please add what's on there`, "area:" + v).catch(() => {});
   };
-  if (focus === "feedback"){ $("#rfb").open = true; $("#rfb").scrollIntoView(); }
-  if (p.admin) leaderboard();
+  if (focus === "feedback"){ $("#rfb").open = true; }
 }
 /* this week's wall: everyone shown by a picture they love (or their initial until they have one).
    Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
    Your first picture comes at 100 points; the top 3 each week may choose a new one; pictures are kept.
    Last week's winner's picture wears the frame until someone else wins it. Admin profile only for now. */
 const picOf = st => st && st.pic && WD(st.pic);
+const FRAMES = [["ink", "Black"], ["gilt", "Gold"], ["white", "White"], ["klein", "Blue"], ["pink", "Pink"]];
 const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" style="background-image:url('${esc(tsrc(w.img))}')"></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
+/* this week's wall: everyone shown by a picture they love (their initial until they choose one).
+   Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
+   Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,
+   or after 100 more points. Last week's winner wears a frame of their choosing until someone else wins. */
 async function leaderboard(){
   await loadDisc();
   const ids = Object.keys(profiles).filter(id => !profiles[id].removed), rows = [];
   for (const id of ids){ let st = id === pid ? state : null; try { if (!st) st = await store.get("progress:" + id); } catch(e){} if (st && st.stats) rows.push({id, st, n: weekPts(st), last: lastPts(st)}); }
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
-  const lastTop = rows.slice().filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
+  const lastTop = rows.filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
   const el = $("#board"); if (!el) return;
   const me = rows.findIndex(r => r.id === pid), mine = rows[me], above = me > 0 ? rows[me - 1] : null;
   const PLACES = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
   const wonTop3 = lastTop.slice(0, 3).some(r => r.id === pid) && state.picWeek !== weekKey();
-  const firstPic = !state.pic && (state.ptsAll || 0) >= 100;
-  const canChoose = wonTop3 || firstPic || profiles[pid].admin;
-  const togo = Math.max(0, 100 - (state.ptsAll || 0));
+  const more = Math.max(0, 100 - ((state.ptsAll || 0) - (state.picAt || 0)));
+  const canChange = picOf(state) && (wonTop3 || !more || profiles[pid].admin);
+  const frameOf = r => r.id === champ ? ` champ fr-${(r.st.frame || "ink")}` : "";
+  const mypic = picOf(state);
   el.querySelector("div").outerHTML = `
     <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
-    <div class="wme">${picHTML(state, profiles[pid], "big" + (champ === pid ? " champ" : ""))}<div class="wmeinfo"><span class="small muted">${picOf(state) ? `Your picture<br><b>${esc(picOf(state).title)}</b>, ${esc(plainArtist(picOf(state).artist))}` : togo ? `Your picture comes at 100 points: <b>${togo} to go</b>` : "You can choose your picture"}</span><span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
+    <div class="wme">${mypic ? picHTML(state, profiles[pid], "big" + frameOf({id: pid, st: state})) : `<button class="wpic empty big" id="firstpic" aria-label="Choose your picture"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>`}
+      <div class="wmeinfo">${mypic ? `<span class="small muted">Your picture<br><b>${esc(mypic.title)}</b>, ${esc(plainArtist(mypic.artist))}</span>` : `<span class="small"><b>Choose your picture.</b> <span class="muted">Swipe a free round and pick a work you love. It stands for you on the wall.</span></span>`}<span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
     ${above ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>` : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>` : ""}
-    <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], r.id === champ ? "champ" : "")}<span class="nm">${esc(profiles[r.id].name)}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
-    <p class="small muted">The top 3 each week choose a new picture from what they loved in Swipe. Last week's winner wears the frame until someone else wins it.${profiles[pid].admin ? " <b>Trial:</b> you can choose any time." : ""}</p>
-    ${canChoose ? `<button class="btn ghost" id="choosepic">${state.pic ? "Choose a new picture" : "Choose your picture"}</button>` : ""}`;
-  if ($("#choosepic")) $("#choosepic").onclick = () => choosePicture(wonTop3);
+    <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], frameOf(r).trim())}<span class="nm">${esc(profiles[r.id].name)}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
+    <p class="small muted">The top 3 each week can choose a new picture. Last week's winner wears a frame until someone else wins it.${mypic && !canChange ? ` Get ${more} more points to change your picture.` : ""}${profiles[pid].admin ? " <b>Trial:</b> you can change things any time." : ""}</p>
+    ${!mypic ? `<button class="btn" id="choosepic">Choose your picture</button>` : `<div class="row two">${canChange ? `<button class="btn ghost" id="choosepic">New picture</button>` : ""}${champ === pid || profiles[pid].admin ? `<button class="btn ghost" id="frame">Your frame</button>` : ""}</div>`}`;
+  const choose = () => mypic ? choosePicture(wonTop3) : startStarter();
+  if ($("#choosepic")) $("#choosepic").onclick = choose;
+  if ($("#firstpic")) $("#firstpic").onclick = choose;
+  if ($("#frame")) $("#frame").onclick = chooseFrame;
+}
+/* your first picture: a free round of 15 random works, not counted in your three a week, so everyone ends up with a different picture */
+async function startStarter(){ await loadDisc(); startSwipeNow({starter: true}); }
+function starterEnd(loved){
+  delete document.body.dataset.screen; scrollTo(0, 0);
+  if (!loved.length){
+    view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">Close</button></div>
+      <div class="stack"><h1>Nothing <span class="serif">clicked?</span></h1><p class="muted">Have another free round.</p></div>
+      <div class="stack"><button class="btn" id="again">Another round</button></div>`;
+    $("#again").onclick = () => startSwipeNow({starter: true}); $("#x").onclick = () => go("me"); return;
+  }
+  let pick = null;
+  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">Close</button></div>
+    <div class="stack"><h1>Pick your <span class="serif">picture</span></h1><p class="muted">Choose carefully: you can change it after a week in the top 3, or 100 more points. We'll add the artist to your picks too.</p></div>
+    <div class="swpicks${loved.length <= 6 ? " big" : ""}">${loved.map(w => `<button class="swpick" data-id="${w.id}" aria-pressed="false"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
+    <div class="swfoot"><button class="btn" id="ok" disabled>This one</button></div>`;
+  $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); $("#ok").disabled = false; });
+  $("#ok").onclick = () => {
+    const w = WD(pick); state.pic = pick; state.picAt = state.ptsAll || 0;
+    if (w){ const a = plainArtist(w.artist), t = artistTopic(a);
+      state.picks = (state.picks || []).filter(p => p.a !== a).concat([{a, id: w.id, d: today(), n0: t ? T(t).n : 0}]);
+      if (!t && !state.asked["artist:" + a] && store.online){ state.asked["artist:" + a] = today(); requestMore("", "content", `Chose ${a}'s work as their picture and would like a topic on ${a}`, "artist:" + a).catch(() => {}); } }
+    save(); setWho(); go("me");
+  };
+  $("#x").onclick = () => go("me");
 }
 function choosePicture(won){
   inRound(true); scrollTo(0, 0);
   const ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
   let pick = state.pic || null;
-  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">This week's wall</span><button class="btn link" id="x">Close</button></div>
-    <div class="stack"><h1>Pick your <span class="serif">picture</span></h1><p class="muted">${ws.length ? "It stands for you on the wall and on your profile." : "Love a few works in Swipe first, then choose one here."}</p></div>
+  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">Close</button></div>
+    <div class="stack"><h1>A new <span class="serif">picture</span></h1><p class="muted">From everything you've loved in Swipe.</p></div>
     <div class="swpicks${ws.length <= 6 ? " big" : ""}">${ws.map(w => `<button class="swpick${w.id === pick ? " sel" : ""}" data-id="${w.id}" aria-pressed="${w.id === pick}"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
-    <div class="swfoot"><button class="btn" id="ok" ${pick ? "" : "disabled"}>This one</button></div>`;
-  $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); $("#ok").disabled = false; });
-  $("#ok").onclick = () => { state.pic = pick; if (won) state.picWeek = weekKey(); save(); setWho(); go("me"); };
+    <div class="swfoot"><button class="btn" id="ok">This one</button></div>`;
+  $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); });
+  $("#ok").onclick = () => { state.pic = pick; state.picAt = state.ptsAll || 0; if (won) state.picWeek = weekKey(); save(); setWho(); go("me"); };
   $("#x").onclick = () => go("me");
+}
+/* the winner's frame, chosen to suit their picture */
+function chooseFrame(){
+  inRound(true); scrollTo(0, 0);
+  let f = state.frame || "ink";
+  const draw = () => {
+    view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your frame</span><button class="btn link" id="x">Close</button></div>
+      <div class="stack"><h1>Frame your <span class="serif">picture</span></h1><p class="muted">The winner's frame: it stays on your picture until someone else wins a week.</p></div>
+      <div class="framebig">${picHTML(state, profiles[pid], "big champ fr-" + f)}</div>
+      <div class="frames">${FRAMES.map(([k, l]) => `<button class="frm${k === f ? " on" : ""}" data-f="${k}"><span class="sw fr-${k}"></span>${l}</button>`).join("")}</div>
+      <div class="swfoot"><button class="btn" id="ok">Done</button></div>`;
+    $$(".frm").forEach(b => b.onclick = () => { f = b.dataset.f; draw(); });
+    $("#ok").onclick = () => { state.frame = f; save(); go("me"); };
+    $("#x").onclick = () => go("me");
+  };
+  draw();
 }
 function topicHits(q){
   const f = fold(q).trim(); if (!f) return null;
@@ -1418,8 +1480,9 @@ function swipeWeekDone(){
 }
 const SWX = '<svg viewBox="0 0 24 24" aria-hidden="true" class="sx"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const SWH = '<svg viewBox="0 0 24 24" aria-hidden="true" class="sh"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
-function startSwipeNow(){
-  const deck = swipeDeck(SW_ROUND), loved = []; let i = 0;
+function startSwipeNow(opts = {}){
+  const starter = !!opts.starter, seenA = new Set();
+  const deck = starter ? shuffle((DISC || []).filter(w => !(PICS.broken && PICS.broken[w.id]))).filter(w => { const a = plainArtist(w.artist); if (seenA.has(a)) return false; seenA.add(a); return true; }).slice(0, SW_ROUND) : swipeDeck(SW_ROUND), loved = []; let i = 0;
   if (!deck.length){ inRound(true); view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div><div class="stack"><h1>You've seen <span class="serif">them all</span></h1><p class="muted">New artworks arrive with each update.</p></div><div class="stack"><button class="btn" id="t">Back to Topics</button></div>`; $("#x").onclick = $("#t").onclick = () => go("topics"); return; }
   deck.slice(0, 3).forEach(w => loadImg(w.img));
   /* a nudge on the first card of your first three visits, or after three weeks away */
@@ -1429,10 +1492,10 @@ function startSwipeNow(){
   state.swLast = today(); save();
   inRound(true); document.body.dataset.screen = "sw"; scrollTo(0, 0);
   const draw = () => {
-    if (i >= deck.length) return swipeEnd(deck, loved);
+    if (i >= deck.length) return starter ? starterEnd(loved) : swipeEnd(deck, loved);
     const w = deck[i]; if (deck[i + 3]) loadImg(deck[i + 3].img);
     view.innerHTML = `
-      <div class="qhead"><span class="eyebrow swey">Discover · ${i + 1} of ${deck.length}</span><button class="btn link" id="x">Close</button></div>
+      <div class="qhead"><span class="eyebrow swey">${starter ? "Your picture" : "Discover"} · ${i + 1} of ${deck.length}</span><button class="btn link" id="x">Close</button></div>
       <div class="swbar" aria-hidden="true"><i style="width:${Math.round(i / deck.length * 100)}%"></i></div>
       <div class="swstage"><div class="swcard${nudge ? " nudge" : ""}" id="card"><img src="${esc(w.img)}" alt="An artwork" referrerpolicy="no-referrer" draggable="false"></div>${nudge ? `<p class="swhint small muted">Swipe, or tap a button</p>` : ""}</div>
       <div class="swbtns2${nudge ? " nudge" : ""}"><button class="swb2 no" id="no">${SWX}Not for me</button><button class="swb2 yes" id="yes">${SWH}Love it</button></div>`;
@@ -1459,7 +1522,7 @@ function startSwipeNow(){
     card.addEventListener("pointerup", up); card.addEventListener("pointercancel", up);
     $("#yes").onclick = () => decide(true);
     $("#no").onclick = () => decide(false);
-    $("#x").onclick = () => { save(); go("topics"); };
+    $("#x").onclick = () => { save(); go(starter ? "me" : "topics"); };
   };
   draw();
 }
@@ -1681,7 +1744,7 @@ function editProfile(){
   $("#editbox").innerHTML = `<div class="stack editcard"><label class="eyebrow" for="en">Name</label><input type="text" id="en" maxlength="24" value="${esc(p.name)}" autocomplete="off">
     <span class="eyebrow">Colour</span>${swatches(color)}
     <div class="row two"><button class="btn ghost" id="ecancel">Cancel</button><button class="btn" id="esave">Save</button></div></div>`;
-  $("#edit").classList.add("hidden");
+  if ($("#edit")) $("#edit").classList.add("hidden");
   wireSwatches(c => color = c);
   const en = $("#en"), sv = $("#esave");
   en.oninput = () => sv.disabled = !en.value.trim();
@@ -1692,7 +1755,8 @@ function backToMe(){ $("#who").classList.remove("hidden"); $("#tabs").classList.
 (function(){ const b = document.createElement("button"); b.id = "hsearch"; b.className = "hsearch"; b.setAttribute("aria-label", "Search topics");
   b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
   b.onclick = () => { if (document.body.dataset.tab !== "topics") go("topics"); openSearch(); }; document.querySelector(".top").appendChild(b); })();
-function setWho(){ const p = profiles[pid]; const me = document.querySelector('nav.tabs [data-tab="me"]'); if (me) me.innerHTML = NEW() ? (state && picOf(state) ? `<span class="medot pic" style="background-image:url('${esc(tsrc(picOf(state).img))}')"></span>Me` : `<span class="medot" style="${dotStyle(p)}">${esc(p.name[0])}</span>Me`) : "Me"; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
+(function(){ const b = document.createElement("button"); b.id = "acct"; b.className = "acct"; b.setAttribute("aria-label", "Your profile"); b.onclick = () => openProfile(); document.querySelector(".top").appendChild(b); })();
+function setWho(){ const p = profiles[pid]; const me = document.querySelector('nav.tabs [data-tab="me"]'); const ac = $("#acct"); if (ac && state) ac.innerHTML = picHTML(state, p, "acc"); if (me) me.textContent = NEW() ? "Wall" : "Me"; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
 async function use(id){
   if (pid && state){ clearTimeout(saveTimer); await flush(); }
   pid = id; local.set("last", id); scopeContent();

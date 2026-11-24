@@ -918,3 +918,31 @@ nav.tabs button[data-tab="me"] .medot{vertical-align:0}
 .wrow.me + .wrow{border-top-color:transparent}
 .wrow.me .rk,.wrow.me .nm,.wrow.me .pt{color:var(--klein);font-weight:800}
 .medot.pic{background:center/cover no-repeat;border-radius:4px;width:18px;height:22px}
+/* ---- the Wall tab: your picture top right, the profile sheet, frames (Luna's trial) ---- */
+.acct{display:none;align-self:flex-start;margin:-6px -4px 0 auto;padding:4px;border:0;background:none;cursor:pointer}
+body.newlook[data-tab="me"]:not(.inround) .acct{display:flex}
+body.newlook[data-tab="me"] .hsearch{display:none}
+.wpic.acc{width:34px;height:42px;border-radius:3px}
+.wpic.acc.none{width:36px;height:36px;border-radius:50%;font-size:15px}
+.psheet{padding:12px 24px calc(30px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:22px}
+.psheet .mehead{margin-top:4px}
+.wpic.empty{border:2px dashed #b9b2a5;background:rgba(255,255,255,.5);box-shadow:none;cursor:pointer}
+.wpic.empty svg{width:34px;height:34px;fill:none;stroke:#8a857c;stroke-width:2;stroke-linecap:round}
+.wrow.me{padding:14px 14px;margin:4px -14px;gap:16px}
+.wrow.me .wpic{width:56px;height:68px}
+.wrow.me .wpic.none{width:50px;height:50px}
+.wrow.me .nm{font-size:19px}
+.wrow.me .pt{font-size:19px}
+.wpic.champ{outline:none}
+.fr-ink{box-shadow:0 0 0 3px #f3f1ec,0 0 0 6px #1a1a1a,0 8px 16px rgba(40,30,15,.3)!important}
+.fr-gilt{box-shadow:0 0 0 3px #f3f1ec,0 0 0 7px #c9a227,0 8px 16px rgba(40,30,15,.3)!important}
+.fr-white{box-shadow:0 0 0 6px #fff,0 0 0 7px #d9d4ca,0 8px 16px rgba(40,30,15,.3)!important}
+.fr-klein{box-shadow:0 0 0 3px #f3f1ec,0 0 0 7px #1f3fd1,0 8px 16px rgba(40,30,15,.3)!important}
+.fr-pink{box-shadow:0 0 0 3px #f3f1ec,0 0 0 7px #f19cb8,0 8px 16px rgba(40,30,15,.3)!important}
+.wpic.big.champ{box-shadow:none}
+.framebig{display:flex;justify-content:center;padding:26px 0 10px}
+.frames{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.frm{display:flex;flex-direction:column;align-items:center;gap:8px;border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;padding:6px}
+.frm .sw{width:40px;height:48px;background:var(--paper)}
+.frm.on{color:var(--ink)}
+.frm.on .sw{outline:2px solid var(--ink);outline-offset:9px}
