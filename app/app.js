@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 08:14"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 08:29"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -281,7 +281,7 @@ function timeline(t, pts, big, t2){
   /* zoom to what's on the strip: the content fills most of the width, ticks land on round years */
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.15);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= (big ? 7 : 6)) || 500;
-  lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
+  lo = Math.floor((lo - pad) / step) * step; hi = Math.min(Math.ceil((hi + pad) / step) * step, new Date().getFullYear()); // never run into the future
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%";
   const ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const name = esc(t.era || t.name);
@@ -342,7 +342,7 @@ function timeH(asked, rights, wrongs){
   let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
-  lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
+  lo = Math.floor((lo - pad) / step) * step; hi = Math.min(Math.ceil((hi + pad) / step) * step, new Date().getFullYear()); // never run into the future
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
   const many = wrongs.length > 1;
   return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(lab)}</b>` : ""}<span class="tlline"></span>
