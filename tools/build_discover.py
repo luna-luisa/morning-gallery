@@ -133,21 +133,27 @@ def tate():
         if per.get(fold(name), 0) >= PER_ARTIST: continue
         per[fold(name)] = per.get(fold(name), 0) + 1; chosen.append((name, r, yr))
         if len(chosen) >= 700: break
+    n_debug = [0]
     def page(item):
         name, r, yr = item
         url = r["url"].replace("http://", "https://")
         p = get(url)
         if not p: return None
         m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', p.text) or re.search(r'content="([^"]+)"[^>]+property="og:image"', p.text)
-        return (name, r, yr, url, m.group(1)) if m else None
+        if not m: return None
+        # the page also lists bigger copies of the same picture (".width-1200_..."): take the largest
+        alts = re.findall(r'https://media\.tate\.org\.uk/[^"\' ,]+?\.width-(\d+)_[A-Za-z0-9]+\.(?:jpg|jpeg|png)', p.text)
+        urls = re.findall(r'(https://media\.tate\.org\.uk/[^"\' ,]+?\.width-\d+_[A-Za-z0-9]+\.(?:jpg|jpeg|png))', p.text)
+        best = max(zip(map(int, alts), urls), default=(0, m.group(1)))[1] if len(alts) == len(urls) else m.group(1)
+        if n_debug[0] < 2: n_debug[0] += 1; print("tate sizes on page:", sorted(set(map(int, alts)))[-6:])
+        return (name, r, yr, url, best)
     n = 0
     with cf.ThreadPoolExecutor(6) as ex:
         for res in ex.map(page, chosen):
             if not res: continue
             name, r, yr, url, img = res
             # Tate's page preview can be small; its larger copies sit beside it with a higher number (_10)
-            bigger = re.sub(r"_(\d+)(\.jpg)$", r"_10\2", img)
-            add("Tate", r["accession_number"], name, r["title"], yr, list(dict.fromkeys([bigger, img])), url); n += 1
+            add("Tate", r["accession_number"], name, r["title"], yr, [img], url); n += 1
             if n <= 3: print("tate sample picture:", img)
     print("tate:", len(chosen), "pages tried,", n, "with pictures")
 
