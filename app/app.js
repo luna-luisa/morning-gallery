@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 06:57"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 08:12"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -40,8 +40,8 @@ async function getJSON(name){
   const r = await fetch("content/" + name + "?d=" + today()); return r.json();
 }
 async function loadContent(){
-  const [w, t, n, c, pl, wn] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null), getJSON("whatsnew.json").catch(() => null)]);
-  WN = wn;
+  const [w, t, n, c, pl, wn, cm] = await Promise.all([getJSON("works.json"), getJSON("topics.json"), getJSON("news.json").catch(() => null), getJSON("cleared.json").catch(() => null), getJSON("places.json").catch(() => null), getJSON("whatsnew.json").catch(() => null), getJSON("compare.json").catch(() => null)]);
+  WN = wn; CMP_ALL = (cm && cm.items) || [];
   WORKS = w.works; TOPICS = t.topics; NEWS = n; CLEARED = (c && c.cleared) || {};
   VENUES = {}; Object.entries((pl && pl.places) || {}).forEach(([k, v]) => [k, ...(v.aliases || [])].forEach(a => VENUES[a.toLowerCase()] = Object.assign({name: k}, v)));
   ALL = {works: WORKS, topics: TOPICS};
@@ -209,6 +209,17 @@ const BUILD = {
     const r = rng(key), pool = shuffle(ART.filter(w => inT(w, tid)), r), mine = pool.slice(0, 3); if (mine.length < 3) return null;
     const set = shuffle([oddW, ...mine]);
     return {key, topic:tid, level:3, type:"pick", odd:true, prompt:`Which one is NOT ${t.kind === "artist" ? "by *" + byWho(t) + "*" : "*" + qName(t) + "*"}?`, images:set.map(w => w.id), answer:set.indexOf(oddW), art:oddW.id, explain:`The odd one out is ${oddW.artist}, ${oddW.title} (${yearText(oddW)}).`, spare:pool.slice(3).map(w => w.id)};
+  },
+  C(key){ // hand-written question in a comparison
+    const [, cid, i] = key.split(":"), c = cmpById(cid), x = c && c.questions[+i]; if (!x) return null;
+    return mc({key, topic:c.topics[0], level:1, prompt:x.q, options:x.options, explain:x.explain, notes:x.notes, art:x.art, reveal:x.reveal});
+  },
+  K(key){ // comparison picture question: which of these is X, the others from the movements it is compared with
+    const [, cid, wid] = key.split(":"), c = cmpById(cid), right = W[wid]; if (!c || !right) return null;
+    const tid = right.topic, t = TOPICS[tid]; if (!t) return null;
+    const others = shuffle(ART.filter(w => c.topics.includes(w.topic) && w.topic !== tid), rng(key)).slice(0, 3); if (others.length < 3) return null;
+    const set = shuffle([right, ...others]);
+    return {key, topic:tid, level:1, type:"pick", prompt:`Which of these is *${qName(t)}*?`, images:set.map(w => w.id), answer:set.indexOf(right), art:right.id, explain:right.hook};
   },
   M(){ return null; }, // retired: "which movement is this?" gave itself away, because the topic name is always on screen
   A(key){ // which of these are <topic>: four pictures, two or three right
@@ -659,6 +670,47 @@ function showIntro(tid, done, finishLabel, lessonLevel){
   setTab("today"); draw();
 }
 
+/* ---------- spot the difference: short comparisons between topics people mix up ---------- */
+let CMP_ALL = [];
+const cmps = () => CMP_ALL.filter(c => c.topics.every(t => TOPICS[t]) && c.cards.every(k => (k.pair || [k.art]).every(id => W[id])));
+const cmpById = id => cmps().find(c => c.id === id);
+const cmpFor = tid => cmps().filter(c => c.topics.includes(tid));
+const cmpNew = c => c.added && (Date.now() - new Date(c.added + "T12:00:00").getTime()) / 864e5 <= 7 && !(state.cmpDone || {})[c.id];
+const cmpPics = c => { const a = c.cards.filter(k => k.art).map(k => k.art); return a.length >= 2 ? [a[0], a[a.length - 1]] : a; };
+function cmpCardHTML(c){
+  return `<button class="cmpcard" data-cmp="${esc(c.id)}"><span class="cmppics">${cmpPics(c).map(id => `<span style="background-image:url('${esc(tsrc(W[id].img))}')"></span>`).join("")}<b class="cmpvs" aria-hidden="true">or</b></span><span class="cmptitle">${esc(c.title)}</span>${cmpNew(c) ? `<span class="tag new">New</span>` : ""}</button>`;
+}
+function startCompare(cid){
+  const c = cmpById(cid); if (!c) return go("topics");
+  let i = 0; inRound(true); setTab("topics");
+  const draw = () => {
+    const k = c.cards[i], pics = k.pair ? k.pair.map(id => W[id]) : null, w = W[k.art];
+    view.innerHTML = `
+      <div class="line"><i style="width:${(i + 1) / c.cards.length * 100}%"></i></div>
+      <div class="qhead"><span class="eyebrow">Spot the difference</span><button class="btn link" id="x">Close</button></div>
+      <div class="introbody">${pics ? `<div class="cmppair">${pics.map(p => `<div>${figure(p, "thumb")}<span class="small muted">${esc(tName(p.topic))}</span></div>`).join("")}</div>` : figure(w, "big") + label(w)}
+      ${k.sub ? `<span class="eyebrow gold">${esc(k.sub)}</span>` : ""}<h2>${esc(k.title)}</h2><p class="lead">${esc(k.text)}</p></div>
+      <div class="dock row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === c.cards.length - 1 ? "Test yourself" : "Next"}</button></div>`;
+    wireHold(view);
+    $("#x").onclick = () => go("topics");
+    $("#prev").onclick = () => { i--; draw(); };
+    $("#nxt").onclick = () => { if (i < c.cards.length - 1){ i++; draw(); scrollTo(0, 0); } else cmpRound(c); };
+  };
+  let sx = null;
+  view.ontouchstart = e => { sx = e.touches[0].clientX; };
+  view.ontouchend = e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 70){ if (dx < 0 && i < c.cards.length - 1){ i++; draw(); } else if (dx > 0 && i > 0){ i--; draw(); } } };
+  draw();
+}
+function cmpRound(c){
+  const pool = shuffle(ART.filter(w => c.topics.includes(w.topic)));
+  const picks = [], seen = new Set();
+  for (const w of pool){ if (picks.length >= 3) break; if (seen.has(w.topic) && seen.size < c.topics.length) continue; const q = fromKey(`K:${c.id}:${w.id}`); if (q){ picks.push(q); seen.add(w.topic); } }
+  const hand = c.questions.map((_, n) => fromKey(`C:${c.id}:${n}`)).filter(Boolean);
+  S = {mode:"compare", cmp:c, q: [...shuffle(picks), ...hand].map(x => Object.assign({}, x, {section:"topic"})), i:0, score:0, results:[]};
+  (state.cmpDone = state.cmpDone || {})[c.id] = today(); save();
+  next(0);
+}
+
 function closeSheet(){ const s = $("#sheet"); if (s) s.remove(); document.body.classList.remove("sheetopen"); view.style.paddingBottom = ""; view.scrollTop = 0; }
 /* the answer panel covers the bottom of the screen: nudge the page up so the question stays readable */
 function keepPromptVisible(){
@@ -686,7 +738,7 @@ function inRound(on){ document.body.classList.toggle("inround", on); delete docu
 function render(){
   view.ontouchstart = view.ontouchend = null; closeSheet(); inRound(true);
   const x = S.q[S.i];
-  setTab(S.mode === "topic" ? "topics" : "today");
+  setTab(S.mode === "topic" || S.mode === "compare" ? "topics" : "today");
   document.body.dataset.room = x.type === "divider" || (x.section && x.section !== "topic") ? "2" : "1";
   const real = S.q.filter(y => y.type !== "divider"), pos = real.indexOf(x);
   const progress = (pos / Math.max(1, real.length)) * 100;
@@ -949,21 +1001,22 @@ function finish(){
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); }
   if (S.mode === "topic") markPlayed(S.topic);
   save();
-  const tid = S.mode === "topic" ? S.topic : topicOfDay().topic, L = lvlOf(tid), ups = S.results.filter(r => r.up);
+  const cmpWas = S.mode === "compare" ? S.cmp : null;
+  const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, L = lvlOf(tid), ups = S.results.filter(r => r.up);
   const missed = S.results.filter(r => !r.ok).length;
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
-    <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
+    <div class="stack"><span class="eyebrow">${S.mode === "topic" ? esc(tName(tid)) : cmpWas ? esc(cmpWas.title) : "Coffee round"}</span><h1>${S.score} <span class="serif">out of</span> ${S.results.length}</h1>
       <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
     ${roundTimeline(tid)}
     ${ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</button>
-    <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : ""}<button class="btn ${S.mode === "topic" ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button><button class="btn ghost" id="home">Back to today</button></div>
+    <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : cmpWas ? `<button class="btn" id="again">Another round</button>` : ""}<button class="btn ${S.mode === "topic" || cmpWas ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button><button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
   $$("[data-tl]").forEach(b => b.onclick = () => { const p = TLP[+b.dataset.tl]; $$("[data-tl]").forEach(o => o.classList.toggle("on", o === b)); $("#tlcap").innerHTML = `<span class="pthumb" style="background-image:url('${esc(tsrc(p.w.img))}')"></span><span><b><i>${esc(p.w.title)}</i></b><br><span class="small">${esc(p.w.artist)}, ${esc(yearText(p.w))}</span> ${eraTag(p.w)}</span>`; });
   $("#tcard").onclick = () => go("topic", tid);
   $("#keep").onclick = quickFireIntro;
-  if ($("#again")) $("#again").onclick = () => startTopic(tid);
+  if ($("#again")) $("#again").onclick = () => cmpWas ? cmpRound(cmpWas) : startTopic(tid);
   $("#home").onclick = () => go("today");
   $("#fbk").onclick = () => go("me", "feedback");
   S = null; scrollTo(0, 0);
@@ -1090,6 +1143,7 @@ function renderTopicsNew(){
     $$("#tlist [data-t]").forEach(b => b.onclick = () => go("topic", b.dataset.t));
     if ($("#swipe")) $("#swipe").onclick = startSwipe;
     if ($("#taste")) $("#taste").onclick = renderTaste;
+    $$("#tlist [data-cmp]").forEach(b => b.onclick = () => startCompare(b.dataset.cmp));
     $$("#tlist details.tsec").forEach(d => d.addEventListener("toggle", () => { (state.open = state.open || {})[d.dataset.k] = d.open; save(); }));
   };
   const draw = () => {
@@ -1111,6 +1165,7 @@ function renderTopicsNew(){
       ${isAdmin() ? `<button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">Find the artists that speak to you.</span></span></button>
       ${(state.taste || []).length ? `<button class="btn link" id="taste">Your taste · ${state.taste.length} ${state.taste.length === 1 ? "work" : "works"}</button>` : ""}` : ""}
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
+      ${cmps().length ? `<div class="tgroup"><span class="eyebrow">Spot the difference</span><div class="cmprow">${[...cmps()].sort((a, b) => cmpNew(b) - cmpNew(a)).map(cmpCardHTML).join("")}</div></div>` : ""}
       ${whatsOnHTML()}
       ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
         return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}
@@ -1263,13 +1318,15 @@ function renderTopic(tid){
       <span class="lv big">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</div>
     <div class="row"><button class="btn" id="quiz">Play this topic now</button><button class="btn ghost" id="learn">Introduction</button></div>
     ${[2, 3, 4, 5].filter(l => l <= L && lessonFor(tid, l).length).length ? `<div class="chips">${[2, 3, 4, 5].filter(l => l <= L && lessonFor(tid, l).length).map(l => `<button class="chipbtn" data-lesson="${l}">${LEVELS[l-1]} lesson</button>`).join("")}</div>` : ""}
+    ${cmpFor(tid).map(c => `<button class="cmpline" data-cmp="${esc(c.id)}"><span class="cmppics sm">${cmpPics(c).map(id => `<span style="background-image:url('${esc(tsrc(W[id].img))}')"></span>`).join("")}</span><span><span class="small muted">Often mixed up</span><b>${esc(c.title)}</b></span></button>`).join("")}
     ${works.length ? `<div class="stack"><span class="eyebrow">In this room</span><div class="strip">${works.map(w => `<div class="sw">${figure(w, "thumb")}<span class="small">${esc(w.artist)}, <i>${esc(w.title)}</i></span></div>`).join("")}</div></div>` : ""}
     <div class="stack"><span class="eyebrow">Related</span><div class="chips">${t.related.filter(r => TOPICS[r]).map(r => `<button class="chipbtn" data-t="${r}">${esc(tName(r))}</button>`).join("")}</div></div>`;
   $("#back").onclick = () => go("topics");
   $("#learn").onclick = () => showIntro(tid, () => startTopic(tid), "Play this topic now");
   $("#quiz").onclick = () => startTopic(tid);
   $$("[data-lesson]").forEach(b => b.onclick = () => showIntro(tid, () => go("topic", tid), "Done", +b.dataset.lesson));
-  $$(".chipbtn").forEach(b => b.onclick = () => go("topic", b.dataset.t));
+  $$(".chipbtn[data-t]").forEach(b => b.onclick = () => go("topic", b.dataset.t));
+  $$("[data-cmp]").forEach(b => b.onclick = () => startCompare(b.dataset.cmp));
   if ($("#ask") && !state.asked["topic:" + tid]) $("#ask").onclick = async () => { const b = $("#ask"); b.disabled = true; try { await requestMore(tid, "more", "More on this topic, please", "topic:" + tid); state.asked["topic:" + tid] = today(); save(); b.textContent = "Got it, more questions on this soon"; } catch(e){ b.disabled = false; b.textContent = "Couldn't send. Try again."; } };
 }
 function renderMe(focus){

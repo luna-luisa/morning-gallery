@@ -773,3 +773,19 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .wnicon{flex:none;width:44px;height:44px;border-radius:50%;background:#e6eafb;color:var(--klein);display:flex;align-items:center;justify-content:center}
 .wnicon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media (prefers-reduced-motion:reduce){.wnsheet,.wnback{transition:none}}
+
+/* spot the difference */
+.cmprow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 24px;margin:0 -24px;padding:2px 24px 8px;scrollbar-width:none}
+.cmprow::-webkit-scrollbar{display:none}
+.cmpcard{flex:0 0 72%;max-width:280px;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px;padding:0 0 14px;border:0;border-radius:14px;background:var(--paper);box-shadow:0 1px 3px rgba(40,30,15,.08);text-align:left;font:inherit;color:var(--ink);cursor:pointer;position:relative;overflow:hidden}
+.cmppics{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:3px;height:132px}
+.cmppics span{background:#ddd center/cover no-repeat}
+.cmpvs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:18px;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.cmptitle{padding:0 14px;font-weight:700;font-size:16px;line-height:1.25}
+.cmpcard .tag.new{position:absolute;top:10px;left:10px}
+.cmpline{display:flex;align-items:center;gap:14px;width:100%;padding:10px;border:0;border-radius:14px;background:var(--paper);font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.cmpline>span:last-child{display:flex;flex-direction:column;gap:2px}
+.cmppics.sm{height:52px;width:88px;flex:none;border-radius:8px;overflow:hidden}
+.cmppair{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center}
+.cmppair>div{display:flex;flex-direction:column;gap:6px;align-items:center}
+.cmppair .small{display:block}

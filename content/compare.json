@@ -1,0 +1,170 @@
+{
+ "items": [
+  {
+   "id": "romantic-impressionist-post",
+   "title": "Romantic, Impressionist or Post-Impressionist?",
+   "topics": [
+    "romanticism",
+    "impressionism",
+    "postimpressionism"
+   ],
+   "added": "2026-11-24",
+   "cards": [
+    {
+     "title": "Romanticism",
+     "sub": "About 1780 to 1850",
+     "art": "wanderer",
+     "text": "Feeling over reason. Stormy seas, wild mountains and heroic drama, often with a sense of awe at the power of nature."
+    },
+    {
+     "title": "Impressionism",
+     "sub": "From the 1870s",
+     "art": "impression-sunrise",
+     "text": "Catching a passing moment of light, often painted outdoors, with quick, visible dabs of colour. Scenes of modern life and leisure."
+    },
+    {
+     "title": "Post-Impressionism",
+     "sub": "From the mid-1880s",
+     "art": "starry-night",
+     "text": "Artists who kept Impressionism's bright colour but wanted more from it: Cézanne's solid shapes, Van Gogh's swirling feeling, Seurat's tiny dots."
+    },
+    {
+     "title": "How to tell them apart",
+     "pair": [
+      "impression-sunrise",
+      "starry-night"
+     ],
+     "text": "Drama and awe at nature? Romantic. A fleeting moment of light in loose dabs? Impressionist. Solid shapes, dots, patterns or swirling emotion? Post-Impressionist."
+    }
+   ],
+   "questions": [
+    {
+     "q": "Which painter was a Post-Impressionist, not an Impressionist?",
+     "options": [
+      "Vincent van Gogh",
+      "Claude Monet",
+      "Berthe Morisot",
+      "Alfred Sisley"
+     ],
+     "explain": "Van Gogh took Impressionist colour and made it swirl with feeling."
+    },
+    {
+     "q": "Which of these movements came first?",
+     "options": [
+      "Romanticism",
+      "Impressionism",
+      "Post-Impressionism",
+      "Cubism"
+     ],
+     "explain": "Romanticism was at its height in the early 1800s, decades before the Impressionists."
+    }
+   ]
+  },
+  {
+   "id": "baroque-rococo",
+   "title": "Baroque or Rococo?",
+   "topics": [
+    "baroque",
+    "rococo"
+   ],
+   "added": "2026-11-24",
+   "cards": [
+    {
+     "title": "Baroque",
+     "sub": "About 1600 to 1750",
+     "art": "calling-matthew",
+     "text": "Drama and deep shadow: strong contrasts of light and dark, powerful emotion and grand, serious subjects, often religious."
+    },
+    {
+     "title": "Rococo",
+     "sub": "About 1720 to 1780",
+     "art": "swing",
+     "text": "Lighter and more playful: soft pastel colours, curling decoration and flirtatious scenes of love and leisure, first made fashionable in France."
+    },
+    {
+     "title": "How to tell them apart",
+     "pair": [
+      "calling-matthew",
+      "swing"
+     ],
+     "text": "Dark, dramatic and serious? Baroque. Light, pastel and playful? Rococo."
+    }
+   ],
+   "questions": [
+    {
+     "q": "Which painter was Rococo, not Baroque?",
+     "options": [
+      "Jean-Honoré Fragonard",
+      "Caravaggio",
+      "Rembrandt",
+      "Johannes Vermeer"
+     ],
+     "explain": "Fragonard painted playful, pastel scenes like The Swing."
+    },
+    {
+     "q": "In which country did the Rococo style first take hold?",
+     "options": [
+      "France",
+      "Italy",
+      "The Netherlands",
+      "Spain"
+     ],
+     "explain": "It began in Paris in the early 1700s, then spread across Europe."
+    }
+   ]
+  },
+  {
+   "id": "fauvism-expressionism",
+   "title": "Fauvist or Expressionist?",
+   "topics": [
+    "fauvism",
+    "expressionism"
+   ],
+   "added": "2026-11-24",
+   "cards": [
+    {
+     "title": "Fauvism",
+     "sub": "About 1905 to 1908, France",
+     "art": "woman-hat",
+     "text": "Colour set free: pure, bright, unnatural colour used boldly for its own sake, led by Matisse and Derain. Les fauves means the wild beasts."
+    },
+    {
+     "title": "Expressionism",
+     "sub": "About 1905 to 1930, mostly Germany",
+     "art": "kirchner-potsdamer-platz",
+     "text": "Feelings turned inside out: distorted shapes, jagged lines and harsh colour to show anxiety and inner life."
+    },
+    {
+     "title": "How to tell them apart",
+     "pair": [
+      "woman-hat",
+      "kirchner-potsdamer-platz"
+     ],
+     "text": "Both use wild colour. Joyful and decorative? Fauvist. Tense, jagged and uneasy? Expressionist."
+    }
+   ],
+   "questions": [
+    {
+     "q": "Which artist, with André Derain, led the Fauves?",
+     "options": [
+      "Henri Matisse",
+      "Ernst Ludwig Kirchner",
+      "Franz Marc",
+      "Edvard Munch"
+     ],
+     "explain": "Matisse and Derain were the leading figures of the group critics called the wild beasts."
+    },
+    {
+     "q": "In which country was Expressionism mainly centred?",
+     "options": [
+      "Germany",
+      "France",
+      "Spain",
+      "Italy"
+     ],
+     "explain": "Groups such as Die Brücke in Dresden and Der Blaue Reiter in Munich were at its heart."
+    }
+   ]
+  }
+ ]
+}
