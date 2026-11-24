@@ -145,7 +145,6 @@ def tate():
         alts = re.findall(r'https://media\.tate\.org\.uk/[^"\' ,]+?\.width-(\d+)_[A-Za-z0-9]+\.(?:jpg|jpeg|png)', p.text)
         urls = re.findall(r'(https://media\.tate\.org\.uk/[^"\' ,]+?\.width-\d+_[A-Za-z0-9]+\.(?:jpg|jpeg|png))', p.text)
         best = max(zip(map(int, alts), urls), default=(0, m.group(1)))[1] if len(alts) == len(urls) else m.group(1)
-        if n_debug[0] < 2: n_debug[0] += 1; print("tate sizes on page:", sorted(set(map(int, alts)))[-6:])
         return (name, r, yr, url, best)
     n = 0
     with cf.ThreadPoolExecutor(6) as ex:
@@ -154,7 +153,6 @@ def tate():
             name, r, yr, url, img = res
             # Tate's page preview can be small; its larger copies sit beside it with a higher number (_10)
             add("Tate", r["accession_number"], name, r["title"], yr, [img], url); n += 1
-            if n <= 3: print("tate sample picture:", img)
     print("tate:", len(chosen), "pages tried,", n, "with pictures")
 
 for f in (aic, met, cleveland, tate):
@@ -184,7 +182,9 @@ def verify(c):
             im = Image.open(io.BytesIO(r.content)); im.load()
         except Exception:
             continue
-        if max(im.width, im.height) < 800 or min(im.width, im.height) < 450:  # sharp enough for a phone screen
+        # sharp enough for a phone screen; Tate only offers 600 pixels wide, the size the app already uses for its Tate works
+        if c["museum"] == "Tate" and im.width >= 600 and im.height >= 380: pass
+        elif max(im.width, im.height) < 800 or min(im.width, im.height) < 450:
             if c["museum"] == "Tate" and len(small) < 5: small.append((u, im.size))
             continue
         hw = im.height / im.width
