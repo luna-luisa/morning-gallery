@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 08:29"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 08:31"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -58,6 +58,8 @@ function scopeContent(){
   W = Object.fromEntries(WORKS.map(x => [x.id, x]));
   ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic] && x.quiz !== false);
 }
+/* where to crop a picture in a small square: its own focus point, else the upper part of tall pictures, where faces usually are (trial on Luna's profile) */
+const focusPos = w => !w || !(typeof isAdmin === "function" && pid && isAdmin()) ? "" : `;background-position:${w.focus || (w.hw >= 1.15 ? "50% 20%" : "50% 50%")}`;
 const yearText = w => w.yearLabel || (w.approx ? "c." : "") + w.year;
 const tName = id => (TOPICS[id] && TOPICS[id].name) || "";
 
@@ -333,25 +335,26 @@ function groupedWhy(x, wrongs){
   });
   return {rows, shared};
 }
-function timeH(asked, rights, wrongs){
+function timeH(asked, rights, wrongs, o = {}){
   /* a loose label with no set years (e.g. Modern British art) gets no green band, just the dots */
   const band = !!asked.from, to = band ? Math.min(asked.to, 2025) : null, faint = [];
   const lab = asked.kind === "artist" ? asked.name : asked.era || asked.name;
   wrongs.forEach(w => { let t = TOPICS[w.topic]; if (t && t.movement && TOPICS[t.movement]) t = TOPICS[t.movement]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
+  (o.extra || []).forEach(t => { if (t && t.from && t !== asked && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
   let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
   lo = Math.floor((lo - pad) / step) * step; hi = Math.min(Math.ceil((hi + pad) / step) * step, new Date().getFullYear()); // never run into the future
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
-  const many = wrongs.length > 1;
-  return `<div class="th">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(lab)}</b>` : ""}<span class="tlline"></span>
+  const many = !o.plain && wrongs.length > 1, tap = (i, cls) => o.plain ? `<button class="d ${cls}" data-tl="${i}" style="left:${X([...rights, ...wrongs][i].year)}" aria-label="${esc([...rights, ...wrongs][i].title || "")}"></button>` : null;
+  return `<div class="th${o.plain ? " round" : ""}">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(lab)}</b>` : ""}<span class="tlline"></span>
     ${faint.map(f => `<span class="fband ${f.t.fade ? "fade" : ""}" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
     ${band ? `<span class="gband ${asked.fade ? "fade" : ""}" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
-    ${rights.filter(w => w.year).map(w => `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>`).join("")}
-    ${wrongs.filter(w => w.year).map((w, i) => many ? `<span class="n" style="left:${X(w.year)}">${i + 1}</span>` : `<span class="d bad" style="left:${X(w.year)}"></span>`).join("")}
+    ${rights.map((w, i) => w.year ? tap(i, w.missed ? "miss" : "good") || `<span class="d ${w.missed ? "miss" : "good"}" style="left:${X(w.year)}"></span>` : "").join("")}
+    ${wrongs.map((w, i) => w.year ? tap(rights.length + i, "bad") || (many ? `<span class="n" style="left:${X(w.year)}">${i + 1}</span>` : `<span class="d bad" style="left:${X(w.year)}"></span>`) : "").join("")}
     ${ticks.map(y => `<span class="tk" style="left:${X(y)}">${y}</span>`).join("")}</div>
-    <div class="tllegend"><span><i style="background:var(--good)"></i>The answer${rights.length > 1 ? "s" : ""}</span><span><i style="background:var(--bad)"></i>Your pick${many ? "s" : ""}</span></div>`;
+    ${o.legend !== undefined ? o.legend : `<div class="tllegend" ${o.legend !== undefined ? "hidden" : ""}><span><i style="background:var(--good)"></i>The answer${rights.length > 1 ? "s" : ""}</span><span><i style="background:var(--bad)"></i>Your pick${many ? "s" : ""}</span></div>`}`;
 }
 function reviewTiles(x, wrongIds, fact){
   const asked = TOPICS[x.topic], wrongs = wrongIds.map(id => W[id]), many = wrongs.length > 1;
@@ -781,7 +784,7 @@ function renderMC(x){
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer);
 }
 function renderPick(x){
-  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(tsrc(W[id].img))}')"></span></button>`).join("")}</div>`;
+  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(tsrc(W[id].img))}')${focusPos(W[id])}"></span></button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer, true);
 }
 /* tap to select (tap again or another to change), then Check; with nothing picked the same button reads "Not sure" and shows the answer (counts as a miss) */
@@ -878,7 +881,7 @@ function answered(x, ok){
       <div class="sheetbody">
       <div class="flagbox hidden" id="flagbox"></div>
       ${!ok && x.type === "mc" && !x.multi ? `<p class="answerline">${x.mine && x.mine.length ? `You said <s>${esc(x.options[x.mine[0]])}</s>. ` : ""}The answer: <b>${esc(x.options[x.answer])}</b></p>${x.mine && x.mine.length && wrongNote(x, x.mine[0]) ? `<p class="wrongnote">${wrongNote(x, x.mine[0])}</p>` : ""}` : ""}
-      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-tip="${esc(W[id].title + " · " + W[id].artist + ", " + yearText(W[id]) + (eraOf(W[id]) ? " · " + eraOf(W[id]) : ""))}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div><div class="mlabs">${x.images.map(id => `<span>${esc((TOPICS[x.topic] && TOPICS[x.topic].kind === "artist") ? W[id].artist : (eraOf(W[id]) || W[id].artist))}</span>`).join("")}</div>` : ""}
+      ${x.type === "pick" && (x.multi || !ok) ? `<div class="minis">${x.images.map((id, i) => { const t = $$(".tile")[i], c = t ? ["right","wrong","missed","dim"].find(k => t.classList.contains(k)) || "" : ""; return `<span class="mini ${c}" data-tip="${esc(W[id].title + " · " + W[id].artist + ", " + yearText(W[id]) + (eraOf(W[id]) ? " · " + eraOf(W[id]) : ""))}" data-src="${esc(W[id].img)}" style="background-image:url('${esc(tsrc(W[id].img))}')${focusPos(W[id])}"><i>${(x.multi ? x.answers.includes(i) : i === x.answer) ? "✓" : ""}</i></span>`; }).join("")}</div><div class="mlabs">${x.images.map(id => `<span>${esc((TOPICS[x.topic] && TOPICS[x.topic].kind === "artist") ? W[id].artist : (eraOf(W[id]) || W[id].artist))}</span>`).join("")}</div>` : ""}
       ${review ? reviewTiles(x, wrongIds, fact) : ""}
       ${!review && rw && rw.img ? `<div class="reveal"><span class="rimg" data-src="${esc(rw.img)}"><img src="${esc(rw.img)}" alt="" referrerpolicy="no-referrer"></span>${label(rw)}${x.type === "pick" && rw.topic && !(TOPICS[x.topic] && TOPICS[x.topic].kind === "movement" && rw.topic === x.topic) ? `<p class="small">${eraTag(rw).trim()}</p>` : ""}</div>` : ""}${w && w !== rw ? label(w) : ""}
       ${!review && (fact || x.source) ? `<p>${esc(fact)}${x.source ? ` <a class="story" href="${esc(x.source)}" target="_blank" rel="noopener">Read the story</a>` : ""}</p>` : ""}
@@ -990,8 +993,15 @@ let TLP = [];
 function roundTimeline(tid){
   const t = TOPICS[tid]; TLP = []; if (!tlFor(t)) return "";
   const seen = new Set(), add = (id, kind) => { const w = W[id]; if (!w || !w.year || seen.has(id + kind)) return; seen.add(id + kind); TLP.push({year: w.year, kind, w, title: w.title}); };
-  S.results.filter(r => r.topic === tid).forEach(r => { (r.wrong || []).forEach(id => add(id, "bad")); if (r.art) add(r.art, r.ok ? "good" : "miss"); });
+  S.results.filter(r => r.topic === tid || (S.mode === "compare" && S.cmp.topics.includes(r.topic))).forEach(r => { (r.wrong || []).forEach(id => add(id, "bad")); if (r.art) add(r.art, r.ok ? "good" : "miss"); });
   if (TLP.length < 2) return "";
+  if (isAdmin()){ // new look, matching the answer screens (trial on Luna's profile)
+    const rights = TLP.filter(p => p.kind !== "bad"), wrongs = TLP.filter(p => p.kind === "bad"); TLP = [...rights, ...wrongs];
+    const legend = `<div class="tllegend">${rights.some(p => p.kind === "good") ? `<span><i style="background:var(--good)"></i>Right</span>` : ""}${rights.some(p => p.kind === "miss") ? `<span><i style="border:2px solid var(--good);box-sizing:border-box"></i>Missed</span>` : ""}${wrongs.length ? `<span><i style="background:var(--bad)"></i>Your mix-ups</span>` : ""}</div>`;
+    const extra = S && S.mode === "compare" ? S.cmp.topics.filter(x => x !== tid).map(x => TOPICS[x]) : [];
+    return `<div class="tlcard"><span class="tltitle">Your round <span class="serif">in time</span></span>${timeH(t, rights.map(p => Object.assign({}, p.w, {missed: p.kind === "miss"})), wrongs.map(p => p.w), {plain: true, extra, legend})}
+    <div class="tlcap" id="tlcap"><span class="small">Tap a dot to see the picture.</span></div></div>`;
+  }
   return `<div class="tlcard"><span class="tltitle">Your round <span class="serif">in time</span></span>${timeline(t, TLP, true)}
     <div class="tllegend">${TLP.some(p => p.kind === "good") ? `<span><i style="background:var(--good)"></i>Right</span>` : ""}${TLP.some(p => p.kind === "miss") ? `<span><i style="border:2px solid var(--good);box-sizing:border-box"></i>Missed</span>` : ""}${TLP.some(p => p.kind === "bad") ? `<span><i style="background:var(--bad)"></i>Your mix-ups</span>` : ""}</div>
     <div class="tlcap" id="tlcap"><span class="small">Tap a dot to see the picture.</span></div></div>`;

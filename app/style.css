@@ -792,3 +792,6 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .cmppair{align-items:end}
 .cmppair .spot.thumb{width:100%;aspect-ratio:auto;height:250px;padding:0;display:flex;align-items:flex-end;justify-content:center}
 .cmppair .spot.thumb img{max-width:100%;max-height:250px;width:auto;height:auto;object-fit:contain;box-shadow:0 6px 16px rgba(40,30,15,.2)}
+
+.th.round button.d{padding:0;cursor:pointer;appearance:none}
+.th.round button.d.on{transform:scale(1.35);box-shadow:0 0 0 3px rgba(31,63,209,.25)}
