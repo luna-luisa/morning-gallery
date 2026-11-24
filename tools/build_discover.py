@@ -95,11 +95,13 @@ def met():
 
 # ---- Cleveland Museum of Art: highlights, all periods
 def cleveland():
-    for skip in range(0, 4000, 1000):
-        r = get("https://openaccess-api.clevelandart.org/api/artworks/", params={"has_image": 1, "highlight": 1, "limit": 1000, "skip": skip})
+    for kind in ("Painting", "Sculpture", "Photograph", "Drawing", "Print", "Textile"):
+     for skip in range(0, 3000, 1000):
+        r = get("https://openaccess-api.clevelandart.org/api/artworks/", params={"has_image": 1, "type": kind, "limit": 1000, "skip": skip})
         data = r.json().get("data", []) if r else []
         if not data: break
         for x in data:
+            if kind in ("Print", "Drawing", "Photograph") and random.random() < 0.6: continue  # mostly paintings and sculpture
             web = ((x.get("images") or {}).get("web") or {}).get("url")
             cr = x.get("creators") or []
             add("Cleveland Museum of Art", x["id"], cr[0].get("description") if cr else None, x.get("title"),
@@ -155,7 +157,8 @@ def tate():
             add("Tate", r["accession_number"], name, r["title"], yr, [img], url); n += 1
     print("tate:", len(chosen), "pages tried,", n, "with pictures")
 
-for f in (aic, met, cleveland, tate):
+# the Art Institute of Chicago is left out: its pictures load for this job but are blocked inside other apps
+for f in (met, cleveland, tate):
     try: f()
     except Exception as e: print("source failed:", f.__name__, e)
 print(len(cands), "candidates")
@@ -178,6 +181,8 @@ def verify(c):
     for u in c["imgs"]:
         r = get(u)
         if not r: continue
+        # a picture the museum only lets its own site show (it would fail inside the app)
+        if r.headers.get("cross-origin-resource-policy", "").lower() in ("same-origin", "same-site"): continue
         try:
             im = Image.open(io.BytesIO(r.content)); im.load()
         except Exception:

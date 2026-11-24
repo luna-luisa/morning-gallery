@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:14"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:15"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1442,7 +1442,8 @@ const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic
 let DISC = null, DISCMAP = {};
 async function loadDisc(){
   if (DISC) return DISC;
-  try { const d = await getJSON("discover.json"); DISC = (d.items || []).filter(w => /^https:/.test(w.img)); }
+  /* the Art Institute of Chicago's pictures won't show inside other apps, so they're left out */
+  try { const d = await getJSON("discover.json"); DISC = (d.items || []).filter(w => /^https:/.test(w.img) && !/artic\.edu/.test(w.img)); }
   catch(e){ DISC = []; }
   DISCMAP = Object.fromEntries(DISC.map(w => [w.id, w])); return DISC;
 }
