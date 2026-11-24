@@ -1,10 +1,15 @@
 {
- "id": "2026-11-24-b",
+ "id": "2026-11-24-launch",
  "items": [
   {
-   "icon": "star",
-   "title": "Four new artists",
-   "text": "Rembrandt, Mary Cassatt, Gwen John and Wassily Kandinsky, in Topics."
+   "visual": "swipe",
+   "title": "Swipe to discover",
+   "text": "Three rounds a week of art you haven't met yet. Find it in Topics."
+  },
+  {
+   "visual": "wall",
+   "title": "The Wall",
+   "text": "This week's points, with everyone shown by a picture they love."
   }
  ]
 }

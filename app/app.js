@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:25"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:41"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -512,14 +512,17 @@ function markPlayed(tid){
 }
 /* points for this week's wall: counted for everyone, shown on the admin profile while it's a trial */
 const PTS = {round: 10, fixed: 5, streak: 3, swipe: 2};
+/* points count from the Wall's launch for everyone (24 Nov 2026), so nobody starts ahead */
+const SEASON = "2026-11-24";
 function addPts(n){
+  if (state.ptsS !== SEASON){ delete state.pts; delete state.ptsPrev; state.ptsAll = 0; state.picAt = 0; state.ptsS = SEASON; }
   const k = weekKey(), p = state.pts || {};
   if (p.k !== k){ if (p.k) state.ptsPrev = {k: p.k, n: p.n || 0}; state.pts = {k, n: 0}; }
   state.pts.n += n; state.ptsAll = (state.ptsAll || 0) + n;
 }
 const lastWeekKey = () => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) - 7); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
-const weekPts = st => st && st.pts && st.pts.k === weekKey() ? st.pts.n : 0;
-const lastPts = st => !st ? 0 : st.pts && st.pts.k === lastWeekKey() ? st.pts.n : st.ptsPrev && st.ptsPrev.k === lastWeekKey() ? st.ptsPrev.n : 0;
+const weekPts = st => st && st.ptsS === SEASON && st.pts && st.pts.k === weekKey() ? st.pts.n : 0;
+const lastPts = st => !st || st.ptsS !== SEASON ? 0 : st.pts && st.pts.k === lastWeekKey() ? st.pts.n : st.ptsPrev && st.ptsPrev.k === lastWeekKey() ? st.ptsPrev.n : 0;
 function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, () => startTopic(tid), "Start the questions"); }
 
 /* ---------------- images: check before showing, swap failures ---------------- */
@@ -674,7 +677,7 @@ async function next(delta){
 
 /* ---------------- rendering ---------------- */
 /* the tidier look (Nov 2026): Luna's profile first */
-const NEW = () => typeof isAdmin === "function" && pid && isAdmin();
+const NEW = () => !!pid; // the new look, Swipe and the Wall: everyone since 24 Nov 2026
 function setTab(t){ $$("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t)); document.body.dataset.tab = t; document.body.classList.toggle("newlook", !!NEW()); }
 $$("nav.tabs button").forEach(b => b.onclick = () => { S = null; go(b.dataset.tab); });
 function go(t, a){ inRound(false); setTab(t === "topic" ? "topics" : t); scrollTo(0, 0); view.ontouchstart = view.ontouchend = null; ({today:renderToday, topics:renderTopics, me:renderMe, topic:renderTopic})[t](a); }
@@ -1129,6 +1132,14 @@ function wnState(){
   return s.reopened || Date.now() - s.at > 7 * 864e5 ? "none" : "chip";
 }
 const wnCount = () => { const n = wnItems().length; return n === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][n] || n} new things`; };
+/* small pictures for big announcements: a fan of cards for Swipe, a mini wall for the Wall */
+const WN_VIS = {
+  swipe: () => { const ws = ART.filter(w => !w.photo && w.hw >= 1.2).slice(0, 40), pick = [0, 1, 2].map(k => ws[(hash(today()) + k * 7) % ws.length]).filter(Boolean);
+    return `<span class="wnvis fan">${pick.map(w => `<i style="background-image:url('${esc(tsrc(w.img))}')"></i>`).join("")}</span>`; },
+  wall: () => { const ws = ART.filter(w => !w.photo).slice(5, 60), pick = [0, 1, 2].map(k => ws[(hash(today()) + k * 11) % ws.length]).filter(Boolean);
+    return `<span class="wnvis wall">${pick.map((w, k) => `<b><i style="background-image:url('${esc(tsrc(w.img))}')"></i><em style="width:${[80, 58, 40][k]}%"></em></b>`).join("")}</span>`; }
+};
+const wnRow = i => `<div class="wnitem">${i.visual && WN_VIS[i.visual] ? WN_VIS[i.visual]() : `<span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span>`}<div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`;
 function openWhatsNew(reopen){
   const k = wnKey(), s = local.get("wn:" + pid) || {};
   local.set("wn:" + pid, wnSame(s.key, k) ? Object.assign(s, reopen ? {reopened: true} : {}) : {key: k, at: Date.now()});
@@ -1138,7 +1149,7 @@ function openWhatsNew(reopen){
     <span class="handle" aria-hidden="true"></span>
     <div class="wnhead"><div><span class="eyebrow gold">Since your last visit</span><h2 id="wntitle">What's <span class="serif">new</span></h2></div>
       <button class="wnx" id="wnx" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
-    <div class="wnlist">${wnItems().map(i => `<div class="wnitem"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span><div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`).join("")}</div>
+    <div class="wnlist">${wnItems().map(wnRow).join("")}</div>
     <button class="btn" id="wngo">Let's go</button></div>`;
   const close = () => { el.classList.remove("on"); setTimeout(() => { el.remove(); if ($("#wnme")) renderMe(); }, 300); };
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("on")));
@@ -1169,7 +1180,7 @@ function openProfile(focus){
   const row = (id, label, val) => `<details class="merow" id="${id}"><summary><span>${label}</span><span class="val">${val || ""}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></summary><div class="mebody"></div></details>`;
   const el = document.createElement("div"); el.id = "psheet"; el.className = "wnwrap"; document.body.appendChild(el);
   el.innerHTML = `<div class="wnback"></div><div class="wnsheet psheet" role="dialog" aria-modal="true" aria-label="Your profile"><span class="handle" aria-hidden="true"></span>
-    <div class="row mehead">${p.admin && picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div><div id="editbox"></div>
+    <div class="row mehead">${picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div><div id="editbox"></div>
     <div class="mesec"><span class="eyebrow">This week</span><div class="week">${week.map(d => `<span class="${d.on ? "on" : ""}${d.now ? " now" : ""}"><i>${d.on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</i>${d.l}</span>`).join("")}</div></div>
     ${played.length ? `<div class="mesec"><span class="eyebrow">Your topics by level</span><div class="lvbars">${LEVELS.map((name, i) => `<div><span>${name}</span><i><b style="width:${per[i] ? Math.max(6, Math.round(100 * per[i] / mx)) : 0}%;opacity:${.35 + i * .16}"></b></i><em>${per[i]}</em></div>`).join("")}</div></div>` : ""}
     ${s.learned ? `<div class="fixed"><b>${s.learned}</b><span><strong>Mistakes fixed for good.</strong> Questions you once got wrong and now always get right.</span></div>` : ""}
@@ -1180,6 +1191,7 @@ function openProfile(focus){
       ${row("rsw", "Switch profile", "")}
       ${row("rpin", p.pin ? "Change PIN" : "Set a PIN", "")}
       ${matchMedia("(display-mode: standalone)").matches || navigator.standalone ? "" : row("rhome", "Add to Home Screen", "")}
+      ${p.admin ? row("radm", "Manage profiles", "") : ""}
     </div>
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
     <button class="btn link center" id="howto">How Morning Gallery works</button>
@@ -1195,9 +1207,20 @@ function openProfile(focus){
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${!i}">${l}</button>`).join("")}</div>
       <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
       <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span>`;
+  if ($("#radm")){
+    const others2 = Object.keys(profiles).filter(id => id !== pid);
+    $("#radm .mebody").innerHTML = `<div class="swlist">${others2.map(id => `<div class="admrow"><span class="dot" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="grow">${esc(profiles[id].name)}</span>${profiles[id].pin ? `<button class="btn link" data-reset="${id}">Reset PIN</button>` : ""}<button class="btn link danger" data-rm="${id}">Remove</button></div>`).join("") || `<p class="small muted">No one else yet.</p>`}</div>`;
+    $$("#radm [data-rm]").forEach(b => b.onclick = async () => {
+      if (!b.classList.contains("sure")){ b.classList.add("sure"); b.textContent = "Tap again to remove"; setTimeout(() => { if (b.isConnected){ b.classList.remove("sure"); b.textContent = "Remove"; } }, 4000); return; }
+      const id = b.dataset.rm, name = profiles[id].name; b.disabled = true;
+      await store.put("profile:" + id, {removed: true, name, removed_at: new Date().toISOString()}); await store.put("progress:" + id, {removed: true});
+      delete profiles[id]; local.set("profiles", profiles); computeHidden(); b.closest(".admrow").remove();
+    });
+    $$("#radm [data-reset]").forEach(b => b.onclick = async () => { const q = profiles[b.dataset.reset]; delete q.pin; await store.put("profile:" + b.dataset.reset, q); local.set("profiles", profiles); b.replaceWith(Object.assign(document.createElement("span"), {className: "small muted", textContent: "PIN reset"})); });
+  }
   if ($("#rhome")) $("#rhome .mebody").innerHTML = `<p class="small">${/iPhone|iPad/.test(navigator.userAgent) ? "In Safari, tap Share, then <b>Add to Home Screen</b>." : /Android/.test(navigator.userAgent) ? "In Chrome, tap the three dots, then <b>Add to Home screen</b>." : "In your phone's browser, open the share or menu button and choose <b>Add to Home Screen</b>."}</p>`;
   $("#howto").onclick = () => { close(); showWelcome(() => go("me")); };
-  if ($("#rwn")) $("#rwn .mebody").innerHTML = wnItems().map(i => `<div class="wnitem"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span><div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`).join("");
+  if ($("#rwn")) $("#rwn .mebody").innerHTML = wnItems().map(wnRow).join("");
   /* switch profile, in place */
   const others = Object.keys(profiles).filter(id => id !== pid && !profiles[id].removed);
   $("#rsw .mebody").innerHTML = `<div class="swlist">${others.map(id => `<button class="swp" data-id="${id}"><span class="dot" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span>${esc(profiles[id].name)}</button>`).join("")}</div><button class="btn link" id="pnew">New profile</button>`;
@@ -1259,8 +1282,8 @@ async function leaderboard(){
   const PLACES = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
   const wonTop3 = lastTop.slice(0, 3).some(r => r.id === pid) && state.picWeek !== weekKey();
   const more = Math.max(0, 100 - ((state.ptsAll || 0) - (state.picAt || 0)));
-  const canChange = picOf(state) && (wonTop3 || !more || profiles[pid].admin);
-  const frameOf = r => r.id === champ || (r.id === pid && profiles[pid].admin && state.frame) ? ` champ fr-${(r.st.frame || "ink")}` : "";
+  const canChange = picOf(state) && (wonTop3 || !more);
+  const frameOf = r => r.id === champ ? ` champ fr-${(r.st.frame || "ink")}` : "";
   const mypic = picOf(state);
   el.querySelector("div").outerHTML = `
     <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
@@ -1270,8 +1293,8 @@ async function leaderboard(){
       : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>`
       : `<div class="wgap"><b>Everyone's on 0 so far.</b> One coffee round (10 points) puts you at the top.</div>`}
     <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], frameOf(r).trim())}<span class="nm">${esc(profiles[r.id].name)}${picOf(r.st) ? `<small><i>${esc(picOf(r.st).title)}</i>, ${esc(plainArtist(picOf(r.st).artist))}</small>` : ""}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
-    <p class="small muted">The top 3 each week can choose a new picture. Last week's winner wears a frame until someone else wins it.${mypic && !canChange ? ` Get ${more} more points to change your picture.` : ""}${profiles[pid].admin ? " <b>Trial:</b> you can change things any time." : ""}</p>
-    ${!mypic ? `<button class="btn" id="choosepic">Choose your picture</button>` : `<div class="row two">${canChange ? `<button class="btn ghost" id="choosepic">New picture</button>` : ""}${champ === pid || profiles[pid].admin ? `<button class="btn ghost" id="frame">Your frame</button>` : ""}</div>`}`;
+    <p class="small muted">The top 3 each week can choose a new picture. Last week's winner wears a frame until someone else wins it.${mypic && !canChange ? ` Get ${more} more points to change your picture.` : ""}</p>
+    ${!mypic ? `<button class="btn" id="choosepic">Choose your picture</button>` : `<div class="row two">${canChange ? `<button class="btn ghost" id="choosepic">New picture</button>` : ""}${champ === pid ? `<button class="btn ghost" id="frame">Your frame</button>` : ""}</div>`}`;
   const choose = () => mypic ? choosePicture(wonTop3) : startStarter();
   if ($("#choosepic")) $("#choosepic").onclick = choose;
   if ($("#firstpic")) $("#firstpic").onclick = choose;
@@ -1381,8 +1404,8 @@ function openSearch(){ const r = $(".tqrow"); if (!r) return; r.classList.remove
 /* artists A to Z by surname ("Jan van Eyck" under E); other sections stay in time order */
 const surname = n => { const w = String(n || "").replace(/[:(].*$/, "").trim().split(/\s+/); const i = w.findIndex((x, k) => k && /^(van|von|de|da|di|af|le|la|del|della|der)$/i.test(x)); return (i > 0 ? w.slice(i + 1) : w.slice(-1)).join(" ") || n; };
 function renderTopicsNew(){
-  if (isAdmin() && !DISC) loadDisc().then(() => { if (document.body.dataset.tab === "topics" || $("#swipe")) { const b = $("#swipe .swthumbs"); if (b) b.innerHTML = swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join(""); } });
-  const pics = isAdmin() ? swipeDeck(3, true) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
+  if (!DISC) loadDisc().then(() => { if (document.body.dataset.tab === "topics" || $("#swipe")) { const b = $("#swipe .swthumbs"); if (b) b.innerHTML = swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join(""); } });
+  const pics = swipeDeck(3, true), played = Object.keys(TOPICS).filter(t => T(t).n > 0);
   const recent = [...played].sort((a, b) => String((state.played || {})[b] || "").localeCompare(String((state.played || {})[a] || ""))).slice(0, 4);
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1></div>
     <div class="tqrow${NEW() ? " hidden" : ""}"><label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">${NEW() ? `<button class="btn link" id="tqx">Cancel</button>` : ""}</div>
@@ -1413,7 +1436,7 @@ function renderTopicsNew(){
     const open = state.open || {};
     const sec = (k, title, body) => `<details class="tsec" data-k="${k}" ${open[k] ? "open" : ""}><summary><span class="tsech">${title}</span><span class="chev" aria-hidden="true"></span></summary>${body}</details>`;
     list.innerHTML = `
-      ${isAdmin() ? swBoxHTML(pics) : ""}
+      ${swBoxHTML(pics)}
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
       ${cmps().length ? `<div class="tgroup"><span class="eyebrow">Spot the difference</span><div class="cmprow">${[...cmps()].sort((a, b) => cmpNew(b) - cmpNew(a)).map(cmpCardHTML).join("")}</div></div>` : ""}
       ${whatsOnHTML()}
@@ -1831,6 +1854,7 @@ async function use(id){
   if (profiles[id] && profiles[id].admin && state.swFresh !== "2026-11-24"){ ["swiped", "taste", "picks", "swWeek", "swIntro", "swNudge", "swLast"].forEach(k => delete state[k]); state.swFresh = "2026-11-24"; save(); }
   /* this week's rounds back, once, after the Chicago pictures failed to load (24 Nov 2026) */
   if (profiles[id] && profiles[id].admin && state.swRefill !== "2026-11-24"){ delete state.swWeek; state.swRefill = "2026-11-24"; save(); }
+  if (profiles[id] && profiles[id].admin && state.launch !== "2026-11-24"){ ["pic", "frame", "picAt", "picWeek", "pts", "ptsPrev", "ptsAll", "ptsS"].forEach(k => delete state[k]); state.launch = "2026-11-24"; save(); }
   const p = profiles[id];
   setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
