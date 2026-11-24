@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 16:44"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 16:53"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1082,8 +1082,7 @@ const wnSame = (a, k) => !!a && (a === k || a.startsWith(k + ":")); // older sav
 function wnState(){
   const k = wnKey(), s = local.get("wn:" + pid) || {};
   if (!k || !wnItems().length) return "none";
-  /* it pops up at most once a week; anything newer waits until then */
-  if (!wnSame(s.key, k)) return s.at && Date.now() - s.at < 6 * 864e5 ? "none" : "new";
+  if (!wnSame(s.key, k)) return "new";
   return s.reopened || Date.now() - s.at > 7 * 864e5 ? "none" : "chip";
 }
 const wnCount = () => { const n = wnItems().length; return n === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][n] || n} new things`; };

@@ -50,7 +50,7 @@ An intro card about something current must not go stale. The "In the news" card 
 - New content (topics, questions, comparisons, news): straight to everyone once the fact checks pass and every picture is confirmed to load.
 
 ## What's new (Luna, 24 Nov 2026: avoid fatigue)
-- The What's new sheet pops up whenever `content/whatsnew.json` gets a new `id`, so change the id at most once every 7 days, and only for something people would be sorry to miss: a new feature, or new artist topics.
+- The What's new sheet pops up whenever `content/whatsnew.json` gets a new `id`, so change the id only for big-picture things people would be sorry to miss: a new feature, or new artist topics. Not more than once a day.
 - One item, two at most. One short line each.
 - Never repeat something already announced. Extra comparisons, What's on, fixes and picture swaps are not announced.
 - When nothing qualifies, leave the file alone.
