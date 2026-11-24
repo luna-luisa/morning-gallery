@@ -145,7 +145,10 @@ def tate():
         for res in ex.map(page, chosen):
             if not res: continue
             name, r, yr, url, img = res
-            add("Tate", r["accession_number"], name, r["title"], yr, [img], url); n += 1
+            # Tate's page preview can be small; its larger copies sit beside it with a higher number (_10)
+            bigger = re.sub(r"_(\d+)(\.jpg)$", r"_10\2", img)
+            add("Tate", r["accession_number"], name, r["title"], yr, list(dict.fromkeys([bigger, img])), url); n += 1
+            if n <= 3: print("tate sample picture:", img)
     print("tate:", len(chosen), "pages tried,", n, "with pictures")
 
 for f in (aic, met, cleveland, tate):
@@ -166,6 +169,7 @@ while modern or older:
     if modern: order.append(modern.pop())
     if older: order.append(older.pop())
 
+small = []
 def verify(c):
     for u in c["imgs"]:
         r = get(u)
@@ -174,7 +178,9 @@ def verify(c):
             im = Image.open(io.BytesIO(r.content)); im.load()
         except Exception:
             continue
-        if max(im.width, im.height) < 800 or min(im.width, im.height) < 450: continue  # sharp enough for a phone screen
+        if max(im.width, im.height) < 800 or min(im.width, im.height) < 450:  # sharp enough for a phone screen
+            if c["museum"] == "Tate" and len(small) < 5: small.append((u, im.size))
+            continue
         hw = im.height / im.width
         if not 0.55 <= hw <= 2.0: return None
         return c, u, round(hw, 3), im
@@ -200,6 +206,7 @@ for n in range(0, len(thumbs), 36):
         d.text((x + 5, y + 250), f"{wid[:20]} {artist[:18]}", fill="black")
     sheet.save(f"sheets/discover-{n // 36 + 1:02d}.jpg", quality=80)
 
+print("too small (Tate samples):", small)
 m = sum(1 for i in items if i["year"] >= 1880)
 print(f"{len(items)} works by {len({fold(i['artist']) for i in items})} artists, {m} from 1880 on")
 for mu in ("Art Institute of Chicago", "The Met", "Cleveland Museum of Art", "Tate"):
