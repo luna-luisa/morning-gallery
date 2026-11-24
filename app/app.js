@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:15"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:25"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1829,6 +1829,8 @@ async function use(id){
   Object.keys(state.srs || {}).forEach(k => { if (k.startsWith("M:")) delete state.srs[k]; }); // retired question type
   /* a clean slate for Swipe on the admin profile, once, for the new deck (Luna asked, 24 Nov 2026) */
   if (profiles[id] && profiles[id].admin && state.swFresh !== "2026-11-24"){ ["swiped", "taste", "picks", "swWeek", "swIntro", "swNudge", "swLast"].forEach(k => delete state[k]); state.swFresh = "2026-11-24"; save(); }
+  /* this week's rounds back, once, after the Chicago pictures failed to load (24 Nov 2026) */
+  if (profiles[id] && profiles[id].admin && state.swRefill !== "2026-11-24"){ delete state.swWeek; state.swRefill = "2026-11-24"; save(); }
   const p = profiles[id];
   setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
