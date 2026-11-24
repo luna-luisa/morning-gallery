@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
 concurrency: check-pictures
+env:
+  SHEETS_TOKEN: ${{ secrets.SHEETS_TOKEN }}
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -19,14 +21,17 @@ jobs:
           python-version: "3.12"
       - run: pip install requests pillow
       - run: python tools/check_images.py
-      - name: Keep only the latest contact sheets, on their own branch (never on main or the website)
+      - name: Keep only the latest contact sheets, in the private sheets project
+        if: ${{ env.SHEETS_TOKEN != '' }}
+        env:
+          SHEETS_TOKEN: ${{ secrets.SHEETS_TOKEN }}
         run: |
           cd sheets
-          git init -q -b picture-sheets
+          git init -q -b main
           git config user.name "Morning Gallery checks"
           git config user.email "checks@users.noreply.github.com"
           git add -A && git commit -qm "Contact sheets $(date -u +%F)"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" picture-sheets
+          git push -qf "https://x-access-token:${SHEETS_TOKEN}@github.com/luna-luisa/morning-gallery-sheets.git" main
           cd .. && rm -rf sheets/.git
       - name: Save the results
         run: |
