@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 18:42"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 18:53"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -468,18 +468,20 @@ function pickMorning(){
   const best = Math.min(...pool.map(morningTier));
   return pickBy(pool.filter(t => morningTier(t) === best), seed);
 }
-/* one topic of the day for everyone, so it's something people can talk about: the day's date ranks
-   the topics the same way on every phone (news first), and each person gets the first one they
-   haven't started. Nothing repeats unannounced: only when everything has been started does it bring
-   back an older topic, and then it says so ("pick up where you left off") */
+/* one topic of the day for everyone, so it's something people can talk about. The date alone picks a
+   shared pair (news first): today's topic, and one backup that is also the same for everyone. You get the
+   topic unless you've started it, then the backup. Started both? You stay on today's topic, labelled
+   "pick up where you left off", so a return never looks like a mistake. The rotation goes through every
+   topic before any comes round again. */
 function sharedMorning(){
-  const d = today(), all = Object.keys(TOPICS).sort();
-  const rank = t => (featured().includes(t) ? 0 : 1) * 1e10 + hash("day:" + d + ":" + t);
-  const order = all.slice().sort((a, b) => rank(a) - rank(b));
-  const fresh = order.find(t => !studied(t));
-  if (fresh) return {topic: fresh};
-  const back = all.filter(t => lvlOf(t) < 5 && daysSince(lastDay(t)) >= 7).sort((a, b) => String(lastDay(a)).localeCompare(String(lastDay(b))));
-  return {topic: back[0] || pickMorning(), back: true};
+  const all = Object.keys(TOPICS).sort((a, b) => hash("rot:" + a) - hash("rot:" + b));
+  const day = Math.floor(new Date(today() + "T12:00:00").getTime() / 864e5);
+  const news = featured().filter(t => TOPICS[t]).sort();
+  const first = news.length ? news[day % news.length] : all[(day * 2) % all.length];
+  const rest = all.filter(t => t !== first), second = rest[(day * 2 + 1) % rest.length];
+  if (!studied(first)) return {topic: first};
+  if (!studied(second)) return {topic: second};
+  return {topic: first, back: true};
 }
 function topicOfDay(){
   const d = today(), cur = state.today;
