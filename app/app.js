@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:41"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:54"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1262,7 +1262,7 @@ function openProfile(focus){
    Last week's winner's picture wears the frame until someone else wins it. Admin profile only for now. */
 const picOf = st => st && st.pic && WD(st.pic);
 const FRAMES = [["ink", "Black"], ["gilt", "Gold"], ["white", "White"], ["klein", "Blue"], ["pink", "Pink"]];
-const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" style="background-image:url('${esc(tsrc(w.img))}')"></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
+const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" ><i style="background-image:url('${esc(tsrc(w.img))}')${focusPos(w, true)}"></i></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
 /* this week's wall: everyone shown by a picture they love (their initial until they choose one).
    Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
    Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,

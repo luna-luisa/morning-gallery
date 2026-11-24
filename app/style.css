@@ -1001,3 +1001,6 @@ body.newlook .wnx{display:none}
 .admrow{display:flex;align-items:center;gap:10px;min-height:44px}
 .admrow .dot{width:30px;height:30px;font-size:13px}
 .admrow .btn.link{width:auto;min-height:36px;font-size:13px}
+/* the wall picture sits inside its box so margins and mounts can be cropped away */
+.wpic:not(.none):not(.empty){position:relative;overflow:hidden}
+.wpic>i{position:absolute;inset:0;background:center/cover no-repeat}
