@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 21:05"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 21:14"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1523,7 +1523,7 @@ function startSwipeNow(opts = {}){
   inRound(true); document.body.dataset.screen = "sw"; scrollTo(0, 0);
   const draw = () => {
     if (i >= deck.length) return starter ? starterEnd((opts.keep || []).concat(loved)) : swipeEnd(deck, loved);
-    const w = deck[i]; if (deck[i + 3]) loadImg(deck[i + 3].img);
+    const w = deck[i]; for (let k = 1; k <= 4; k++) if (deck[i + k]) loadImg(deck[i + k].img);
     view.innerHTML = `
       <div class="qhead"><span class="eyebrow swey">${starter ? "Your picture" : "Discover"} · ${i + 1} of ${deck.length}</span><button class="btn link" id="x">Close</button></div>
       <div class="swbar" aria-hidden="true"><i style="width:${Math.round(i / deck.length * 100)}%"></i></div>
@@ -1531,7 +1531,14 @@ function startSwipeNow(opts = {}){
       <div class="swbtns2${nudge ? " nudge" : ""}"><button class="swb2 no" id="no">${SWX}Not for me</button><button class="swb2 yes" id="yes">${SWH}Love it</button></div>`;
     const card = $("#card"), im = card.querySelector("img");
     /* a picture that won't load is skipped quietly rather than shown as a broken card */
-    im.onerror = () => { deck.splice(i, 1); draw(); };
+    im.onerror = () => {
+      /* a picture that won't load is swapped for another upright work by a new artist, so a round always has 15 */
+      (state.swFail = state.swFail || {})[w.id] = today();
+      const used = new Set(deck.map(x => plainArtist(x.artist))), seen = state.swiped || {};
+      const spare = (DISC || []).find(x => !used.has(plainArtist(x.artist)) && !seen[x.id] && !state.swFail[x.id] && realHW(x) >= 1.1 && !(PICS.broken && PICS.broken[x.id]));
+      if (spare) deck[i] = spare; else deck.splice(i, 1);
+      draw();
+    };
     if (im.complete && !im.naturalWidth) return im.onerror();
     const stopNudge = () => { if (!nudge) return; nudge = false; card.classList.remove("nudge"); $(".swbtns2").classList.remove("nudge"); const h = $(".swhint"); if (h) h.remove(); };
     /* while you drag, the button on that side fills, so you can see which way you're choosing */
