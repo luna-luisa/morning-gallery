@@ -55,7 +55,7 @@ def measure(im):
     p = 0.012   # a sliver of breathing room so the crop never touches the art
     c = [max(0, x0 / w - p), max(0, y0 / h - p), min(1, x1 / w + p), min(1, y1 / h + p)]
     cw, ch, hw = c[2] - c[0], c[3] - c[1], h / w
-    if cw < 0.3 or ch < 0.3: return None   # found too little: don't guess
+    if cw < 0.5 or ch < 0.5: return None   # found too little: do not guess
     # how much more it has to zoom than a plain 4:5 crop would
     if max(1 / cw, BOX / (ch * hw)) / max(1, BOX / hw) < 1.05: return None
     return [round(v, 3) for v in c]

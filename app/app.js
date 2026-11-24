@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 22:05"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 22:08"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1266,8 +1266,9 @@ const FRAMES = [["ink", "Black"], ["gilt", "Gold"], ["white", "White"], ["klein"
    so paper margins, mounts and pencil notes fall outside it */
 const cropPos = w => {
   const c = w.crop, hw = w.hw || 1.25, R = 1.25;
-  if (!c) return focusPos(w, true);
-  const cw = c[2] - c[0], ch = c[3] - c[1], k = Math.max(1 / cw, R / (ch * hw)), H = k * hw / R;
+  const cw = c ? c[2] - c[0] : 1, ch = c ? c[3] - c[1] : 1;
+  if (!c || cw < 0.5 || ch < 0.5) return focusPos(w, true); // a tiny box is more likely a misread than a margin
+  const k = Math.max(1 / cw, R / (ch * hw)), H = k * hw / R;
   const cl = (v, lo) => Math.min(0, Math.max(lo, v));
   const L = cl(0.5 - (c[0] + cw / 2) * k, 1 - k), T = cl(0.5 - (c[1] + ch / 2) * H, 1 - H);
   return `;width:${(k * 100).toFixed(2)}%;height:${(H * 100).toFixed(2)}%;left:${(L * 100).toFixed(2)}%;top:${(T * 100).toFixed(2)}%;right:auto;bottom:auto;background-size:100% 100%`;
