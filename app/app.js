@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 14:27"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 16:44"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1075,13 +1075,15 @@ const WN_ICONS = {
   pin: '<path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
   star: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'
 };
-const wnItems = () => ((WN && WN.items) || []).filter(i => !i.needs || TOPICS[i.needs]);
+/* never more than two things at once, so it stays worth reading */
+const wnItems = () => ((WN && WN.items) || []).filter(i => !i.needs || TOPICS[i.needs]).slice(0, 2);
 const wnKey = () => WN && WN.id ? WN.id : "";
 const wnSame = (a, k) => !!a && (a === k || a.startsWith(k + ":")); // older saves added the item titles
 function wnState(){
   const k = wnKey(), s = local.get("wn:" + pid) || {};
   if (!k || !wnItems().length) return "none";
-  if (!wnSame(s.key, k)) return "new";
+  /* it pops up at most once a week; anything newer waits until then */
+  if (!wnSame(s.key, k)) return s.at && Date.now() - s.at < 6 * 864e5 ? "none" : "new";
   return s.reopened || Date.now() - s.at > 7 * 864e5 ? "none" : "chip";
 }
 const wnCount = () => { const n = wnItems().length; return n === 1 ? "Something new" : `${["", "One", "Two", "Three", "Four", "Five"][n] || n} new things`; };
