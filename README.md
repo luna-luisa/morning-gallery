@@ -44,3 +44,7 @@ Movement and group topics carry `era` (display name), `from`/`to` (rounded years
 
 ## Time-bound intro cards
 An intro card about something current must not go stale. The "In the news" card only shows while its topic is featured (and has a story from the last 10 days). Any other card that mentions a show, a date or something "on now" needs an `until` date (YYYY-MM-DD); the app hides it after that day. Keep evergreen cards timeless.
+
+## Publishing rule (Luna, 24 Nov 2026)
+- New app features and design changes: mock-up on the design canvas first, then Luna's profile only (topic or item flagged "preview", or an isAdmin() check), then everyone once she is happy.
+- New content (topics, questions, comparisons, news): straight to everyone once the fact checks pass and every picture is confirmed to load.
