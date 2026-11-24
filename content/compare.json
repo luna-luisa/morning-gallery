@@ -165,6 +165,112 @@
      "explain": "Groups such as Die Brücke in Dresden and Der Blaue Reiter in Munich were at its heart."
     }
    ]
+  },
+  {
+   "id": "renaissance-baroque",
+   "title": "Renaissance or Baroque?",
+   "topics": [
+    "renaissance",
+    "baroque"
+   ],
+   "added": "2026-11-24",
+   "cards": [
+    {
+     "title": "The Renaissance",
+     "sub": "About 1400 to 1600, Italy and northern Europe",
+     "art": "school-athens",
+     "text": "Calm and balanced: carefully arranged figures, clear, even light and deep, mathematically worked-out perspective."
+    },
+    {
+     "title": "Baroque",
+     "sub": "About 1600 to 1750, across Europe",
+     "art": "calling-matthew",
+     "text": "Drama and movement: strong diagonals, spotlight-like contrasts of light and dark, and a frozen moment of action."
+    },
+    {
+     "title": "How to tell them apart",
+     "pair": [
+      "school-athens",
+      "calling-matthew"
+     ],
+     "text": "Calm, balanced and evenly lit? Renaissance. Dark, dramatic and full of movement? Baroque."
+    }
+   ],
+   "questions": [
+    {
+     "q": "Which painter was Baroque, not Renaissance?",
+     "options": [
+      "Caravaggio",
+      "Raphael",
+      "Leonardo da Vinci",
+      "Titian"
+     ],
+     "explain": "Caravaggio, born in 1571, lit his scenes like a spotlight in a dark room."
+    },
+    {
+     "q": "Which is a sign of Baroque rather than Renaissance painting?",
+     "options": [
+      "Spotlight-like contrasts of light and dark",
+      "Convincing perspective",
+      "Real-looking bodies",
+      "Oil paint"
+     ],
+     "explain": "The other three are found in both."
+    }
+   ]
+  },
+  {
+   "id": "abstraction-abexp",
+   "title": "Abstract art or Abstract Expressionism?",
+   "topics": [
+    "abstraction",
+    "abexp"
+   ],
+   "added": "2026-11-24",
+   "cards": [
+    {
+     "title": "Abstract art",
+     "sub": "From about 1910, Europe",
+     "art": "mondrian-rby",
+     "text": "Among the first pictures with no recognisable subject, often carefully planned: Kandinsky's shapes, Malevich's squares, Mondrian's grids."
+    },
+    {
+     "title": "Abstract Expressionism",
+     "sub": "1940s and 1950s, New York",
+     "art": "summertime",
+     "text": "Abstract too, but bigger and looser: huge canvases of dripped or brushed paint, or vast glowing fields of colour, meant to express raw feeling."
+    },
+    {
+     "title": "How to tell them apart",
+     "pair": [
+      "mondrian-rby",
+      "summertime"
+     ],
+     "text": "Neat, planned shapes and lines? Early abstract art. Drips, splashes or huge glowing fields of colour? Abstract Expressionism."
+    }
+   ],
+   "questions": [
+    {
+     "q": "Which painter was an Abstract Expressionist?",
+     "options": [
+      "Jackson Pollock",
+      "Piet Mondrian",
+      "Kazimir Malevich",
+      "Wassily Kandinsky"
+     ],
+     "explain": "In New York in the late 1940s Pollock dripped paint onto canvas laid on the floor."
+    },
+    {
+     "q": "In which city did Abstract Expressionism begin?",
+     "options": [
+      "New York",
+      "Paris",
+      "Moscow",
+      "Amsterdam"
+     ],
+     "explain": "After the Second World War, New York painters took abstraction bigger and looser."
+    }
+   ]
   }
  ]
 }

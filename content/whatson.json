@@ -184,6 +184,55 @@
      "url": "https://www.moma.org/calendar/exhibitions/5910"
     }
    ]
+  },
+  "Ipswich": {
+   "aliases": [
+    "ipswich"
+   ],
+   "items": [
+    {
+     "id": "ipswich-constable-contemporary",
+     "title": "Constable to Contemporary",
+     "venue": "Christchurch Mansion",
+     "place": "Christchurch Mansion, Ipswich",
+     "art": "hay-wain",
+     "until": "2027-02-28",
+     "topic": "romanticism",
+     "blurb": "Today's artists respond to John Constable, 250 years after his birth.",
+     "from": "2026-10-24",
+     "url": "https://ipswich.cimuseums.org.uk/constable250/"
+    }
+   ]
+  },
+  "Aachen": {
+   "aliases": [
+    "aachen",
+    "aix-la-chapelle"
+   ],
+   "items": [
+    {
+     "id": "aachen-hands-leaves",
+     "title": "As My Hands Became the Leaves",
+     "venue": "Ludwig Forum",
+     "place": "Ludwig Forum, Aachen",
+     "until": "2027-04-04",
+     "topic": "installation-art",
+     "blurb": "Landscape and nature in the Ludwig collection, with Christo and Jeanne-Claude, Richard Long and Robert Smithson.",
+     "from": "2026-10-10",
+     "url": "https://ludwigforum.de/en/event/as-my-hands-became-the-leaves-landschaft-und-umwelt-in-der-sammlung-ludwig/"
+    },
+    {
+     "id": "aachen-paik",
+     "title": "Nam June Paik: Earth, Moon, Sun",
+     "venue": "Ludwig Forum",
+     "place": "Ludwig Forum, Aachen",
+     "until": "2026-12-31",
+     "topic": "video-art",
+     "blurb": "A three-part video work on many screens (1990) by a pioneer of video art.",
+     "from": "2026-04-01",
+     "url": "https://ludwigforum.de/en/event/nam-june-paik-earth-moon-sun/"
+    }
+   ]
   }
  },
  "hubs": [

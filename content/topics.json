@@ -373,7 +373,8 @@
    "timeline": true,
    "related": [
     "renaissance",
-    "rococo"
+    "rococo",
+    "rembrandt"
    ],
    "intro": [
     {
@@ -1295,7 +1296,8 @@
     "realism",
     "postimpressionism",
     "auctions",
-    "salman-toor"
+    "salman-toor",
+    "mary-cassatt"
    ],
    "intro": [
     {
@@ -1723,7 +1725,8 @@
    "related": [
     "impressionism",
     "postimpressionism",
-    "van-gogh"
+    "van-gogh",
+    "mary-cassatt"
    ],
    "intro": [
     {
@@ -2068,7 +2071,8 @@
    "related": [
     "fauvism",
     "vienna-1900",
-    "abstraction"
+    "abstraction",
+    "kandinsky"
    ],
    "intro": [
     {
@@ -2355,7 +2359,8 @@
     "cubism",
     "expressionism",
     "abexp",
-    "hilma-af-klint"
+    "hilma-af-klint",
+    "kandinsky"
    ],
    "intro": [
     {
@@ -3059,7 +3064,8 @@
     "popart",
     "yba",
     "tate",
-    "alfred-wallis"
+    "alfred-wallis",
+    "gwen-john"
    ],
    "intro": [
     {
@@ -3555,7 +3561,8 @@
     "romanticism",
     "preraphaelites",
     "modern-british",
-    "alfred-wallis"
+    "alfred-wallis",
+    "gwen-john"
    ],
    "intro": [
     {
@@ -3652,7 +3659,8 @@
    "related": [
     "van-eyck",
     "renaissance",
-    "romanticism"
+    "romanticism",
+    "rembrandt"
    ],
    "intro": [
     {
@@ -3836,7 +3844,8 @@
     "impressionism",
     "vienna-1900",
     "van-gogh",
-    "hilma-af-klint"
+    "hilma-af-klint",
+    "kandinsky"
    ],
    "intro": [
     {
@@ -4229,7 +4238,8 @@
    "related": [
     "postimpressionism",
     "edo-japan",
-    "auctions"
+    "auctions",
+    "rembrandt"
    ],
    "intro": [
     {
@@ -7314,7 +7324,8 @@
    "related": [
     "abstraction",
     "auctions",
-    "guggenheim"
+    "guggenheim",
+    "kandinsky"
    ],
    "intro": [
     {
@@ -7533,6 +7544,814 @@
    "fade": false,
    "region": "Sweden",
    "look": "glowing circles, spirals and petal shapes in soft pinks, blues and yellows"
+  },
+  "rembrandt": {
+   "name": "Rembrandt",
+   "kind": "artist",
+   "group": "next",
+   "movement": "baroque",
+   "era": "Baroque",
+   "year": 1650,
+   "span": "1606–1669",
+   "timeline": false,
+   "related": [
+    "baroque",
+    "national-gallery",
+    "van-gogh"
+   ],
+   "intro": [
+    {
+     "title": "Who was he?",
+     "text": "A Dutch painter and printmaker (1606–1669), born in Leiden, who made his name in Amsterdam. He painted rich merchants, Bible stories and, again and again, himself, always with an eye for real, imperfect people.",
+     "art": "rem-self-63"
+    },
+    {
+     "title": "Part of the Baroque",
+     "text": "He worked in the Dutch Golden Age, when Amsterdam grew rich on trade and its citizens ordered portraits. His group portraits, like this anatomy lesson of 1632, turn a row of sitters into a lively scene.",
+     "art": "rem-tulp"
+    },
+    {
+     "title": "Look for",
+     "text": "Warm, golden light picking faces out of deep shadow, and thick paint you can almost feel, especially in his late works.",
+     "art": "rem-prodigal"
+    }
+   ],
+   "questions": [
+    {
+     "id": "rembrandt-1",
+     "level": 1,
+     "q": "Where was Rembrandt born, in 1606?",
+     "options": [
+      "Leiden",
+      "Antwerp",
+      "Delft",
+      "Haarlem"
+     ],
+     "explain": "He moved to Amsterdam in the early 1630s and stayed there for the rest of his life.",
+     "reveal": "rem-self-63"
+    },
+    {
+     "id": "rembrandt-2",
+     "level": 1,
+     "q": "Which famous group portrait did he paint in 1642?",
+     "options": [
+      "The Night Watch",
+      "The Milkmaid",
+      "Las Meninas",
+      "The Laughing Cavalier"
+     ],
+     "explain": "It shows an Amsterdam militia company setting off, and hangs in the Rijksmuseum, Amsterdam.",
+     "reveal": "night-watch"
+    },
+    {
+     "id": "rembrandt-3",
+     "level": 1,
+     "q": "What was Rembrandt's surname?",
+     "options": [
+      "van Rijn",
+      "van Gogh",
+      "van Eyck",
+      "van Dyck"
+     ],
+     "explain": "Rembrandt Harmenszoon van Rijn. From about 1633 he signed his works with just his first name."
+    },
+    {
+     "id": "rembrandt-4",
+     "level": 1,
+     "q": "Which subject did he return to more than almost any artist before him?",
+     "options": [
+      "Himself",
+      "Windmills",
+      "Racehorses",
+      "Venice"
+     ],
+     "explain": "His self-portraits, in paint, drawing and etching, run from his early twenties to the year he died.",
+     "reveal": "rembrandt-kenwood"
+    },
+    {
+     "id": "rembrandt-5",
+     "level": 1,
+     "q": "Which museum is home to The Night Watch?",
+     "options": [
+      "Rijksmuseum, Amsterdam",
+      "Van Gogh Museum, Amsterdam",
+      "Mauritshuis, The Hague",
+      "Louvre, Paris"
+     ],
+     "explain": "It is the star of the Rijksmuseum, Amsterdam."
+    },
+    {
+     "id": "rembrandt-6",
+     "level": 2,
+     "q": "Which three of these did Rembrandt paint?",
+     "options": [
+      "The Night Watch",
+      "The Anatomy Lesson of Dr Nicolaes Tulp",
+      "The Jewish Bride",
+      "Girl with a Pearl Earring",
+      "The Milkmaid",
+      "The Laughing Cavalier"
+     ],
+     "correct": 3,
+     "explain": "Girl with a Pearl Earring and The Milkmaid are by Vermeer, The Laughing Cavalier by Frans Hals."
+    },
+    {
+     "id": "rembrandt-7",
+     "level": 2,
+     "q": "In 1656 Rembrandt ran into serious trouble. What happened?",
+     "options": [
+      "He lost his house and art collection to debts",
+      "He went blind",
+      "He was exiled",
+      "He was banned from painting"
+     ],
+     "explain": "Deep in debt, he applied for a kind of insolvency, and his house and collection were sold."
+    },
+    {
+     "id": "rembrandt-8",
+     "level": 3,
+     "q": "Which of Rembrandt and his wife Saskia's children lived to adulthood?",
+     "options": [
+      "Titus",
+      "Theo",
+      "Lucien",
+      "Paulo"
+     ],
+     "explain": "Their other three children died as babies. Saskia died in 1642, and Titus in 1668, a year before his father."
+    },
+    {
+     "id": "rembrandt-9",
+     "level": 3,
+     "q": "In The Anatomy Lesson of Dr Nicolaes Tulp (1632), which part of the body is he showing?",
+     "options": [
+      "An arm",
+      "The heart",
+      "The brain",
+      "A leg"
+     ],
+     "explain": "The anatomist lifts the muscles of the forearm with his tweezers. It hangs in the Mauritshuis, The Hague.",
+     "reveal": "rem-tulp"
+    },
+    {
+     "id": "rembrandt-10",
+     "level": 4,
+     "q": "His late work The Return of the Prodigal Son hangs in which museum?",
+     "options": [
+      "Hermitage Museum, St Petersburg",
+      "Rijksmuseum, Amsterdam",
+      "National Gallery, London",
+      "Louvre, Paris"
+     ],
+     "explain": "A father welcomes home his ragged son, in one of Rembrandt's last great paintings.",
+     "art": "rem-prodigal"
+    },
+    {
+     "id": "rembrandt-11",
+     "level": 4,
+     "q": "Which painter is said to have given ten years of his life to sit in front of The Jewish Bride?",
+     "options": [
+      "Vincent van Gogh",
+      "Piet Mondrian",
+      "Johannes Vermeer",
+      "Claude Monet"
+     ],
+     "explain": "Visiting Amsterdam in 1885, he reportedly told a friend he would sit before it for a fortnight with only a crust of bread.",
+     "reveal": "rem-jewish-bride"
+    },
+    {
+     "id": "rembrandt-12",
+     "level": 5,
+     "q": "What happened to The Night Watch in 1715?",
+     "options": [
+      "It was cut down to fit a wall",
+      "It was stolen",
+      "It was split into two paintings",
+      "It was sold to England"
+     ],
+     "explain": "Moved to Amsterdam's town hall, it was trimmed to fit between two doors, the biggest piece from the left.",
+     "reveal": "night-watch"
+    },
+    {
+     "id": "rembrandt-13",
+     "level": 5,
+     "q": "Which of these painters was Rembrandt's pupil?",
+     "options": [
+      "Carel Fabritius",
+      "Peter Paul Rubens",
+      "Frans Hals",
+      "Anthony van Dyck"
+     ],
+     "explain": "Fabritius trained with him in Amsterdam, then worked in Delft, where he painted The Goldfinch."
+    }
+   ],
+   "from": 1625,
+   "to": 1669,
+   "fade": false,
+   "look": "warm light falling out of deep shadow onto faces, in thick, textured paint"
+  },
+  "mary-cassatt": {
+   "name": "Mary Cassatt",
+   "kind": "artist",
+   "group": "next",
+   "movement": "impressionism",
+   "era": "Impressionism",
+   "year": 1890,
+   "span": "1844–1926",
+   "timeline": false,
+   "related": [
+    "impressionism",
+    "edo-japan"
+   ],
+   "intro": [
+    {
+     "title": "Who was she?",
+     "text": "An American painter and printmaker (1844–1926) who settled in Paris in 1874. She painted the private lives of women: at the theatre, taking tea, and above all caring for children.",
+     "art": "cassatt-pearl-loge"
+    },
+    {
+     "title": "Part of Impressionism",
+     "text": "Edgar Degas invited her to join the Impressionists, and from 1879 she showed with them, the only American to do so.",
+     "art": "cassatt-blue-armchair"
+    },
+    {
+     "title": "Look for",
+     "text": "Mothers and children seen close up, everyday moments viewed from slightly above, and bold, flat patterns borrowed from Japanese prints.",
+     "art": "cassatt-boating"
+    }
+   ],
+   "questions": [
+    {
+     "id": "mary-cassatt-1",
+     "level": 1,
+     "q": "Which country was Mary Cassatt from?",
+     "options": [
+      "The United States",
+      "France",
+      "Britain",
+      "Canada"
+     ],
+     "explain": "Born near Pittsburgh in 1844, she spent most of her adult life in France.",
+     "reveal": "cassatt-pearl-loge"
+    },
+    {
+     "id": "mary-cassatt-2",
+     "level": 1,
+     "q": "Which group of Paris painters did she exhibit with?",
+     "options": [
+      "The Impressionists",
+      "The Pre-Raphaelites",
+      "The Cubists",
+      "The Fauves"
+     ],
+     "explain": "She showed in four of their eight group exhibitions, from 1879 to 1886."
+    },
+    {
+     "id": "mary-cassatt-3",
+     "level": 1,
+     "q": "Which French painter invited her to join them?",
+     "options": [
+      "Edgar Degas",
+      "Pablo Picasso",
+      "Henri Matisse",
+      "Eugène Delacroix"
+     ],
+     "explain": "Degas asked her in 1877, and they stayed friends for decades.",
+     "reveal": "cassatt-blue-armchair"
+    },
+    {
+     "id": "mary-cassatt-4",
+     "level": 1,
+     "q": "Which subject is she best known for?",
+     "options": [
+      "Mothers and children",
+      "Horse races",
+      "Battle scenes",
+      "Stormy seas"
+     ],
+     "explain": "Tender, everyday moments, like bathing a child.",
+     "reveal": "childs-bath"
+    },
+    {
+     "id": "mary-cassatt-5",
+     "level": 1,
+     "q": "In 1874 she settled in which city?",
+     "options": [
+      "Paris",
+      "London",
+      "Rome",
+      "New York"
+     ],
+     "explain": "She lived in France for the rest of her life and died there in 1926."
+    },
+    {
+     "id": "mary-cassatt-6",
+     "level": 2,
+     "q": "Which three of these did Mary Cassatt paint?",
+     "options": [
+      "The Child's Bath",
+      "Little Girl in a Blue Armchair",
+      "The Boating Party",
+      "The Swing",
+      "Luncheon of the Boating Party",
+      "Water Lilies"
+     ],
+     "correct": 3,
+     "explain": "The Swing is by Fragonard, Luncheon of the Boating Party by Renoir and Water Lilies by Monet."
+    },
+    {
+     "id": "mary-cassatt-7",
+     "level": 2,
+     "q": "Her 1891 colour prints were inspired by a big Paris show of prints from which country?",
+     "options": [
+      "Japan",
+      "China",
+      "India",
+      "Egypt"
+     ],
+     "explain": "In 1890 the École des Beaux-Arts showed hundreds of Japanese woodblock prints. She then made a set of ten colour prints.",
+     "reveal": "cassatt-letter"
+    },
+    {
+     "id": "mary-cassatt-8",
+     "level": 3,
+     "q": "Which artist helped paint the background of her Little Girl in a Blue Armchair (1878)?",
+     "options": [
+      "Edgar Degas",
+      "Claude Monet",
+      "Édouard Manet",
+      "Pierre-Auguste Renoir"
+     ],
+     "explain": "She later wrote that Degas worked on the background himself.",
+     "art": "cassatt-blue-armchair"
+    },
+    {
+     "id": "mary-cassatt-9",
+     "level": 3,
+     "q": "In her painting In the Loge, a woman at the opera looks through her glasses. Who is watching her?",
+     "options": [
+      "A man in the background",
+      "A child beside her",
+      "The singer on stage",
+      "Nobody"
+     ],
+     "explain": "He peers at her through his own glasses: the watcher is watched.",
+     "reveal": "cassatt-in-the-loge"
+    },
+    {
+     "id": "mary-cassatt-10",
+     "level": 4,
+     "q": "She advised her friend Louisine ___ on buying art. Much of the collection went to the Met in New York.",
+     "options": [
+      "Havemeyer",
+      "Guggenheim",
+      "Frick",
+      "Gardner"
+     ],
+     "explain": "Louisine and Henry Havemeyer bought many Impressionist works on her advice. Louisine left much of the collection to the Metropolitan Museum of Art in 1929."
+    },
+    {
+     "id": "mary-cassatt-11",
+     "level": 4,
+     "q": "Why did she largely stop working around 1914?",
+     "options": [
+      "Her eyesight was failing",
+      "She went to fight in the war",
+      "She became a nun",
+      "She moved back to America"
+     ],
+     "explain": "Failing sight ended her career more than a decade before her death."
+    },
+    {
+     "id": "mary-cassatt-12",
+     "level": 5,
+     "q": "In which year did she first show with the Impressionists?",
+     "options": [
+      "1879",
+      "1874",
+      "1890",
+      "1905"
+     ],
+     "explain": "At their fourth exhibition, two years after Degas invited her.",
+     "reveal": "cassatt-in-the-loge"
+    },
+    {
+     "id": "mary-cassatt-13",
+     "level": 5,
+     "q": "Where was she born?",
+     "options": [
+      "Allegheny City, Pennsylvania",
+      "Boston, Massachusetts",
+      "New Orleans, Louisiana",
+      "Chicago, Illinois"
+     ],
+     "explain": "Allegheny City is now part of Pittsburgh."
+    }
+   ],
+   "from": 1868,
+   "to": 1914,
+   "fade": false,
+   "look": "tender scenes of women and children, in fresh colour and sure, loose brushwork"
+  },
+  "gwen-john": {
+   "name": "Gwen John",
+   "kind": "artist",
+   "group": "next",
+   "movement": "modern-british",
+   "era": "Modern British art",
+   "year": 1910,
+   "span": "1876–1939",
+   "timeline": false,
+   "related": [
+    "modern-british",
+    "tate",
+    "mary-cassatt"
+   ],
+   "intro": [
+    {
+     "title": "Who was she?",
+     "text": "A Welsh painter (1876–1939) who trained at the Slade in London, then moved to France in 1904 and stayed. She worked slowly and quietly, mostly painting women sitting alone, and showed little in her lifetime.",
+     "art": "gwen-john"
+    },
+    {
+     "title": "Part of Modern British art",
+     "text": "She trained in London around 1900, alongside her brother Augustus John. His pictures were bold and showy; hers are calm and inward.",
+     "art": "gj-corner"
+    },
+    {
+     "title": "Look for",
+     "text": "A single figure or an empty corner of a room, in soft greys, browns and blues, with a dry, chalky surface. She often painted the same sitter again and again with small changes.",
+     "art": "gj-black-cat"
+    }
+   ],
+   "questions": [
+    {
+     "id": "gwen-john-1",
+     "level": 1,
+     "q": "Which country was Gwen John from?",
+     "options": [
+      "Wales",
+      "Ireland",
+      "Scotland",
+      "France"
+     ],
+     "explain": "She was born in Haverfordwest, Pembrokeshire, in 1876.",
+     "reveal": "gwen-john"
+    },
+    {
+     "id": "gwen-john-2",
+     "level": 1,
+     "q": "Her younger brother was also a well-known painter. What was his name?",
+     "options": [
+      "Augustus John",
+      "Stanley Spencer",
+      "Duncan Grant",
+      "Walter Sickert"
+     ],
+     "explain": "In their lifetimes he was far more famous than she was."
+    },
+    {
+     "id": "gwen-john-3",
+     "level": 1,
+     "q": "Where did she spend most of her working life, from 1904?",
+     "options": [
+      "France",
+      "Italy",
+      "Wales",
+      "America"
+     ],
+     "explain": "First in Paris, then in Meudon, just outside the city."
+    },
+    {
+     "id": "gwen-john-4",
+     "level": 1,
+     "q": "What did she paint most often?",
+     "options": [
+      "Women sitting alone",
+      "Busy street scenes",
+      "Horses",
+      "Seascapes"
+     ],
+     "explain": "Quiet, still figures, often the same sitter painted again and again.",
+     "reveal": "gj-black-cat"
+    },
+    {
+     "id": "gwen-john-5",
+     "level": 1,
+     "q": "Which famous sculptor did she model for in Paris?",
+     "options": [
+      "Auguste Rodin",
+      "Henry Moore",
+      "Barbara Hepworth",
+      "Antony Gormley"
+     ],
+     "explain": "She posed for his monument to the painter Whistler and became his lover."
+    },
+    {
+     "id": "gwen-john-6",
+     "level": 2,
+     "q": "Where did she train, from 1895?",
+     "options": [
+      "The Slade School of Fine Art, London",
+      "The Royal Academy Schools, London",
+      "The École des Beaux-Arts, Paris",
+      "Glasgow School of Art"
+     ],
+     "explain": "She studied there until 1898, at the same time as her brother."
+    },
+    {
+     "id": "gwen-john-7",
+     "level": 2,
+     "q": "Her brother Augustus predicted that in 50 years' time he would be known as…",
+     "options": [
+      "Gwen John's brother",
+      "Britain's greatest painter",
+      "The last Romantic",
+      "A forgotten man"
+     ],
+     "explain": "A generous remark from the more famous of the two.",
+     "reveal": "gj-corner"
+    },
+    {
+     "id": "gwen-john-8",
+     "level": 3,
+     "q": "Which American collector bought much of her work from 1910 until his death?",
+     "options": [
+      "John Quinn",
+      "Peggy Guggenheim",
+      "Albert Barnes",
+      "Henry Clay Frick"
+     ],
+     "explain": "The New York lawyer John Quinn supported her until he died in 1924."
+    },
+    {
+     "id": "gwen-john-9",
+     "level": 3,
+     "q": "In Meudon she painted portraits for which neighbours?",
+     "options": [
+      "A convent of nuns",
+      "A circus",
+      "A football team",
+      "A ballet school"
+     ],
+     "explain": "The sisters asked her to paint their founder, Mère Poussepin, from a prayer card. She made several versions."
+    },
+    {
+     "id": "gwen-john-10",
+     "level": 4,
+     "q": "How many solo exhibitions did she have in her lifetime?",
+     "options": [
+      "One",
+      "None",
+      "Ten",
+      "Over 20"
+     ],
+     "explain": "At the New Chenil Galleries in London in 1926."
+    },
+    {
+     "id": "gwen-john-11",
+     "level": 4,
+     "q": "Where did she die, in 1939?",
+     "options": [
+      "Dieppe",
+      "Paris",
+      "Haverfordwest",
+      "London"
+     ],
+     "explain": "She died in the French port in September 1939."
+    },
+    {
+     "id": "gwen-john-12",
+     "level": 5,
+     "q": "In 1903 she set off with her friend Dorelia McNeill to walk from Bordeaux to which city?",
+     "options": [
+      "Rome",
+      "Madrid",
+      "Berlin",
+      "Edinburgh"
+     ],
+     "explain": "They got as far as Toulouse, paying their way by sketching portraits, then went to Paris.",
+     "reveal": "gj-dorelia"
+    },
+    {
+     "id": "gwen-john-13",
+     "level": 5,
+     "q": "Which painter taught at the Paris school where she studied in 1898?",
+     "options": [
+      "James McNeill Whistler",
+      "John Singer Sargent",
+      "Mary Cassatt",
+      "Winslow Homer"
+     ],
+     "explain": "Whistler founded the Académie Carmen and taught there."
+    }
+   ],
+   "from": 1898,
+   "to": 1939,
+   "fade": false,
+   "look": "quiet portraits of women alone in calm rooms, in soft, chalky greys and browns"
+  },
+  "kandinsky": {
+   "name": "Wassily Kandinsky",
+   "kind": "artist",
+   "group": "next",
+   "movement": "abstraction",
+   "era": "Abstract art",
+   "year": 1913,
+   "span": "1866–1944",
+   "timeline": false,
+   "related": [
+    "abstraction",
+    "expressionism",
+    "hilma-af-klint",
+    "auctions"
+   ],
+   "intro": [
+    {
+     "title": "Who was he?",
+     "text": "A Russian painter (1866–1944) who gave up a career in law at 30 to study art in Munich. Around 1910 he began painting pictures with no recognisable subject, and became one of the pioneers of abstract art.",
+     "art": "kand-circles"
+    },
+    {
+     "title": "Part of Abstract art",
+     "text": "In Munich he founded The Blue Rider group with Franz Marc in 1911. Teaching at the Bauhaus art school in the 1920s, his shapes grew sharper and more geometric.",
+     "art": "kand-comp-8"
+    },
+    {
+     "title": "Look for",
+     "text": "Bright colours that seem to sound like music, floating circles, sharp lines and triangles. He named many pictures like pieces of music: Compositions and Improvisations.",
+     "art": "kand-accent-pink"
+    }
+   ],
+   "questions": [
+    {
+     "id": "kandinsky-1",
+     "level": 1,
+     "q": "Which country was Kandinsky born in?",
+     "options": [
+      "Russia",
+      "Germany",
+      "France",
+      "Poland"
+     ],
+     "explain": "Born in Moscow in 1866. He later lived in Germany and, from 1933, France.",
+     "reveal": "kand-blue-mountain"
+    },
+    {
+     "id": "kandinsky-2",
+     "level": 1,
+     "q": "What did he train for before becoming an artist?",
+     "options": [
+      "Law",
+      "Medicine",
+      "Architecture",
+      "The army"
+     ],
+     "explain": "He studied law and economics in Moscow and taught there before moving to Munich in 1896."
+    },
+    {
+     "id": "kandinsky-3",
+     "level": 1,
+     "q": "Which art did Kandinsky most often compare painting to?",
+     "options": [
+      "Music",
+      "Cookery",
+      "Gardening",
+      "Fashion"
+     ],
+     "explain": "He called his pictures Compositions and Improvisations, like music.",
+     "reveal": "composition-vii"
+    },
+    {
+     "id": "kandinsky-4",
+     "level": 1,
+     "q": "Which artists' group did he found in Munich with Franz Marc?",
+     "options": [
+      "The Blue Rider",
+      "The Bridge",
+      "The Fauves",
+      "De Stijl"
+     ],
+     "explain": "Der Blaue Reiter, in German. Its book and shows of 1911 and 1912 gathered new art from across Europe.",
+     "reveal": "kand-blue-rider"
+    },
+    {
+     "id": "kandinsky-5",
+     "level": 1,
+     "q": "What is special about many of his paintings from around 1910 onwards?",
+     "options": [
+      "They show no real objects",
+      "They are all black and white",
+      "They are all tiny",
+      "They are all portraits"
+     ],
+     "explain": "Colour, line and shape alone carry the feeling.",
+     "reveal": "composition-vii"
+    },
+    {
+     "id": "kandinsky-6",
+     "level": 2,
+     "q": "Which art school did he teach at from 1922 to 1933?",
+     "options": [
+      "The Bauhaus",
+      "The Slade",
+      "The École des Beaux-Arts",
+      "Glasgow School of Art"
+     ],
+     "explain": "The famous German school of art and design, until the Nazis closed it.",
+     "reveal": "kand-comp-8"
+    },
+    {
+     "id": "kandinsky-7",
+     "level": 2,
+     "q": "In November 2026 his painting Betonte Ecken set his auction record in New York. About how much did it fetch, with fees?",
+     "options": [
+      "$85.8m",
+      "$8.5m",
+      "$185m",
+      "$850m"
+     ],
+     "explain": "At Christie's, nearly double his previous record."
+    },
+    {
+     "id": "kandinsky-8",
+     "level": 3,
+     "q": "His famous book about colour and the inner life of art is called…",
+     "options": [
+      "Concerning the Spiritual in Art",
+      "The Painter of Modern Life",
+      "Ways of Seeing",
+      "The Story of Art"
+     ],
+     "explain": "He argued that colours act on the soul, like notes in music."
+    },
+    {
+     "id": "kandinsky-9",
+     "level": 3,
+     "q": "Seeing a painting by which artist in Moscow in 1896 helped turn him to art?",
+     "options": [
+      "Claude Monet",
+      "Edgar Degas",
+      "Paul Cézanne",
+      "Vincent van Gogh"
+     ],
+     "explain": "It was one of Monet's Haystacks. He was struck that he could hardly tell what it showed."
+    },
+    {
+     "id": "kandinsky-10",
+     "level": 3,
+     "q": "Which three of these are by Kandinsky?",
+     "options": [
+      "Composition VII",
+      "Several Circles",
+      "Yellow-Red-Blue",
+      "Black Square",
+      "Broadway Boogie Woogie",
+      "The Swan, No. 9"
+     ],
+     "correct": 3,
+     "explain": "Black Square is by Malevich, Broadway Boogie Woogie by Mondrian and The Swan, No. 9 by Hilma af Klint."
+    },
+    {
+     "id": "kandinsky-11",
+     "level": 4,
+     "q": "Near which city did he settle in 1933, after the Nazis closed the Bauhaus?",
+     "options": [
+      "Paris",
+      "New York",
+      "Moscow",
+      "London"
+     ],
+     "explain": "He lived in Neuilly-sur-Seine until his death in 1944, and became a French citizen in 1939."
+    },
+    {
+     "id": "kandinsky-12",
+     "level": 5,
+     "q": "He described hearing colours and seeing sounds. What is that crossing of the senses called?",
+     "options": [
+      "Synaesthesia",
+      "Hypnosis",
+      "Insomnia",
+      "Vertigo"
+     ],
+     "explain": "Whether he truly had it is debated, but it shaped how he thought about painting."
+    },
+    {
+     "id": "kandinsky-13",
+     "level": 5,
+     "q": "Which opera, seen in Moscow, struck him so much he felt he could see its colours?",
+     "options": [
+      "Wagner's Lohengrin",
+      "Bizet's Carmen",
+      "Verdi's Aida",
+      "Puccini's Tosca"
+     ],
+     "explain": "He wrote about it in his memoirs as a turning point."
+    }
+   ],
+   "from": 1909,
+   "to": 1944,
+   "fade": false,
+   "look": "bright circles, lines and patches of colour that seem to sing like music"
   }
  }
 }

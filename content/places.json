@@ -397,6 +397,20 @@
    "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Palais_Grassi.jpg/960px-Palais_Grassi.jpg",
    "aliases": [],
    "credit": "Wikimedia Commons"
+  },
+  "Christchurch Mansion, Ipswich": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Ipswich_Christchurch_musee.jpg/960px-Ipswich_Christchurch_musee.jpg",
+   "aliases": [
+    "Christchurch Mansion"
+   ],
+   "credit": "Wikimedia Commons"
+  },
+  "Ludwig Forum, Aachen": {
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Ludwig_Forum_Aachen_2017.jpg/960px-Ludwig_Forum_Aachen_2017.jpg",
+   "aliases": [
+    "Ludwig Forum"
+   ],
+   "credit": "Wikimedia Commons"
   }
  }
 }
