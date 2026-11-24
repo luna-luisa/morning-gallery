@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 08:31"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 08:44"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -59,7 +59,7 @@ function scopeContent(){
   ART = WORKS.filter(x => !x.photo && x.artist && TOPICS[x.topic] && x.quiz !== false);
 }
 /* where to crop a picture in a small square: its own focus point, else the upper part of tall pictures, where faces usually are (trial on Luna's profile) */
-const focusPos = w => !w || !(typeof isAdmin === "function" && pid && isAdmin()) ? "" : `;background-position:${w.focus || (w.hw >= 1.15 ? "50% 20%" : "50% 50%")}`;
+const focusPos = (w, zoomable) => { if (!w) return ""; const f = w.focus || (w.hw >= 1.15 ? "50% 20%" : "50% 50%"); return `;background-position:${f}${zoomable && w.zoom ? `;transform:scale(${w.zoom});transform-origin:${f}` : ""}`; }; // "zoom" crops away a frame or border
 const yearText = w => w.yearLabel || (w.approx ? "c." : "") + w.year;
 const tName = id => (TOPICS[id] && TOPICS[id].name) || "";
 
@@ -338,6 +338,7 @@ function groupedWhy(x, wrongs){
 function timeH(asked, rights, wrongs, o = {}){
   /* a loose label with no set years (e.g. Modern British art) gets no green band, just the dots */
   const band = !!asked.from, to = band ? Math.min(asked.to, 2025) : null, faint = [];
+  if (band && asked.kind === "artist"){ const ys0 = rights.map(w => w.year).filter(Boolean); if (ys0.length && Math.min(...ys0) < asked.from) asked = Object.assign({}, asked, {from: Math.min(...ys0)}); } // an artist's band spans every work of theirs on the strip
   const lab = asked.kind === "artist" ? asked.name : asked.era || asked.name;
   wrongs.forEach(w => { let t = TOPICS[w.topic]; if (t && t.movement && TOPICS[t.movement]) t = TOPICS[t.movement]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   (o.extra || []).forEach(t => { if (t && t.from && t !== asked && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
@@ -784,7 +785,7 @@ function renderMC(x){
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer);
 }
 function renderPick(x){
-  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(tsrc(W[id].img))}')${focusPos(W[id])}"></span></button>`).join("")}</div>`;
+  $("#ans").innerHTML = `<div class="tiles">${x.images.map((id, i) => `<button class="tile pic" data-i="${i}" data-src="${esc(W[id].img)}" aria-label="Picture ${i + 1}"><span class="ph" style="background-image:url('${esc(tsrc(W[id].img))}')${focusPos(W[id], true)}"></span></button>`).join("")}</div>`;
   choose(x, i => x.multi ? x.answers.includes(i) : i === x.answer, true);
 }
 /* tap to select (tap again or another to change), then Check; with nothing picked the same button reads "Not sure" and shows the answer (counts as a miss) */
@@ -991,11 +992,11 @@ async function requestMore(topic, kind, message, item){
 }
 let TLP = [];
 function roundTimeline(tid){
-  const t = TOPICS[tid]; TLP = []; if (!tlFor(t)) return "";
+  const t = TOPICS[tid]; TLP = []; if (!(tlFor(t) || (t && t.kind === "artist" && t.movement && t.from))) return "";
   const seen = new Set(), add = (id, kind) => { const w = W[id]; if (!w || !w.year || seen.has(id + kind)) return; seen.add(id + kind); TLP.push({year: w.year, kind, w, title: w.title}); };
   S.results.filter(r => r.topic === tid || (S.mode === "compare" && S.cmp.topics.includes(r.topic))).forEach(r => { (r.wrong || []).forEach(id => add(id, "bad")); if (r.art) add(r.art, r.ok ? "good" : "miss"); });
   if (TLP.length < 2) return "";
-  if (isAdmin()){ // new look, matching the answer screens (trial on Luna's profile)
+  { // same look as the answer screens
     const rights = TLP.filter(p => p.kind !== "bad"), wrongs = TLP.filter(p => p.kind === "bad"); TLP = [...rights, ...wrongs];
     const legend = `<div class="tllegend">${rights.some(p => p.kind === "good") ? `<span><i style="background:var(--good)"></i>Right</span>` : ""}${rights.some(p => p.kind === "miss") ? `<span><i style="border:2px solid var(--good);box-sizing:border-box"></i>Missed</span>` : ""}${wrongs.length ? `<span><i style="background:var(--bad)"></i>Your mix-ups</span>` : ""}</div>`;
     const extra = S && S.mode === "compare" ? S.cmp.topics.filter(x => x !== tid).map(x => TOPICS[x]) : [];

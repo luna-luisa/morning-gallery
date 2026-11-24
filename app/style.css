@@ -795,3 +795,4 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 
 .th.round button.d{padding:0;cursor:pointer;appearance:none}
 .th.round button.d.on{transform:scale(1.35);box-shadow:0 0 0 3px rgba(31,63,209,.25)}
+.tile.pic{overflow:hidden}
