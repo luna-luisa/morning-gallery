@@ -62,3 +62,9 @@ Contact sheets: the same job puts small labelled thumbnails of every picture in 
 ## The Wall (launched to everyone 24 Nov 2026)
 - Points are counted quietly for everyone from 24 Nov 2026 (`state.pts`, `state.ptsAll`). Launched to everyone on 24 Nov 2026 with a clean start: points only count from SEASON in app.js (Luna's request, so nobody starts ahead). Luna plays like everyone else: no admin extras on the Wall.
 - Rules: coffee round 10, mistake fixed for good 5, another day in a row 3, Swipe round 2. First picture from a free starter Swipe; change it after a top-3 week or 100 more points; last week's winner chooses a frame.
+
+## Swipe picks and new artists
+At the end of a Swipe round players can pick artists to learn more about. The Sunday weekly task reads the picks (only the picks) and adds at most 3 new artist topics a week across picks and feedback, the most-picked first. The topic's `name` must match the picked name exactly; the app then shows that pick as ready to play.
+
+## Margins and mounts
+The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and pencil notes on every picture in discover.json and works.json and saves a `crop` box, cached in content/trim.json. New pictures are picked up the night after they're added. Don't write `crop` by hand; a hand-set `zoom` on a work always wins.
