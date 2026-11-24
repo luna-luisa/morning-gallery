@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 18:53"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 19:02"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1061,7 +1061,9 @@ const okSrc = u => !!u && /^https:\/\//.test(u) && !NOLINK.test(u);
 const srcName = u => { try { const h = new URL(u).hostname.replace(/^www\./, ""); if (SRC[h]) return SRC[h]; const b = h.split(".")[0]; return b.charAt(0).toUpperCase() + b.slice(1); } catch(e){ return "the source"; } };
 function renderToday(){
   const td = topicOfDay(), t = TOPICS[td.topic], L = lvlOf(td.topic);
-  const w = W[(t.intro[0] || {}).art], played = state.stats.lastRound === today(), items = newsItems();
+  /* if you've started today's topic already, show a different picture from it, so it feels like a step further */
+  const first = W[(t.intro[0] || {}).art], others = ART.filter(x => inT(x, td.topic) && x !== first && !x.photo);
+  const w = td.back && others.length ? pickBy(others, "pic:" + today()) || first : first, played = state.stats.lastRound === today(), items = newsItems();
   const ex = played ? extraPicks() : {};
   const opt = (id, tid, label) => tid ? `<button class="trow pick" id="${id}"><span class="eyebrow">${label}</span><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(lvlOf(tid))} ${LEVELS[lvlOf(tid)-1]}</span></button>` : "";
   view.innerHTML = `
@@ -1069,7 +1071,7 @@ function renderToday(){
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
     ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
-      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${td.back ? "Pick up where you left off" : featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${td.back && lastDay(td.topic) ? `<span class="small muted">You started this on ${new Date(lastDay(td.topic) + "T12:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "long"})}.</span>` : ""}${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
+      : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${td.back ? `<span class="small muted ahead">You already know a bit about this one, so today goes a step further.</span>` : ""}${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
     ${NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
     ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => okSrc(n.source) ? `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>` : `<div class="newsitem link"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></section>`
