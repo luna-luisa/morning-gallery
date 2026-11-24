@@ -25,12 +25,13 @@ def check(w):
             if r.status_code != 200:
                 return w["id"], f"HTTP {r.status_code}", None, None
             ct = r.headers.get("content-type", "")
-            if not ct.startswith("image/"):
-                return w["id"], f"not an image ({ct or 'no type'})", None, None
-            im = Image.open(io.BytesIO(r.content)); im.load()
+            try:  # some museums send pictures without saying so; what counts is whether it opens as a picture
+                im = Image.open(io.BytesIO(r.content)); im.load()
+            except Exception:
+                return w["id"], f"not a picture ({ct or 'no type'})", None, None
             return w["id"], None, round(im.height / im.width, 3), im
         except Exception as e:
-            err = str(e)[:80]; time.sleep(2)
+            err = str(e)[:80] or type(e).__name__; time.sleep(2)
     return w["id"], f"failed ({err})", None, None
 
 broken, hw, thumbs = {}, {}, []
