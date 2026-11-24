@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 17:19"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 17:32"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1154,7 +1154,8 @@ function swBoxHTML(pics){
   return `<div class="swbox"><button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">${left ? `${left === SW_WEEKLY ? "3 fresh rounds" : left === 1 ? "1 round left" : left + " rounds left"} this week` : "New rounds on Monday"}</span></span></button>${line ? `<button class="swline" id="picks"><span>${line}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>`;
 }
 function renderTopicsNew(){
-  const pics = isAdmin() ? swipeDeck(3) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
+  if (isAdmin() && !DISC) loadDisc().then(() => { if (document.body.dataset.tab === "topics" || $("#swipe")) { const b = $("#swipe .swthumbs"); if (b) b.innerHTML = swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join(""); } });
+  const pics = isAdmin() ? swipeDeck(3, true) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
   const recent = [...played].sort((a, b) => String((state.played || {})[b] || "").localeCompare(String((state.played || {})[a] || ""))).slice(0, 4);
   view.innerHTML = `<div class="stack"><h1>Your <span class="serif">collection</span></h1></div>
     <label class="sr" for="tq">Search topics</label><input type="search" id="tq" placeholder="Search artists, movements, museums" autocomplete="off" enterkeyhint="search">
@@ -1207,11 +1208,24 @@ const artistTopics = name => { const n = plainArtist(name); return [...new Set(W
 /* upright works fill the phone without cropping; modern pieces may be a little squarer so they get a fair share */
 const realHW = w => (PICS.hw && PICS.hw[w.id]) || w.hw;
 const swipePool = () => WORKS.filter(w => !w.photo && w.artist && TOPICS[w.topic] && /^https:/.test(w.img) && !(PICS.broken && PICS.broken[w.id]) && realHW(w) >= 1.2);
+/* the Swipe deck: well-known works by artists not in the app yet, built weekly by the GitHub job */
+let DISC = null, DISCMAP = {};
+async function loadDisc(){
+  if (DISC) return DISC;
+  try { const d = await getJSON("discover.json"); DISC = (d.items || []).filter(w => /^https:/.test(w.img)); }
+  catch(e){ DISC = []; }
+  DISCMAP = Object.fromEntries(DISC.map(w => [w.id, w])); return DISC;
+}
+const WD = id => W[id] || DISCMAP[id];
 function swipeDeck(n = 10, peek = false){
-  const seen = state.swiped || {}, fresh = shuffle(swipePool().filter(w => !seen[w.id] || peek));
-  const modern = fresh.filter(w => w.year >= 1900), older = fresh.filter(w => w.year < 1900), pick = [], per = {};
-  const take = list => { for (const w of list){ if (pick.length >= n) return; const a = plainArtist(w.artist); if ((per[a] || 0) >= 2 || pick.includes(w)) continue; pick.push(w); per[a] = (per[a] || 0) + 1; if (pick.filter(x => list.includes(x)).length >= Math.ceil(n / 2)) return; } };
-  take(modern); take(older); take(fresh); // half modern, half older, then whatever is left
+  const seen = state.swiped || {}, ok = w => (!seen[w.id] || peek) && !(PICS.broken && PICS.broken[w.id]);
+  const disc = shuffle((DISC || []).filter(ok)), mine = shuffle(swipePool().filter(ok));
+  /* mostly new artists, a few from the app; half from 1880 on, one work per artist per round */
+  const pick = [], per = {};
+  const take = (list, want, test = () => true) => { let got = 0; for (const w of list){ if (got >= want || pick.length >= n) return; const a = plainArtist(w.artist); if (per[a] || pick.includes(w) || !test(w)) continue; pick.push(w); per[a] = 1; got++; } };
+  const nd = disc.length ? Math.round(n * 0.75) : 0;
+  take(disc, Math.ceil(nd / 2), w => w.year >= 1880); take(disc, nd - pick.length, w => w.year < 1880); take(disc, nd - pick.length);
+  take(mine, n - pick.length); take(disc, n - pick.length);
   return shuffle(pick);
 }
 function swipeIntro(done){
@@ -1241,14 +1255,15 @@ const swUseRound = () => { const k = weekKey(), w = state.swWeek && state.swWeek
 const pickTopic = p => artistTopic(p.a);
 const livePicks = () => (state.picks || []).filter(p => { const t = pickTopic(p); return !t || T(t).n <= (p.n0 || 0); });
 const readyPicks = () => livePicks().filter(p => pickTopic(p));
-function startSwipe(){
+async function startSwipe(){
+  await loadDisc();
   if (!swRoundsLeft()) return swipeWeekDone();
   if ((state.swIntro || 0) < 3 && !document.getElementById("welcome")) return swipeIntro(startSwipeNow);
   startSwipeNow();
 }
 function swipeWeekDone(){
   inRound(true); scrollTo(0, 0);
-  const fan = (state.taste || []).slice(-3).map(x => W[x.id]).filter(Boolean);
+  const fan = (state.taste || []).slice(-3).map(x => WD(x.id)).filter(Boolean);
   view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
     ${fan.length ? `<div class="swfan" aria-hidden="true">${fan.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</div>` : ""}
     <div class="stack" style="text-align:center"><h1>That's this <span class="serif">week's</span> swiping</h1><p class="muted">Three fresh rounds arrive on Monday.</p></div>
@@ -1325,7 +1340,7 @@ function swipeEnd(deck, loved){
     b.classList.toggle("sel", picked.has(id)); b.setAttribute("aria-pressed", picked.has(id)); sync();
   });
   done.onclick = () => {
-    const ws = [...picked].map(id => W[id]).filter(Boolean);
+    const ws = [...picked].map(id => WD(id)).filter(Boolean);
     ws.forEach(w => {
       const a = plainArtist(w.artist), t = artistTopic(a);
       state.picks = (state.picks || []).filter(p => p.a !== a).concat([{a, id: w.id, d: today(), n0: t ? T(t).n : 0}]);
@@ -1342,7 +1357,7 @@ function renderPicks(){
   const ps = livePicks().sort((a, b) => !!pickTopic(b) - !!pickTopic(a));
   view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
     <div class="stack"><h1>Your <span class="serif">picks</span></h1><p class="muted">${ps.length ? "Play one and it moves into your collection." : "Pick favourites at the end of a Swipe round and they'll wait here."}</p></div>
-    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = W[p.id]; return `<button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : "disabled"}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">${t ? "Ready to play" : "Coming soon"}</span></span></button>`; }).join("")}</div>
+    <div class="plist">${ps.map(p => { const t = pickTopic(p), w = WD(p.id); return `<button class="trow tpicrow${t ? "" : " wait"}" ${t ? `data-play="${t}"` : "disabled"}><span class="tthumb" style="background-image:url('${esc(w ? tsrc(w.img) : (t ? tpic(t) : ""))}')"></span><span class="tbody"><span class="tname">${esc(p.a)}</span><span class="small muted">${t ? "Ready to play" : "Coming soon"}</span></span></button>`; }).join("")}</div>
     ${(state.taste || []).length ? `<div class="stack"><button class="btn link" id="taste">Everything you loved</button></div>` : ""}`;
   $$("[data-play]").forEach(b => b.onclick = () => playTopic(b.dataset.play));
   $("#x").onclick = () => go("topics");
@@ -1370,7 +1385,7 @@ const byArtist = ws => { const m = {}; ws.forEach(w => (m[plainArtist(w.artist)]
 /* everything you've loved, across rounds, by artist; tap × to take one out */
 function renderTaste(){
   inRound(true); scrollTo(0, 0);
-  const ws = (state.taste || []).map(x => W[x.id]).filter(Boolean), groups = Object.entries(byArtist(ws)).sort((a, b) => b[1].length - a[1].length);
+  const ws = (state.taste || []).map(x => WD(x.id)).filter(Boolean), groups = Object.entries(byArtist(ws)).sort((a, b) => b[1].length - a[1].length);
   view.innerHTML = `
     <div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
     <div class="stack"><h1>Everything you <span class="serif">loved</span></h1><p class="muted">${ws.length ? `${ws.length} ${ws.length === 1 ? "work" : "works"} by ${groups.length} ${groups.length === 1 ? "artist" : "artists"} that spoke to you.` : "Nothing here yet. Swipe right on what speaks to you."}</p></div>
@@ -1535,6 +1550,8 @@ async function use(id){
   const old = await store.get("progress:" + id);
   state = old && old.v === 3 ? Object.assign(fresh(), old) : fresh(old);
   Object.keys(state.srs || {}).forEach(k => { if (k.startsWith("M:")) delete state.srs[k]; }); // retired question type
+  /* a clean slate for Swipe on the admin profile, once, for the new deck (Luna asked, 24 Nov 2026) */
+  if (profiles[id] && profiles[id].admin && state.swFresh !== "2026-11-24"){ ["swiped", "taste", "picks", "swWeek", "swIntro", "swNudge", "swLast"].forEach(k => delete state[k]); state.swFresh = "2026-11-24"; save(); }
   const p = profiles[id];
   setWho();
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");

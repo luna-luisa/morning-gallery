@@ -4,7 +4,7 @@ on:
     - cron: "17 4 * * *"
   push:
     branches: [main]
-    paths: ["content/works.json"]
+    paths: ["content/works.json", "tools/build_discover.py"]
   workflow_dispatch:
 permissions:
   contents: write
@@ -21,6 +21,12 @@ jobs:
           python-version: "3.12"
       - run: pip install requests pillow
       - run: python tools/check_images.py
+      - name: Rebuild the Swipe deck (Mondays, when asked, or when it's missing)
+        if: ${{ github.event_name == 'workflow_dispatch' || hashFiles('content/discover.json') == '' || contains(github.event.head_commit.message, '[deck]') }}
+        run: python tools/build_discover.py
+      - name: Rebuild the Swipe deck on Mondays
+        if: ${{ github.event_name == 'schedule' }}
+        run: if [ "$(date -u +%u)" = "1" ]; then python tools/build_discover.py; fi
       - name: Keep only the latest contact sheets, in the private sheets project
         if: ${{ env.SHEETS_TOKEN != '' }}
         env:
@@ -37,5 +43,5 @@ jobs:
         run: |
           git config user.name "Morning Gallery checks"
           git config user.email "checks@users.noreply.github.com"
-          git add content/imagecheck.json
+          git add content/imagecheck.json content/discover.json 2>/dev/null || git add content/imagecheck.json
           git diff --cached --quiet || (git commit -m "Picture check $(date -u +%F)" && git pull --rebase -q && git push -q)
