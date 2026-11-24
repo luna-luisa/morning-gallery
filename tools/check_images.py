@@ -2,9 +2,9 @@
 
 Opens every picture in content/works.json and writes content/imagecheck.json:
   {"checked": "YYYY-MM-DD", "broken": {"<work id>": "<reason>"}, "hw": {"<work id>": <height/width>}}
-It also makes contact sheets (pages of small labelled thumbnails) as a private
-run artifact, kept for 14 days, so the pictures can be looked at without a
-browser. Thumbnails are never committed to the repo or shown on the website.
+It also makes contact sheets (pages of small labelled thumbnails), kept only on
+the separate "picture-sheets" branch and replaced each run, so the pictures can
+be looked at without a browser. They are never on main or the website.
 """
 import io, json, os, time, datetime, concurrent.futures as cf
 import requests
