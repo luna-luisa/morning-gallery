@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 08:12"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 08:14"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -690,7 +690,7 @@ function startCompare(cid){
       <div class="qhead"><span class="eyebrow">Spot the difference</span><button class="btn link" id="x">Close</button></div>
       <div class="introbody">${pics ? `<div class="cmppair">${pics.map(p => `<div>${figure(p, "thumb")}<span class="small muted">${esc(tName(p.topic))}</span></div>`).join("")}</div>` : figure(w, "big") + label(w)}
       ${k.sub ? `<span class="eyebrow gold">${esc(k.sub)}</span>` : ""}<h2>${esc(k.title)}</h2><p class="lead">${esc(k.text)}</p></div>
-      <div class="dock row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === c.cards.length - 1 ? "Test yourself" : "Next"}</button></div>`;
+      <div class="dock row"><button class="btn ghost" id="prev" ${i ? "" : "disabled"}>Previous</button><button class="btn" id="nxt">${i === c.cards.length - 1 ? "Test me" : "Next"}</button></div>`;
     wireHold(view);
     $("#x").onclick = () => go("topics");
     $("#prev").onclick = () => { i--; draw(); };
