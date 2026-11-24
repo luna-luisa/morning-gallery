@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 22:08"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 22:18"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1918,11 +1918,15 @@ async function showWelcome(done){
           <div class="wtip"><span class="ico">${dots(2)}</span>Climb from Visitor to Curator in every topic.</div></div>
         <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`,
     ...(NEW() ? [() => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
-        <span class="eyebrow" style="color:var(--klein)">And beyond the round</span>
+${pid && isAdmin() ? `        <span class="eyebrow" style="color:var(--klein)">Beyond the daily round</span>
+        <h2 class="wh2">More to <span class="serif">discover</span></h2>
+        <div class="wroom wvis"><span class="wsign">${WN_VIS.swipe()}</span><div><b>Swipe</b><span>A few quick rounds a week of art you haven't met yet. Swipe right on what you like, and pick favourites to learn more about.</span></div></div>
+        <div class="wroom wvis"><span class="wsign">${WN_VIS.wall()}</span><div><b>The Wall</b><span>Everyone's points this week, each person shown by a picture they love. Every round you play adds points.</span></div></div>
+        <div class="wtips"><div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap the round button, top right, for your profile and settings.</div></div>` : `        <span class="eyebrow" style="color:var(--klein)">And beyond the round</span>
         <h2 class="wh2">Explore, <span class="serif">then hang</span></h2>
         <div class="wroom"><span class="wsign">◐</span><div><b>Topics</b><span>Every artist and movement, Spot the difference, and Swipe to discover: three rounds a week of art you haven't met yet. Pick favourites to learn more about.</span></div></div>
         <div class="wroom r2"><span class="wsign">▤</span><div><b>The Wall</b><span>This week's points, with everyone shown by a picture they love. Rounds, fixed mistakes, days in a row and Swipe all earn points.</span></div></div>
-        <div class="wtips"><div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap your picture, top right on the Wall, for your profile and settings.</div></div>
+        <div class="wtips"><div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap your picture, top right on the Wall, for your profile and settings.</div></div>`}
         <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`] : []),
     () => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
         <div class="wlabel"><span class="eyebrow">House rules</span><h2 class="wh2">Before you <span class="serif">go in</span></h2>

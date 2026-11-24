@@ -1004,3 +1004,7 @@ body.newlook .wnx{display:none}
 /* the wall picture sits inside its box so margins and mounts can be cropped away */
 .wpic:not(.none):not(.empty){position:relative;overflow:hidden}
 .wpic>i{position:absolute;inset:0;background:center/cover no-repeat}
+/* welcome: the same little pictures as What's new */
+.wroom.wvis{grid-template-columns:84px 1fr}
+.wroom.wvis .wsign{background:var(--wall)}
+.wroom.wvis .wnvis.wall{background:transparent}

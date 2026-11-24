@@ -1,7 +1,7 @@
 """Find paper margins, mounts and ruled frame lines around the Swipe deck's pictures,
 and save a "zoom" and "focus" for each so the app can crop in on the art itself.
 
-Runs in the daily picture check. Results are cached in content/trim.json by picture URL,
+Runs in the daily picture check, so every new picture (deck or app) gets checked the next morning. Results are cached in content/trim.json by picture URL,
 so only new pictures are downloaded.
 """
 import io, json, os, sys
@@ -10,6 +10,7 @@ from PIL import Image, ImageOps
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 DECK = os.path.join(ROOT, "content", "discover.json")
+WORKS = os.path.join(ROOT, "content", "works.json")
 CACHE = os.path.join(ROOT, "content", "trim.json")
 BOX = 1.25        # the app's picture boxes are about 4:5 (height / width)
 
@@ -63,10 +64,14 @@ def measure(im):
 
 def main():
     deck = json.load(open(DECK))
+    works = json.load(open(WORKS))
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
-    s = requests.Session(); s.headers["User-Agent"] = "MorningGallery/1.0 (private quiz; picture check)"
+    s = requests.Session(); s.headers["User-Agent"] = "MorningGalleryImageCheck/1.0 (https://github.com/luna-luisa/morning-gallery)"
     new = 0
-    for w in deck["items"]:
+    # the app's own works count too (any of them can become someone's Wall picture),
+    # except ones with a hand-set "zoom", which always wins
+    items = deck["items"] + [w for w in works["works"] if w.get("img") and not w.get("zoom")]
+    for w in items:
         u = w["img"]
         if u not in cache:
             try:
@@ -76,13 +81,15 @@ def main():
                 print("skip", w["id"], e, file=sys.stderr); continue
             new += 1
         t = cache.get(u)
-        for k in ("zoom", "focus", "crop"): w.pop(k, None)
+        w.pop("crop", None)
+        if w["id"].startswith("d-"): w.pop("zoom", None); w.pop("focus", None)
         if t: w["crop"] = t
-    keep = {w["img"] for w in deck["items"]}
+    keep = {w["img"] for w in items}
     cache = {k: v for k, v in cache.items() if k in keep}
     json.dump(cache, open(CACHE, "w"), separators=(",", ":"))
     json.dump(deck, open(DECK, "w"), ensure_ascii=False, indent=0)
-    print(f"trim: {new} new, {sum(1 for w in deck['items'] if w.get('crop'))} of {len(deck['items'])} cropped")
+    with open(WORKS, "w") as f: f.write(json.dumps(works, ensure_ascii=False, indent=1) + "\n")
+    print(f"trim: {new} new, {sum(1 for w in items if w.get('crop'))} of {len(items)} cropped")
 
 
 if __name__ == "__main__":
