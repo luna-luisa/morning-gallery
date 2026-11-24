@@ -33,7 +33,7 @@ known = {fold(t.get("name")) for t in topics.values() if t.get("kind") == "artis
 works = json.load(open("content/works.json"))["works"]
 known |= {fold(clean_artist(w.get("artist"))) for w in works if w.get("artist")}
 known.discard("")
-ANON = re.compile(r"unknown|anonymous|unidentified|^(the )?(master of|workshop)|culture|period|dynasty|school", re.I)
+ANON = re.compile(r"unknown|anonymous|unidentified|^(the )?(master of|workshop)|culture|period|dynasty|school|^(eastern|western|northern|southern|central|upper|lower)\b|mediterranean|islands?\b|empire|kingdom|province|region|coast", re.I)
 
 def get(url, **kw):
     for attempt in range(4):

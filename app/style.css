@@ -893,3 +893,28 @@ details.merow[open] .val svg{transform:rotate(90deg)}
 .mebody{display:flex;flex-direction:column;gap:12px;padding:2px 2px 18px}
 nav.tabs button[data-tab="me"]{display:inline-flex;align-items:center;justify-content:center}
 nav.tabs button[data-tab="me"] .medot{vertical-align:0}
+/* ---- this week's wall (admin trial) ---- */
+.wall{gap:16px}
+.wplace{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:-4px 0 0}
+.wplace .serif{color:var(--klein)}
+.wme{display:flex;align-items:center;gap:18px;margin:0 -24px;padding:22px 24px 24px;background:radial-gradient(ellipse 62% 70% at 30% 50%,#fffaf0 0%,var(--wall) 72%)}
+.wmeinfo{display:flex;flex-direction:column;gap:10px;min-width:0}
+.wmeinfo .small{line-height:1.4}
+.wpts{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.wpts small{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:0}
+.wpic{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:54px;background:var(--line) center/cover no-repeat;box-shadow:0 4px 10px rgba(40,30,15,.2);color:#fff;font-weight:800;font-size:18px}
+.wpic.none{border-radius:50%;width:40px;height:40px;box-shadow:none}
+.wpic.big{width:132px;height:166px;box-shadow:0 22px 40px -14px rgba(40,30,15,.45);font-size:52px}
+.wpic.big.none{width:110px;height:110px;border-radius:50%}
+.wpic.head{width:56px;height:68px}
+.wpic.champ{outline:3px solid var(--ink);outline-offset:3px}
+.wgap{padding:12px 14px;background:#fdeef3;font-size:15px;line-height:1.4}
+.wrows{display:flex;flex-direction:column}
+.wrow{display:flex;align-items:center;gap:14px;padding:9px 12px;margin:0 -12px;border-top:1px solid var(--line)}
+.wrow .rk{width:18px;font-weight:800;color:var(--muted)}
+.wrow .nm{flex:1;font-size:17px;font-weight:600}
+.wrow .pt{font-size:16px;font-weight:800}
+.wrow.me{background:#e6eafb;border-top-color:transparent;border-radius:8px}
+.wrow.me + .wrow{border-top-color:transparent}
+.wrow.me .rk,.wrow.me .nm,.wrow.me .pt{color:var(--klein);font-weight:800}
+.medot.pic{background:center/cover no-repeat;border-radius:4px;width:18px;height:22px}

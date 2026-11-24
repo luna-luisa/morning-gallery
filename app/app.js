@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 19:02"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 19:27"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -152,7 +152,7 @@ const BOX = [1, 3, 7, 21];
 function srs(q, ok){
   const k = q.key, it = state.srs[k];
   if (!ok){ state.srs[k] = {box:0, due: Date.now() + DAY * 0.9, topic: q.topic}; return ""; }
-  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; return ""; } it.due = Date.now() + BOX[it.box] * DAY; return ""; }
+  if (it){ it.box++; if (it.box >= BOX.length){ delete state.srs[k]; state.stats.learned++; addPts(PTS.fixed); return ""; } it.due = Date.now() + BOX[it.box] * DAY; return ""; }
   return "";
 }
 const seenToday = k => (state.lastSeen || {})[k] === today();
@@ -503,7 +503,23 @@ function extraPicks(){
   /* nothing studied to go deeper in yet (new players): offer a second new topic instead, so everyone sees two choices */
   return dp ? {fresh: f, deep: dp} : {fresh: f, fresh2: pickBy(fresh.filter(t => t !== f), salt + "2")};
 }
-function markPlayed(tid){ (state.played || (state.played = {}))[tid] = today(); (state.days || (state.days = {}))[today()] = 1; }
+function markPlayed(tid){
+  (state.played || (state.played = {}))[tid] = today();
+  const days = state.days || (state.days = {}), y = new Date(); y.setDate(y.getDate() - 1);
+  const yk = `${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,"0")}-${String(y.getDate()).padStart(2,"0")}`;
+  if (!days[today()] && days[yk]) addPts(PTS.streak); // another day in a row
+  days[today()] = 1;
+}
+/* points for this week's wall: counted for everyone, shown on the admin profile while it's a trial */
+const PTS = {round: 10, fixed: 5, streak: 3, swipe: 2};
+function addPts(n){
+  const k = weekKey(), p = state.pts || {};
+  if (p.k !== k){ if (p.k) state.ptsPrev = {k: p.k, n: p.n || 0}; state.pts = {k, n: 0}; }
+  state.pts.n += n; state.ptsAll = (state.ptsAll || 0) + n;
+}
+const lastWeekKey = () => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) - 7); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
+const weekPts = st => st && st.pts && st.pts.k === weekKey() ? st.pts.n : 0;
+const lastPts = st => !st ? 0 : st.pts && st.pts.k === lastWeekKey() ? st.pts.n : st.ptsPrev && st.ptsPrev.k === lastWeekKey() ? st.ptsPrev.n : 0;
 function playTopic(tid){ if (T(tid).intro) startTopic(tid); else showIntro(tid, () => startTopic(tid), "Start the questions"); }
 
 /* ---------------- images: check before showing, swap failures ---------------- */
@@ -1029,7 +1045,7 @@ function roundTimeline(tid){
 }
 function finish(){
   dropRound(); inRound(false);
-  if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); }
+  if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); addPts(PTS.round); }
   if (S.mode === "topic") markPlayed(S.topic);
   save();
   const cmpWas = S.mode === "compare" ? S.cmp : null;
@@ -1145,12 +1161,12 @@ function renderMeNew(focus){
   const week = [...Array(7)].map((_, i) => { const d = new Date(mon); d.setDate(mon.getDate() + i); const k = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; return {l: "MTWTFSS"[i], on: days.has(k), now: k === today()}; });
   const row = (id, label, val) => `<details class="merow" id="${id}"><summary><span>${label}</span><span class="val">${val || ""}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></summary><div class="mebody"></div></details>`;
   view.innerHTML = `
-    <div class="row mehead"><span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span><div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
+    <div class="row mehead">${p.admin && picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
     <div id="editbox"></div>
+    ${p.admin ? `<div class="mesec wall" id="board"><span class="eyebrow">This week's wall · ${["Sunday", "6 days", "5 days", "4 days", "3 days", "2 days", "1 day"][new Date().getDay()]}${new Date().getDay() ? " left" : ", last day"}</span><div class="small muted">Hanging the pictures…</div></div>` : ""}
     <div class="mesec"><span class="eyebrow">This week</span><div class="week">${week.map(d => `<span class="${d.on ? "on" : ""}${d.now ? " now" : ""}"><i>${d.on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</i>${d.l}</span>`).join("")}</div></div>
     ${played.length ? `<div class="mesec"><span class="eyebrow">Your topics by level</span><div class="lvbars">${LEVELS.map((name, i) => `<div><span>${name}</span><i><b style="width:${per[i] ? Math.max(6, Math.round(100 * per[i] / mx)) : 0}%;opacity:${.35 + i * .16}"></b></i><em>${per[i]}</em></div>`).join("")}</div></div>` : ""}
     ${s.learned ? `<div class="fixed"><b>${s.learned}</b><span><strong>Mistakes fixed for good.</strong> Questions you once got wrong and now always get right.</span></div>` : ""}
-    ${p.admin ? `<div class="mesec" id="board"><span class="eyebrow">Top visitors <span class="tag">Only you see this</span></span><div class="small muted">Loading…</div></div>` : ""}
     <div class="merows">
       ${row("rnear", "Near you", esc(p.area || "Add your town"))}
       ${row("rfb", "Feedback", "")}
@@ -1187,13 +1203,45 @@ function renderMeNew(focus){
   if (focus === "feedback"){ $("#rfb").open = true; $("#rfb").scrollIntoView(); }
   if (p.admin) leaderboard();
 }
-/* a first try at a leaderboard, on the admin profile only for now */
+/* this week's wall: everyone shown by a picture they love (or their initial until they have one).
+   Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
+   Your first picture comes at 100 points; the top 3 each week may choose a new one; pictures are kept.
+   Last week's winner's picture wears the frame until someone else wins it. Admin profile only for now. */
+const picOf = st => st && st.pic && WD(st.pic);
+const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" style="background-image:url('${esc(tsrc(w.img))}')"></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
 async function leaderboard(){
+  await loadDisc();
   const ids = Object.keys(profiles).filter(id => !profiles[id].removed), rows = [];
-  for (const id of ids){ let pr = id === pid ? state : null; try { if (!pr) pr = await store.get("progress:" + id); } catch(e){} if (pr && pr.stats) rows.push({id, n: pr.stats.rounds || 0, l: pr.stats.learned || 0}); }
-  rows.sort((a, b) => b.n - a.n || b.l - a.l);
+  for (const id of ids){ let st = id === pid ? state : null; try { if (!st) st = await store.get("progress:" + id); } catch(e){} if (st && st.stats) rows.push({id, st, n: weekPts(st), last: lastPts(st)}); }
+  rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
+  const lastTop = rows.slice().filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
   const el = $("#board"); if (!el) return;
-  el.querySelector("div").outerHTML = `<div class="board">${rows.slice(0, 5).map((r, i) => `<div class="${r.id === pid ? "me" : ""}"><span class="rk">${i + 1}</span><span class="dot" style="${dotStyle(profiles[r.id])}">${esc(profiles[r.id].name[0])}</span><span class="nm">${esc(profiles[r.id].name)}</span><span class="small muted">${r.n} ${r.n === 1 ? "round" : "rounds"}</span></div>`).join("")}</div>`;
+  const me = rows.findIndex(r => r.id === pid), mine = rows[me], above = me > 0 ? rows[me - 1] : null;
+  const PLACES = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
+  const wonTop3 = lastTop.slice(0, 3).some(r => r.id === pid) && state.picWeek !== weekKey();
+  const firstPic = !state.pic && (state.ptsAll || 0) >= 100;
+  const canChoose = wonTop3 || firstPic || profiles[pid].admin;
+  const togo = Math.max(0, 100 - (state.ptsAll || 0));
+  el.querySelector("div").outerHTML = `
+    <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
+    <div class="wme">${picHTML(state, profiles[pid], "big" + (champ === pid ? " champ" : ""))}<div class="wmeinfo"><span class="small muted">${picOf(state) ? `Your picture<br><b>${esc(picOf(state).title)}</b>, ${esc(plainArtist(picOf(state).artist))}` : togo ? `Your picture comes at 100 points: <b>${togo} to go</b>` : "You can choose your picture"}</span><span class="wpts">${mine ? mine.n : 0} <small>points this week</small></span></div></div>
+    ${above ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>` : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>` : ""}
+    <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], r.id === champ ? "champ" : "")}<span class="nm">${esc(profiles[r.id].name)}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
+    <p class="small muted">The top 3 each week choose a new picture from what they loved in Swipe. Last week's winner wears the frame until someone else wins it.${profiles[pid].admin ? " <b>Trial:</b> you can choose any time." : ""}</p>
+    ${canChoose ? `<button class="btn ghost" id="choosepic">${state.pic ? "Choose a new picture" : "Choose your picture"}</button>` : ""}`;
+  if ($("#choosepic")) $("#choosepic").onclick = () => choosePicture(wonTop3);
+}
+function choosePicture(won){
+  inRound(true); scrollTo(0, 0);
+  const ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
+  let pick = state.pic || null;
+  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">This week's wall</span><button class="btn link" id="x">Close</button></div>
+    <div class="stack"><h1>Pick your <span class="serif">picture</span></h1><p class="muted">${ws.length ? "It stands for you on the wall and on your profile." : "Love a few works in Swipe first, then choose one here."}</p></div>
+    <div class="swpicks${ws.length <= 6 ? " big" : ""}">${ws.map(w => `<button class="swpick${w.id === pick ? " sel" : ""}" data-id="${w.id}" aria-pressed="${w.id === pick}"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
+    <div class="swfoot"><button class="btn" id="ok" ${pick ? "" : "disabled"}>This one</button></div>`;
+  $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); $("#ok").disabled = false; });
+  $("#ok").onclick = () => { state.pic = pick; if (won) state.picWeek = weekKey(); save(); setWho(); go("me"); };
+  $("#x").onclick = () => go("me");
 }
 function topicHits(q){
   const f = fold(q).trim(); if (!f) return null;
@@ -1348,7 +1396,7 @@ function swipeIntro(done){
 const SW_ROUND = 15, SW_WEEKLY = 3;
 const weekKey = () => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
 const swRoundsLeft = () => { const w = state.swWeek || {}; return Math.max(0, SW_WEEKLY - (w.k === weekKey() ? w.n : 0)); };
-const swUseRound = () => { const k = weekKey(), w = state.swWeek && state.swWeek.k === k ? state.swWeek : {k, n: 0}; w.n++; state.swWeek = w; };
+const swUseRound = () => { const k = weekKey(), w = state.swWeek && state.swWeek.k === k ? state.swWeek : {k, n: 0}; w.n++; state.swWeek = w; addPts(PTS.swipe); };
 /* picks: artists you chose to learn more about. One already in the app is ready at once; a new one waits for the Sunday task */
 const pickTopic = p => artistTopic(p.a);
 const livePicks = () => (state.picks || []).filter(p => { const t = pickTopic(p); return !t || T(t).n <= (p.n0 || 0); });
@@ -1644,7 +1692,7 @@ function backToMe(){ $("#who").classList.remove("hidden"); $("#tabs").classList.
 (function(){ const b = document.createElement("button"); b.id = "hsearch"; b.className = "hsearch"; b.setAttribute("aria-label", "Search topics");
   b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
   b.onclick = () => { if (document.body.dataset.tab !== "topics") go("topics"); openSearch(); }; document.querySelector(".top").appendChild(b); })();
-function setWho(){ const p = profiles[pid]; const me = document.querySelector('nav.tabs [data-tab="me"]'); if (me) me.innerHTML = NEW() ? `<span class="medot" style="${dotStyle(p)}">${esc(p.name[0])}</span>Me` : "Me"; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
+function setWho(){ const p = profiles[pid]; const me = document.querySelector('nav.tabs [data-tab="me"]'); if (me) me.innerHTML = NEW() ? (state && picOf(state) ? `<span class="medot pic" style="background-image:url('${esc(tsrc(picOf(state).img))}')"></span>Me` : `<span class="medot" style="${dotStyle(p)}">${esc(p.name[0])}</span>Me`) : "Me"; $("#whoDot").style.cssText = dotStyle(p); $("#whoDot").textContent = p.name[0]; $("#whoName").textContent = p.name; }
 async function use(id){
   if (pid && state){ clearTimeout(saveTimer); await flush(); }
   pid = id; local.set("last", id); scopeContent();
