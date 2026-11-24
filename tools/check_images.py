@@ -15,6 +15,8 @@ works = json.load(open("content/works.json"))["works"]
 
 def check(w):
     u, err = w.get("img") or "", "unknown"
+    if u and not u.startswith("http"):  # pictures kept on the app's own site
+        u = "https://teal-alligator-442575.hostingersite.com/morning-gallery/" + u.lstrip("/")
     if not u.startswith("https://"):
         return w["id"], "no image address", None, None
     for attempt in range(3):

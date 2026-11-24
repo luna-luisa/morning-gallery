@@ -48,3 +48,6 @@ An intro card about something current must not go stale. The "In the news" card 
 ## Publishing rule (Luna, 24 Nov 2026)
 - New app features and design changes: mock-up on the design canvas first, then Luna's profile only (topic or item flagged "preview", or an isAdmin() check), then everyone once she is happy.
 - New content (topics, questions, comparisons, news): straight to everyone once the fact checks pass and every picture is confirmed to load.
+
+## Picture check (GitHub, daily)
+A GitHub job (.github/workflows/check-images.yml, tools/check_images.py) opens every picture in works.json each morning and whenever works.json changes, and writes content/imagecheck.json: "broken" lists works whose picture won't load (with the reason), "hw" gives each picture's real height/width. It costs no Claude credits. Scheduled tasks: read content/imagecheck.json first; replace or remove every work listed under "broken" (repoint any card or question that used it), and correct "hw" in works.json where it differs by more than 0.1. After adding works, the check runs by itself within minutes of the push; look at imagecheck.json again before finishing.
