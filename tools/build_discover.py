@@ -49,7 +49,10 @@ def get(url, **kw):
 cands = []
 def add(museum, oid, artist, title, year, imgs, link):
     artist = clean_artist(artist)
-    if not artist or ANON.search(artist) or fold(artist) in known or not imgs: return
+    artist = artist.strip(" ,.")
+    # a person, not a culture or region ("Netherlandish", "Ancient Etruscan"): at least two names
+    if not artist or ANON.search(artist) or len(artist.split()) < 2 or re.match(r"(ancient|old|early|late)\b", artist, re.I): return
+    if fold(artist) in known or not imgs: return
     try: year = int(year)
     except Exception: return
     cands.append({"id": f"d-{museum.lower()[:3]}-{oid}", "artist": artist, "title": (title or "Untitled").strip(),
