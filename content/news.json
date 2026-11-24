@@ -1,6 +1,6 @@
 {
  "week": "w/c 23 Nov 2026",
- "updated": "2026-11-23",
+ "updated": "2026-11-24",
  "featuredTopics": [
   "auctions",
   "van-gogh",
@@ -9,28 +9,6 @@
   "alfred-wallis"
  ],
  "items": [
-  {
-   "id": "2026-11-kusama-record",
-   "date": "2026-11-16",
-   "topic": "auctions",
-   "level": 2,
-   "headline": "Yayoi Kusama sets a $15m auction record",
-   "summary": "Her 1960 Infinity Net painting No. 3P.B. sold for about $15m with fees at Sotheby's New York on 16 November, three months after her death.",
-   "question": "Whose 1960 Infinity Net painting just set a $15m auction record?",
-   "options": [
-    "Yayoi Kusama",
-    "Yoshitomo Nara",
-    "Takashi Murakami",
-    "Kazuo Shiraga"
-   ],
-   "answer": 0,
-   "explain": "Kusama, who died in August aged 97, made it soon after moving to New York, and it was shown in the Whitney Museum of American Art's 1961 annual exhibition there.",
-   "notes": {
-    "Yoshitomo Nara": "Nara is known for his big-eyed child figures, not net paintings.",
-    "Takashi Murakami": "Murakami is famous for his bright 'Superflat' flowers and cartoon characters."
-   },
-   "source": "https://www.sothebys.com/en/buy/auction/2026/the-now-contemporary-evening-auction-2/yayoi-kusama-no-3-p-b"
-  },
   {
    "id": "2026-11-kandinsky-record",
    "date": "2026-11-17",
@@ -74,23 +52,6 @@
    },
    "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et",
    "reveal": "vg-chestnut-trees"
-  },
-  {
-   "id": "2026-11-book-of-miracles",
-   "date": "2026-11-16",
-   "topic": "auctions",
-   "level": 3,
-   "headline": "A 16th-century Book of Miracles heads to auction",
-   "summary": "Christie's in London offers the Augsburg manuscript of 167 watercolours on 10 December, estimated at £700,000 to £1m.",
-   "question": "In which German city was the Book of Miracles made around 1552?",
-   "options": [
-    "Augsburg",
-    "Berlin",
-    "Hamburg",
-    "Dresden"
-   ],
-   "answer": 0,
-   "explain": "Its 167 watercolours of omens, natural wonders and Bible scenes are attributed to Hans Burgkmair the Younger, Heinrich Vogtherr the Younger and their workshops."
   },
   {
    "id": "2026-11-van-gogh-heirs",
