@@ -957,3 +957,19 @@ body.newlook[data-tab="me"] .hsearch{display:none}
 .pkrow{display:block}
 .pkrow > .trow{display:flex!important;width:100%!important;box-sizing:border-box;margin:0;padding:12px 0;border-radius:0;box-shadow:none;background:var(--wall)!important;transform:translateX(0)}
 .pkrow .tbody{flex:1;min-width:0}
+/* iOS 26 blurs whatever sits just under the clock in home-screen apps: keep that band plain, and start the page below it */
+body.newlook::before{height:calc(env(safe-area-inset-top,0px) + 18px);background:var(--wall)}
+body.newlook #app{padding-top:calc(env(safe-area-inset-top,0px) + 18px)}
+body.newlook .wnx{display:none}
+.wrow .nm small{display:block;font-size:12.5px;font-weight:400;color:var(--muted);line-height:1.3;margin-top:2px}
+.wrow.me .nm small{color:var(--klein);opacity:.8}
+.wpic[data-src]{cursor:zoom-in}
+.tlearn{display:inline-block;margin-top:2px;font-weight:800;color:var(--klein);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.pkrow .trow{cursor:pointer}
+.pinput{-webkit-text-security:disc;letter-spacing:.4em}
+.swlist{display:flex;flex-direction:column;gap:4px}
+.swp{display:flex;align-items:center;gap:12px;min-height:48px;padding:4px 2px;border:0;background:none;font:inherit;font-size:16px;font-weight:600;color:var(--ink);text-align:left;cursor:pointer}
+.swp .dot{width:32px;height:32px;font-size:14px}
+.psheet .wnitem{display:flex;gap:12px;align-items:flex-start}
+.psheet .wnitem div{display:flex;flex-direction:column;gap:2px}
+.psheet .editcard{padding:4px 0 8px}

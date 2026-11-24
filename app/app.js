@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 20:05"; // shown as a small footnote on the Me page
+const BUILD_AT = "24 Nov, 20:45"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1155,7 +1155,7 @@ const fold = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ
 /* the Wall tab (Luna's profile first): this week's wall only; everything about you is in the sheet behind your picture, top right */
 function renderMeNew(focus){
   const p = profiles[pid];
-  view.innerHTML = `<div id="editbox"></div><div class="mesec wall" id="board"><span class="eyebrow">This week's wall · ${["last day", "6 days left", "5 days left", "4 days left", "3 days left", "2 days left", "1 day left"][new Date().getDay()]}</span><div class="small muted">Hanging the pictures…</div></div>`;
+  view.innerHTML = `<div class="mesec wall" id="board"><span class="eyebrow">This week's wall · ${["last day", "6 days left", "5 days left", "4 days left", "3 days left", "2 days left", "1 day left"][new Date().getDay()]}</span><div class="small muted">Hanging the pictures…</div></div>`;
   leaderboard();
   if (focus === "feedback") openProfile("feedback");
 }
@@ -1169,17 +1169,17 @@ function openProfile(focus){
   const row = (id, label, val) => `<details class="merow" id="${id}"><summary><span>${label}</span><span class="val">${val || ""}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></summary><div class="mebody"></div></details>`;
   const el = document.createElement("div"); el.id = "psheet"; el.className = "wnwrap"; document.body.appendChild(el);
   el.innerHTML = `<div class="wnback"></div><div class="wnsheet psheet" role="dialog" aria-modal="true" aria-label="Your profile"><span class="handle" aria-hidden="true"></span>
-    <div class="row mehead">${p.admin && picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div>
+    <div class="row mehead">${p.admin && picOf(state) ? picHTML(state, p, "head") : `<span class="dot big" style="${dotStyle(p)}">${esc(p.name[0])}</span>`}<div class="grow"><h2>${esc(p.name)}</h2><span class="small muted">${s.rounds} coffee ${s.rounds === 1 ? "round" : "rounds"} · ${acc}% right</span></div><button class="btn link" id="edit">Edit</button></div><div id="editbox"></div>
     <div class="mesec"><span class="eyebrow">This week</span><div class="week">${week.map(d => `<span class="${d.on ? "on" : ""}${d.now ? " now" : ""}"><i>${d.on ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ""}</i>${d.l}</span>`).join("")}</div></div>
     ${played.length ? `<div class="mesec"><span class="eyebrow">Your topics by level</span><div class="lvbars">${LEVELS.map((name, i) => `<div><span>${name}</span><i><b style="width:${per[i] ? Math.max(6, Math.round(100 * per[i] / mx)) : 0}%;opacity:${.35 + i * .16}"></b></i><em>${per[i]}</em></div>`).join("")}</div></div>` : ""}
     ${s.learned ? `<div class="fixed"><b>${s.learned}</b><span><strong>Mistakes fixed for good.</strong> Questions you once got wrong and now always get right.</span></div>` : ""}
     <div class="merows">
       ${row("rnear", "Near you", esc(p.area || "Add your town"))}
       ${row("rfb", "Feedback", "")}
-      ${WN && wnItems().length ? `<button class="merow btnrow" id="rwn"><span>What's new</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>` : ""}
-      <button class="merow btnrow" id="rsw"><span>Switch profile</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>
-      <button class="merow btnrow" id="rpin"><span>${p.pin ? "Change PIN" : "Set a PIN"}</span><span class="val"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>
-      ${row("rhome", "Add to Home Screen", "")}
+      ${WN && wnItems().length ? row("rwn", "What's new", "") : ""}
+      ${row("rsw", "Switch profile", "")}
+      ${row("rpin", p.pin ? "Change PIN" : "Set a PIN", "")}
+      ${matchMedia("(display-mode: standalone)").matches || navigator.standalone ? "" : row("rhome", "Add to Home Screen", "")}
     </div>
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only, and feedback can't be sent.</p>`}
     <button class="btn link center" id="howto">How Morning Gallery works</button>
@@ -1195,12 +1195,22 @@ function openProfile(focus){
       <div class="chips" role="radiogroup" aria-label="Type of feedback">${[["idea","An idea"],["problem","Something's wrong"],["content","I'd like to learn about…"]].map(([k, l], i) => `<button class="chipbtn kind ${i ? "" : "on"}" data-k="${k}" role="radio" aria-checked="${!i}">${l}</button>`).join("")}</div>
       <label class="sr" for="fbtext">Your feedback</label><textarea id="fbtext" rows="4" placeholder="Write here"></textarea>
       <button class="btn" id="send" disabled>Send</button><span class="small muted" id="sent" aria-live="polite"></span>`;
-  $("#rhome .mebody").innerHTML = `<p class="small">iPhone: in Safari tap Share, then <b>Add to Home Screen</b>.</p>`;
+  if ($("#rhome")) $("#rhome .mebody").innerHTML = `<p class="small">${/iPhone|iPad/.test(navigator.userAgent) ? "In Safari, tap Share, then <b>Add to Home Screen</b>." : /Android/.test(navigator.userAgent) ? "In Chrome, tap the three dots, then <b>Add to Home screen</b>." : "In your phone's browser, open the share or menu button and choose <b>Add to Home Screen</b>."}</p>`;
   $("#howto").onclick = () => { close(); showWelcome(() => go("me")); };
-  if ($("#rwn")) $("#rwn").onclick = () => { close(); openWhatsNew(true); };
-  $("#rsw").onclick = () => { close(); renderProfiles(); };
-  $("#rpin").onclick = () => askPin(pid, "set");
-  $("#edit").onclick = () => { close(); editProfile(focus); };
+  if ($("#rwn")) $("#rwn .mebody").innerHTML = wnItems().map(i => `<div class="wnitem"><span class="wnicon"><svg viewBox="0 0 24 24" aria-hidden="true">${WN_ICONS[i.icon] || WN_ICONS.star}</svg></span><div><b>${esc(i.title)}</b><span class="small muted">${esc(i.text)}</span></div></div>`).join("");
+  /* switch profile, in place */
+  const others = Object.keys(profiles).filter(id => id !== pid && !profiles[id].removed);
+  $("#rsw .mebody").innerHTML = `<div class="swlist">${others.map(id => `<button class="swp" data-id="${id}"><span class="dot" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span>${esc(profiles[id].name)}</button>`).join("")}</div><button class="btn link" id="pnew">New profile</button>`;
+  $$("#rsw .swp").forEach(b => b.onclick = () => { close(); setTimeout(() => askPin(b.dataset.id), 300); });
+  $("#pnew").onclick = () => { close(); setTimeout(newProfile, 300); };
+  /* PIN, in place: four digits, saved without leaving the menu */
+  $("#rpin .mebody").innerHTML = `<p class="small muted">Four digits, so nobody plays as you by accident.</p><div class="row"><label class="sr" for="pp2">New PIN</label><input type="text" id="pp2" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autocorrect="off" spellcheck="false" name="mg-pin-${Date.now()}" placeholder="····"><button class="btn ghost" id="pinsave" disabled>Save</button></div><span class="small muted" id="pinmsg" aria-live="polite"></span>`;
+  const pp2 = $("#pp2"), ps = $("#pinsave");
+  pp2.oninput = () => { pp2.value = pp2.value.replace(/\D/g, "").slice(0, 4); ps.disabled = pp2.value.length !== 4; };
+  pp2.onfocus = () => setTimeout(() => pp2.scrollIntoView({block: "center", behavior: "smooth"}), 300);
+  ps.onclick = async () => { ps.disabled = true; p.pin = await hashPin(pid, pp2.value); await store.put("profile:" + pid, p); local.set("profiles", profiles); pp2.value = ""; $("#pinmsg").textContent = "Saved. You'll need it next time you switch to this profile."; $("#rpin summary span").textContent = "Change PIN"; };
+  $("#edit").onclick = () => { editProfile(); $("#ecancel").onclick = () => { $("#editbox").innerHTML = ""; $("#edit").classList.remove("hidden"); };
+    const sv = $("#esave"), old = sv.onclick; sv.onclick = async () => { await old(); close(); setTimeout(openProfile, 320); }; };
   let kind = "idea";
   $$(".kind").forEach(b => b.onclick = () => { kind = b.dataset.k; $$(".kind").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-checked", String(x === b)); }); });
   const ta = $("#fbtext"), send = $("#send");
@@ -1220,15 +1230,19 @@ function openProfile(focus){
    Last week's winner's picture wears the frame until someone else wins it. Admin profile only for now. */
 const picOf = st => st && st.pic && WD(st.pic);
 const FRAMES = [["ink", "Black"], ["gilt", "Gold"], ["white", "White"], ["klein", "Blue"], ["pink", "Pink"]];
-const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" style="background-image:url('${esc(tsrc(w.img))}')"></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
+const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" style="background-image:url('${esc(tsrc(w.img))}')"></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
 /* this week's wall: everyone shown by a picture they love (their initial until they choose one).
    Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
    Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,
    or after 100 more points. Last week's winner wears a frame of their choosing until someone else wins. */
+const WALLC = {};
 async function leaderboard(){
-  await loadDisc();
-  const ids = Object.keys(profiles).filter(id => !profiles[id].removed), rows = [];
-  for (const id of ids){ let st = id === pid ? state : null; try { if (!st) st = await store.get("progress:" + id); } catch(e){} if (st && st.stats) rows.push({id, st, n: weekPts(st), last: lastPts(st)}); }
+  const ids = Object.keys(profiles).filter(id => !profiles[id].removed);
+  /* everyone's progress in one go; the deck (for pictures) loads alongside */
+  const [sts] = await Promise.all([Promise.all(ids.map(id => id === pid ? state : (WALLC[id] ? Promise.resolve(WALLC[id]) : store.get("progress:" + id).catch(() => null)))), loadDisc()]);
+  ids.forEach((id, i) => { if (id !== pid && sts[i]) WALLC[id] = {pts: sts[i].pts, ptsPrev: sts[i].ptsPrev, pic: sts[i].pic, frame: sts[i].frame, stats: sts[i].stats}; });
+  setTimeout(() => ids.forEach(id => { if (id !== pid) store.get("progress:" + id).then(st => { if (st) WALLC[id] = {pts: st.pts, ptsPrev: st.ptsPrev, pic: st.pic, frame: st.frame, stats: st.stats}; }).catch(() => {}); }), 4000);
+  const rows = ids.map((id, i) => ({id, st: sts[i]})).filter(r => r.st && r.st.stats).map(r => Object.assign(r, {n: weekPts(r.st), last: lastPts(r.st)}));
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
   const lastTop = rows.filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
   const el = $("#board"); if (!el) return;
@@ -1237,7 +1251,7 @@ async function leaderboard(){
   const wonTop3 = lastTop.slice(0, 3).some(r => r.id === pid) && state.picWeek !== weekKey();
   const more = Math.max(0, 100 - ((state.ptsAll || 0) - (state.picAt || 0)));
   const canChange = picOf(state) && (wonTop3 || !more || profiles[pid].admin);
-  const frameOf = r => r.id === champ ? ` champ fr-${(r.st.frame || "ink")}` : "";
+  const frameOf = r => r.id === champ || (r.id === pid && profiles[pid].admin && state.frame) ? ` champ fr-${(r.st.frame || "ink")}` : "";
   const mypic = picOf(state);
   el.querySelector("div").outerHTML = `
     <h2 class="wplace">${mine && mine.n ? `You're <span class="serif">${PLACES[me] || "#" + (me + 1)}</span>` : `Play a round to get <span class="serif">on the wall</span>`}</h2>
@@ -1246,13 +1260,14 @@ async function leaderboard(){
     ${above && above.n > mine.n ? `<div class="wgap"><b>${above.n - mine.n + 1} points to pass ${esc(profiles[above.id].name)}.</b> A coffee round is 10, a fixed mistake 5.</div>`
       : mine && mine.n ? `<div class="wgap"><b>You're top of the wall.</b> Keep it up until Sunday.</div>`
       : `<div class="wgap"><b>Everyone's on 0 so far.</b> One coffee round (10 points) puts you at the top.</div>`}
-    <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], frameOf(r).trim())}<span class="nm">${esc(profiles[r.id].name)}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
+    <div class="wrows">${rows.map((r, i) => `<div class="wrow${r.id === pid ? " me" : ""}"><span class="rk">${i + 1}</span>${picHTML(r.st, profiles[r.id], frameOf(r).trim())}<span class="nm">${esc(profiles[r.id].name)}${picOf(r.st) ? `<small><i>${esc(picOf(r.st).title)}</i>, ${esc(plainArtist(picOf(r.st).artist))}</small>` : ""}</span><span class="pt">${r.n}</span></div>`).join("")}</div>
     <p class="small muted">The top 3 each week can choose a new picture. Last week's winner wears a frame until someone else wins it.${mypic && !canChange ? ` Get ${more} more points to change your picture.` : ""}${profiles[pid].admin ? " <b>Trial:</b> you can change things any time." : ""}</p>
     ${!mypic ? `<button class="btn" id="choosepic">Choose your picture</button>` : `<div class="row two">${canChange ? `<button class="btn ghost" id="choosepic">New picture</button>` : ""}${champ === pid || profiles[pid].admin ? `<button class="btn ghost" id="frame">Your frame</button>` : ""}</div>`}`;
   const choose = () => mypic ? choosePicture(wonTop3) : startStarter();
   if ($("#choosepic")) $("#choosepic").onclick = choose;
   if ($("#firstpic")) $("#firstpic").onclick = choose;
   if ($("#frame")) $("#frame").onclick = chooseFrame;
+  wireHold(el);
 }
 /* your first picture: a free round of 15 random works, not counted in your three a week, so everyone ends up with a different picture */
 async function startStarter(){ await loadDisc(); startSwipeNow({starter: true}); }
@@ -1354,6 +1369,8 @@ function swBoxHTML(pics){
   return `<div class="swbox"><button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">${left ? `${left === SW_WEEKLY ? "3 fresh rounds" : left === 1 ? "1 round left" : left + " rounds left"} this week` : "New rounds on Monday"}</span></span></button>${line ? `<button class="swline" id="picks"><span>${line}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>`;
 }
 function openSearch(){ const r = $(".tqrow"); if (!r) return; r.classList.remove("hidden"); const q = $("#tq"); q.focus(); scrollTo(0, 0); }
+/* artists A to Z by surname ("Jan van Eyck" under E); other sections stay in time order */
+const surname = n => { const w = String(n || "").replace(/[:(].*$/, "").trim().split(/\s+/); const i = w.findIndex((x, k) => k && /^(van|von|de|da|di|af|le|la|del|della|der)$/i.test(x)); return (i > 0 ? w.slice(i + 1) : w.slice(-1)).join(" ") || n; };
 function renderTopicsNew(){
   if (isAdmin() && !DISC) loadDisc().then(() => { if (document.body.dataset.tab === "topics" || $("#swipe")) { const b = $("#swipe .swthumbs"); if (b) b.innerHTML = swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join(""); } });
   const pics = isAdmin() ? swipeDeck(3, true) : [], played = Object.keys(TOPICS).filter(t => T(t).n > 0);
@@ -1391,7 +1408,7 @@ function renderTopicsNew(){
       <div class="tgroup"><span class="eyebrow">${played.length >= 3 ? "Carry on" : "Start here"}</span>${(played.length >= 3 ? recent : START.filter(t => TOPICS[t])).map(t => trowHTML(t)).join("")}</div>
       ${cmps().length ? `<div class="tgroup"><span class="eyebrow">Spot the difference</span><div class="cmprow">${[...cmps()].sort((a, b) => cmpNew(b) - cmpNew(a)).map(cmpCardHTML).join("")}</div></div>` : ""}
       ${whatsOnHTML()}
-      ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort((a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
+      ${KINDS.map(([k, label]) => { const mine = Object.keys(TOPICS).filter(t => TOPICS[t].kind === k).sort(k === "artist" ? (a, b) => surname(TOPICS[a].name).localeCompare(surname(TOPICS[b].name)) : (a, b) => (TOPICS[a].year || 0) - (TOPICS[b].year || 0));
         return mine.length ? sec(k, `${label} <span class="count">${mine.length}</span>`, mine.map(t => trowHTML(t)).join("")) : ""; }).join("")}
       <p class="tgrow">New topics every week, shaped by what you play. <button class="btn link" id="askt">Ask for one</button></p>`;
     if ($("#askt")) $("#askt").onclick = () => { openSearch(); q.focus(); q.placeholder = "Type an artist, movement or museum"; q.scrollIntoView({block: "center", behavior: "smooth"}); };
@@ -1450,7 +1467,7 @@ function swipeIntro(done){
       <div class="wtip"><span class="ico heart">${ic('<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>')}</span>Swipe right if it speaks to you.</div>
       <div class="wtip"><span class="ico">${ic('<path d="M5 12h14"/>')}</span>Swipe left to move on.</div>
       <div class="wtip"><span class="ico">${ic('<path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.3 7.6C3.6 9.4 2 12 2 12s4 6 10 6a9.6 9.6 0 0 0 4.4-1.1"/>')}</span>No names, just the art.</div>
-      <div class="wtip"><span class="ico">${ic('<path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/>')}</span>Your favourites build your taste.</div></div>
+      <div class="wtip"><span class="ico">${ic('<path d="M12 3l2.6 5.6L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.4-.7z"/>')}</span>Pick favourites at the end to learn more.</div></div>
     <div class="swfan" aria-hidden="true">${swipeDeck(3, true).map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</div>
     <div class="wfoot"><button class="btn" data-go="go">Let's swipe</button></div></div>`;
   document.body.appendChild(el); document.body.classList.add("welcoming");
@@ -1606,16 +1623,31 @@ function wireArtists(){
 }
 const byArtist = ws => { const m = {}; ws.forEach(w => (m[plainArtist(w.artist)] = m[plainArtist(w.artist)] || []).push(w)); return m; };
 /* everything you've loved, across rounds, by artist; tap × to take one out */
+/* everything you loved, one row per work like Your picks: tap Learn more to make it a pick; swipe left to remove */
 function renderTaste(){
   inRound(true); scrollTo(0, 0);
-  const ws = (state.taste || []).map(x => WD(x.id)).filter(Boolean), groups = Object.entries(byArtist(ws)).sort((a, b) => b[1].length - a[1].length);
+  const ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
+  const status = w => { const a = plainArtist(w.artist), t = artistTopic(a), picked = (state.picks || []).some(p => p.a === a) || state.asked["artist:" + a];
+    return t ? `<span class="small muted">Ready to play</span>` : picked ? `<span class="small muted">Topic on ${esc(a)} coming soon</span>` : `<span class="small"><span class="tlearn" data-learn="${esc(w.id)}">Learn more</span></span>`; };
   view.innerHTML = `
     <div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
-    <div class="stack"><h1>Everything you <span class="serif">loved</span></h1><p class="muted">${ws.length ? `${ws.length} ${ws.length === 1 ? "work" : "works"} by ${groups.length} ${groups.length === 1 ? "artist" : "artists"} that spoke to you.` : "Nothing here yet. Swipe right on what speaks to you."}</p></div>
-    <div class="picks">${groups.map(([a, w]) => artistCard(a, w, true)).join("")}</div>
-    `;
-  wireArtists();
-  $$("[data-rm]").forEach(b => b.onclick = e => { e.stopPropagation(); state.taste = (state.taste || []).filter(x => x.id !== b.dataset.rm); save(); const y = scrollY; renderTaste(); scrollTo(0, y); });
+    <div class="stack"><h1>Everything you <span class="serif">loved</span></h1><p class="muted">${ws.length ? `${ws.length} ${ws.length === 1 ? "work" : "works"} that spoke to you.` : "Nothing here yet. Swipe right on what speaks to you."}</p></div>
+    <div class="plist">${ws.map(w => { const t = artistTopic(plainArtist(w.artist)); return `<div class="pkrow" data-id="${w.id}"><button class="prm">Remove</button><div class="trow tpicrow" ${t ? `data-play="${t}"` : ""}><span class="tthumb" data-src="${esc(w.img)}" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="tbody"><span class="tname">${esc(plainArtist(w.artist))}</span><span class="small muted"><i>${esc(w.title)}</i>${w.year ? ", " + esc(yearText(w)) : ""}</span>${status(w)}</span></div></div>`; }).join("")}</div>
+    ${ws.length ? `<p class="small muted center">Swipe a work to the left to remove it.</p>` : ""}`;
+  wireHold(view);
+  $$("[data-play]").forEach(b => b.onclick = e => { if (!e.target.closest("[data-src]")) playTopic(b.dataset.play); });
+  $$("[data-learn]").forEach(b => b.onclick = e => { e.stopPropagation(); const w = WD(b.dataset.learn), a = plainArtist(w.artist);
+    state.picks = (state.picks || []).filter(p => p.a !== a).concat([{a, id: w.id, d: today(), n0: 0}]);
+    if (!state.asked["artist:" + a] && store.online){ state.asked["artist:" + a] = today(); requestMore("", "content", `Loved ${a}'s work in Swipe to discover and would like a topic on ${a}`, "artist:" + a).catch(() => {}); }
+    save(); b.parentNode.innerHTML = `<span class="muted">Topic on ${esc(a)} coming soon</span>`; });
+  $$(".plist .pkrow").forEach(row => {
+    const card = row.querySelector(".trow"); let x0 = null, dx = 0;
+    row.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.style.transition = "none"; });
+    row.addEventListener("pointermove", e => { if (x0 === null) return; dx = Math.min(0, e.clientX - x0); if (dx < -6) card.style.transform = `translateX(${Math.max(dx, -110)}px)`; });
+    const up = () => { if (x0 === null) return; x0 = null; card.style.transition = "transform .2s ease"; card.style.transform = dx < -50 ? "translateX(-96px)" : ""; };
+    row.addEventListener("pointerup", up); row.addEventListener("pointercancel", up);
+    row.querySelector(".prm").onclick = () => { state.taste = (state.taste || []).filter(x => x.id !== row.dataset.id); save(); renderTaste(); };
+  });
   $("#x").onclick = () => go("topics");
 }
 function renderTopics(){
@@ -1697,8 +1729,10 @@ function wireSwatches(onPick){ $$(".swatch").forEach(b => b.onclick = () => { on
 function adminName(){ const a = Object.values(profiles).find(p => p.admin); return a ? a.name : ""; }
 function renderProfiles(){
   $("#tabs").classList.add("hidden"); $("#who").classList.add("hidden"); inRound(false);
+  setTimeout(() => { if ($("#pback")) $("#pback").onclick = () => { $("#tabs").classList.remove("hidden"); go(NEW() ? "me" : "today"); }; });
   const ids = Object.keys(profiles).sort((a, b) => (profiles[a].created || 0) - (profiles[b].created || 0));
   view.innerHTML = `
+    ${pid && state ? `<div class="qhead"><span></span><button class="btn link" id="pback">Back</button></div>` : ""}
     <div class="stack"><h1 class="big">Who's <span class="serif">visiting?</span></h1><p class="muted">Tap your name. Everyone's progress is kept separately.</p></div>
     <div class="profiles">${ids.map(id => `<button class="prow" data-id="${id}"><span class="pstrip" style="${dotStyle(profiles[id])}">${esc(profiles[id].name[0])}</span><span class="pname">${esc(profiles[id].name)}</span></button>`).join("") || `<p class="small muted">No profiles yet. Make the first one.</p>`}</div>
     <button class="btn ${ids.length ? "ghost" : ""}" id="new">New profile</button>`;
@@ -1738,7 +1772,7 @@ function askPin(id, mode){
   view.innerHTML = `
     <div class="pinhead"><span class="pstrip big" style="${dotStyle(p)}">${esc(p.name[0])}</span><h1 class="big">${esc(p.name)}</h1></div>
     <div class="stack"><label class="eyebrow" for="pp">${setting ? (p.pin ? "Choose a new 4-digit PIN" : "Choose a 4-digit PIN") : "Your PIN"}</label>
-      <input type="password" id="pp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="${setting ? "new-password" : "current-password"}" placeholder="····">
+      <input type="text" id="pp" class="pinput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autocorrect="off" spellcheck="false" name="mg-pin-${Date.now()}" placeholder="····">
       <p class="small muted" id="pmsg" aria-live="polite">${setting ? "So nobody plays as you by accident." : adm && adm !== p.name ? `Forgotten it? Ask ${esc(adm)} to reset it.` : ""}</p></div>
     <div class="row two"><button class="btn ghost" id="back">Back</button><button class="btn" id="ok" disabled>${setting ? "Save PIN" : "Open"}</button></div>`;
   const pin = $("#pp"), ok = $("#ok"), msg = $("#pmsg");
@@ -1813,7 +1847,7 @@ async function showWelcome(done){
   document.body.appendChild(el); document.body.classList.add("welcoming");
   let i = 0;
   const finish = () => { local.set("welcomed", today()); el.remove(); document.body.classList.remove("welcoming"); done(); };
-  const pips = () => `<div class="pips">${[0, 1, 2].map(k => `<i class="${k === i ? "on" : ""}"></i>`).join("")}</div>`;
+  const pips = () => `<div class="pips">${pages.map((_, k) => `<i class="${k === i ? "on" : ""}"></i>`).join("")}</div>`;
   const pages = [
     () => `<div class="wpage poster">
         ${art ? `<div class="arch" data-src="${esc(art.img)}" role="img" aria-label="${esc(art.artist + ", " + art.title)}"><span style="background-image:url('${esc(art.img)}')"></span></div><span class="archcap">${esc(art.artist)}, <i>${esc(art.title)}</i></span>` : ""}
@@ -1831,11 +1865,18 @@ async function showWelcome(done){
           <div class="wtip"><span class="ico">${HOST_ICONS.flag}</span>Spot a mistake? Tap the flag.</div>
           <div class="wtip"><span class="ico">${dots(2)}</span>Climb from Visitor to Curator in every topic.</div></div>
         <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`,
+    ...(NEW() ? [() => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
+        <span class="eyebrow" style="color:var(--klein)">And beyond the round</span>
+        <h2 class="wh2">Explore, <span class="serif">then hang</span></h2>
+        <div class="wroom"><span class="wsign">◐</span><div><b>Topics</b><span>Every artist and movement, Spot the difference, and Swipe to discover: three rounds a week of art you haven't met yet. Pick favourites to learn more about.</span></div></div>
+        <div class="wroom r2"><span class="wsign">▤</span><div><b>The Wall</b><span>This week's points, with everyone shown by a picture they love. Rounds, fixed mistakes, days in a row and Swipe all earn points.</span></div></div>
+        <div class="wtips"><div class="wtip"><span class="ico">${HOST_ICONS.tap}</span>Tap your picture, top right on the Wall, for your profile and settings.</div></div>
+        <div class="wfoot"><button class="btn" data-go="next">Next</button>${pips()}</div></div>`] : []),
     () => `<div class="wpage"><button class="btn link wskip" data-go="skip">Skip</button>
         <div class="wlabel"><span class="eyebrow">House rules</span><h2 class="wh2">Before you <span class="serif">go in</span></h2>
           <div class="wrule"><span class="n">i</span><div><b>It's private</b><span>Just for friends and family, so please keep the link to yourself.</span></div></div>
           <div class="wrule"><span class="n">ii</span><div><b>Your name is on the door</b><span>Everyone who plays sees every profile's name and colour. A first name or nickname is perfect.</span></div></div>
-          <div class="wrule"><span class="n">iii</span><div><b>Your scores are yours</b><span>Your scores aren't shown to anyone else. Feedback you send arrives with your name.</span></div></div>
+          ${NEW() ? `<div class="wrule"><span class="n">iii</span><div><b>Your points are on the Wall</b><span>Everyone sees this week's points and pictures on the Wall. Your answers stay yours. Feedback you send arrives with your name.</span></div></div>` : `<div class="wrule"><span class="n">iii</span><div><b>Your scores are yours</b><span>Your scores aren't shown to anyone else. Feedback you send arrives with your name.</span></div></div>`}
           <div class="wrule"><span class="n">iv</span><div><b>The PIN stops mix-ups</b><span>Choose four digits you don't use for anything else.${adm ? ` ${esc(adm)} can reset it if you forget.` : ""}</span></div></div></div>
         <div class="wstub"><span class="eyebrow">Morning Gallery · No. ${String(Math.max(1, n)).padStart(4, "0")}</span><span class="adm">Admit one</span></div>
         <div class="wfoot"><button class="btn" data-go="done">${pid ? "Back to the gallery" : "Continue"}</button>${pips()}</div></div>`
