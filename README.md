@@ -81,3 +81,6 @@ The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and p
 - One list, "Everything you loved", replaces the separate "Your picks" screen on this profile: the Swipe card on Topics always links to it, rows are ordered ready to play, then Requested, then Learn more, and the status reads Play, Requested (was "Coming soon") or Learn more. First visit only, the top row slides left once to show Remove.
 - Starter picture screen: with one like it is already selected, with "Use as my picture", "Show me more first" available whenever there are fewer than 10 likes, "Choose later" at the top, and a line saying other likes are saved in Everything you loved.
 - No weekly limit on "Learn more" requests for now (Luna's call): the more requests, the better the sense of which topics are popular. Review at the end of the week.
+
+## Score history (kept quietly, no screen uses it yet)
+- Each player's saved progress keeps `pts` (this week: `k` = Monday date, `n` = points), `ptsPrev` (last week only), `ptsAll` (running total since 24 Nov 2026) and, from 25 Nov 2026, `ptsHist`: a list of `{k, n}` for every finished week, added when the player first scores in a later week. Last week's winner is still worked out from `ptsPrev`; past winners could be worked out from every player's `ptsHist` if we build a hall of fame or seasons. Nothing is shown from it yet.

@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 10:44"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 10:49"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -538,7 +538,7 @@ const SEASON = "2026-11-24";
 function addPts(n){
   if (state.ptsS !== SEASON){ delete state.pts; delete state.ptsPrev; state.ptsAll = 0; state.picAt = 0; state.ptsS = SEASON; }
   const k = weekKey(), p = state.pts || {};
-  if (p.k !== k){ if (p.k) state.ptsPrev = {k: p.k, n: p.n || 0}; state.pts = {k, n: 0}; }
+  if (p.k !== k){ if (p.k){ state.ptsPrev = {k: p.k, n: p.n || 0}; (state.ptsHist = state.ptsHist || []).push({k: p.k, n: p.n || 0}); } /* ptsHist: every finished week, kept for a future all-time table or past winners */ state.pts = {k, n: 0}; }
   state.pts.n += n; state.ptsAll = (state.ptsAll || 0) + n;
 }
 const lastWeekKey = () => { const d = new Date(); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) - 7); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
