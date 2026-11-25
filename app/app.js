@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 08:59"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 10:08"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -92,6 +92,14 @@ const store = {
     local.set(id, data);
     if (!this.online) return;
     try { await sb("kv", {method:"POST", headers:{Prefer:"resolution=merge-duplicates,return=minimal"}, body: JSON.stringify([{id, data, updated_at: new Date().toISOString()}])}); } catch(e){}
+  },
+  /* for other players' points: ask the server up to three times; undefined means it could not be reached (never an old copy kept on the phone, which showed everyone on 0) */
+  async getFresh(id){
+    for (let t = 0; t < 3 && this.online; t++){
+      try { const rows = await sb("kv?select=data&id=eq." + encodeURIComponent(id)); if (rows.length){ local.set(id, rows[0].data); return rows[0].data; } return null; }
+      catch(e){ await new Promise(r => setTimeout(r, 500 * (t + 1))); }
+    }
+    return undefined;
   },
   async get(id){
     if (this.online){ try { const rows = await sb("kv?select=data&id=eq." + encodeURIComponent(id)); if (rows.length){ local.set(id, rows[0].data); return rows[0].data; } return null; } catch(e){} }
@@ -1323,12 +1331,14 @@ const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span
    Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,
    or after 100 more points. Last week's winner wears a frame of their choosing until someone else wins. */
 const WALLC = {};
-async function leaderboard(){
+async function leaderboard(attempt = 0){
   const ids = Object.keys(profiles).filter(id => !profiles[id].removed);
   /* everyone's progress in one go; the deck (for pictures) loads alongside */
-  const [sts] = await Promise.all([Promise.all(ids.map(id => id === pid ? state : (WALLC[id] ? Promise.resolve(WALLC[id]) : store.get("progress:" + id).catch(() => null)))), loadDisc()]);
+  const [sts] = await Promise.all([Promise.all(ids.map(id => id === pid ? state : (WALLC[id] ? Promise.resolve(WALLC[id]) : store.getFresh("progress:" + id).catch(() => undefined)))), loadDisc()]);
+  const missed = ids.filter((id, i) => id !== pid && sts[i] === undefined);
+  if (missed.length && attempt < 3 && $("#board")) setTimeout(() => { if ($("#board")) leaderboard(attempt + 1); }, 2000);
   ids.forEach((id, i) => { if (id !== pid && sts[i]) WALLC[id] = {pts: sts[i].pts, ptsPrev: sts[i].ptsPrev, pic: sts[i].pic, frame: sts[i].frame, stats: sts[i].stats}; });
-  setTimeout(() => ids.forEach(id => { if (id !== pid) store.get("progress:" + id).then(st => { if (st) WALLC[id] = {pts: st.pts, ptsPrev: st.ptsPrev, pic: st.pic, frame: st.frame, stats: st.stats}; }).catch(() => {}); }), 4000);
+  setTimeout(() => ids.forEach(id => { if (id !== pid) store.getFresh("progress:" + id).then(st => { if (st) WALLC[id] = {pts: st.pts, ptsPrev: st.ptsPrev, pic: st.pic, frame: st.frame, stats: st.stats}; }).catch(() => {}); }), 4000);
   const rows = ids.map((id, i) => ({id, st: sts[i]})).filter(r => r.st && r.st.stats).map(r => Object.assign(r, {n: weekPts(r.st), last: lastPts(r.st)}));
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
   const lastTop = rows.filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
