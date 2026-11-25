@@ -77,7 +77,7 @@ The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and p
 - On this profile quick fire is a round of 10 questions and the old "1 point for every 2 extra questions" no longer applies. This is now live for everyone, together with levelling in the summary, timeline zoom, the smoother sheet and the new Today screen below. The quick fire summary has one button, "Another quick fire round", plus "Back to today".
 - Today screen after the coffee round (live for everyone): "Something new" and "Go deeper" are both blue, because both are topics. Below them is a pink Quick fire card, "A round of 10 random questions", which replaces the "or play any topic" link. The quick fire progress bar at the top fills pink, in tenths.
 
-## Loved list and starter end (Luna's profile only, 25 Nov 2026)
-- One list, "Everything you loved", replaces the separate "Your picks" screen on this profile: the Swipe card on Topics always links to it, rows that are ready to play come first, and the status reads Play, Requested (was "Coming soon") or Learn more. First visit only, the top row slides left once to show Remove.
-- Starter picture screen: with one like it is already selected, with "Use as my picture", "Show me more first" always available, "Choose later" at the top, and a line saying other likes are saved in Everything you loved.
+## Loved list and starter end (live for everyone since 25 Nov 2026)
+- One list, "Everything you loved", replaces the separate "Your picks" screen on this profile: the Swipe card on Topics always links to it, rows are ordered ready to play, then Requested, then Learn more, and the status reads Play, Requested (was "Coming soon") or Learn more. First visit only, the top row slides left once to show Remove.
+- Starter picture screen: with one like it is already selected, with "Use as my picture", "Show me more first" available whenever there are fewer than 10 likes, "Choose later" at the top, and a line saying other likes are saved in Everything you loved.
 - No weekly limit on "Learn more" requests for now (Luna's call): the more requests, the better the sense of which topics are popular. Review at the end of the week.
