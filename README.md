@@ -23,6 +23,9 @@ Nothing personal is stored here. Profiles, progress and feedback live in Supabas
 - The "Stretch" label on questions above your level stays (Luna likes it: it makes you feel smart).
 - Never explain the app's mechanics on screen (how levels, scoring, review rounds or progress are worked out). The only levelling text is "You're not far from becoming a <next level>." when someone is close.
 - Question screen: answers sit just above the Check button and nothing moves when the answer appears. No "Pick N" line or tag on pick-several questions; the button counts down instead.
+- Levelling up only happens in the round summary, never mid-round: the question screens keep the same level all the way through. (Preview on Luna's profile only, 25 Nov 2026.)
+- Timelines zoom in to the pictures on them. Open-ended movements (marked `fade`) only run about 12 years past the last picture, so dots stay far enough apart to tap; dots from nearly the same year fan out. (Preview on Luna's profile only, 25 Nov 2026.)
+- Order questions use the topic's first intro picture when no work is tagged with the movement itself, so every row has a picture.
 - Every topic intro has 3 cards, each with its own picture that matches the card (never repeated, never missing). Card 1 says who or what the topic is and what the art is like, so a complete newcomer gets a feel for it; "In the news" comes second.
 - Everyone gets the searchable Topics page (sections by kind, What's on). Trial feature, shown only to the admin profile for now: "Swipe to discover" (upright works only, using each work's "hw" = height ÷ width; give new works an "hw" value). Requests from failed searches and from liked artists without their own topic arrive in the weekly feedback as kind "content": treat them as suggestions for new topics, especially artist topics.
 

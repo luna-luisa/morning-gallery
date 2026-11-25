@@ -793,8 +793,9 @@ body:not(.booted) #app, body:not(.booted) .tabs{visibility:hidden;animation:mgre
 .cmppair .spot.thumb{width:100%;aspect-ratio:auto;height:250px;padding:0;display:flex;align-items:flex-end;justify-content:center}
 .cmppair .spot.thumb img{max-width:100%;max-height:250px;width:auto;height:auto;object-fit:contain;box-shadow:0 6px 16px rgba(40,30,15,.2)}
 
-.th.round button.d{padding:0;cursor:pointer;appearance:none}
-.th.round button.d.on{transform:scale(1.35);box-shadow:0 0 0 3px rgba(31,63,209,.25)}
+.th.round button.d{padding:0;cursor:pointer;appearance:none;transform:translateX(var(--nx,0px))}
+.th.round button.d::after{content:"";position:absolute;inset:-14px;border-radius:50%}
+.th.round button.d.on{transform:translateX(var(--nx,0px)) scale(1.35);box-shadow:0 0 0 3px rgba(31,63,209,.25)}
 .tile.pic{overflow:hidden}
 /* ---- Swipe, fresh look (Nov 2026): the app's own wall, matching buttons, picks ---- */
 .swey{color:var(--klein)}
@@ -1008,3 +1009,6 @@ body.newlook .wnx{display:none}
 .wroom.wvis{grid-template-columns:84px 1fr}
 .wroom.wvis .wsign{background:var(--wall)}
 .wroom.wvis .wnvis.wall{background:transparent}
+
+/* the sheet's handle and verdict row are drag areas: stop the browser taking the swipe for a page scroll */
+.sheetin .grab,.sheetin .vrow{touch-action:none}

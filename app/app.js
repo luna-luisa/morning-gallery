@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "24 Nov, 22:37"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 07:17"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -251,7 +251,7 @@ const BUILD = {
   },
   O(key){
     const set = key.slice(2).split(","); if (!set.every(x => TOPICS[x])) return null;
-    return {key, topic:set[0], level:2, type:"order", prompt:"Put these in order, oldest first.", topics:set, items: shuffle(set.map(x => ({label:TOPICS[x].name, sub:TOPICS[x].span, year:TOPICS[x].year, art:(ART.find(w => w.topic === x) || {}).id})))};
+    return {key, topic:set[0], level:2, type:"order", prompt:"Put these in order, oldest first.", topics:set, items: shuffle(set.map(x => ({label:TOPICS[x].name, sub:TOPICS[x].span, year:TOPICS[x].year, art:(ART.find(w => w.topic === x) || W[(TOPICS[x].intro[0] || {}).art] || {}).id})))};
   },
   N(key){ const id = key.slice(2), it = newsItems().find(n => n.id === id); if (!it) return null; const a = it.answer || 0; return mc({key, topic:TOPICS[it.topic] ? it.topic : null, level:0, prompt:it.question, options:[it.options[a], ...it.options.filter((_, i) => i !== a)], explain:it.explain, notes:it.notes, source:it.source, reveal: it.reveal || (W[it.art] ? it.art : null), news:true, long:true}); }
 };
@@ -337,18 +337,27 @@ function groupedWhy(x, wrongs){
 }
 function timeH(asked, rights, wrongs, o = {}){
   /* a loose label with no set years (e.g. Modern British art) gets no green band, just the dots */
-  const band = !!asked.from, to = band ? Math.min(asked.to, 2025) : null, faint = [];
+  const band = !!asked.from; let to = band ? Math.min(asked.to, 2025) : null; const faint = [];
   if (band && asked.kind === "artist"){ const ys0 = rights.map(w => w.year).filter(Boolean); if (ys0.length && Math.min(...ys0) < asked.from) asked = Object.assign({}, asked, {from: Math.min(...ys0)}); } // an artist's band spans every work of theirs on the strip
   const lab = asked.kind === "artist" ? asked.name : asked.era || asked.name;
   wrongs.forEach(w => { let t = TOPICS[w.topic]; if (t && t.movement && TOPICS[t.movement]) t = TOPICS[t.movement]; if (t && t.from && (t.era || t.name) !== (asked.era || asked.name) && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   (o.extra || []).forEach(t => { if (t && t.from && t !== asked && !faint.some(f => f.t === t)) faint.push({t, from: t.from, to: Math.min(t.to, 2025)}); });
   const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
+  /* open-ended movements (still going, fading out) only run a little past the pictures on the strip, so the strip stays zoomed in on them */
+  const cto = (from, end) => Math.min(end, Math.max(from, ...ys) + 12);
+  if (isAdmin()){ if (band && asked.fade) to = cto(asked.from, to); faint.forEach(f => { if (f.t.fade) f.to = cto(f.from, f.to); }); }
   let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
   lo = Math.floor((lo - pad) / step) * step; hi = Math.min(Math.ceil((hi + pad) / step) * step, new Date().getFullYear()); // never run into the future
   const X = y => ((y - lo) / (hi - lo) * 100).toFixed(2) + "%", ticks = []; for (let y = Math.ceil(lo / step) * step; y <= hi; y += step) ticks.push(y);
-  const many = !o.plain && wrongs.length > 1, tap = (i, cls) => o.plain ? `<button class="d ${cls}" data-tl="${i}" style="left:${X([...rights, ...wrongs][i].year)}" aria-label="${esc([...rights, ...wrongs][i].title || "")}"></button>` : null;
+  const many = !o.plain && wrongs.length > 1;
+  /* pictures from nearly the same year would sit on top of each other: fan them out a little so each one can be tapped */
+  const allP = [...rights, ...wrongs], nudge = allP.map(() => 0);
+  if (o.plain && isAdmin()){ const order = allP.map((w, i) => i).filter(i => allP[i].year).sort((a, b) => allP[a].year - allP[b].year); let grp = [];
+    const flush = () => { grp.forEach((i, k) => nudge[i] = Math.round((k - (grp.length - 1) / 2) * 17)); grp = []; };
+    order.forEach(i => { if (grp.length && (allP[i].year - allP[grp[grp.length - 1]].year) / (hi - lo) * 100 >= 7) flush(); grp.push(i); }); flush(); }
+  const tap = (i, cls) => o.plain ? `<button class="d ${cls}" data-tl="${i}" style="left:${X([...rights, ...wrongs][i].year)};${nudge[i] ? `--nx:${nudge[i]}px;` : ""}" aria-label="${esc([...rights, ...wrongs][i].title || "")}"></button>` : null;
   return `<div class="th${o.plain ? " round" : ""}">${band ? `<b class="gl" style="left:${X(asked.from)}">${esc(lab)}</b>` : ""}<span class="tlline"></span>
     ${faint.map(f => `<span class="fband ${f.t.fade ? "fade" : ""}" style="left:${X(f.from)};width:calc(${X(f.to)} - ${X(f.from)})"></span><span class="fl" style="left:${X(f.from)}">${esc(f.t.era || f.t.name)}</span>`).join("")}
     ${band ? `<span class="gband ${asked.fade ? "fade" : ""}" style="left:${X(asked.from)};width:calc(${X(to)} - ${X(asked.from)})"></span>` : ""}
@@ -902,7 +911,8 @@ function answered(x, ok){
   if (x.topic && TOPICS[x.topic] && !x.news){
     const t = T(x.topic), d = today(); t.n++;
     if (ok){ t.c++; t.hits[x.key] = [...new Set([...(t.hits[x.key] || []), d])].slice(-5); }
-    up = maybeLevelUp(x.topic);
+    /* preview (Luna's profile only): levelling happens once, in the round summary (finish), never mid-round */
+    if (!isAdmin()) up = maybeLevelUp(x.topic);
   }
   const note = x.news ? "" : srs(x, ok);
   if (x.news) state.seenNews[x.key.slice(2)] = true;
@@ -934,7 +944,15 @@ function answered(x, ok){
   requestAnimationFrame(() => sh.classList.add("up"));
   if (document.body.dataset.screen === "q") keepPromptVisible(); else setTimeout(keepPromptVisible, 320);
   const inner = sh.querySelector(".sheetin");
-  const setMin = m => { sh.classList.toggle("min", m); if (document.body.dataset.screen === "q") requestAnimationFrame(() => { view.style.paddingBottom = (inner.offsetHeight + 14) + "px"; }); };
+  const setMin = m => {
+    const bd = sh.querySelector(".sheetbody"), after = () => { if (document.body.dataset.screen === "q") view.style.paddingBottom = (inner.offsetHeight + 14) + "px"; };
+    if (m === sh.classList.contains("min")) return;
+    /* fold the explanation away (and open it again) smoothly instead of snapping */
+    if (!isAdmin() || !bd || !bd.animate || matchMedia("(prefers-reduced-motion: reduce)").matches){ sh.classList.toggle("min", m); requestAnimationFrame(after); return; }
+    const ease = {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)"}; bd.style.overflow = "hidden";
+    if (m){ const h = bd.offsetHeight, a = bd.animate([{maxHeight: h + "px", opacity: 1}, {maxHeight: "0px", opacity: 0}], Object.assign({fill: "forwards"}, ease)); a.onfinish = () => { sh.classList.add("min"); a.cancel(); bd.style.overflow = ""; after(); }; }
+    else { sh.classList.remove("min"); const h = bd.offsetHeight, a = bd.animate([{maxHeight: "0px", opacity: 0}, {maxHeight: h + "px", opacity: 1}], ease); a.onfinish = () => { bd.style.overflow = ""; after(); }; }
+  };
   /* scrolling the panel's content opens it to full height; swipe down or tap the handle to bring it back */
   const body = sh.querySelector(".sheetbody"), setFull = f => { sh.classList.toggle("full", f); if (!f && body) body.scrollTop = 0; };
   if (body) body.addEventListener("scroll", () => { if (body.scrollTop > 4 && !sh.classList.contains("full") && !sh.classList.contains("min")) setFull(true); }, {passive: true});
@@ -942,7 +960,8 @@ function answered(x, ok){
   let y0 = null, dy = 0;
   inner.addEventListener("pointerdown", e => { if (e.target.closest("button:not(.grab), a, .rimg, .mini") || e.clientY - inner.getBoundingClientRect().top > 90) return; y0 = e.clientY; dy = 0; inner.style.transition = "none"; });
   addEventListener("pointermove", e => { if (y0 === null || !sh.isConnected) return; dy = e.clientY - y0; if (!sh.classList.contains("min")) inner.style.transform = `translateY(${Math.max(0, dy)}px)`; });
-  addEventListener("pointerup", () => { if (y0 === null || !sh.isConnected) return; y0 = null; inner.style.transition = ""; inner.style.transform = ""; if (dy > 50) { if (sh.classList.contains("full")) setFull(false); else setMin(true); } else if (dy < -30) setMin(false); });
+  const dragEnd = () => { if (y0 === null || !sh.isConnected) return; y0 = null; inner.style.transition = ""; inner.style.transform = ""; if (dy > 50) { if (sh.classList.contains("full")) setFull(false); else setMin(true); } else if (dy < -30) setMin(false); };
+  addEventListener("pointerup", dragEnd); addEventListener("pointercancel", dragEnd);
   wireHold(sh);
   if ($("#flag")) wireFlag(x);
   if ($("#more") && !state.asked[x.key]) $("#more").onclick = async () => {
@@ -1052,7 +1071,7 @@ function finish(){
   if (S.mode === "topic") markPlayed(S.topic);
   save();
   const cmpWas = S.mode === "compare" ? S.cmp : null;
-  const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, L = lvlOf(tid), ups = S.results.filter(r => r.up);
+  const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, ups = isAdmin() ? [...new Set(S.results.map(r => r.topic).filter(t => t && TOPICS[t]))].map(t => ({topic: t, up: maybeLevelUp(t)})).filter(u => u.up) : S.results.filter(r => r.up), L = lvlOf(tid);
   const missed = S.results.filter(r => !r.ok).length;
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
