@@ -1,6 +1,8 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "25 Nov, 07:59"; // shown as a small footnote on the Me page
+/* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
+const NEWX = true;
+const BUILD_AT = "25 Nov, 08:18"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -345,7 +347,7 @@ function timeH(asked, rights, wrongs, o = {}){
   const ys = [...rights, ...wrongs].map(w => w.year).filter(Boolean);
   /* open-ended movements (still going, fading out) only run a little past the pictures on the strip, so the strip stays zoomed in on them */
   const cto = (from, end) => Math.min(end, Math.max(from, ...ys) + 12);
-  if (isAdmin()){ if (band && asked.fade) to = cto(asked.from, to); faint.forEach(f => { if (f.t.fade) f.to = cto(f.from, f.to); }); }
+  if (NEWX){ if (band && asked.fade) to = cto(asked.from, to); faint.forEach(f => { if (f.t.fade) f.to = cto(f.from, f.to); }); }
   let lo = Math.min(...(band ? [asked.from] : []), ...ys, ...faint.map(f => f.from)), hi = Math.max(...(band ? [to] : []), ...ys, ...faint.map(f => f.to));
   const span = Math.max(hi - lo, 6), pad = Math.max(2, span * 0.1);
   const step = [5, 10, 20, 25, 50, 100, 200, 500].find(s => (span + 2 * pad) / s <= 6) || 500;
@@ -354,7 +356,7 @@ function timeH(asked, rights, wrongs, o = {}){
   const many = !o.plain && wrongs.length > 1;
   /* pictures from nearly the same year would sit on top of each other: fan them out a little so each one can be tapped */
   const allP = [...rights, ...wrongs], nudge = allP.map(() => 0);
-  if (o.plain && isAdmin()){ const order = allP.map((w, i) => i).filter(i => allP[i].year).sort((a, b) => allP[a].year - allP[b].year); let grp = [];
+  if (o.plain && NEWX){ const order = allP.map((w, i) => i).filter(i => allP[i].year).sort((a, b) => allP[a].year - allP[b].year); let grp = [];
     const flush = () => { grp.forEach((i, k) => nudge[i] = Math.round((k - (grp.length - 1) / 2) * 17)); grp = []; };
     order.forEach(i => { if (grp.length && (allP[i].year - allP[grp[grp.length - 1]].year) / (hi - lo) * 100 >= 7) flush(); grp.push(i); }); flush(); }
   const tap = (i, cls) => o.plain ? `<button class="d ${cls}" data-tl="${i}" style="left:${X([...rights, ...wrongs][i].year)};${nudge[i] ? `--nx:${nudge[i]}px;` : ""}" aria-label="${esc([...rights, ...wrongs][i].title || "")}"></button>` : null;
@@ -671,7 +673,7 @@ let loadingToken = 0;
 async function next(delta){
   if (!S) return;
   S.i += delta;
-  if (S.mode === "endless" && isAdmin() && S.i >= 10) return finish(); // preview: quick fire is a round of 10
+  if (S.mode === "endless" && NEWX && S.i >= 10) return finish(); // preview: quick fire is a round of 10
   if (S.mode === "endless" && S.i >= S.q.length) pushEndless();
   if (S.i >= S.q.length) return finish();
   const tok = ++loadingToken, raw = S.q[S.i];
@@ -811,7 +813,7 @@ function render(){
   if (hint){ state.hints = (state.hints || 0) + 1; }
   view.dataset.kind = w ? "pic" : x.type === "pick" ? "picans" : x.type === "order" ? "order" : x.venues ? "venue" : "text";
   view.innerHTML = `
-    ${S.mode === "endless" && !isAdmin() ? `<div class="line"></div>` : `<div class="line${S.mode === "endless" ? " qfline" : ""}"><i style="width:${S.mode === "endless" ? S.i * 10 : progress}%"></i></div>`}
+    ${S.mode === "endless" && !NEWX ? `<div class="line"></div>` : `<div class="line${S.mode === "endless" ? " qfline" : ""}"><i style="width:${S.mode === "endless" ? S.i * 10 : progress}%"></i></div>`}
     <div class="qhead">
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
@@ -915,18 +917,18 @@ function answered(x, ok){
     const t = T(x.topic), d = today(); t.n++;
     if (ok){ t.c++; t.hits[x.key] = [...new Set([...(t.hits[x.key] || []), d])].slice(-5); }
     /* preview (Luna's profile only): levelling happens once, in the round summary (finish), never mid-round */
-    if (!isAdmin()) up = maybeLevelUp(x.topic);
+    if (!NEWX) up = maybeLevelUp(x.topic);
   }
   const note = x.news ? "" : srs(x, ok);
   if (x.news) state.seenNews[x.key.slice(2)] = true;
   state.stats.answered++; if (ok) state.stats.correct++;
   /* 1 point for every 2 extra questions outside the coffee round and Spot the difference */
-  if (!isAdmin() && S.mode !== "round" && S.mode !== "compare"){ state.xq = (state.xq || 0) + 1; if (state.xq % 2 === 0) addPts(1); }
+  if (!NEWX && S.mode !== "round" && S.mode !== "compare"){ state.xq = (state.xq || 0) + 1; if (state.xq % 2 === 0) addPts(1); }
   S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up, art: x.art, wrong: x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => x.images[i]) : []}); S.ans = S.i;
   save(); keepRound();
   const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
   const w = x.art && x.type !== "pick" ? W[x.art] : null, fact = x.explain || (w && w.hook) || (rw && rw.hook) || "";
-  const last = S.mode === "endless" ? isAdmin() && S.i === 9 : S.i === S.q.length - 1;
+  const last = S.mode === "endless" ? NEWX && S.i === 9 : S.i === S.q.length - 1;
   const wrongIds = x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => x.images[i]).filter(id => W[id]) : [];
   const review = x.type === "pick" && !x.unsure && wrongIds.length > 0;
   closeSheet();
@@ -953,7 +955,7 @@ function answered(x, ok){
     const bd = sh.querySelector(".sheetbody"), after = () => { if (document.body.dataset.screen === "q") view.style.paddingBottom = (inner.offsetHeight + 14) + "px"; };
     if (m === sh.classList.contains("min")) return;
     /* fold the explanation away (and open it again) smoothly instead of snapping */
-    if (!isAdmin() || !bd || !bd.animate || matchMedia("(prefers-reduced-motion: reduce)").matches){ sh.classList.toggle("min", m); requestAnimationFrame(after); return; }
+    if (!NEWX || !bd || !bd.animate || matchMedia("(prefers-reduced-motion: reduce)").matches){ sh.classList.toggle("min", m); requestAnimationFrame(after); return; }
     const ease = {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)"}; bd.style.overflow = "hidden";
     if (m){ const h = bd.offsetHeight, a = bd.animate([{maxHeight: h + "px", opacity: 1}, {maxHeight: "0px", opacity: 0}], Object.assign({fill: "forwards"}, ease)); a.onfinish = () => { sh.classList.add("min"); a.cancel(); bd.style.overflow = ""; after(); }; }
     else { sh.classList.remove("min"); const h = bd.offsetHeight, a = bd.animate([{maxHeight: "0px", opacity: 0}, {maxHeight: h + "px", opacity: 1}], ease); a.onfinish = () => { bd.style.overflow = ""; after(); }; }
@@ -1072,7 +1074,7 @@ function roundTimeline(tid){
 }
 /* the bill: every point from this round, line by line (Luna's profile first) */
 function billHTML(){
-  const b = (S && S.bill) || []; if (!isAdmin() || !b.length) return "";
+  const b = (S && S.bill) || []; if (!NEWX || !b.length) return "";
   const tot = b.reduce((a, x) => a + x.n, 0), wk = (state.pts && state.pts.n) || 0;
   return `<div class="bill"><span class="eyebrow">Your points</span>
     ${b.map(x => `<div class="bl"><div class="brow"><span>${esc(x.label)}</span><i></i><b>${x.n}</b></div>${x.sub ? `<span class="bsub">${esc(x.sub)}</span>` : ""}</div>`).join("")}
@@ -1084,13 +1086,13 @@ function finish(){
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); billAdd("Coffee round", PTS.round); }
   if (S.mode === "topic") markPlayed(S.topic);
   /* preview (Luna's profile only): a topic round and a round of 10 quick fire questions each earn 5 */
-  if (isAdmin() && S.mode === "topic") billAdd("Topic round", PTS.topic);
-  if (isAdmin() && S.mode === "endless") billAdd("Quick fire round", PTS.quick);
+  if (NEWX && S.mode === "topic") billAdd("Topic round", PTS.topic);
+  if (NEWX && S.mode === "endless") billAdd("Quick fire round", PTS.quick);
   /* Spot the difference earns 5 the first time on a comparison, 2 each time after */
   if (S.mode === "compare"){ const pl = state.cmpPlays = state.cmpPlays || {}; billAdd("Spot the difference", pl[S.cmp.id] ? PTS.cmpAgain : PTS.cmpFirst, S.cmp.title); pl[S.cmp.id] = (pl[S.cmp.id] || 0) + 1; }
   save();
   const cmpWas = S.mode === "compare" ? S.cmp : null, wasEndless = S.mode === "endless";
-  const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, ups = isAdmin() ? [...new Set(S.results.map(r => r.topic).filter(t => t && TOPICS[t]))].map(t => ({topic: t, up: maybeLevelUp(t)})).filter(u => u.up) : S.results.filter(r => r.up), L = lvlOf(tid);
+  const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, ups = NEWX ? [...new Set(S.results.map(r => r.topic).filter(t => t && TOPICS[t]))].map(t => ({topic: t, up: maybeLevelUp(t)})).filter(u => u.up) : S.results.filter(r => r.up), L = lvlOf(tid);
   ups.forEach(u => billAdd("Level up", PTS.level, `${LEVELS[u.up - 1]} in ${tName(u.topic)}`)); if (ups.length) save(); // 5 points for each level gained
   const missed = S.results.filter(r => !r.ok).length;
   view.innerHTML = `
@@ -1099,13 +1101,13 @@ function finish(){
       <p class="muted">${missed ? "" : "Clean sweep."}</p></div>
     ${billHTML()}
     ${roundTimeline(tid)}
-    ${isAdmin() ? "" : ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
+    ${NEWX ? "" : ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
     <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</button>
-    <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : cmpWas ? `<button class="btn" id="again">Another round</button>` : S.mode === "endless" && isAdmin() ? `<button class="btn" id="again">Another quick fire round</button>` : ""}<button class="btn ${S.mode === "topic" || cmpWas ? "ghost" : ""}" id="keep" ${S.mode === "endless" && isAdmin() ? "hidden" : ""}>Quick fire: a mix of everything</button><button class="btn ghost" id="home">Back to today</button></div>
+    <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : cmpWas ? `<button class="btn" id="again">Another round</button>` : S.mode === "endless" && NEWX ? `<button class="btn" id="again">Another quick fire round</button>` : ""}${S.mode === "endless" ? "" : `<button class="btn ${S.mode === "topic" || cmpWas ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button>`}<button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
   $$("[data-tl]").forEach(b => b.onclick = () => { const p = TLP[+b.dataset.tl]; $$("[data-tl]").forEach(o => o.classList.toggle("on", o === b)); $("#tlcap").innerHTML = `<span class="pthumb" style="background-image:url('${esc(tsrc(p.w.img))}')"></span><span><b><i>${esc(p.w.title)}</i></b><br><span class="small">${esc(p.w.artist)}, ${esc(yearText(p.w))}</span> ${eraTag(p.w)}</span>`; });
   $("#tcard").onclick = () => go("topic", tid);
-  $("#keep").onclick = quickFireIntro;
+  if ($("#keep")) $("#keep").onclick = quickFireIntro;
   if ($("#again")) $("#again").onclick = () => cmpWas ? cmpRound(cmpWas) : wasEndless ? startEndless() : startTopic(tid);
   if ($("#seewall")) $("#seewall").onclick = () => go("me");
   $("#home").onclick = () => go("today");
@@ -1130,10 +1132,10 @@ function renderToday(){
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
-    ${played ? `<div class="profiles${isAdmin() ? " adm" : ""}">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
+    ${played ? `<div class="profiles${NEWX ? " adm" : ""}">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${td.back ? `<span class="small muted ahead">You already know a bit about this one, so today goes a step further.</span>` : ""}${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
-    ${played && isAdmin() ? `<button class="trow pick qf" id="endless"><span class="eyebrow">Quick fire</span><span class="tname">A round of 10 random questions</span><span class="small muted">A mix from all over the gallery</span></button>`
+    ${played && NEWX ? `<button class="trow pick qf" id="endless"><span class="eyebrow">Quick fire</span><span class="tname">A round of 10 random questions</span><span class="small muted">A mix from all over the gallery</span></button>`
       : NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
     ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => okSrc(n.source) ? `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>` : `<div class="newsitem link"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></section>`
       : `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>`) : ""}
