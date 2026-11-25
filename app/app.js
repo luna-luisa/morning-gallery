@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 10:11"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 10:44"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1331,15 +1331,32 @@ const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span
    Your first picture comes from a free starter Swipe. You can change it after finishing in the top 3,
    or after 100 more points. Last week's winner wears a frame of their choosing until someone else wins. */
 const WALLC = {};
+/* what the Wall needs from each player. "ptsS" (the season) must be kept: without it everyone else's points read as 0 */
+const wallEntry = st => ({pts: st.pts, ptsPrev: st.ptsPrev, ptsS: st.ptsS, pic: st.pic, frame: st.frame, stats: st.stats});
+const wallIds = () => Object.keys(profiles).filter(id => !profiles[id].removed);
+/* fetch everyone else's progress from the server; true if anything changed */
+async function refreshWall(){
+  let changed = false;
+  await Promise.all(wallIds().filter(id => id !== pid).map(async id => {
+    const st = await store.getFresh("progress:" + id).catch(() => undefined);
+    if (st){ const e = wallEntry(st); if (JSON.stringify(e) !== JSON.stringify(WALLC[id])){ WALLC[id] = e; changed = true; } }
+  }));
+  return changed;
+}
+/* keep the Wall warm: fetched when the app opens and every 20 seconds, so it is full the moment you open it */
+let WALLT = null;
+function warmWall(){ if (!pid || WALLT) return; refreshWall(); WALLT = setInterval(async () => { if (document.hidden || !pid) return; if (await refreshWall() && $("#board")) leaderboard(99); }, 20000); }
 async function leaderboard(attempt = 0){
-  const ids = Object.keys(profiles).filter(id => !profiles[id].removed);
-  /* everyone's progress in one go; the deck (for pictures) loads alongside */
-  const [sts] = await Promise.all([Promise.all(ids.map(id => id === pid ? state : (WALLC[id] ? Promise.resolve(WALLC[id]) : store.getFresh("progress:" + id).catch(() => undefined)))), loadDisc()]);
-  const missed = ids.filter((id, i) => id !== pid && sts[i] === undefined);
-  ids.forEach((id, i) => { if (id !== pid && sts[i]) WALLC[id] = {pts: sts[i].pts, ptsPrev: sts[i].ptsPrev, pic: sts[i].pic, frame: sts[i].frame, stats: sts[i].stats}; });
+  const ids = wallIds();
+  await loadDisc();
+  /* first time: wait for everyone; after that the wall shows at once from what is already there, and quietly updates */
+  if (ids.some(id => id !== pid && !WALLC[id])) await refreshWall();
+  const missed = ids.filter(id => id !== pid && !WALLC[id]);
   /* someone's points could not be loaded: keep "Hanging the pictures…" on screen and try again, rather than show a half-empty wall */
   if (missed.length && attempt < 3){ setTimeout(() => { if ($("#board")) leaderboard(attempt + 1); }, 1500); return; }
-  setTimeout(() => ids.forEach(id => { if (id !== pid) store.getFresh("progress:" + id).then(st => { if (st) WALLC[id] = {pts: st.pts, ptsPrev: st.ptsPrev, pic: st.pic, frame: st.frame, stats: st.stats}; }).catch(() => {}); }), 4000);
+  if (attempt < 99) refreshWall().then(ch => { if (ch && $("#board")) leaderboard(99); });
+  warmWall();
+  const sts = ids.map(id => id === pid ? state : WALLC[id]);
   const rows = ids.map((id, i) => ({id, st: sts[i]})).filter(r => r.st && r.st.stats).map(r => Object.assign(r, {n: weekPts(r.st), last: lastPts(r.st)}));
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
   const lastTop = rows.filter(r => r.last > 0).sort((a, b) => b.last - a.last), champ = lastTop[0] && lastTop[0].id;
@@ -1934,7 +1951,7 @@ async function use(id){
   if (profiles[id] && profiles[id].admin && state.swRefill !== "2026-11-24"){ delete state.swWeek; state.swRefill = "2026-11-24"; save(); }
   if (profiles[id] && profiles[id].admin && state.launch !== "2026-11-24"){ ["pic", "frame", "picAt", "picWeek", "pts", "ptsPrev", "ptsAll", "ptsS"].forEach(k => delete state[k]); state.launch = "2026-11-24"; save(); }
   const p = profiles[id];
-  setWho(); if (state.pic && !DISC) loadDisc().then(() => { if (pid === id) setWho(); }); // a Swipe picture needs the deck before it can show
+  setWho(); warmWall(); if (state.pic && !DISC) loadDisc().then(() => { if (pid === id) setWho(); }); // a Swipe picture needs the deck before it can show
   $("#who").classList.remove("hidden"); $("#tabs").classList.remove("hidden");
   if (!resumeRound()) go("today");
 }
