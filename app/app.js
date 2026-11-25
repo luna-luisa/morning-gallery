@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 10:08"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 10:11"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1336,8 +1336,9 @@ async function leaderboard(attempt = 0){
   /* everyone's progress in one go; the deck (for pictures) loads alongside */
   const [sts] = await Promise.all([Promise.all(ids.map(id => id === pid ? state : (WALLC[id] ? Promise.resolve(WALLC[id]) : store.getFresh("progress:" + id).catch(() => undefined)))), loadDisc()]);
   const missed = ids.filter((id, i) => id !== pid && sts[i] === undefined);
-  if (missed.length && attempt < 3 && $("#board")) setTimeout(() => { if ($("#board")) leaderboard(attempt + 1); }, 2000);
   ids.forEach((id, i) => { if (id !== pid && sts[i]) WALLC[id] = {pts: sts[i].pts, ptsPrev: sts[i].ptsPrev, pic: sts[i].pic, frame: sts[i].frame, stats: sts[i].stats}; });
+  /* someone's points could not be loaded: keep "Hanging the pictures…" on screen and try again, rather than show a half-empty wall */
+  if (missed.length && attempt < 3){ setTimeout(() => { if ($("#board")) leaderboard(attempt + 1); }, 1500); return; }
   setTimeout(() => ids.forEach(id => { if (id !== pid) store.getFresh("progress:" + id).then(st => { if (st) WALLC[id] = {pts: st.pts, ptsPrev: st.ptsPrev, pic: st.pic, frame: st.frame, stats: st.stats}; }).catch(() => {}); }), 4000);
   const rows = ids.map((id, i) => ({id, st: sts[i]})).filter(r => r.st && r.st.stats).map(r => Object.assign(r, {n: weekPts(r.st), last: lastPts(r.st)}));
   rows.sort((a, b) => b.n - a.n || (b.st.stats.rounds || 0) - (a.st.stats.rounds || 0));
