@@ -84,3 +84,7 @@ The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and p
 
 ## Score history (kept quietly, no screen uses it yet)
 - Each player's saved progress keeps `pts` (this week: `k` = Monday date, `n` = points), `ptsPrev` (last week only), `ptsAll` (running total since 24 Nov 2026) and, from 25 Nov 2026, `ptsHist`: a list of `{k, n}` for every finished week, added when the player first scores in a later week. Last week's winner is still worked out from `ptsPrev`; past winners could be worked out from every player's `ptsHist` if we build a hall of fame or seasons. Nothing is shown from it yet.
+
+## Questions in mixed rounds
+- In the coffee round and quick fire, a plain text question that doesn't already name its topic gets the topic in front of it ("Pre-Raphaelites: which was NOT a founding member?"). Topic rounds and picture questions are left as written. When writing questions, name the subject in the question itself where you can.
+- After a Spot the difference round the summary lists every topic in the comparison, each with its level.

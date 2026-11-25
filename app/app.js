@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 10:49"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 11:06"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -709,6 +709,15 @@ function label(w){
   if (w.photo) return `<div class="label"><span>${esc(w.title)}</span></div>`;
   return `<div class="label"><b>${esc(w.artist)}</b><span><i>${esc(w.title)}</i>${w.year ? ", " + yearText(w) : ""}</span>${w.place ? `<span class="muted">${esc(w.place)}</span>` : ""}${w.credit ? `<span class="small muted">Image: ${w.page ? `<a href="${esc(w.page)}" target="_blank" rel="noopener">${esc(w.credit)}</a>` : esc(w.credit)}</span>` : ""}</div>`;
 }
+/* in mixed rounds a plain question has to say what it is about: "Pre-Raphaelites: which was NOT a founding member?" (only when the question doesn't already name the topic) */
+function askPrompt(x, hasPic){
+  const base = String(x.prompt || "");
+  if (!S || S.mode === "topic" || S.mode === "compare" || hasPic || x.news || x.type === "pick" || x.venues || !x.topic || !TOPICS[x.topic]) return base;
+  const name = tName(x.topic), low = base.toLowerCase();
+  if (name.split(/[^A-Za-zÀ-ÿ]+/).some(w => w.length >= 4 && low.includes(w.slice(0, 5).toLowerCase()))) return base;
+  const first = base.match(/^(Which|What|Who|Whose|Where|When|How|Why|In|Name|The|A|An)\b/) ? base.charAt(0).toLowerCase() + base.slice(1) : base;
+  return `${name}: ${first}`;
+}
 const SECTION = {topic: x => tName(x.topic), review: x => "Review · " + tName(x.topic), mixed: x => "Something different · " + tName(x.topic), quick: x => "Quick fire · " + tName(x.topic), news: () => (S && S.mode === "round" ? "Quick fire · " : "") + "In the news"};
 
 function showIntro(tid, done, finishLabel, lessonLevel){
@@ -826,7 +835,7 @@ function render(){
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
     ${w ? figure(w, "qpic") : ""}
-    <div class="prompt">${esc(x.prompt).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
+    <div class="prompt">${esc(askPrompt(x, !!w)).replace(/\*(.+?)\*/g, '<span class="serif">$1</span>')}</div>
     ${x.multi ? "" : hint ? `<p class="small muted hint">${FINE ? "Click the corner of a picture to see it bigger." : "Hold a picture to see it bigger."}</p>` : ""}
     ${x.stretch && x.level ? `<div class="stretch"><span class="tag">Stretch</span><span>${an(LEVELS[x.level-1])} ${LEVELS[x.level-1]}-level question</span></div>` : ""}
     
@@ -1110,11 +1119,11 @@ function finish(){
     ${billHTML()}
     ${roundTimeline(tid)}
     ${NEWX ? "" : ups.map(u => `<div class="levelup big">${dots(u.up)}<span>You're now ${an(LEVELS[u.up-1])} <b>${LEVELS[u.up-1]}</b> in ${esc(tName(u.topic))}.</span></div>`).join("")}
-    <button class="trow" id="tcard"><span class="tname">${esc(tName(tid))}</span><span class="lv">${dots(L)} ${LEVELS[L-1]}</span>${nextLine(tid)}</button>
+    ${(cmpWas ? cmpWas.topics.filter(t => TOPICS[t]) : [tid]).map(t => `<button class="trow tcard" data-t="${t}"><span class="tname">${esc(tName(t))}</span><span class="lv">${dots(lvlOf(t))} ${LEVELS[lvlOf(t)-1]}</span>${nextLine(t)}</button>`).join("")}
     <div class="stack">${S.mode === "topic" ? `<button class="btn" id="again">Another round of ${esc(tName(tid))}</button>` : cmpWas ? `<button class="btn" id="again">Another round</button>` : S.mode === "endless" && NEWX ? `<button class="btn" id="again">Another quick fire round</button>` : ""}${S.mode === "endless" ? "" : `<button class="btn ${S.mode === "topic" || cmpWas ? "ghost" : ""}" id="keep">Quick fire: a mix of everything</button>`}<button class="btn ghost" id="home">Back to today</button></div>
     <button class="btn link center" id="fbk">Something to say? Send feedback</button>`;
   $$("[data-tl]").forEach(b => b.onclick = () => { const p = TLP[+b.dataset.tl]; $$("[data-tl]").forEach(o => o.classList.toggle("on", o === b)); $("#tlcap").innerHTML = `<span class="pthumb" style="background-image:url('${esc(tsrc(p.w.img))}')"></span><span><b><i>${esc(p.w.title)}</i></b><br><span class="small">${esc(p.w.artist)}, ${esc(yearText(p.w))}</span> ${eraTag(p.w)}</span>`; });
-  $("#tcard").onclick = () => go("topic", tid);
+  $$(".tcard").forEach(b => b.onclick = () => go("topic", b.dataset.t));
   if ($("#keep")) $("#keep").onclick = quickFireIntro;
   if ($("#again")) $("#again").onclick = () => cmpWas ? cmpRound(cmpWas) : wasEndless ? startEndless() : startTopic(tid);
   if ($("#seewall")) $("#seewall").onclick = () => go("me");
