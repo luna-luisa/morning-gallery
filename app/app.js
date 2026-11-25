@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 08:18"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 08:48"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1366,11 +1366,11 @@ function starterEnd(loved){
       <div class="stack"><button class="btn" id="again">Another round</button></div>`;
     $("#again").onclick = () => startSwipeNow({starter: true}); $("#x").onclick = () => go("me"); return;
   }
-  let pick = null;
-  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">Close</button></div>
-    <div class="stack"><h1>Pick your <span class="serif">picture</span></h1><p class="muted">Choose carefully: you can change it after a week in the top 3, or 100 more points. We'll add the artist to your picks too.</p></div>
-    <div class="swpicks${loved.length <= 6 ? " big" : ""}">${loved.map(w => `<button class="swpick" data-id="${w.id}" aria-pressed="false"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
-    <div class="swfoot"><button class="btn" id="ok" disabled>This one</button>${loved.length < 4 ? `<button class="btn link center" id="more">Show me more first</button>` : ""}</div>`;
+  const one = isAdmin() && loved.length === 1; let pick = one ? loved[0].id : null;
+  view.innerHTML = `<div class="qhead"><span class="eyebrow swey">Your picture</span><button class="btn link" id="x">${isAdmin() ? "Choose later" : "Close"}</button></div>
+    <div class="stack"><h1>${one ? `Your <span class="serif">picture</span>` : `Pick your <span class="serif">picture</span>`}</h1><p class="muted">${one ? "This is the one you liked. Use it as your picture, or look at a few more first." : "Choose carefully: you can change it after a week in the top 3, or 100 more points. We'll add the artist to your picks too."}</p></div>
+    <div class="swpicks${loved.length <= 6 ? " big" : ""}">${loved.map(w => `<button class="swpick${pick === w.id ? " sel" : ""}" data-id="${w.id}" aria-pressed="${pick === w.id}"><span class="ph" style="background-image:url('${esc(tsrc(w.img))}')"></span><span class="cap">${esc(plainArtist(w.artist))}</span></button>`).join("")}</div>
+    <div class="swfoot"><button class="btn" id="ok" ${pick ? "" : "disabled"}>${one ? "Use as my picture" : "This one"}</button>${loved.length < 4 || isAdmin() ? `<button class="btn link center" id="more">Show me more first</button>` : ""}${isAdmin() ? `<p class="small muted center">Your other likes are always saved in Everything you loved.</p>` : ""}</div>`;
   if ($("#more")) $("#more").onclick = () => startSwipeNow({starter: true, keep: loved});
   $$(".swpick").forEach(b => b.onclick = () => { pick = b.dataset.id; $$(".swpick").forEach(x => { x.classList.toggle("sel", x === b); x.setAttribute("aria-pressed", x === b); }); $("#ok").disabled = false; });
   $("#ok").onclick = () => {
@@ -1449,8 +1449,12 @@ function whatsOnHTML(){
 }
 
 /* the Swipe card on Topics: the little game, and one line for your picks */
+function swBoxOut(pics, left, line){
+  return `<div class="swbox"><button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">${left ? `${left === SW_WEEKLY ? "3 fresh rounds" : left === 1 ? "1 round left" : left + " rounds left"} this week` : "New rounds on Monday"}</span></span></button>${line ? `<button class="swline" id="picks"><span>${line}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>`;
+}
 function swBoxHTML(pics){
   const left = swRoundsLeft(), ps = livePicks(), ready = readyPicks().length, loves = (state.taste || []).length;
+  if (isAdmin()){ const ln = loves ? `${ready ? `<span class="pdot" aria-hidden="true"></span>` : ""}Everything you loved${ready ? `<span class="muted"> · ${ready} ready to play</span>` : ""}` : ""; return swBoxOut(pics, left, ln); }
   const line = ready ? `<span class="pdot" aria-hidden="true"></span>${ready === 1 ? "1 of your picks is" : `${ready} of your picks are`} ready to play`
     : ps.length ? `${ps.length === 1 ? "Your pick is" : `Your ${ps.length} picks are`} coming soon` : loves ? "Everything you loved" : "";
   return `<div class="swbox"><button class="swcta" id="swipe"><span class="swthumbs">${pics.map(w => `<span style="background-image:url('${esc(tsrc(w.img))}')"></span>`).join("")}</span><span class="swtext"><b>Swipe to <span class="serif">discover</span></b><span class="small muted">${left ? `${left === SW_WEEKLY ? "3 fresh rounds" : left === 1 ? "1 round left" : left + " rounds left"} this week` : "New rounds on Monday"}</span></span></button>${line ? `<button class="swline" id="picks"><span>${line}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>` : ""}</div>`;
@@ -1469,7 +1473,7 @@ function renderTopicsNew(){
   const wire = () => {
     $$("#tlist [data-t]").forEach(b => b.onclick = () => go("topic", b.dataset.t));
     if ($("#swipe")) $("#swipe").onclick = startSwipe;
-    if ($("#picks")) $("#picks").onclick = () => (livePicks().length ? renderPicks() : renderTaste());
+    if ($("#picks")) $("#picks").onclick = () => (!isAdmin() && livePicks().length ? renderPicks() : renderTaste());
     $$("#tlist [data-cmp]").forEach(b => b.onclick = () => startCompare(b.dataset.cmp));
     $$("#tlist details.tsec").forEach(d => d.addEventListener("toggle", () => { (state.open = state.open || {})[d.dataset.k] = d.open; save(); }));
   };
@@ -1720,9 +1724,10 @@ const byArtist = ws => { const m = {}; ws.forEach(w => (m[plainArtist(w.artist)]
 /* everything you loved, one row per work like Your picks: tap Learn more to make it a pick; swipe left to remove */
 function renderTaste(){
   inRound(true); scrollTo(0, 0);
-  const ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
+  let ws = [...new Set((state.taste || []).map(x => x.id))].map(WD).filter(Boolean).reverse();
+  if (isAdmin()) ws = ws.map((w, i) => [w, i]).sort((a, b) => (!!artistTopic(plainArtist(b[0].artist)) - !!artistTopic(plainArtist(a[0].artist))) || a[1] - b[1]).map(x => x[0]); /* ready to play first */
   const status = w => { const a = plainArtist(w.artist), t = artistTopic(a), picked = (state.picks || []).some(p => p.a === a) || state.asked["artist:" + a];
-    return t ? `<span class="tact">Play</span>` : picked ? `<span class="tstat">Coming soon</span>` : `<span class="tact" data-learn="${esc(w.id)}">Learn more</span>`; };
+    return t ? `<span class="tact">Play</span>` : picked ? `<span class="tstat">${isAdmin() ? "Requested" : "Coming soon"}</span>` : `<span class="tact" data-learn="${esc(w.id)}">Learn more</span>`; };
   view.innerHTML = `
     <div class="qhead"><span class="eyebrow swey">Discover</span><button class="btn link" id="x">Close</button></div>
     <div class="stack"><h1>Everything you <span class="serif">loved</span></h1>${ws.length ? "" : `<p class="muted">Nothing here yet. Swipe right on what speaks to you.</p>`}</div>
@@ -1732,7 +1737,7 @@ function renderTaste(){
   $$("[data-learn]").forEach(b => b.onclick = e => { e.stopPropagation(); const w = WD(b.dataset.learn), a = plainArtist(w.artist);
     state.picks = (state.picks || []).filter(p => p.a !== a).concat([{a, id: w.id, d: today(), n0: 0}]);
     if (!state.asked["artist:" + a] && store.online){ state.asked["artist:" + a] = today(); requestMore("", "content", `Loved ${a}'s work in Swipe to discover and would like a topic on ${a}`, "artist:" + a).catch(() => {}); }
-    save(); b.outerHTML = `<span class="tstat">Coming soon</span>`; });
+    save(); b.outerHTML = `<span class="tstat">${isAdmin() ? "Requested" : "Coming soon"}</span>`; });
   $$(".plist .pkrow").forEach(row => {
     const card = row.querySelector(".trow"); let x0 = null, dx = 0;
     row.addEventListener("pointerdown", e => { x0 = e.clientX; dx = 0; card.style.transition = "none"; });
@@ -1742,6 +1747,12 @@ function renderTaste(){
     row.querySelector(".prm").onclick = () => { state.taste = (state.taste || []).filter(x => x.id !== row.dataset.id); save(); renderTaste(); };
   });
   $("#x").onclick = () => go("topics");
+  /* first visit only: the top row slides left to show Remove, then settles back */
+  if (isAdmin() && !state.tastePeek && ws.length && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+    state.tastePeek = today(); save();
+    const c0 = $(".plist .pkrow .trow");
+    if (c0) setTimeout(() => { if (!c0.isConnected) return; c0.style.transition = "transform .45s ease"; c0.style.transform = "translateX(-84px)"; setTimeout(() => { c0.style.transform = ""; }, 1100); }, 700);
+  }
 }
 function renderTopics(){
   return renderTopicsNew(); /* everyone gets the new Topics page; Swipe stays admin-only while it is a trial */
