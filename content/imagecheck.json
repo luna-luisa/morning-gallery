@@ -1,9 +1,6 @@
 {
- "checked": "2026-11-24",
- "broken": {
-  "slodki-cabaret-voltaire-poster": "failed (unknown)",
-  "gordon-square-plaques": "failed (unknown)"
- },
+ "checked": "2026-11-25",
+ "broken": {},
  "hw": {
   "mona-lisa": 1.491,
   "last-supper": 0.5,
@@ -171,7 +168,9 @@
   "kirchner-street-dresden": 0.754,
   "marc-blue-horse": 1.339,
   "gris-breakfast": 1.364,
+  "slodki-cabaret-voltaire-poster": 1.623,
   "saatchi-gallery-chelsea": 0.666,
+  "gordon-square-plaques": 1.333,
   "fry-plaque-fitzroy-square": 0.75,
   "henry-tate-plaque": 1.333,
   "lawrence-angerstein": 1.27,
