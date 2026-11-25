@@ -1,34 +1,62 @@
 {
  "week": "w/c 23 Nov 2026",
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "featuredTopics": [
   "auctions",
-  "van-gogh",
-  "abstraction",
   "van-eyck",
-  "alfred-wallis"
+  "expressionism",
+  "modern-british",
+  "abstraction"
  ],
  "items": [
   {
-   "id": "2026-11-kandinsky-record",
-   "date": "2026-11-17",
-   "topic": "abstraction",
+   "id": "2026-11-munch-director",
+   "date": "2026-11-24",
+   "topic": "expressionism",
    "level": 2,
-   "headline": "Kandinsky sets an $85.8m auction record",
-   "summary": "His Bauhaus-era painting Betonte Ecken sold at Christie's New York on 17 November, nearly doubling his previous record.",
-   "question": "Whose painting Betonte Ecken set an $85.8m auction record?",
+   "headline": "Munch museum in Oslo names a new director",
+   "summary": "Thorsten Sadowsky, who runs the Schloss Gottorf museums in northern Germany, will lead the Munch museum in Oslo from May 2027.",
+   "question": "The Munch museum, which has just named a new director, is in which city?",
    "options": [
-    "Wassily Kandinsky",
-    "Paul Klee",
-    "Piet Mondrian",
-    "Kazimir Malevich"
+    "Oslo",
+    "Bergen",
+    "Stockholm",
+    "Copenhagen"
    ],
    "answer": 0,
-   "explain": "Kandinsky painted it in Weimar in 1922 to 1923 while teaching at the Bauhaus; his previous record was $44.8m, set at Sotheby's London in 2023.",
+   "explain": "Its 13-storey building on the Oslo waterfront opened in 2021 and holds the works Edvard Munch left to the city in his will.",
    "notes": {
-    "Paul Klee": "Klee taught at the Bauhaus alongside Kandinsky, but this record painting is not his."
+    "Bergen": "KODE in Bergen also has a major Munch collection, but the Munch museum itself is in Oslo.",
+    "Stockholm": "Tone Hansen, the museum’s previous director, left this year to run Moderna Museet in Stockholm."
    },
-   "source": "https://news.artnet.com/market/kandinsky-record-85-8-million-christies-2837796"
+   "source": "https://www.mynewsdesk.com/munchmuseet/pressreleases/new-director-appointed-to-munch-3483636",
+   "reveal": "scream"
+  },
+  {
+   "id": "2026-11-dallas-city-hall",
+   "date": "2026-11-24",
+   "topic": "modern-british",
+   "level": 3,
+   "headline": "Vote looms over I.M. Pei’s Dallas City Hall",
+   "summary": "Campaigners gathered well over the 20,000 signatures needed for a likely May 2027 vote on keeping the 1978 building, which the mayor has suggested the city leave.",
+   "question": "Which British sculptor made the giant three-part work outside Dallas City Hall?",
+   "options": [
+    "Henry Moore",
+    "Barbara Hepworth",
+    "Antony Gormley",
+    "Anish Kapoor"
+   ],
+   "answer": 0,
+   "explain": "Moore’s Vertebra in Three Pieces, also called The Dallas Piece, dates from 1978, the year the building was completed.",
+   "notes": {
+    "Barbara Hepworth": "Hepworth’s best-known public work in the United States is Single Form, at the United Nations in New York.",
+    "Antony Gormley": "Gormley is best known for the Angel of the North in Gateshead."
+   },
+   "reveal": {
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Dallas_City_Hall%2C_Dallas%2C_Texas_LCCN2015630778.tif/lossy-page1-960px-Dallas_City_Hall%2C_Dallas%2C_Texas_LCCN2015630778.tif.jpg",
+    "photo": true,
+    "title": "Dallas City Hall by I.M. Pei, completed in 1978"
+   }
   },
   {
    "id": "2026-11-van-gogh-record",
@@ -52,49 +80,6 @@
    },
    "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et",
    "reveal": "vg-chestnut-trees"
-  },
-  {
-   "id": "2026-11-van-gogh-heirs",
-   "date": "2026-11-17",
-   "topic": "van-gogh",
-   "level": 3,
-   "headline": "Sotheby's settles Van Gogh claim before sale",
-   "summary": "On 17 November, the day before its New York sale, Sotheby's said the sellers and the Fischer heirs had reached an agreement over Blossoming Chestnut Trees.",
-   "question": "Heirs of which Berlin publisher reached a deal over a Van Gogh estimated at $180m?",
-   "options": [
-    "Samuel Fischer",
-    "Axel Springer",
-    "Ernst Rowohlt",
-    "Kurt Wolff"
-   ],
-   "answer": 0,
-   "explain": "Samuel and Hedwig Fischer owned the painting from 1909, and their heirs say its 1936 sale happened under Nazi persecution; the terms of the deal were not disclosed.",
-   "reveal": {
-    "img": "https://cdn.sanity.io/images/cxgd3urn/production/19566daa94c95a3f518caac32fd9154dd3e7f3a7-2500x3035.jpg?w=1200",
-    "artist": "Vincent van Gogh",
-    "title": "Blossoming Chestnut Trees",
-    "year": 1890,
-    "place": "Sotheby's New York, 18 November 2026",
-    "credit": "Sotheby's",
-    "page": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et"
-   }
-  },
-  {
-   "id": "2026-11-alfred-wallis",
-   "date": "2026-11-13",
-   "topic": "alfred-wallis",
-   "level": 2,
-   "headline": "Alfred Wallis, the fisherman who inspired St Ives",
-   "summary": "Pallant House Gallery in Chichester opened 'Alfred Wallis: An Artists' Artist' on 21 November, showing his influence on British modernists.",
-   "question": "Before taking up painting in his seventies, Alfred Wallis worked as what?",
-   "options": [
-    "A fisherman",
-    "A lawyer",
-    "A bank clerk",
-    "A schoolteacher"
-   ],
-   "answer": 0,
-   "explain": "Self-taught, he painted boats on scraps of cardboard, and Ben Nicholson and Christopher Wood befriended him in St Ives in 1928."
   },
   {
    "id": "2026-11-van-eyck",
