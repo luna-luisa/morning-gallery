@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "25 Nov, 07:48"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 07:59"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -811,7 +811,7 @@ function render(){
   if (hint){ state.hints = (state.hints || 0) + 1; }
   view.dataset.kind = w ? "pic" : x.type === "pick" ? "picans" : x.type === "order" ? "order" : x.venues ? "venue" : "text";
   view.innerHTML = `
-    ${S.mode === "endless" && !isAdmin() ? `<div class="line"></div>` : `<div class="line"><i style="width:${S.mode === "endless" ? S.i * 10 : progress}%"></i></div>`}
+    ${S.mode === "endless" && !isAdmin() ? `<div class="line"></div>` : `<div class="line${S.mode === "endless" ? " qfline" : ""}"><i style="width:${S.mode === "endless" ? S.i * 10 : progress}%"></i></div>`}
     <div class="qhead">
       <span class="eyebrow ${x.news ? "gold" : ""}">${esc(SECTION[x.section || "topic"](x))}${L ? ` ${dots(L)} <span class="lvword">${LEVELS[L-1]}</span>` : ""}</span>
       <button class="btn link" id="quit">Stop</button></div>
@@ -1130,10 +1130,11 @@ function renderToday(){
     <div class="stack"><span class="eyebrow">${new Date().toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long"})}</span>
       <h1>${played ? `Another <span class="serif">round?</span>` : `Your <span class="serif">coffee round</span>`}</h1>
       ${played ? `<p class="muted">Today's round on ${esc(t.name)} is done. Pick one more, or play freely.</p>` : ""}<i id="wntoday" hidden></i></div>
-    ${played ? `<div class="profiles">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
+    ${played ? `<div class="profiles${isAdmin() ? " adm" : ""}">${opt("pnew", ex.fresh, "Something new")}${opt("pdeep", ex.deep, "Go deeper")}${opt("pnew2", ex.fresh2, "Something else")}</div>`
       : `<button class="todcard" id="tod">${figure(w)}<span class="eyebrow">${featured().includes(td.topic) ? "Today's topic · in the news" : "Today's topic"}</span><span class="todname">${esc(t.name)}</span>${td.back ? `<span class="small muted ahead">You already know a bit about this one, so today goes a step further.</span>` : ""}${NEW() ? "" : `<span class="lv">${dots(L)} ${LEVELS[L-1]}</span>`}</button>
     <button class="btn" id="go">Start</button>`}
-    ${NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
+    ${played && isAdmin() ? `<button class="trow pick qf" id="endless"><span class="eyebrow">Quick fire</span><span class="tname">A round of 10 random questions</span><span class="small muted">A mix from all over the gallery</span></button>`
+      : NEW() ? `<button class="btn link center freeplay" id="endless">or play any topic</button>` : `<button class="btn ghost" id="endless">Free play</button>`}
     ${items.length ? (NEW() ? `<section class="weekart"><span class="eyebrow gold">${new Date().toLocaleDateString("en-GB", {weekday:"long"})}'s papers</span><h2>This week <span class="serif">in art</span></h2><div>${items.slice(0, 5).map(n => okSrc(n.source) ? `<a class="newsitem link" href="${esc(n.source || "#")}" target="_blank" rel="noopener"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span>${n.source ? `<span class="src">Read at ${esc(srcName(n.source))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span>` : ""}</a>` : `<div class="newsitem link"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></section>`
       : `<div class="stack"><span class="eyebrow gold">This week in art</span><div>${items.slice(0, 5).map(n => `<div class="newsitem"><b>${esc(n.headline)}</b><span class="small muted">${esc(n.summary || "")}</span></div>`).join("")}</div></div>`) : ""}
     ${store.online ? "" : `<p class="banner">Progress is saved on this device only.</p>`}`;

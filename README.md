@@ -75,3 +75,4 @@ The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and p
 ## Points bill (Luna's profile only, 25 Nov 2026)
 - Every round summary shows a bill of the points from that round, line by line, with a total and this week's points. Lines: coffee round 10, topic round 5, quick fire round 5, Spot the difference 5 first time then 2, level up 5, mistake fixed for good 5, another day in a row 3.
 - On this profile quick fire is a round of 10 questions and the old "1 point for every 2 extra questions" no longer applies. Everyone else keeps the old behaviour until Luna says go.
+- Today screen after the coffee round (Luna's profile only): "Something new" and "Go deeper" are both blue, because both are topics. Below them is a pink Quick fire card, "A round of 10 random questions", which replaces the "or play any topic" link. The quick fire progress bar at the top fills pink, in tenths.

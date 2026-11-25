@@ -417,8 +417,10 @@ html{-webkit-tap-highlight-color:transparent}
 .trow.pick{background:var(--paper);border-radius:12px;padding:16px 18px 16px 22px;position:relative;overflow:hidden;box-shadow:0 8px 20px rgba(40,30,15,.1),0 1px 3px rgba(40,30,15,.07)}
 .trow.pick::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--klein)}
 #pdeep::before{background:var(--pink)}
+.profiles.adm #pdeep::before{background:var(--klein)}
+.trow.pick.qf::before{background:var(--pink)}
 .trow.pick .tname{font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.05}
-.trow.pick .eyebrow{color:var(--klein)} #pdeep .eyebrow{color:var(--pink-ink)}
+.trow.pick .eyebrow{color:var(--klein)} #pdeep .eyebrow{color:var(--pink-ink)} .profiles.adm #pdeep .eyebrow{color:var(--klein)} .trow.pick.qf .eyebrow{color:var(--pink-ink)}
 
 /* ==== one question layout for every question ====
    label on top, the picture (or empty space) fills the middle, the question sits right above the answers,
@@ -1023,3 +1025,6 @@ body.newlook .wnx{display:none}
 .bill .btot span{font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
 .bill .btot b{font-weight:800;font-size:34px;line-height:34px;color:var(--klein);letter-spacing:-.02em}
 .bill .bwk{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#6b665e}
+
+.line.qfline i{background:var(--pink)}
+.trow.pick.qf{display:flex;flex-direction:column;gap:5px;text-align:left;width:100%}
