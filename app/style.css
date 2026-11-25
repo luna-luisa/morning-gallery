@@ -1012,3 +1012,14 @@ body.newlook .wnx{display:none}
 
 /* the sheet's handle and verdict row are drag areas: stop the browser taking the swipe for a page scroll */
 .sheetin .grab,.sheetin .vrow{touch-action:none}
+
+/* the bill after a round: points line by line (Luna's profile first) */
+.bill{background:#fbfaf7;border-radius:14px;box-shadow:0 6px 18px rgba(40,30,15,.10);padding:20px 20px 16px;display:flex;flex-direction:column;gap:12px}
+.bill .eyebrow{color:var(--klein)}
+.bill .brow{display:flex;align-items:baseline;gap:8px;font-size:16px}
+.bill .brow i{flex:1;border-bottom:1.5px dotted #b9b4aa;transform:translateY(-4px)}
+.bill .bsub{display:block;font-size:13px;color:#6b665e;margin-top:2px}
+.bill .btot{border-top:1.5px solid var(--ink);margin-top:2px;padding-top:12px;display:flex;justify-content:space-between;align-items:baseline}
+.bill .btot span{font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.bill .btot b{font-weight:800;font-size:34px;line-height:34px;color:var(--klein);letter-spacing:-.02em}
+.bill .bwk{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#6b665e}

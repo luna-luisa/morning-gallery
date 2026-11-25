@@ -71,3 +71,7 @@ At the end of a Swipe round players can pick artists to learn more about. The Su
 
 ## Margins and mounts
 The nightly picture check (tools/trim_deck.py) finds paper margins, mounts and pencil notes on every picture in discover.json and works.json and saves a `crop` box, cached in content/trim.json. New pictures are picked up the night after they're added. Don't write `crop` by hand; a hand-set `zoom` on a work always wins.
+
+## Points bill (Luna's profile only, 25 Nov 2026)
+- Every round summary shows a bill of the points from that round, line by line, with a total and this week's points. Lines: coffee round 10, topic round 5, quick fire round 5, Spot the difference 5 first time then 2, level up 5, mistake fixed for good 5, another day in a row 3.
+- On this profile quick fire is a round of 10 questions and the old "1 point for every 2 extra questions" no longer applies. Everyone else keeps the old behaviour until Luna says go.
