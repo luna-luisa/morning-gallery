@@ -1,6 +1,6 @@
 /* Morning Gallery v3 */
 "use strict";
-const BUILD_AT = "25 Nov, 07:17"; // shown as a small footnote on the Me page
+const BUILD_AT = "25 Nov, 07:32"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -520,7 +520,7 @@ function markPlayed(tid){
   days[today()] = 1;
 }
 /* points for this week's wall: counted for everyone, shown on the admin profile while it's a trial */
-const PTS = {round: 10, fixed: 5, streak: 3, swipe: 2};
+const PTS = {round: 10, fixed: 5, streak: 3, swipe: 2, level: 5, cmpFirst: 5, cmpAgain: 2};
 /* points count from the Wall's launch for everyone (24 Nov 2026), so nobody starts ahead */
 const SEASON = "2026-11-24";
 function addPts(n){
@@ -917,6 +917,8 @@ function answered(x, ok){
   const note = x.news ? "" : srs(x, ok);
   if (x.news) state.seenNews[x.key.slice(2)] = true;
   state.stats.answered++; if (ok) state.stats.correct++;
+  /* 1 point for every 2 extra questions outside the coffee round and Spot the difference */
+  if (S.mode !== "round" && S.mode !== "compare"){ state.xq = (state.xq || 0) + 1; if (state.xq % 2 === 0) addPts(1); }
   S.score += ok ? 1 : 0; S.results.push({ok, topic:x.topic, up, art: x.art, wrong: x.type === "pick" && x.mine ? x.mine.filter(i => x.multi ? !x.answers.includes(i) : i !== x.answer).map(i => x.images[i]) : []}); S.ans = S.i;
   save(); keepRound();
   const rw = x.reveal ? (typeof x.reveal === "string" ? W[x.reveal] : x.reveal) : x.type === "pick" && x.multi ? null : x.type === "pick" ? W[x.art] : x.venues && !ok ? {img: venue(x.options[x.answer]).img, photo: true, title: x.options[x.answer]} : null;
@@ -1069,9 +1071,12 @@ function finish(){
   dropRound(); inRound(false);
   if (S.mode === "round"){ state.stats.rounds++; state.stats.lastRound = today(); markPlayed(topicOfDay().topic); addPts(PTS.round); }
   if (S.mode === "topic") markPlayed(S.topic);
+  /* Spot the difference earns 5 the first time on a comparison, 2 each time after */
+  if (S.mode === "compare"){ const pl = state.cmpPlays = state.cmpPlays || {}; addPts(pl[S.cmp.id] ? PTS.cmpAgain : PTS.cmpFirst); pl[S.cmp.id] = (pl[S.cmp.id] || 0) + 1; }
   save();
   const cmpWas = S.mode === "compare" ? S.cmp : null;
   const tid = S.mode === "topic" ? S.topic : cmpWas ? cmpWas.topics[0] : topicOfDay().topic, ups = isAdmin() ? [...new Set(S.results.map(r => r.topic).filter(t => t && TOPICS[t]))].map(t => ({topic: t, up: maybeLevelUp(t)})).filter(u => u.up) : S.results.filter(r => r.up), L = lvlOf(tid);
+  if (ups.length){ addPts(PTS.level * ups.length); save(); } // 5 points for each level gained
   const missed = S.results.filter(r => !r.ok).length;
   view.innerHTML = `
     <div class="line"><i style="width:100%"></i></div>
