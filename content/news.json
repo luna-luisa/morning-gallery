@@ -1,14 +1,88 @@
 {
  "week": "w/c 23 Nov 2026",
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "featuredTopics": [
-  "auctions",
   "van-eyck",
+  "guggenheim",
   "expressionism",
   "modern-british",
   "abstraction"
  ],
  "items": [
+  {
+   "id": "2026-11-london-museum",
+   "date": "2026-11-24",
+   "topic": "national-gallery",
+   "level": 2,
+   "headline": "London Museum opens its new home on Saturday",
+   "summary": "The former Museum of London opens on 28 November in Smithfield's Victorian General Market after a £437m project, with free permanent galleries.",
+   "question": "The London Museum's new home is in which old London market?",
+   "options": [
+    "Smithfield",
+    "Covent Garden",
+    "Billingsgate",
+    "Borough Market"
+   ],
+   "answer": 0,
+   "explain": "It has moved into Smithfield's General Market, opened in 1883 and designed by Sir Horace Jones.",
+   "notes": {
+    "Covent Garden": "Covent Garden's fruit, vegetable and flower market moved out in 1974.",
+    "Billingsgate": "Billingsgate is London's wholesale fish market."
+   },
+   "source": "https://www.londonmuseum.org.uk/about/press/press-releases/london-museum-unveils-new-home-smithfield/",
+   "reveal": {
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/London_Museum_entrance_2026.jpg/960px-London_Museum_entrance_2026.jpg",
+    "photo": true,
+    "title": "The London Museum's new entrance at Smithfield"
+   }
+  },
+  {
+   "id": "2026-11-thelma-golden",
+   "date": "2026-11-24",
+   "topic": "black-figuration",
+   "level": 3,
+   "headline": "Thelma Golden to leave the Studio Museum in Harlem",
+   "summary": "After 21 years as director and chief curator of the Studio Museum in Harlem, New York, she will step down once a successor is found.",
+   "question": "Thelma Golden is stepping down after 21 years leading which museum?",
+   "options": [
+    "Studio Museum in Harlem, New York",
+    "Whitney Museum of American Art, New York",
+    "Museum of Modern Art, New York",
+    "Guggenheim Museum, New York"
+   ],
+   "answer": 0,
+   "explain": "Golden has led the Studio Museum since 2005; it reopened in a new building in Harlem in November 2025.",
+   "notes": {
+    "Whitney Museum of American Art, New York": "Golden worked as a curator at the Whitney earlier in her career."
+   },
+   "source": "https://hyperallergic.com/thelma-golden-stepping-down-as-studio-museum-director-after-21-years/",
+   "reveal": {
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Studio_Museum_in_Harlem%2C_Nov_2025.jpg/960px-Studio_Museum_in_Harlem%2C_Nov_2025.jpg",
+    "photo": true,
+    "title": "The Studio Museum in Harlem's new building"
+   }
+  },
+  {
+   "id": "2026-11-venice-visitors-lions",
+   "date": "2026-11-25",
+   "topic": "art-fairs",
+   "level": 2,
+   "headline": "Venice Biennale visitors pick Nick Cave and India",
+   "summary": "The new Visitors' Lions, voted for by ticket holders after the jury quit, went to the American artist Nick Cave and India's national pavilion.",
+   "question": "Who chose this year's Venice Biennale prizes?",
+   "options": [
+    "Its visitors",
+    "A jury of curators",
+    "The Italian culture minister",
+    "The exhibiting artists"
+   ],
+   "answer": 0,
+   "explain": "After the jury resigned, the Biennale replaced its Golden and Silver Lions with two Visitors' Lions voted for by visitors.",
+   "notes": {
+    "A jury of curators": "A jury normally awards the Golden Lions, but this year's jury resigned nine days before the opening."
+   },
+   "source": "https://hyperallergic.com/nick-cave-and-india-pavilion-win-widely-boycotted-venice-biennale-awards/"
+  },
   {
    "id": "2026-11-munch-director",
    "date": "2026-11-24",
@@ -59,29 +133,6 @@
    }
   },
   {
-   "id": "2026-11-van-gogh-record",
-   "date": "2026-11-18",
-   "topic": "postimpressionism",
-   "level": 2,
-   "headline": "Van Gogh sets a $190m auction record",
-   "summary": "Blossoming Chestnut Trees sold for $190.4m with fees at Sotheby's New York on 18 November, far above his previous record of $117.2m.",
-   "question": "Which Van Gogh sold for a record $190m in New York on 18 November?",
-   "options": [
-    "Blossoming Chestnut Trees",
-    "The Starry Night",
-    "Sunflowers",
-    "Irises"
-   ],
-   "answer": 0,
-   "explain": "He painted it at Auvers-sur-Oise in 1890, in the last weeks of his life; it beat the $117.2m paid for Orchard with Cypresses at Christie's in 2022.",
-   "notes": {
-    "The Starry Night": "It has been at the Museum of Modern Art in New York since 1941, so it was not for sale.",
-    "Irises": "Irises set a world record of $53.9m at Sotheby's in 1987 and is now at the Getty Museum in Los Angeles."
-   },
-   "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/vincent-van-gogh-chataigner-en-fleurs-roses-et",
-   "reveal": "vg-chestnut-trees"
-  },
-  {
    "id": "2026-11-van-eyck",
    "date": "2026-11-12",
    "topic": "van-eyck",
@@ -118,29 +169,6 @@
    "explain": "Guggenheim Jeune, at 30 Cork Street, hosted Kandinsky's first UK solo exhibition.",
    "source": "https://www.royalacademy.org.uk/exhibition/peggy-guggenheim-in-london",
    "reveal": "composition-vii"
-  },
-  {
-   "id": "2026-11-ny-cezanne",
-   "date": "2026-11-18",
-   "topic": "auctions",
-   "level": 2,
-   "headline": "Cézanne's Arlequin sells for $111m",
-   "summary": "Arlequin sold for $111m with fees at Sotheby's New York on 18 November, short of Cézanne's auction record of about $138m, set in 2022.",
-   "question": "Who posed for Cézanne's Arlequin, sold for $111m in New York?",
-   "options": [
-    "His son, Paul",
-    "His wife, Hortense",
-    "The writer Émile Zola",
-    "The painter Camille Pissarro"
-   ],
-   "answer": 0,
-   "explain": "Paul junior modelled for Cézanne's harlequin paintings of 1888 to 1890, which Sotheby's says were inspired by the Mardi Gras parades of his childhood in Aix-en-Provence.",
-   "notes": {
-    "His wife, Hortense": "Hortense Fiquet sat for many portraits by Cézanne, but not this one.",
-    "The writer Émile Zola": "Zola was Cézanne's school friend in Aix-en-Provence, but he did not pose for this painting.",
-    "The painter Camille Pissarro": "Pissarro was Cézanne's mentor, not the model."
-   },
-   "source": "https://www.sothebys.com/en/buy/auction/2026/legendary-the-blaquier-arrieta-collection-evening-auction/paul-cezanne-arlequin"
   },
   {
    "id": "2026-11-af-klint-record",

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19",
+ "updated": "2026-11-26",
  "note": "Current exhibitions by area. Kept up to date by the daily task. 'place' must match content/places.json for a photo; otherwise 'art' (a works.json id) is shown.",
  "areas": {
   "London": {
@@ -150,6 +150,17 @@
      "url": "https://www.vangoghmuseum.nl/en/visit/whats-on/exhibitions/whistler",
      "blurb": "The first Whistler retrospective in the Netherlands.",
      "from": "2026-10-16"
+    },
+    {
+     "id": "rijks-de-kooning",
+     "title": "Willem de Kooning at work",
+     "venue": "Rijksmuseum",
+     "place": "Rijksmuseum, Amsterdam",
+     "from": "2026-10-09",
+     "until": "2027-01-17",
+     "topic": "abexp",
+     "blurb": "A big retrospective of his drawings, with paintings and sculptures.",
+     "url": "https://www.rijksmuseum.nl/en/whats-on/exhibitions/willem-de-kooning-at-work"
     }
    ]
   },
