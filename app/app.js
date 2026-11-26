@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "26 Nov, 18:55"; // shown as a small footnote on the Me page
+const BUILD_AT = "26 Nov, 18:57"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1365,7 +1365,9 @@ async function refreshWall(){
 }
 /* keep the Wall warm: fetched when the app opens and every 20 seconds, so it is full the moment you open it */
 let WALLT = null;
-function warmWall(){ if (!pid || WALLT) return; refreshWall(); WALLT = setInterval(async () => { if (document.hidden || !pid) return; if (await refreshWall() && $("#board")) leaderboard(99); }, 20000); }
+/* load everyone's Wall picture in the background so it is already on the phone when the Wall opens */
+async function preloadWallPics(){ await loadDisc(); wallIds().forEach(id => { const st = id === pid ? state : WALLC[id], w = st && picOf(st); if (w) loadSm(w.img); }); }
+function warmWall(){ if (!pid || WALLT) return; refreshWall().then(preloadWallPics); WALLT = setInterval(async () => { if (document.hidden || !pid) return; const ch = await refreshWall(); if (ch) preloadWallPics(); if (ch && $("#board")) leaderboard(99); }, 20000); }
 async function leaderboard(attempt = 0){
   const ids = wallIds();
   await loadDisc();
