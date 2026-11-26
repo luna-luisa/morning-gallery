@@ -2,7 +2,7 @@
 "use strict";
 /* points bill, quick fire of 10, levelling in the summary, timeline zoom and smoother sheet are live for everyone (25 Nov) */
 const NEWX = true;
-const BUILD_AT = "25 Nov, 11:06"; // shown as a small footnote on the Me page
+const BUILD_AT = "26 Nov, 18:55"; // shown as a small footnote on the Me page
 const CFG = window.MG_CONFIG || {};
 const LEVELS = ["Visitor", "Regular", "Enthusiast", "Connoisseur", "Curator"];
 const GROUPS = [["start", "Start here"], ["now", "Art now"], ["next", "Next steps"], ["specialist", "Specialist"]];
@@ -1334,6 +1334,17 @@ const cropPos = w => {
   const L = cl(0.5 - (c[0] + cw / 2) * k, 1 - k), T = cl(0.5 - (c[1] + ch / 2) * H, 1 - H);
   return `;width:${(k * 100).toFixed(2)}%;height:${(H * 100).toFixed(2)}%;left:${(L * 100).toFixed(2)}%;top:${(T * 100).toFixed(2)}%;right:auto;bottom:auto;background-size:100% 100%`;
 };
+/* Wall and profile pictures are CSS backgrounds, so a picture that fails to load stays blank for good. This checks them and tries again a few times (1.5s, 5s, 12s). */
+function healPics(){
+  document.querySelectorAll(".wpic[data-src] > i").forEach(el => {
+    if (el.dataset.heal) return; el.dataset.heal = "1";
+    const m = /url\(["']?(.*?)["']?\)/.exec(el.style.backgroundImage || ""); if (!m) return;
+    const url = m[1], orig = el.parentNode.dataset.src;
+    const tryLoad = (u, n) => { const im = new Image(); im.onload = () => { if (el.isConnected) el.style.backgroundImage = `url('${u}')`; }; im.onerror = () => { if (n < 3) setTimeout(() => tryLoad(n === 1 ? orig : u, n + 1), [0, 1500, 5000, 12000][n]); }; im.referrerPolicy = "no-referrer"; im.src = u; };
+    const probe = new Image(); probe.onerror = () => tryLoad(url, 1); probe.referrerPolicy = "no-referrer"; probe.src = url;
+  });
+}
+{ let ht = 0; new MutationObserver(() => { clearTimeout(ht); ht = setTimeout(healPics, 400); }).observe(document.body, {childList: true, subtree: true}); }
 const picHTML = (st, prof, cls = "") => { const w = picOf(st); return w ? `<span class="wpic ${cls}" data-src="${esc(w.img)}" role="img" aria-label="${esc(plainArtist(w.artist) + ", " + w.title)}" ><i style="background-image:url('${esc(tsrc(w.img))}')${cropPos(w)}"></i></span>` : `<span class="wpic none ${cls}" style="${dotStyle(prof)}">${esc(prof.name[0])}</span>`; };
 /* this week's wall: everyone shown by a picture they love (their initial until they choose one).
    Points: a coffee round 10, a mistake fixed for good 5, another day in a row 3, a Swipe round 2.
