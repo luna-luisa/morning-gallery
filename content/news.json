@@ -1,6 +1,6 @@
 {
  "week": "w/c 23 Nov 2026",
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "featuredTopics": [
   "van-eyck",
   "guggenheim",
@@ -9,6 +9,33 @@
   "abstraction"
  ],
  "items": [
+  {
+   "id": "2026-11-kanal-brussels",
+   "date": "2026-11-25",
+   "topic": "abstraction",
+   "level": 2,
+   "headline": "Brussels opens its huge KANAL art museum",
+   "summary": "KANAL-Centre Pompidou, in a former Citroën garage in Brussels built in 1933-34, opens on 28 November with more than 350 works.",
+   "question": "Brussels’s huge new art museum, opening on Saturday, works with which Paris museum?",
+   "options": [
+    "Centre Pompidou, Paris",
+    "Louvre, Paris",
+    "Musée d'Orsay, Paris",
+    "Musée Picasso, Paris"
+   ],
+   "answer": 0,
+   "explain": "Its partnership with the Centre Pompidou began in 2017, and the opening show includes a 1937 painting by Piet Mondrian.",
+   "notes": {
+    "Louvre, Paris": "The Louvre’s regional branch is the Louvre-Lens, in northern France.",
+    "Musée d'Orsay, Paris": "The Musée d'Orsay is itself a converted building: a railway station built for the 1900 World’s Fair."
+   },
+   "source": "https://www.centrepompidou.fr/en/lieu/kanal-centre-pompidou",
+   "reveal": {
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Kanal_Centre_Pompidou_Brussels.jpg/960px-Kanal_Centre_Pompidou_Brussels.jpg",
+    "photo": true,
+    "title": "KANAL-Centre Pompidou, the former Citroën garage in Brussels"
+   }
+  },
   {
    "id": "2026-11-london-museum",
    "date": "2026-11-24",
@@ -169,28 +196,6 @@
    "explain": "Guggenheim Jeune, at 30 Cork Street, hosted Kandinsky's first UK solo exhibition.",
    "source": "https://www.royalacademy.org.uk/exhibition/peggy-guggenheim-in-london",
    "reveal": "composition-vii"
-  },
-  {
-   "id": "2026-11-af-klint-record",
-   "date": "2026-11-19",
-   "topic": "abstraction",
-   "level": 2,
-   "headline": "Hilma af Klint painting sets a Nordic auction record",
-   "summary": "Her 1920 abstract painting Ser III No. 5 sold for 128.9m Swedish kronor (about $12.7m) at Bukowskis in Stockholm on 19 November.",
-   "question": "Which Swedish artist’s 1920 abstract painting just sold for about $12.7m?",
-   "options": [
-    "Hilma af Klint",
-    "Carl Larsson",
-    "Anders Zorn",
-    "Prince Eugen"
-   ],
-   "answer": 0,
-   "explain": "Hilma af Klint painted it in January 1920, and it made more than 16 times its top estimate; Bukowskis says no artwork has sold for more at auction in the Nordic countries.",
-   "notes": {
-    "Carl Larsson": "Larsson is loved for his cosy watercolours of Swedish family life, not abstract paintings.",
-    "Anders Zorn": "Zorn was a Swedish portrait painter famous for his bathers and society portraits."
-   },
-   "source": "https://hyperallergic.com/rare-hilma-af-klint-painting-sells-for-staggering-12-7m/"
   },
   {
    "id": "2026-11-venice-closes",
