@@ -1,22 +1,88 @@
 {
  "week": "w/c 23 Nov 2026",
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "featuredTopics": [
-  "van-eyck",
-  "guggenheim",
+  "art-fairs",
   "expressionism",
-  "modern-british",
-  "abstraction"
+  "renaissance",
+  "abstraction",
+  "modern-british"
  ],
  "items": [
+  {
+   "id": "2026-11-bern-klee-director",
+   "date": "2026-11-26",
+   "topic": "expressionism",
+   "level": 3,
+   "headline": "Bern’s Paul Klee museums pick a new director",
+   "summary": "Lisa Marei Schmidt, head of the Brücke-Museum in Berlin, will lead the Kunstmuseum Bern and the Zentrum Paul Klee from August 2027.",
+   "question": "Bern’s new museum director runs a Berlin museum devoted to which art group?",
+   "options": [
+    "Die Brücke",
+    "Der Blaue Reiter",
+    "The Bauhaus",
+    "De Stijl"
+   ],
+   "answer": 0,
+   "explain": "Die Brücke (The Bridge) was founded in Dresden in 1905 by Ernst Ludwig Kirchner and fellow architecture students.",
+   "notes": {
+    "Der Blaue Reiter": "This Munich group was formed in 1911 by Kandinsky and Franz Marc, and Paul Klee showed with it.",
+    "The Bauhaus": "Paul Klee taught at the Bauhaus art school from 1921 to 1931."
+   },
+   "source": "https://www.zpk.org/en/about-us/media",
+   "reveal": "kirchner-street-dresden"
+  },
+  {
+   "id": "2026-11-titian-self-portrait",
+   "date": "2026-11-26",
+   "topic": "renaissance",
+   "level": 2,
+   "headline": "Self-portrait sold for $69,850 now priced at £1.5m",
+   "summary": "A small self-portrait sold in New York in 2024 for $69,850 as ‘attributed to’ the artist is now offered for £1.5m at Dickinson in London.",
+   "question": "A newly attributed self-portrait by which Venetian painter is on sale in London?",
+   "options": [
+    "Titian",
+    "Leonardo da Vinci",
+    "Raphael",
+    "Michelangelo"
+   ],
+   "answer": 0,
+   "explain": "If accepted, it would be one of only three known self-portraits by Titian, the great painter of Renaissance Venice.",
+   "notes": {
+    "Leonardo da Vinci": "Leonardo worked mainly in Florence and Milan.",
+    "Michelangelo": "Michelangelo worked mainly in Florence and Rome."
+   },
+   "source": "https://simondickinson.com/artworks/57391-tiziano-vecellio-called-titian-self-portrait-of-the-artist/",
+   "reveal": "venus-urbino"
+  },
+  {
+   "id": "2026-11-venice-2028-curator",
+   "date": "2026-11-26",
+   "topic": "art-fairs",
+   "level": 2,
+   "headline": "Hoor Al Qasimi will curate the 2028 Venice Biennale",
+   "summary": "The founder of the Sharjah Art Foundation will curate the next Venice Biennale art show, following the late Koyo Kouoh.",
+   "question": "The 2028 Venice Biennale curator runs an art foundation in which country?",
+   "options": [
+    "United Arab Emirates",
+    "Qatar",
+    "Saudi Arabia",
+    "Kuwait"
+   ],
+   "answer": 0,
+   "explain": "Hoor Al Qasimi founded the Sharjah Art Foundation in 2009 and also directs the Sharjah Biennial.",
+   "notes": {
+    "Qatar": "Qatar’s capital, Doha, is home to the Museum of Islamic Art, designed by I.M. Pei."
+   }
+  },
   {
    "id": "2026-11-kanal-brussels",
    "date": "2026-11-25",
    "topic": "abstraction",
    "level": 2,
    "headline": "Brussels opens its huge KANAL art museum",
-   "summary": "KANAL-Centre Pompidou, in a former Citroën garage in Brussels built in 1933-34, opens on 28 November with more than 350 works.",
-   "question": "Brussels’s huge new art museum, opening on Saturday, works with which Paris museum?",
+   "summary": "KANAL-Centre Pompidou, in a former Citroën garage in Brussels built in 1933-34, opened on 28 November with more than 350 works.",
+   "question": "Brussels’s huge new art museum, opened on 28 November, works with which Paris museum?",
    "options": [
     "Centre Pompidou, Paris",
     "Louvre, Paris",
@@ -41,8 +107,8 @@
    "date": "2026-11-24",
    "topic": "national-gallery",
    "level": 2,
-   "headline": "London Museum opens its new home on Saturday",
-   "summary": "The former Museum of London opens on 28 November in Smithfield's Victorian General Market after a £437m project, with free permanent galleries.",
+   "headline": "London Museum opens its new home at Smithfield",
+   "summary": "The former Museum of London opened on 28 November in Smithfield's Victorian General Market after a £437m project, with free permanent galleries.",
    "question": "The London Museum's new home is in which old London market?",
    "options": [
     "Smithfield",
@@ -158,44 +224,6 @@
     "photo": true,
     "title": "Henry Moore, Vertebrae, 1968–69 (Israel Museum). The Dallas Piece is a larger version."
    }
-  },
-  {
-   "id": "2026-11-van-eyck",
-   "date": "2026-11-12",
-   "topic": "van-eyck",
-   "level": 2,
-   "headline": "Van Eyck's portraits reunited in London",
-   "summary": "'Van Eyck: The Portraits' opened at the National Gallery in London on 21 November and runs until 11 April 2027.",
-   "question": "Whose portraits are on show at the National Gallery in London until April?",
-   "options": [
-    "Jan van Eyck",
-    "Hans Holbein",
-    "Rembrandt",
-    "Johannes Vermeer"
-   ],
-   "answer": 0,
-   "explain": "The first exhibition devoted to Jan van Eyck's portraits, including the gallery's own Arnolfini Portrait.",
-   "source": "https://www.nationalgallery.org.uk/exhibitions/van-eyck-the-portraits",
-   "reveal": "red-turban"
-  },
-  {
-   "id": "2026-11-guggenheim-ra",
-   "date": "2026-11-12",
-   "topic": "guggenheim",
-   "level": 3,
-   "headline": "Peggy Guggenheim's London years at the RA",
-   "summary": "Since 21 November the Royal Academy in London has looked at her London gallery, Guggenheim Jeune (1938–39).",
-   "question": "Peggy Guggenheim's London gallery gave the first UK solo show to which artist?",
-   "options": [
-    "Wassily Kandinsky",
-    "Pablo Picasso",
-    "Salvador Dalí",
-    "Jackson Pollock"
-   ],
-   "answer": 0,
-   "explain": "Guggenheim Jeune, at 30 Cork Street, hosted Kandinsky's first UK solo exhibition.",
-   "source": "https://www.royalacademy.org.uk/exhibition/peggy-guggenheim-in-london",
-   "reveal": "composition-vii"
   },
   {
    "id": "2026-11-venice-closes",
